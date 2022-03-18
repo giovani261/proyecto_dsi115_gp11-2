@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/db', function () {
+    //consulta
     $sql = 'SELECT * FROM products';
     $products = DB::select($sql);
     return $products;
