@@ -9,9 +9,11 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap sidebar)-->
-        <link href="{{ asset('../resources/css/sidebar.css') }}" rel="stylesheet" />
+        <!-- <link href="{{ asset('../resources/css/sidebar.css') }}" rel="stylesheet" /> -->
+        <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet" />
         <!-- Css propio-->
-        <link href="{{ asset('../resources/css/estilos3.css') }}" rel="stylesheet" />
+        <!-- <link href="{{ asset('../resources/css/estilos3.css') }}" rel="stylesheet" /> -->
+        <link href="{{ asset('css/estilos3.css') }}" rel="stylesheet" />
         <!-- Fontawesome-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- Bootstrap css cdn -->
@@ -31,14 +33,14 @@
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light">Img</div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/proyecto_dsi115_gp11/public/dashboard"><i class="fa-solid fa-gauge fa-xl"></i> Panel de control</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/dashboard"><i class="fa-solid fa-gauge fa-xl"></i> Panel de control</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-calendar-days fa-xl"></i> Agendar cita</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-users fa-xl"></i> Gestion de usuarios</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-hammer fa-xl"></i> Gestion de insumos</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-briefcase-medical fa-xl"></i> <span class="txtmenu"> Gestion de medicamentos</span></a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-clipboard-list fa-xl"></i> Gestion de proveedores</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-chart-area fa-xl"></i> Generar reporte</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/proyecto_dsi115_gp11/public/db">Prueba DB</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/db">Prueba DB</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -91,8 +93,8 @@
             </div>
        </footer>
 
-        <script src="{{ asset('../resources/js/scripts2.js') }}"></script>
-
+        <!-- <script src="{{ asset('../resources/js/scripts2.js') }}"></script> -->
+        <script src="{{ asset('js/scripts2.js') }}"></script>
         @include('sweetalert::alert')
     </body>
 </html>
