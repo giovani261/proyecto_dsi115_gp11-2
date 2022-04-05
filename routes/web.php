@@ -24,7 +24,7 @@ Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('dashbo
 
 Route::match(['get'],'/db',[DashboardController::class,'db'])->name('db');
 
-Route::match(['get', 'post'],'/signos',[SignosController::class,'signos'])->name('signos');
+Route::match(['post'],'/signos',[SignosController::class,'signos'])->name('signos');
 
 // Route::match(['get', 'post'], '/db', function () {
 //     //consulta
@@ -33,3 +33,7 @@ Route::match(['get', 'post'],'/signos',[SignosController::class,'signos'])->name
 //     Alert::success('Success Title', 'Productos obtenidos de la bd correctamente');
 //     return $products;
 // })->name('db');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

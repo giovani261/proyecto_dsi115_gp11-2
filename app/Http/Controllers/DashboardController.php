@@ -11,6 +11,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 class DashboardController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function dashboard(Request $request){
         // if (session()->get('nombre')){
         //     $nombre = session()->get('nombre');

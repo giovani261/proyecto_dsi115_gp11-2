@@ -54,9 +54,16 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user fa-xl"></i> Nombre</a>
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user fa-xl"></i> {{ Auth::user()->name }}</a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#!"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesion</a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        <i class="fa-solid fa-right-from-bracket"></i> {{ __('Cerrar Sesion') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
                                         <!-- <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#!">Something else here</a> -->
                                     </div>

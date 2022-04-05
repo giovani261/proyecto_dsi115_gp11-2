@@ -11,5 +11,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 class LoginController extends Controller
 {
     //
-
+    public function logout(){
+        return route('login');
+    }
 }
