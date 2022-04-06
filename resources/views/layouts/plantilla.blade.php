@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Unidad clinica humana</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -22,6 +23,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- jquery cdn -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- sweet alert cdn -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
         <div class="loading-container">
@@ -100,8 +103,9 @@
             </div>
        </footer>
 
-        <!-- <script src="{{ asset('../resources/js/scripts2.js') }}"></script> -->
         <script src="{{ asset('js/scripts2.js') }}"></script>
+        <!-- incluye el paquete, para mostar alertas desde los controladores -->
         @include('sweetalert::alert')
+        @yield('scripts')
     </body>
 </html>

@@ -145,19 +145,57 @@
             </button>
         </div>
         <div class="modal-body">
-        <form action="{{route('signos')}}" method="post">
+        <form method="POST" id="modalsignos">
         @csrf
         <label for="inputnombre">Nombre</label>
-        <input id="inputnombre" type="text" class="form-control" name="NombreSigno">
+        <input id="inputnombre" type="text" class="form-control" name="NombreSigno2">
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-primary" onclick="SignosVitales();">Guardar</button>
         </div>
         </form>
         </div>
     </div>
     </div>
 </div>
+@endsection
 
+@section('scripts')
+<script>
+            function SignosVitales(){
+                var inputsigno = document.getElementById("inputnombre");
+                var valnombresigno = inputsigno.value;
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Confirmar.',
+                    text: '¡Desea continuar?',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ok',
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url:"{{route('signos')}}",
+                            type:"POST",
+                            data:{
+                                'NombreSigno': valnombresigno,
+                                "_token": $("meta[name='csrf-token']").attr("content")
+                            },
+                            dataType:"json",
+                            success: function(test){
+                                inputsigno.value="";
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Hecho!.',
+                                    text: 'Se registraron correctamente los Signos Vitales ' +test.nombre,
+                                    confirmButtonText: 'Ok',
+                                    })
+                                }
+                            });
+                    } else if (result.isDismissed) {
+                        Swal.fire('No se registraron los signos vitales', '', 'info')
+                    }
+                    })
+            }
+</script>
 @endsection

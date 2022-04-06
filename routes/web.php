@@ -20,7 +20,7 @@ Route::get('/laravel', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
+Route::match(['get','post'],'/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
 
 Route::match(['get'],'/db',[DashboardController::class,'db'])->name('db');
 
