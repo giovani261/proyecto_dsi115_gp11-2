@@ -22,8 +22,6 @@ Route::get('/laravel', function () {
 
 Route::match(['get','post'],'/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
 
-Route::match(['get'],'/db',[DashboardController::class,'db'])->name('db');
-
 Route::match(['post'],'/signos',[SignosController::class,'signos'])->name('signos');
 
 // Route::match(['get', 'post'], '/db', function () {

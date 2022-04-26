@@ -26,15 +26,4 @@ class DashboardController extends Controller
         // }
         return view('dashboard');
     }
-
-    public function db(Request $request){
-        $name = 'SELECT nombre FROM products';
-        $id = 'SELECT id FROM products';
-        $products = DB::select($name);
-        $ids = DB::select($id);
-        $array = array_column($products, 'nombre'); //se almacena en un vector normal los resultados de la consulta, es decir solo se almacenan en el vector los nombres obtenidos
-        Alert::success('Success Title', 'Productos obtenidos de la bd correctamente');
-        return view('dashboard')->with('name', $array);
-        //return $array;
-    }
 }
