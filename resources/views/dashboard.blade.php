@@ -3,11 +3,11 @@
 @section('contenido')
 <br>
 <div class="container-fluid containercardsdash">
-    @isset($name)
+    <!-- @isset($name)
         @foreach($name as $productname)
             <h1>{{ $productname }},</h1>
         @endforeach
-    @endisset   
+    @endisset    -->
     <br>
     <!-- Card Signos-->
     <div class="card" style="max-width: 18rem;">

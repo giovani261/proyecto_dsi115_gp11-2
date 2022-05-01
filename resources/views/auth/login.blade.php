@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+@if($errors->any())
+<script>
+Swal.fire({
+  icon: 'error',
+  title: 'Acceso invalido',
+  text: '{{$errors->first()}}',
+  showCancelButton: false,
+  confirmButtonText: 'Ok',
+})
+</script>
+<!-- <center><strong>{{$errors->first()}}</strong></center> -->
+<br>
+@endif
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
