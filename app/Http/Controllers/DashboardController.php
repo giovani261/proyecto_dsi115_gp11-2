@@ -55,8 +55,11 @@ class DashboardController extends Controller
         // $role_secretaria->givePermissionTo($permission_secretaria);
         //User::find(3)->assignRole('secretaria');
         //creacion rol de asistente
-        $role_asistente = Role::create(['name' => 'asistente']);
-        User::find(4)->assignRole('asistente');
+        //$role_asistente = Role::create(['name' => 'asistente']);
+        //User::find(4)->assignRole('asistente');
+        //Rol para miguel User::find(2)->assignRole('administrador');
+        //Rol para jen User::find(5)->assignRole('administrador');
+        //Rol para bryan User::find(6)->assignRole('administrador');
         //return "hecho";
     }
 }
