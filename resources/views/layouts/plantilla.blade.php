@@ -6,7 +6,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Unidad clinica humana</title>
+        <title>Unidad medica humana</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap sidebar)-->
@@ -19,12 +19,16 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- Bootstrap css cdn -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- bootstrap datepicker css cdn -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- Bootstrap js cdn -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- jquery cdn -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <!-- sweet alert cdn -->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- bootstrap datepicker js cdn -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
     <body>
         <div class="loading-container">
@@ -36,13 +40,27 @@
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light">Img</div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/dashboard"><i class="fa-solid fa-gauge fa-xl"></i> Panel de control</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-calendar-days fa-xl"></i> Agendar cita</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-users fa-xl"></i> Gestion de usuarios</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-hammer fa-xl"></i> Gestion de insumos</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-briefcase-medical fa-xl"></i> <span class="txtmenu"> Gestion de medicamentos</span></a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-clipboard-list fa-xl"></i> Gestion de proveedores</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-chart-area fa-xl"></i> Generar reporte</a>
+                    @role('administrador')
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/dashboard"><i class="fa-solid fa-gauge fa-xl"></i> Panel de control</a>
+                    @endrole
+                    @role('administrador|secretaria')
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-calendar-days fa-xl"></i> Agendar cita</a>
+                    @endrole
+                    @role('administrador')
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-users fa-xl"></i> Gestion de usuarios</a>
+                    @endrole
+                    @role('administrador|secretaria|asistente')
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-hammer fa-xl"></i> Gestion de insumos</a>
+                    @endrole
+                    @role('administrador|secretaria|asistente')
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-briefcase-medical fa-xl"></i> <span class="txtmenu"> Gestion de medicamentos</span></a>
+                    @endrole
+                    @role('administrador')
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-clipboard-list fa-xl"></i> Gestion de proveedores</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-chart-area fa-xl"></i> Generar reporte</a>
+                    @endrole
+                    <!-- Para todos, incluidos los usuarios sin cuenta-->
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/"><i class="fa-solid fa-clipboard-list fa-xl"></i> Servicios</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -55,22 +73,31 @@
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user fa-xl"></i> {{ Auth::user()->name }}</a>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        <i class="fa-solid fa-right-from-bracket"></i> {{ __('Cerrar Sesion') }}
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                        <!-- <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#!">Something else here</a> -->
-                                    </div>
-                                </li>
-                            </ul>
+                                @auth
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user fa-xl"></i> {{ Auth::user()->name }}</a>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            <i class="fa-solid fa-right-from-bracket"></i> {{ __('Cerrar Sesion') }}
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                            <!-- <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#!">Something else here</a> -->
+                                        </div>
+                                    </li>
+                                @endauth
+                                @guest
+                                    @if (Route::has('login'))
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                        </li>
+                                    @endif
+                                @endguest
+                            </ul> 
                         </div>
                     </div>
                 </nav>

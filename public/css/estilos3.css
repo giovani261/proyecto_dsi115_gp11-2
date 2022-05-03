@@ -4,7 +4,10 @@
     padding-bottom: 1%;
 }
 .card-body{
-    padding: 0% !important;
+    padding-top: 5% !important;
+    padding-bottom: 5% !important;
+    padding-left: 0% !important;
+    padding-right: 0% !important;
 }
 /* .icons:hover{
     transform: scale(1.15);  (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) 
@@ -12,7 +15,7 @@
 
 .card-body:hover{
     cursor: pointer;
-    transform: scale(1.09); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(1.08); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 .acards{
@@ -35,6 +38,16 @@
   display: flex !important;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 0% !important;
+}
+
+.calendario {
+  position: absolute;
+  right: 9px;
+  color: rgb(0, 128, 255);
+
+  /* Vertically center the icon in the input */
+  top: calc(50% - 0.5em);
 }
 
 /* css para animacion de carga */
