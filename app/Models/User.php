@@ -59,5 +59,17 @@ class User extends Authenticatable
     public function referencia(){
         return $this->hasMany('App\Models\Referencia');
     }
+    
+    public function receta() {
+        return $this->hasMany('App\Models\Receta');
+    }
+    
+    public function insumo() {
+        return $this->hasMany('App\Models\Insumo');
+    }
+    
+    public function reservaDeCita() {
+        return $this->hasMany('App\Models\ReservaDeCita');
+    }
 
 }
