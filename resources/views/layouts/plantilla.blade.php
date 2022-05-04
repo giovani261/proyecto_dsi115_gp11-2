@@ -38,7 +38,9 @@
         <div class="d-flex relative" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">Img</div>
+                <div class="sidebar-heading border-bottom bg-light">
+                    <center><img src="{{ asset('imgs/logo.jpeg') }}" alt="logo" class="img-thumbnail logo"></center>
+                </div>
                 <div class="list-group list-group-flush">
                     @role('administrador')
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/dashboard"><i class="fa-solid fa-gauge fa-xl"></i> Panel de control</a>
@@ -93,7 +95,7 @@
                                 @guest
                                     @if (Route::has('login'))
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                            <a class="nav-link" href="{{ route('login') }}"><i class="fa-solid fa-arrow-right-to-bracket"></i> {{ __('Login') }}</a>
                                         </li>
                                     @endif
                                 @endguest
@@ -108,25 +110,48 @@
 
         <footer id="footer" class="midnight-blue">
             <br>
+            <center>
             <div class="container">
-                <div class="col-sm-9">
-                    <div style="float:left; padding:0 30px 0 0" class="navbar-brand2">
-                    <a href="">
-                        <img src="https://www.ues.edu.sv/themes/UES-THEME/assets/images/ues_logo3.svg" alt="logo">
-                    </a>
+                <div class="row">
+                    <div class="col">
+                        <div>
+                            <h3>Contactos</h3>        
+                            <a href="https://twitter.com/rene_romer" class="twitterlink" target="_blank">
+                                <i class="fa-brands fa-twitter twittericon"></i>
+                                <br>
+                                @rene_romer
+                            </a>
+                        </div>
+                        <br>
+                        <span class="fbspan">   
+                                <i class="fa-brands fa-facebook fbicon"></i>
+                                <br>
+                                <a href="https://www.facebook.com/UNIDADMEDICAHUMANA/" class="fblink" target="_blank">/UNIDADMEDICAHUMANA</a>
+                                <br>
+                                <a href="https://www.facebook.com/rene.r.romero.7" class="fblink" target="_blank">/rene.r.romero.7</a>
+                        </span>
+                        <br>
                     </div>
-                    <div>2021 Universidad de El Salvador. </br> 
-                        Ciudad Universitaria "Dr. Fabio Castillo Figueroa",</br>Final de Av.Mártires y Héroes del 30 julio, San Salvador, </br> El Salvador, América Central. Teléfonos: +(503) 2511-2000. Todos los derechos reservados.
+                    <div class="col">
+                        <h3>Unidad Medica Humana</h3>
+                        <br>
+                        <p><i class="fa-solid fa-map-location-dot"></i> 23 Av. Nte. # 1318. Col. Medica. Contiguo Hospital PNC</p>
+                        <br>
+                        <p><i class="fa-solid fa-phone"></i> TEL.: 2519-3909</p>
+                        <br>
+                        <p><i class="fa-solid fa-window-maximize"></i> https://unidad-medica-humana.herokuapp.com/</p>
+                        <br>
+                        <p><i class="fa-solid fa-envelope"></i> drrodriguezromero@gmail.com</p>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <ul class="pull-right">
-                        <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
-                        <li><a href="https://www.ues.edu.sv/blog/post/croquis-sede-central-"><i class="fas fa-map-marked-alt"></i> Mapa del Sitio</a></li>
-                        
-                    </ul>
+                    <div class="col">
+                        <h3>Asociaciones</h3>
+                        <a href="http://asccelsalvador.com/" target="_blank"><img src="{{ asset('imgs/asc1.jpeg') }}" alt="asociacion 1" class="img-thumbnail asc1"></a>
+                        <a href="https://www.acedes.net/" target="_blank"><img src="{{ asset('imgs/asc2.jpeg') }}" alt="asociacion 2" class="img-thumbnail asc2"></a>
+                        <a href="https://www.ascgelsalvador.com/" target="_blank"><img src="{{ asset('imgs/asc3.jpeg') }}" alt="asociacion 3" class="img-thumbnail asc3"></a>
+                    </div>
                 </div>
             </div>
+            </center>
        </footer>
 
         <script src="{{ asset('js/scripts2.js') }}"></script>
