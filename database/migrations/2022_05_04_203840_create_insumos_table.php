@@ -15,10 +15,11 @@ class CreateInsumosTable extends Migration
     {
         Schema::create('insumos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('nombre', 50);
             $table->integer('cantidad');
             $table->float('precio');
-            $table->string('categoria', 1024);
+            $table->string('categoria', 100);
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

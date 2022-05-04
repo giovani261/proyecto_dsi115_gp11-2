@@ -10,7 +10,7 @@ class Receta extends Model
     use HasFactory;
     
     protected $fillable = [
-        'receta_id',
+        'user_id',
         'nombre',
         'especialidad',
         'indicaciones',
@@ -21,6 +21,6 @@ class Receta extends Model
     }
     
     public function medicamento() {
-        return $this->belongsTo('App\Models\Medicamento');
+        return $this->belongsToMany('App\Models\Medicamento');
     }
 }

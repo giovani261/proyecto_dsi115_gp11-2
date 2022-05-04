@@ -15,6 +15,7 @@ class CreateReservasDeCitasTable extends Migration
     {
         Schema::create('reservas_de_citas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('nombre', 1024);
             $table->integer('telefono');
             $table->date('fecha');

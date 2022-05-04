@@ -15,11 +15,12 @@ class CreateRecetasTable extends Migration
     {
         Schema::create('recetas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('nombre', 50);
             $table->string('especialidad', 255);
             $table->string('indicaciones', 255);
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('medicamento_id')->references('id')->on('medicamentos');
+            //$table->foreign('medicamento_id')->references('id')->on('medicamentos');
         });
     }
 

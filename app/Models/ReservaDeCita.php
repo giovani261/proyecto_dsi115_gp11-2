@@ -10,7 +10,7 @@ class ReservaDeCita extends Model
     use HasFactory;
     
     protected $fillable = [
-        'reserva_id',
+        'user_id',
         'nombre',
         'telefono',
         'fecha',
