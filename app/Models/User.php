@@ -52,4 +52,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Expediente');
     }
 
+    public function proveedor(){
+        return $this->hasMany('App\Models\Proveedor');
+    }
+
+    public function referencia(){
+        return $this->hasMany('App\Models\Referencia');
+    }
+
 }

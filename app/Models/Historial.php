@@ -30,4 +30,8 @@ class Historial extends Model
     public function expediente(){
         return $this->belongsTo('App\Models\Expediente');
     }
+
+    public function consulta(){
+        return $this->hasMany('App\Models\ConsultaSubsecuente');
+    }
 }
