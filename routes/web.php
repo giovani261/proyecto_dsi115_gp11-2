@@ -26,7 +26,6 @@ Route::get('/laravel', function () {
 Route::match(['get','post'],'/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
 Route::match(['post'],'/signos',[SignosController::class,'signos'])->name('signos');
 Route::match(['get','post'],'/agenda', [AgendaController::class,'show'])->name('agenda');
-Route::match(['get','post'],'/servicios', [ServiciosController::class,'show'])->name('servicios');
 Route::match(['get','post'],'/incapacidad', [IncapacidadController::class,'show'])->name('incapacidad');
 
 

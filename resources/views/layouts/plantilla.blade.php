@@ -62,7 +62,7 @@
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-chart-area fa-xl"></i> Generar reporte</a>
                     @endrole
                     <!-- Para todos, incluidos los usuarios sin cuenta-->
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/servicios"><i class="fa-solid fa-clipboard-list fa-xl"></i> Servicios</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/"><i class="fa-solid fa-clipboard-list fa-xl"></i> Servicios</a>
                     <style>
                         .fa-solid{
                             color: #7a0404;
