@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SignosController;
+use App\Http\Controllers\HistorialController;
+use App\Http\Controllers\ExpedienteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +25,8 @@ Route::get('/laravel', function () {
 Route::match(['get','post'],'/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
 
 Route::match(['post'],'/signos',[SignosController::class,'signos'])->name('signos');
+Route::match(['post'],'/historial',[HistorialController::class,'registro'])->name('historial');
+Route::match(['post'],'/expediente',[ExpedienteController::class,'registro'])->name('expediente');
 
 // Route::match(['get', 'post'], '/db', function () {
 //     //consulta

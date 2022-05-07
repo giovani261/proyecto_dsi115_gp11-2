@@ -10,6 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
+use App\Models\Expediente;
 use Auth;
 
 class DashboardController extends Controller
@@ -30,8 +31,8 @@ class DashboardController extends Controller
         // }
         if(Auth::user()->hasRole(['administrador']))
         {
-
-            return view('dashboard');
+            $expedientes = Expediente::all(); 
+            return view('dashboard')->with('expedientes', $expedientes);
         }
         else {
             Auth::logout();
@@ -55,8 +56,11 @@ class DashboardController extends Controller
         // $role_secretaria->givePermissionTo($permission_secretaria);
         //User::find(3)->assignRole('secretaria');
         //creacion rol de asistente
-        $role_asistente = Role::create(['name' => 'asistente']);
-        User::find(4)->assignRole('asistente');
+        //$role_asistente = Role::create(['name' => 'asistente']);
+        //User::find(4)->assignRole('asistente');
+        //Rol para miguel User::find(2)->assignRole('administrador');
+        //Rol para jen User::find(5)->assignRole('administrador');
+        //Rol para bryan User::find(6)->assignRole('administrador');
         //return "hecho";
     }
 }

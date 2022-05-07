@@ -43,4 +43,33 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function incapacidad(){
+        return $this->hasMany('App\Models\Incapacidad');
+    }
+
+    public function expediente(){
+        return $this->hasMany('App\Models\Expediente');
+    }
+
+    public function proveedor(){
+        return $this->hasMany('App\Models\Proveedor');
+    }
+
+    public function referencia(){
+        return $this->hasMany('App\Models\Referencia');
+    }
+    
+    public function receta() {
+        return $this->hasMany('App\Models\Receta');
+    }
+    
+    public function insumo() {
+        return $this->hasMany('App\Models\Insumo');
+    }
+    
+    public function reservaDeCita() {
+        return $this->hasMany('App\Models\ReservaDeCita');
+    }
+
 }

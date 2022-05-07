@@ -16,6 +16,11 @@
 .card-body:hover{
     cursor: pointer;
     transform: scale(1.08); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transition: all 0.8s;
+}
+
+.card-body{
+  transition: all 0.8s;
 }
 
 .acards{
@@ -48,6 +53,35 @@
 
   /* Vertically center the icon in the input */
   top: calc(50% - 0.5em);
+}
+
+.twittericon, .fbicon{
+  color: white;
+}
+
+.twitterlink:hover .twittericon{
+  transform: scale(1.50);
+  color: #00acee;
+  transition:all 0.5s;
+}
+.twittericon, .fbicon{
+  transition:all 0.5s;
+}
+
+.fbspan:hover .fbicon{
+  transform: scale(1.50);
+  color: #3b5998;
+  transition:all 0.5s;
+}
+
+.logo{
+  height: 50px;
+  width: 50px;
+}
+.asc1, .asc2, .asc3{
+  height: 150px;
+  width: 150px;
+  margin: 10px;
 }
 
 /* css para animacion de carga */
