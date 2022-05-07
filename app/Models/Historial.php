@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Historial extends Model
 {
     use HasFactory;
+<<<<<<< HEAD
     public $timestamps = false;
     protected $table = 'historiales';
+=======
+
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
     /**
      * The attributes that are mass assignable.
      *

@@ -46,7 +46,11 @@
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/dashboard"><i class="fa-solid fa-gauge fa-xl"></i> Panel de control</a>
                     @endrole
                     @role('administrador|secretaria')
+<<<<<<< HEAD
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-calendar-days fa-xl"></i> Agendar cita</a>
+=======
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/agenda"><i class="fa-solid fa-calendar-days fa-xl"></i> Agendar cita</a>
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
                     @endrole
                     @role('administrador')
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-users fa-xl"></i> Gestion de usuarios</a>
@@ -63,6 +67,14 @@
                     @endrole
                     <!-- Para todos, incluidos los usuarios sin cuenta-->
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/"><i class="fa-solid fa-clipboard-list fa-xl"></i> Servicios</a>
+<<<<<<< HEAD
+=======
+                    <style>
+                        .fa-solid{
+                            color: #7a0404;
+                        }
+                    </style>
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -109,13 +121,38 @@
         </div>
 
         <footer id="footer" class="midnight-blue">
+<<<<<<< HEAD
+=======
+            <style>
+                .col h4{
+                    color: white;
+                }
+                p{
+                    color: white;
+                    font-size: 85%;
+                }               
+                .fblink{
+                    color: white;
+                    font-size: 85%;                          
+                }
+                .twitterlink{
+                    color: white;
+                    font-size: 85%;                                             
+                }
+
+            </style>
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
             <br>
             <center>
             <div class="container">
                 <div class="row">
                     <div class="col">
                         <div>
+<<<<<<< HEAD
                             <h3>Contactos</h3>        
+=======
+                            <h4>Contactos</h4>        
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
                             <a href="https://twitter.com/rene_romer" class="twitterlink" target="_blank">
                                 <i class="fa-brands fa-twitter twittericon"></i>
                                 <br>
@@ -133,6 +170,7 @@
                         <br>
                     </div>
                     <div class="col">
+<<<<<<< HEAD
                         <h3>Unidad Medica Humana</h3>
                         <br>
                         <p><i class="fa-solid fa-map-location-dot"></i> 23 Av. Nte. # 1318. Col. Medica. Contiguo Hospital PNC</p>
@@ -149,6 +187,17 @@
                         <a href="https://www.acedes.net/" target="_blank"><img src="{{ asset('imgs/asc2.jpeg') }}" alt="asociacion 2" class="img-thumbnail asc2"></a>
                         <a href="https://www.ascgelsalvador.com/" target="_blank"><img src="{{ asset('imgs/asc3.jpeg') }}" alt="asociacion 3" class="img-thumbnail asc3"></a>
                     </div>
+=======
+                        <h4>Unidad Medica Humana</h4>
+                        <br>
+                        <p><i class="fa-solid fa-map-location-dot"></i> 23 Av. Nte. # 1318. Col. Medica. Contiguo Hospital PNC</p>
+                        <p><i class="fa-solid fa-phone"></i> TEL.: 2519-3909</p>
+                        <p><i class="fa-solid fa-window-maximize"></i> https://unidad-medica-humana.herokuapp.com/</p>
+                        <p><i class="fa-solid fa-envelope"></i> drrodriguezromero@gmail.com</p>
+                    </div>
+               
+                    
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
                 </div>
             </div>
             </center>

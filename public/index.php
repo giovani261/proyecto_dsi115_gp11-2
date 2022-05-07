@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 co<?php
+=======
+<?php
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;

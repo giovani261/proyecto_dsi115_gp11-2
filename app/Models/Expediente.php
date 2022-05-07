@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Expediente extends Model
 {
     use HasFactory;
+<<<<<<< HEAD
     public $timestamps = false;
+=======
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
 
     /**
      * The attributes that are mass assignable.

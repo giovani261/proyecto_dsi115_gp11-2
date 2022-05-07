@@ -93,16 +93,28 @@
         </a>
         </div>
     </div>
+<<<<<<< HEAD
     <!-- Card Expediente clinico-->
     <div class="card" style="max-width: 18rem;">
         <div class="card-header text-primary"><center>Expediente clinico</center></div>
         <div class="card-body">
         <a class="acards" data-bs-toggle="modal" data-bs-target="#expedienteClinicoModalCenter">
+=======
+    <!-- Card Generar receta-->
+    <div class="card" style="max-width: 18rem;">
+        <div class="card-header text-primary"><center>Receta</center></div>
+        <div class="card-body">
+        <a class="acards" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
             <div class="container">
                 <center>
                     <div class="row">
                         <div class="col my-auto">
+<<<<<<< HEAD
                             Registrar Expediente Clinico
+=======
+                            Registrar Signos Vitales
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
                         </div>
 
                         <div class="col-md-auto my-auto">
@@ -149,6 +161,7 @@
         <div class="modal-body">
         <form method="POST" id="modalhistorialclinico">
         @csrf
+<<<<<<< HEAD
         <label for="expedienteid">Seleccione un paciente al que se le vinculara el historial, el formato de la lista es: Paciente -- Dui</label>
         <select class="form-select" aria-label="Default select example" name="idexpediente" id="expedienteid">
             @foreach($expedientes as $expediente)
@@ -156,6 +169,16 @@
             @endforeach
         </select>
         <!-- <input type="text" class="form-control" id="expedienteid" name="idexpediente" required> -->
+=======
+        <label for="expedienteid">Id del expediente del paciente</label>
+        <input type="text" class="form-control" id="expedienteid" name="idexpediente" required>
+        <br>
+        <label for="inputfechadeexpedicion">Fecha de expedicion</label>
+        <div class="input-group date">
+            <input type="text" class="form-control" id="inputfechadeexpedicion" name="fechaexpedicion" required>
+            <i class="fa-solid fa-calendar-days calendario"></i>
+        </div>
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
         <br>
         <label for="inputfechadeenfermedadactual">Fecha de enfermedad actual</label>
         <div class="input-group date">
@@ -176,15 +199,23 @@
         <input id="inputexamenesprescritos" type="text" class="form-control" name="examenesprescritos" required>
         <br>
         <label for="inputdiagnostico">Diagnostico</label>
+<<<<<<< HEAD
         <textarea class="form-control" id="inputdiagnostico" rows="3" name="diagnostico" required></textarea>
         <!-- <input id="inputdiagnostico" type="text" class="form-control" name="diagnostico" required> -->
+=======
+        <input id="inputdiagnostico" type="text" class="form-control" name="diagnostico" required>
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
         <br>
         <label for="inputrecetaexpedida">Receta expedida</label>
         <input id="inputdirecetaexpedida" type="text" class="form-control" name="receta" required>
         <br>
         <label for="inputobservaciones">Observaciones</label>
+<<<<<<< HEAD
         <textarea class="form-control" id="inputobservaciones" rows="3" name="observaciones" required></textarea>
         <!-- <input id="inputobservaciones" type="text" class="form-control" name="observaciones" required> -->
+=======
+        <input id="inputobservaciones" type="text" class="form-control" name="observaciones" required>
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
         <br>
         <label for="inputplanmedico">Plan medico a seguir</label>
         <input id="inputplanmedico" type="text" class="form-control" name="planmedico" required>
@@ -202,6 +233,7 @@
         </div>
     </div>
     </div>
+<<<<<<< HEAD
     <!-- Modal Expediente clinico-->
     <div class="modal fade" id="expedienteClinicoModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
@@ -243,6 +275,8 @@
         </div>
     </div>
     </div>
+=======
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
 </div>
 @endsection
 
@@ -252,24 +286,39 @@
     $(document).ready(function() {
             $('#inputfechadeexpedicion').datepicker({
                 isRTL: false,
+<<<<<<< HEAD
                 format: 'yyyy-mm-dd',
+=======
+                format: 'dd/mm/yyyy',
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
                 todayHighlight: true,
                 language: 'es'
             });
             $('#inputfechadeenfermedadactual').datepicker({
                 isRTL: false,
+<<<<<<< HEAD
                 format: 'yyyy-mm-dd',
+=======
+                format: 'dd/mm/yyyy',
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
                 todayHighlight: true,
                 language: 'es'
             });
             $('#inputfechadediagnostico').datepicker({
                 isRTL: false,
+<<<<<<< HEAD
                 format: 'yyyy-mm-dd',
+=======
+                format: 'dd/mm/yyyy',
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
                 todayHighlight: true,
                 language: 'es'
             });
     });
+<<<<<<< HEAD
     //js para envio por ajax para la ventana de consulta subsecuente
+=======
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
     $(document).ready(function() {
         $("#modalsignos").submit(function(e) {
         e.preventDefault();
@@ -307,6 +356,7 @@
             })
         });
     });
+<<<<<<< HEAD
     //js para envio por ajax para la ventana de historial
     $(document).ready(function() {
         $("#modalhistorialclinico").submit(function(e) {
@@ -314,6 +364,13 @@
         var selectexpedienteid = document.getElementById('expedienteid');
         var selectexpedienteidvalue = selectexpedienteid.options[selectexpedienteid.selectedIndex].value;
         var selectexpedienteidtext = selectexpedienteid.options[selectexpedienteid.selectedIndex].text;
+=======
+    $(document).ready(function() {
+        $("#modalhistorialclinico").submit(function(e) {
+        e.preventDefault();
+        var valinputexpedienteid = document.getElementById("expedienteid").value;
+        var valinputfechaexpedicion = document.getElementById("inputfechadeexpedicion").value;
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
         var valinputfechaenfermedadactual = document.getElementById("inputfechadeenfermedadactual").value;
         var valinputfechadiagnostico = document.getElementById("inputfechadediagnostico").value;
         var valinputenfermedadactual = document.getElementById("inputenfermedadactual").value;
@@ -322,7 +379,10 @@
         var valinputrecetaexpedida = document.getElementById("inputdirecetaexpedida").value;
         var valinputobservaciones = document.getElementById("inputobservaciones").value;
         var valinputplanmedico = document.getElementById("inputplanmedico").value;
+<<<<<<< HEAD
         //console.log(selectexpedienteidvalue);
+=======
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
 
         Swal.fire({
             icon: 'info',
@@ -333,10 +393,18 @@
             }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
+<<<<<<< HEAD
                     url:"{{route('historial')}}",
                     type:"POST",
                     data:{
                         'IdExpediente': selectexpedienteidvalue,
+=======
+                    url:"{{route('signos')}}",
+                    type:"POST",
+                    data:{
+                        'IdExpediente': valinputexpedienteid,
+                        'FechaExpedicion': valinputfechaexpedicion,
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
                         'FechaEnfermedadActual': valinputfechaenfermedadactual,
                         'FechaDiagnostico': valinputfechadiagnostico,
                         'EnfermedadActual': valinputenfermedadactual,
@@ -349,6 +417,7 @@
                     },
                     //dataType:"json",
                     success: function(test){
+<<<<<<< HEAD
                         //document.getElementById("inputnombre").value="";
                             if(test.estado === 'guardado'){
                                 Swal.fire({
@@ -430,6 +499,19 @@
                     });
             } else if (result.isDismissed) {
                 Swal.fire('Se cancelo el registro del expediente', '', 'info')
+=======
+                        document.getElementById("inputnombre").value="";
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Hecho!.',
+                            text: 'Se registraron correctamente los Signos Vitales ' +test.nombre,
+                            confirmButtonText: 'Ok',
+                            })
+                        }
+                    });
+            } else if (result.isDismissed) {
+                Swal.fire('No se registraron los signos vitales', '', 'info')
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
             }
             })
         });

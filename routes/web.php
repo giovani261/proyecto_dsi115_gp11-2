@@ -5,8 +5,14 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SignosController;
+<<<<<<< HEAD
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\ExpedienteController;
+=======
+use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\ServiciosController;
+use App\Http\Controllers\IncapacidadController;
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,10 +29,17 @@ Route::get('/laravel', function () {
 });
 
 Route::match(['get','post'],'/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
+<<<<<<< HEAD
 
 Route::match(['post'],'/signos',[SignosController::class,'signos'])->name('signos');
 Route::match(['post'],'/historial',[HistorialController::class,'registro'])->name('historial');
 Route::match(['post'],'/expediente',[ExpedienteController::class,'registro'])->name('expediente');
+=======
+Route::match(['post'],'/signos',[SignosController::class,'signos'])->name('signos');
+Route::match(['get','post'],'/agenda', [AgendaController::class,'show'])->name('agenda');
+Route::match(['get','post'],'/incapacidad', [IncapacidadController::class,'show'])->name('incapacidad');
+
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
 
 // Route::match(['get', 'post'], '/db', function () {
 //     //consulta

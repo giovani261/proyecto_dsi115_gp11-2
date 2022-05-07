@@ -10,7 +10,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
+<<<<<<< HEAD
 use App\Models\Expediente;
+=======
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
 use Auth;
 
 class DashboardController extends Controller
@@ -31,8 +34,13 @@ class DashboardController extends Controller
         // }
         if(Auth::user()->hasRole(['administrador']))
         {
+<<<<<<< HEAD
             $expedientes = Expediente::all(); 
             return view('dashboard')->with('expedientes', $expedientes);
+=======
+
+            return view('dashboard');
+>>>>>>> 705a12035394079f14649d955eaf8650d9ee0b27
         }
         else {
             Auth::logout();
