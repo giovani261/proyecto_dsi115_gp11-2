@@ -7,6 +7,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SignosController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\ExpedienteController;
+use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\ServiciosController;
+use App\Http\Controllers\IncapacidadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +30,9 @@ Route::match(['get','post'],'/dashboard', [DashboardController::class,'dashboard
 Route::match(['post'],'/signos',[SignosController::class,'signos'])->name('signos');
 Route::match(['post'],'/historial',[HistorialController::class,'registro'])->name('historial');
 Route::match(['post'],'/expediente',[ExpedienteController::class,'registro'])->name('expediente');
+Route::match(['get','post'],'/agenda', [AgendaController::class,'show'])->name('agenda');
+Route::match(['get','post'],'/incapacidad', [IncapacidadController::class,'show'])->name('incapacidad');
+
 
 // Route::match(['get', 'post'], '/db', function () {
 //     //consulta

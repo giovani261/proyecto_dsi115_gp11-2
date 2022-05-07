@@ -46,7 +46,7 @@
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/dashboard"><i class="fa-solid fa-gauge fa-xl"></i> Panel de control</a>
                     @endrole
                     @role('administrador|secretaria')
-                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-calendar-days fa-xl"></i> Agendar cita</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/agenda"><i class="fa-solid fa-calendar-days fa-xl"></i> Agendar cita</a>
                     @endrole
                     @role('administrador')
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-users fa-xl"></i> Gestion de usuarios</a>
@@ -63,6 +63,11 @@
                     @endrole
                     <!-- Para todos, incluidos los usuarios sin cuenta-->
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/"><i class="fa-solid fa-clipboard-list fa-xl"></i> Servicios</a>
+                    <style>
+                        .fa-solid{
+                            color: #7a0404;
+                        }
+                    </style>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -109,6 +114,24 @@
         </div>
 
         <footer id="footer" class="midnight-blue">
+            <style>
+                .col h4{
+                    color: white;
+                }
+                p{
+                    color: white;
+                    font-size: 85%;
+                }               
+                .fblink{
+                    color: white;
+                    font-size: 85%;                          
+                }
+                .twitterlink{
+                    color: white;
+                    font-size: 85%;                                             
+                }
+
+            </style>
             <br>
             <center>
             <div class="container">
