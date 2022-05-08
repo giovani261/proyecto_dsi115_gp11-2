@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SignosController;
+use App\Http\Controllers\ReferenciaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,3 +37,6 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/roles', [DashboardController::class, 'roles'])->name('roles');
+
+Route::get('crear-referencia', [ReferenciaController::class, 'index']);
+Route::get('editar_referencia', [ReferenciaController::class, 'editar_referencia']);
