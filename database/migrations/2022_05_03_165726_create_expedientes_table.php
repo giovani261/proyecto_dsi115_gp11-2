@@ -22,7 +22,7 @@ class CreateExpedientesTable extends Migration
             $table->string('responsable',50);
             $table->char('dui paciente',9);
             $table->char('dui responsable',9);
-            $table->string('antecendentes patologicos')->nullable();
+            $table->string('antecedentes patologicos')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users');
         });
