@@ -354,7 +354,7 @@
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Hecho!.',
-                                    text: 'Se registro correctamente el hisotial del paciente: '+selectexpedienteidtext,
+                                    text: 'Se registro correctamente el historial del paciente: '+selectexpedienteidtext,
                                     confirmButtonText: 'Ok',
                                     })
                             }

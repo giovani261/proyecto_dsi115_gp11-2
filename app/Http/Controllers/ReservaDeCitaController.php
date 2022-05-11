@@ -7,14 +7,24 @@ use App\Models\User;
 use App\Models\ReservaDeCita;
 use Auth;
 
-class AgendaController extends Controller
+class ReservaDeCitaController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        //$reservas = DB::table('reservas_de_citas')->select('*')->get();
-        //$reservas = ReservaDeCita::all();
-        //return view('agenda',compact('reservas'));
+        return view('reserva');
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
 
     public function registro(Request $request){
         if(Auth::user()->hasRole(['administrador']))
@@ -33,6 +43,7 @@ class AgendaController extends Controller
                 $reserva->nombre = $nombrePaciente;
                 $reserva->telefono = $telefono;
                 $reserva->fecha = $fecha;
+                $reserva->hora = $hora;
                 $reserva->especialidad = $especialidad;
                 
                 $reserva->save();
@@ -48,6 +59,65 @@ class AgendaController extends Controller
             return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se a cerrado su sesion');
         }
     }
+
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 }
-
-

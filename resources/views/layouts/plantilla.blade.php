@@ -29,6 +29,9 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- bootstrap datepicker js cdn -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/md-date-time-picker@2.3.0/dist/css/mdDateTimePicker.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery-clock-timepicker@2.5.0/jquery-clock-timepicker.min.js"></script>
     </head>
     <body>
         <div class="loading-container">
@@ -46,7 +49,7 @@
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/dashboard"><i class="fa-solid fa-gauge fa-xl"></i> Panel de control</a>
                     @endrole
                     @role('administrador|secretaria')
-                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/agenda"><i class="fa-solid fa-calendar-days fa-xl"></i> Agendar cita</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/reserva"><i class="fa-solid fa-calendar-days fa-xl"></i> Agendar cita</a>
                     @endrole
                     @role('administrador')
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-users fa-xl"></i> Gestion de usuarios</a>

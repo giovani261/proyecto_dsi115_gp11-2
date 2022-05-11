@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ReservaDeCita extends Model
 {
     use HasFactory;
-    
+    public $timestamps = false;
+
+    protected $table = 'reservas_de_citas';
     protected $fillable = [
         'user_id',
         'nombre',

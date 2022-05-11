@@ -8,7 +8,7 @@ use App\Http\Controllers\SignosController;
 
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\ExpedienteController;
-use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\ReservaDeCitaController;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\IncapacidadController;
 
@@ -33,7 +33,7 @@ Route::match(['post'],'/signos',[SignosController::class,'signos'])->name('signo
 Route::match(['post'],'/historial',[HistorialController::class,'registro'])->name('historial');
 Route::match(['post'],'/expediente',[ExpedienteController::class,'registro'])->name('expediente');
 
-Route::match(['get','post'],'/agenda', [AgendaController::class,'show'])->name('agenda');
+Route::match(['post'],'/reserva', [ReservaDeCitaController::class,'registro'])->name('reserva');
 Route::match(['get','post'],'/incapacidad', [IncapacidadController::class,'show'])->name('incapacidad');
 
 
@@ -49,3 +49,4 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/roles', [DashboardController::class, 'roles'])->name('roles');
+Route::get('/reserva',[ReservaDeCitaController::class,'index'])->name('index');
