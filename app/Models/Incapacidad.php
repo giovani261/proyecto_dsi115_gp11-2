@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Incapacidad extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
+    
+    protected $table="incapacidades";
     protected $fillable = [
         'user_id',
         'fecha',

@@ -33,8 +33,9 @@ Route::match(['post'],'/signos',[SignosController::class,'signos'])->name('signo
 Route::match(['post'],'/historial',[HistorialController::class,'registro'])->name('historial');
 Route::match(['post'],'/expediente',[ExpedienteController::class,'registro'])->name('expediente');
 
+
 Route::match(['post'],'/reserva', [ReservaDeCitaController::class,'registro'])->name('reserva');
-Route::match(['get','post'],'/incapacidad', [IncapacidadController::class,'show'])->name('incapacidad');
+Route::match(['post'],'/incapacidad', [IncapacidadController::class,'registro'])->name('incapacidad');
 
 
 // Route::match(['get', 'post'], '/db', function () {

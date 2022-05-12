@@ -114,6 +114,27 @@
         </a>
         </div>
     </div>
+    <!-- Card Generar Incapacidad-->
+    <div class="card" style="max-width: 18rem;">
+        <div class="card-header text-primary"><center>Incapacidad medica</center></div>
+        <div class="card-body">
+        <a class="acards" data-bs-toggle="modal" data-bs-target="#incapacidadClinicoModalCenter">
+            <div class="container">
+                <center>
+                    <div class="row">
+                        <div class="col my-auto">
+                            Registrar Incapacidad Medica
+                        </div>
+
+                        <div class="col-md-auto my-auto">
+                            <i class="fa-solid fa-file-medical-alt fa-4x"></i>
+                        </div>
+                    </div>
+                </center>
+            </div>   
+        </a>
+        </div>
+    </div>
     <!-- Modal Signos-->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -243,6 +264,56 @@
         </div>
     </div>
     </div>
+    
+    <!-- Modal Incapacidad clinico-->
+    <div class="modal fade" id="incapacidadClinicoModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar Incapacidad Medica</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" id="modalincapacidadclinico">
+            @csrf
+            <label for="expedienteid">Seleccione un paciente al que se le vinculara el historial, el formato de la lista es: Paciente -- Dui</label>
+            <select class="form-select" aria-label="Default select example" name="idexpediente" id="expedienteid">
+                @foreach($expedientes as $expediente)
+                    <option value="{{$expediente->id}}" required>{{$expediente->nombre}} -- {{ $expediente->{'dui paciente'} }}</option>
+                @endforeach
+            </select>
+            <!-- <input type="text" class="form-control" id="expedienteid" name="idexpediente" required> -->
+            <br>
+            <label for="inputfechadeincapacidad">Fecha de enfermedad actual</label>
+            <div class="input-group date">
+                <input type="text" class="form-control" id="inputfechadeincapacidad" name="fechaincapacidad" required>
+                <i class="fa-solid fa-calendar-days calendario"></i>
+            </div>
+            <br>
+            <label for="inputpaciente">Nombre del paciente</label>
+            <input id="inputpaciente" type="text" class="form-control" name="paciente" required>
+            <br>
+            <label for="inputdiagnosis">Diagnostico</label>
+            <textarea class="form-control" id="inputdiagnosis" rows="3" name="diagnosis" required></textarea>
+            <!-- <input id="inputdiagnostico" type="text" class="form-control" name="diagnostico" required> -->
+            <br>
+            <label for="inputmedicacion">Tratamiento</label>
+            <textarea class="form-control" id="inputmedicacion" rows="3" name="medicacion" required></textarea>
+            <!-- <input id="inputobservaciones" type="text" class="form-control" name="observaciones" required> -->
+            <br>
+            <label for="inputdiasincapacidad">Dias de incapacidad</label>
+            <input type="number" class="form-control" id="inputdiasincapacidad"  name="diasincapacidad" min="0" max="100" required>
+            <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cerrar</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+            </div>
+            </form>
+            </div>
+        </div>
+        </div>  
 </div>
 @endsection
 
@@ -263,6 +334,12 @@
                 language: 'es'
             });
             $('#inputfechadediagnostico').datepicker({
+                isRTL: false,
+                format: 'yyyy-mm-dd',
+                todayHighlight: true,
+                language: 'es'
+            });
+            $('#inputfechadeincapacidad').datepicker({
                 isRTL: false,
                 format: 'yyyy-mm-dd',
                 todayHighlight: true,
@@ -374,17 +451,17 @@
             })
         });
     });
-    //js para envio por ajax para la ventana de expediente
+
+    //js para envio por ajax para la ventana de incapacidad
     $(document).ready(function() {
-        $("#modalexpedienteclinico").submit(function(e) {
+        $("#modalincapacidadclinico").submit(function(e) {
         e.preventDefault();
-        var valinputnombrepaciente = document.getElementById("inputnombrepaciente").value;
-        var valinputedad = document.getElementById("inputedad").value;
-        var valinputdomicilio = document.getElementById("inputdomicilio").value;
-        var valinputresponsable = document.getElementById("inputresponsable").value;
-        var valinputduipaciente = document.getElementById("inputduipaciente").value;
-        var valinputduiresponsable = document.getElementById("inputduiresponsable").value;
-        var valinputantecedentes = document.getElementById("inputantecedentes").value;
+        var valinputfechadeincapacidad = document.getElementById("inputfechadeincapacidad").value;
+        var valinputpaciente = document.getElementById("inputpaciente").value;
+        var valinputdiagnosis = document.getElementById("inputdiagnosis").value;
+        var valinputmedicacion = document.getElementById("inputmedicacion").value;
+        var valinputdiasincapacidad = document.getElementById("inputdiasincapacidad").value;
+        //console.log(selectexpedienteidvalue);
 
         Swal.fire({
             icon: 'info',
@@ -395,41 +472,40 @@
             }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url:"{{route('expediente')}}",
+                    url:"{{route('incapacidad')}}",
                     type:"POST",
                     data:{
-                        'NombrePaciente': valinputnombrepaciente,
-                        'Edad': valinputedad,
-                        'Domicilio': valinputdomicilio,
-                        'Responsable': valinputresponsable,
-                        'DuiResponsable': valinputduiresponsable,
-                        'DuiPaciente': valinputduipaciente,
-                        'Antecedentes': valinputantecedentes,
+                        'FechaIncapacidad': valinputfechadeincapacidad,
+                        'NombredePaciente': valinputpaciente,
+                        'Diagnosis': valinputdiagnosis,
+                        'Medicacion': valinputmedicacion,
+                        'DiasIncapacidad': valinputdiasincapacidad,
                         "_token": $("meta[name='csrf-token']").attr("content")
                     },
                     //dataType:"json",
                     success: function(test){
                         //document.getElementById("inputnombre").value="";
-                        if(test.estado === 'guardado'){
+                            if(test.estado === 'guardado'){
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Hecho!.',
-                                    text: 'Se registro correctamente el expediente de ' +test.nombrePaciente,
+                                    text: 'Se registro correctamente la incapacidad del paciente: '+test.nombrePaciente,
                                     confirmButtonText: 'Ok',
-                                })
+                                    })
+                                $("#modalincapacidadclinico")[0].reset(); //Limpiar formulario
                             }
-                        if(test.estado === 'error'){
+                            if(test.estado === 'error'){
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Ocurrio un error!.',
-                                    text: 'No se pudo registrar el expediente de ' +test.nombrePaciente,
+                                    text: 'No se pudo registrar la incapacidad del paciente: '+test.nombrePaciente,
                                     confirmButtonText: 'Ok',
-                                })
+                                    })
                             }
                         }
                     });
             } else if (result.isDismissed) {
-                Swal.fire('Se cancelo el registro del expediente', '', 'info')
+                Swal.fire('Se cancelo el registro de la incapacidad del paciente', '', 'info')
             }
             })
         });
