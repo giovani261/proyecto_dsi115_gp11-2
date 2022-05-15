@@ -27,6 +27,7 @@ Route::match(['get','post'],'/dashboard', [DashboardController::class,'dashboard
 Route::match(['post'],'/signos',[SignosController::class,'signos'])->name('signos');
 Route::match(['post'],'/historial',[HistorialController::class,'registro'])->name('historial');
 Route::match(['post'],'/expediente',[ExpedienteController::class,'registro'])->name('expediente');
+Route::match(['get'],'/expedienteconsultarajax',[ExpedienteController::class,'consultarajax'])->name('expedienteconsultarajax');
 
 // Route::match(['get', 'post'], '/db', function () {
 //     //consulta

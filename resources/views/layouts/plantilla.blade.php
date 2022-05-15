@@ -74,8 +74,8 @@
                 <!-- Top navigation-->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
-                        <button class="btn" id="sidebarToggle"><i class="fa-solid fa-bars fa-xl"></i></button>
-                        <a class="ahome" href="#!"><i class="fa-solid fa-user-doctor fa-xl"></i> MEDICINA Y CIRUGIA GASTROINTESTINAL</a> 
+                        <button class="btn" id="sidebarToggle" onclick="iconbar();"><i class="fa-solid fa-bars fa-xl"></i></button>
+                        <a class="ahome" href="#!"><i class="fa-solid fa-user-doctor fa-xl"></i> Unidad medica humana</a> 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">

@@ -68,7 +68,7 @@
         </div>
     </div>
     <!-- Card Generar historial clinico-->
-    <div class="card" style="max-width: 18rem;">
+    <div class="card" style="max-width: 18rem;" onclick="consultarexpedientes();">
         <div class="card-header text-primary"><center>Historial clinico</center></div>
         <div class="card-body">
         <a class="acards" data-bs-toggle="modal" data-bs-target="#historialClinicoModalCenter">
@@ -144,50 +144,48 @@
         <div class="modal-body">
         <form method="POST" id="modalhistorialclinico">
         @csrf
-        <label for="expedienteid">Seleccione un paciente al que se le vinculara el historial, el formato de la lista es: Paciente -- Dui</label>
+        <label for="expedienteid">Seleccione un paciente, el formato de la lista es: Paciente -- Dui</label>
         <br>
-        <select class="form-select" aria-label="Default select example" name="idexpediente" id="expedienteid">
-            @foreach($expedientes as $expediente)
-                <option value="{{$expediente->id}}" required>{{$expediente->nombre}} -- {{ $expediente->{'dui paciente'} }}</option>
-            @endforeach
+        <select class="form-select" aria-label="Default select example" name="idexpediente" id="expedienteid" data-bs-toggle="tooltip" title="Seleccione un paciente, el formato de la lista es: Paciente -- Dui">
+
         </select>
         <!-- <input type="text" class="form-control" id="expedienteid" name="idexpediente" required> -->
         <br>
         <br>
         <label for="inputfechadeenfermedadactual">Fecha de enfermedad actual</label>
         <div class="input-group date">
-            <input type="text" class="form-control" id="inputfechadeenfermedadactual" name="fechaenfermedadactual" required>
+            <input type="text" class="form-control" id="inputfechadeenfermedadactual" name="fechaenfermedadactual" data-bs-toggle="tooltip" title="Seleccione una fecha" required>
             <i class="fa-solid fa-calendar-days calendario"></i>
         </div>
         <br>
         <label for="inputfechadediagnostico">Fecha de diagnostico</label>
         <div class="input-group date">
-            <input type="text" class="form-control" id="inputfechadediagnostico" name="fechadiagnostico" required>
+            <input type="text" class="form-control" id="inputfechadediagnostico" name="fechadiagnostico" data-bs-toggle="tooltip" title="Seleccione una fecha" required>
             <i class="fa-solid fa-calendar-days calendario"></i>
         </div>
         <br>
         <label for="inputenfermedadactual">Enfermedad actual</label>
-        <input id="inputenfermedadactual" type="text" class="form-control" name="enfermedadactual" required>
+        <input id="inputenfermedadactual" type="text" class="form-control" name="enfermedadactual" data-bs-toggle="tooltip" title="Seleccione una fecha" required>
         <br>
         <label for="inputexamenesprescritos">Examenes prescritos</label>
-        <input id="inputexamenesprescritos" type="text" class="form-control" name="examenesprescritos" required>
+        <input id="inputexamenesprescritos" type="text" class="form-control" name="examenesprescritos" data-bs-toggle="tooltip" title="Ingrese los examenes prescritos" required>
         <br>
         <label for="inputdiagnostico">Diagnostico</label>
-        <textarea class="form-control" id="inputdiagnostico" rows="3" name="diagnostico" required></textarea>
+        <textarea class="form-control" id="inputdiagnostico" rows="3" name="diagnostico" data-bs-toggle="tooltip" title="Ingrese el diagnostico" required></textarea>
         <!-- <input id="inputdiagnostico" type="text" class="form-control" name="diagnostico" required> -->
         <br>
         <label for="inputrecetaexpedida">Receta expedida</label>
-        <input id="inputdirecetaexpedida" type="text" class="form-control" name="receta" required>
+        <input id="inputdirecetaexpedida" type="text" class="form-control" name="receta" data-bs-toggle="tooltip" title="Ingrese la receta expedida" required>
         <br>
         <label for="inputobservaciones">Observaciones</label>
-        <textarea class="form-control" id="inputobservaciones" rows="3" name="observaciones" required></textarea>
+        <textarea class="form-control" id="inputobservaciones" rows="3" name="observaciones" data-bs-toggle="tooltip" title="Ingrese las observaciones" required></textarea>
         <!-- <input id="inputobservaciones" type="text" class="form-control" name="observaciones" required> -->
         <br>
         <label for="inputplanmedico">Plan medico a seguir</label>
-        <input id="inputplanmedico" type="text" class="form-control" name="planmedico" required>
+        <input id="inputplanmedico" type="text" class="form-control" name="planmedico" data-bs-toggle="tooltip" title="Ingrese el plan medico a seguir" required>
         <br>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" data-bs-toggle="tooltip" title="Presione si desea registrar la consulta subsecuente">
             <label class="form-check-label" for="flexCheckDefault">Consulta subsecuente</label>
         </div>
         </div>
@@ -212,25 +210,26 @@
         <form method="POST" id="modalexpedienteclinico">
         @csrf
         <label for="inputnombrepaciente">Nombre del paciente</label>
-        <input type="text" class="form-control" id="inputnombrepaciente" name="nombreexpediente"  pattern="[a-zA-Z'-'\s]*" required>
+        <input type="text" class="form-control" id="inputnombrepaciente" name="nombreexpediente"  pattern="[a-zA-Z'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el nombre del paciente, solo se permiten letras" required>
         <br>
         <label for="inputedad">Edad</label>
-        <input type="text" class="form-control" id="inputedad" name="edad" pattern="^\d{1,3}$" required>
+        <input type="text" class="form-control" id="inputedad" name="edad" pattern="^\d{1,3}$" data-bs-toggle="tooltip" title="Ingrese la edad del paciente, solo se permiten numeros entre 1 y 3 digitos" required>
         <br>
         <label for="inputdomicilio">Domicilio</label>
-        <input type="text" class="form-control" id="inputdomicilio" name="domicilio" required>
+        <input type="text" class="form-control" id="inputdomicilio" name="domicilio" data-bs-toggle="tooltip" title="Ingrese el docimicilio del paciente" required>
         <br>
         <label for="inputresponsable">Responsable</label>
-        <input id="inputresponsable" type="text" class="form-control" name="responsable" pattern="[a-zA-Z'-'\s]*" required>
+        <input id="inputresponsable" type="text" class="form-control" name="responsable" pattern="[a-zA-Z'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el responsable del paciente, solo se permiten letras" required>
         <br>
         <label for="inputduipaciente">Dui del paciente</label>
-        <input id="inputduipaciente" type="text" class="form-control" name="duipaciente" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" required>
+        <input id="inputduipaciente" type="text" class="form-control" name="duipaciente" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" data-bs-toggle="tooltip" title="Ingrese el dui del paciente, solo se permiten numeros de 9 digitos" required>
         <br>
         <label for="inputduiresponsable">Dui del responsable</label>
-        <input id="inputduiresponsable" type="text" class="form-control" name="duiresponsable" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" required>
+        <input id="inputduiresponsable" type="text" class="form-control" name="duiresponsable" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" data-bs-toggle="tooltip" title="Ingrese el dui del responsable, solo se permiten numeros de 9 digitos" required>
         <br>
         <label for="inputantecedentes">Antecedentes patologicos</label>
-        <input id="inputantecedentes" type="text" class="form-control" name="antecedentes">
+        <!-- <input id="inputantecedentes" type="text" class="form-control" name="antecedentes"> -->
+        <textarea class="form-control" id="inputantecedentes" rows="3" name="antecedentes" data-bs-toggle="tooltip" title="Ingrese los antecedentes patologicos del paciente"></textarea>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cerrar</button>
@@ -256,6 +255,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if($citas->isEmpty())
+                        <tr class="text-center">
+                            <td colspan="3">Sin citas</td>
+                        </tr>
+                    @else
                     @foreach($citas as $cita)
                         <tr class="text-center">
                             <td>{{$cita->nombre}}</td>
@@ -263,6 +267,7 @@
                             <td>{{$cita->hora}}</td>
                         </tr>
                     @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>
@@ -377,7 +382,14 @@
                     },
                     //dataType:"json",
                     success: function(test){
-                        //document.getElementById("inputnombre").value="";
+                        document.getElementById("inputfechadeenfermedadactual").value="";
+                        document.getElementById("inputfechadediagnostico").value="";
+                        document.getElementById("inputenfermedadactual").value="";
+                        document.getElementById("inputexamenesprescritos").value="";
+                        document.getElementById("inputdiagnostico").value="";
+                        document.getElementById("inputdirecetaexpedida").value="";
+                        document.getElementById("inputobservaciones").value="";
+                        document.getElementById("inputplanmedico").value="";
                             if(test.estado === 'guardado'){
                                 Swal.fire({
                                     icon: 'success',
@@ -438,6 +450,13 @@
                     //dataType:"json",
                     success: function(test){
                         //document.getElementById("inputnombre").value="";
+                        document.getElementById("inputnombrepaciente").value="";
+                        document.getElementById("inputedad").value="";
+                        document.getElementById("inputdomicilio").value="";
+                        document.getElementById("inputresponsable").value="";
+                        document.getElementById("inputduipaciente").value="";
+                        document.getElementById("inputduiresponsable").value="";
+                        document.getElementById("inputantecedentes").value="";
                         if(test.estado === 'guardado'){
                                 Swal.fire({
                                     icon: 'success',
@@ -462,5 +481,28 @@
             })
         });
     });
+
+function consultarexpedientes(){
+    var comboExpedientes = document.getElementById("expedienteid");
+    $.ajax({
+                    url:"{{route('expedienteconsultarajax')}}",
+                    type:"GET",
+                    data:{
+                    },
+                    //dataType:"json",
+                    success: function(test){
+                        //console.log(test);
+                        //console.log("legth "+test.expedientes.length);
+                        for (var i = 0; i < test.expedientes.length; i++) {
+                            const option = document.createElement('option');
+                            const valornombre = test.expedientes[i].nombre;
+                            const valordui = test.expedientes[i]["dui paciente"];
+                            option.value = test.expedientes[i].id;
+                            option.text = valornombre + "--" + valordui;
+                            comboExpedientes.appendChild(option);
+                        }
+                    }
+    });
+}
 </script>
 @endsection

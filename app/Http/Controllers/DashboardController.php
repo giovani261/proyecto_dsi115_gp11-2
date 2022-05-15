@@ -10,7 +10,6 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
-use App\Models\Expediente;
 use App\Models\ReservaDeCita;
 use Auth;
 use Carbon\Carbon;
@@ -26,12 +25,11 @@ class DashboardController extends Controller
     public function dashboard(Request $request){
         if(Auth::user()->hasRole(['administrador']))
         {
-            $expedientes = Expediente::all();
             $date = Carbon::now()->timezone('America/El_Salvador');
             $date = $date->format('Y-m-d');
             $citas = ReservaDeCita::whereDate('fecha','=',$date)->get();
             //dd($date);
-            return view('dashboard')->with('expedientes', $expedientes)->with('citas', $citas);
+            return view('dashboard')->with('citas', $citas);
         }
         else {
             Auth::logout();
