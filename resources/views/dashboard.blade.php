@@ -3,11 +3,6 @@
 @section('contenido')
 <br>
 <div class="container-fluid containercardsdash">
-    <!-- @isset($name)
-        @foreach($name as $productname)
-            <h1>{{ $productname }},</h1>
-        @endforeach
-    @endisset    -->
     <br>
     <!-- Card Signos-->
     <div class="card" style="max-width: 18rem;">
@@ -150,12 +145,14 @@
         <form method="POST" id="modalhistorialclinico">
         @csrf
         <label for="expedienteid">Seleccione un paciente al que se le vinculara el historial, el formato de la lista es: Paciente -- Dui</label>
+        <br>
         <select class="form-select" aria-label="Default select example" name="idexpediente" id="expedienteid">
             @foreach($expedientes as $expediente)
                 <option value="{{$expediente->id}}" required>{{$expediente->nombre}} -- {{ $expediente->{'dui paciente'} }}</option>
             @endforeach
         </select>
         <!-- <input type="text" class="form-control" id="expedienteid" name="idexpediente" required> -->
+        <br>
         <br>
         <label for="inputfechadeenfermedadactual">Fecha de enfermedad actual</label>
         <div class="input-group date">
@@ -244,11 +241,42 @@
     </div>
     </div>
 </div>
+<center>
+    <h5>Agenda de citas del dia</h5>
+</center>
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <div class="table-responsive container-fluid">
+            <table class="table table-hover table-bordered w-auto">
+                <thead class="tablehead">
+                    <tr class="text-center">
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Hora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($citas as $cita)
+                        <tr class="text-center">
+                            <td>{{$cita->nombre}}</td>
+                            <td>{{$cita->telefono}}</td>
+                            <td>{{$cita->hora}}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('scripts')
 <script src="{{ asset('js/bootstrap-datepicker.es.js') }}"></script>
 <script>
+    $('#expedienteid').select2({
+        dropdownParent: $('#historialClinicoModalCenter'),
+        width: '100%'
+    });
     $(document).ready(function() {
             $('#inputfechadeexpedicion').datepicker({
                 isRTL: false,

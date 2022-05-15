@@ -46,6 +46,14 @@
   padding: 0% !important;
 }
 
+.table > :not(:first-child) { 
+  border-color: var(--bs-gray-300) !important;
+}
+
+.tablehead{
+  background-color: orange !important;
+}
+
 .calendario {
   position: absolute;
   right: 9px;
@@ -356,9 +364,18 @@
     width: 100px;
   }
 
-  body{
+body{
     position: relative;
-  }
-  .txtmenu{
+}
+.txtmenu{
     font-size: 15px;
-  }
+}
+.select2-selection__rendered {
+    line-height: 38px !important;
+}
+.select2-container .select2-selection--single {
+    height: 38px !important;
+}
+.select2-selection__arrow {
+    height: 38px !important;
+}

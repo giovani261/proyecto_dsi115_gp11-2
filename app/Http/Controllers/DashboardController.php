@@ -11,7 +11,9 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
 use App\Models\Expediente;
+use App\Models\ReservaDeCita;
 use Auth;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -22,17 +24,14 @@ class DashboardController extends Controller
     }
 
     public function dashboard(Request $request){
-        // if (session()->get('nombre')){
-        //     $nombre = session()->get('nombre');
-        //     Alert::success('Success Title', $nombre);
-        // }
-        // else {
-        //     Alert::error('Success Title', "No se ha guardado el signo vital");
-        // }
         if(Auth::user()->hasRole(['administrador']))
         {
-            $expedientes = Expediente::all(); 
-            return view('dashboard')->with('expedientes', $expedientes);
+            $expedientes = Expediente::all();
+            $date = Carbon::now()->timezone('America/El_Salvador');
+            $date = $date->format('Y-m-d');
+            $citas = ReservaDeCita::whereDate('fecha','=',$date)->get();
+            //dd($date);
+            return view('dashboard')->with('expedientes', $expedientes)->with('citas', $citas);
         }
         else {
             Auth::logout();
@@ -61,6 +60,8 @@ class DashboardController extends Controller
         //Rol para miguel User::find(2)->assignRole('administrador');
         //Rol para jen User::find(5)->assignRole('administrador');
         //Rol para bryan User::find(6)->assignRole('administrador');
+        /*Rol para kath*/ 
+        //User::find(7)->assignRole('administrador');
         //return "hecho";
     }
 }
