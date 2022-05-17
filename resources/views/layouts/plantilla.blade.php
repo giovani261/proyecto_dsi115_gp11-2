@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, user-scalable=no ,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
         <meta name="description" content="" />
         <meta name="author" content="" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -162,5 +162,6 @@
         <!-- incluye el paquete, para mostar alertas desde los controladores -->
         @include('sweetalert::alert')
         @yield('scripts')
+        <a href="#wrapper" id="asubir"><img src="{{ asset('imgs/subir.png') }}" alt="Subir" class="btnSubir" id="btnSubir"></a>
     </body>
 </html>

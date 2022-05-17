@@ -299,7 +299,7 @@
   .loading-container {
     top: 0;
     left: 0;
-    background-color: #333333;
+    background-color: white;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -311,7 +311,7 @@
   
   .loading {
     border: 2px solid transparent;
-    border-color: transparent #fff transparent #fff;
+    border-color: transparent rgb(219, 100, 44) transparent rgb(219, 100, 44);
     -moz-animation: rotate-loading 1.5s linear 0s infinite normal;
     -moz-transform-origin: 50% 50%;
     -o-animation: rotate-loading 1.5s linear 0s infinite normal;
@@ -347,7 +347,7 @@
     -o-animation: loading-text-opacity 0.5s linear 0s infinite normal;
     -webkit-animation: loading-text-opacity 0.5s linear 0s infinite normal;
     animation: loading-text-opacity 0.5s linear 0s infinite normal;
-    color: #ffffff;
+    color: #000000;
     font-family: "Helvetica Neue, " Helvetica ", " "arial";
     font-size: 10px;
     font-weight: bold;
@@ -378,4 +378,12 @@ body{
 }
 .select2-selection__arrow {
     height: 38px !important;
+}
+
+.btnSubir {
+  position: fixed;
+  bottom: 20px;
+  right: -100px;
+  width: 40px;
+  transition: all 1s;
 }
