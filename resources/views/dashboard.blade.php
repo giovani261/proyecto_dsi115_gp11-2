@@ -109,6 +109,27 @@
         </a>
         </div>
     </div>
+    <!-- Card Generar Incapacidad-->
+    <div class="card" style="max-width: 18rem;">
+        <div class="card-header text-primary"><center>Incapacidad medica</center></div>
+        <div class="card-body">
+        <a class="acards" data-bs-toggle="modal" data-bs-target="#incapacidadClinicoModalCenter">
+            <div class="container">
+                <center>
+                    <div class="row">
+                        <div class="col my-auto">
+                            Registrar Incapacidad Medica
+                        </div>
+
+                        <div class="col-md-auto my-auto">
+                            <i class="fa-solid fa-file-medical-alt fa-4x"></i>
+                        </div>
+                    </div>
+                </center>
+            </div>   
+        </a>
+        </div>
+    </div>
     <!-- Modal Signos-->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -239,7 +260,49 @@
         </div>
     </div>
     </div>
+        <!-- Modal Incapacidad clinico-->
+        <div class="modal fade" id="incapacidadClinicoModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar Incapacidad Medica</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" id="modalincapacidadclinico">
+            @csrf
+            <label for="inputfechadeincapacidad">Fecha de enfermedad actual</label>
+            <div class="input-group date">
+                <input type="text" class="form-control" id="inputfechadeincapacidad" name="fechaincapacidad" required>
+                <i class="fa-solid fa-calendar-days calendario"></i>
+            </div>
+            <br>
+            <label for="inputpaciente">Nombre del paciente</label>
+            <input id="inputpaciente" type="text" class="form-control" name="paciente" required>
+            <br>
+            <label for="inputdiagnosis">Diagnostico</label>
+            <textarea class="form-control" id="inputdiagnosis" rows="3" name="diagnosis" required></textarea>
+            <!-- <input id="inputdiagnostico" type="text" class="form-control" name="diagnostico" required> -->
+            <br>
+            <label for="inputmedicacion">Tratamiento</label>
+            <textarea class="form-control" id="inputmedicacion" rows="3" name="medicacion" required></textarea>
+            <!-- <input id="inputobservaciones" type="text" class="form-control" name="observaciones" required> -->
+            <br>
+            <label for="inputdiasincapacidad">Dias de incapacidad</label>
+            <input type="number" class="form-control" id="inputdiasincapacidad"  name="diasincapacidad" min="0" max="120" pattern="[0-120]" required>
+            <br>
+            </div>
+            <div class="modal-footer">
+                <a href="/editor" type="submit" class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Editar manualmente</a>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+            </div>
+            </form>
+            </div>
+        </div>
+        </div> 
 </div>
+
 <center>
     <h5>Agenda de citas del dia</h5>
 </center>
@@ -271,7 +334,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> 
 </div>
 @endsection
 
@@ -296,6 +359,12 @@
                 language: 'es'
             });
             $('#inputfechadediagnostico').datepicker({
+                isRTL: false,
+                format: 'yyyy-mm-dd',
+                todayHighlight: true,
+                language: 'es'
+            });
+            $('#inputfechadeincapacidad').datepicker({
                 isRTL: false,
                 format: 'yyyy-mm-dd',
                 todayHighlight: true,
@@ -414,6 +483,7 @@
             })
         });
     });
+
     //js para envio por ajax para la ventana de expediente
     $(document).ready(function() {
         $("#modalexpedienteclinico").submit(function(e) {
@@ -493,6 +563,9 @@ function consultarexpedientes(){
                     success: function(test){
                         //console.log(test);
                         //console.log("legth "+test.expedientes.length);
+                        for (var j = test.expedientes.length; j >= 0; j--) {
+                            comboExpedientes.remove(j);
+                        }
                         for (var i = 0; i < test.expedientes.length; i++) {
                             const option = document.createElement('option');
                             const valornombre = test.expedientes[i].nombre;
@@ -504,5 +577,63 @@ function consultarexpedientes(){
                     }
     });
 }
+    //js para envio por ajax para la ventana de incapacidad
+    $(document).ready(function() {
+        $("#modalincapacidadclinico").submit(function(e) {
+        e.preventDefault();
+        var valinputfechadeincapacidad = document.getElementById("inputfechadeincapacidad").value;
+        var valinputpaciente = document.getElementById("inputpaciente").value;
+        var valinputdiagnosis = document.getElementById("inputdiagnosis").value;
+        var valinputmedicacion = document.getElementById("inputmedicacion").value;
+        var valinputdiasincapacidad = document.getElementById("inputdiasincapacidad").value;
+        //console.log(selectexpedienteidvalue);
+
+        Swal.fire({
+            icon: 'info',
+            title: 'Confirmar.',
+            text: '¿Desea continuar?',
+            showCancelButton: true,
+            confirmButtonText: 'Ok',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url:"{{route('incapacidad')}}",
+                    type:"POST",
+                    data:{
+                        'FechaIncapacidad': valinputfechadeincapacidad,
+                        'NombredePaciente': valinputpaciente,
+                        'Diagnosis': valinputdiagnosis,
+                        'Medicacion': valinputmedicacion,
+                        'DiasIncapacidad': valinputdiasincapacidad,
+                        "_token": $("meta[name='csrf-token']").attr("content")
+                    },
+                    //dataType:"json",
+                    success: function(test){
+                        //document.getElementById("inputnombre").value="";
+                            if(test.estado === 'guardado'){
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Hecho!.',
+                                    text: 'Se registro correctamente la incapacidad del paciente: '+test.nombrePaciente,
+                                    confirmButtonText: 'Ok',
+                                    })
+                                $("#modalincapacidadclinico")[0].reset(); //Limpiar formulario
+                            }
+                            if(test.estado === 'error'){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Ocurrio un error!.',
+                                    text: 'No se pudo registrar la incapacidad del paciente: '+test.nombrePaciente,
+                                    confirmButtonText: 'Ok',
+                                    })
+                            }
+                        }
+                    });
+            } else if (result.isDismissed) {
+                Swal.fire('Se cancelo el registro de la incapacidad del paciente', '', 'info')
+            }
+            })
+        });
+    });
 </script>
 @endsection

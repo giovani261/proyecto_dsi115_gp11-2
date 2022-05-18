@@ -7,6 +7,11 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SignosController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\ExpedienteController;
+use App\Http\Controllers\ReservaDeCitaController;
+use App\Http\Controllers\ServiciosController;
+use App\Http\Controllers\IncapacidadController;
+use App\Http\Controllers\CKEditorController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +34,12 @@ Route::match(['post'],'/historial',[HistorialController::class,'registro'])->nam
 Route::match(['post'],'/expediente',[ExpedienteController::class,'registro'])->name('expediente');
 Route::match(['get'],'/expedienteconsultarajax',[ExpedienteController::class,'consultarajax'])->name('expedienteconsultarajax');
 
+
+Route::match(['post'],'/reserva', [ReservaDeCitaController::class,'registro'])->name('reserva');
+Route::match(['post'],'/incapacidad', [IncapacidadController::class,'registro'])->name('incapacidad');
+Route::match(['get','post'],'/editor', [CKEditorController::class,'editor'])->name('editor');
+
+
 // Route::match(['get', 'post'], '/db', function () {
 //     //consulta
 //     $sql = 'SELECT * FROM products';
@@ -41,3 +52,4 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/roles', [DashboardController::class, 'roles'])->name('roles');
+Route::get('/reserva',[ReservaDeCitaController::class,'index'])->name('index');

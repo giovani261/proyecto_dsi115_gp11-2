@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\ReservaDeCita;
 use Auth;
 use Carbon\Carbon;
+use App\Models\Expediente;
 
 class DashboardController extends Controller
 {
