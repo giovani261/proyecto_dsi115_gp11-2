@@ -51,20 +51,20 @@
         </a>
         </div>
     </div>
-    <!-- Card Signos-->
+    <!-- Card Referencia médica -->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center>Signos vitales</center></div>
+        <div class="card-header text-primary"><center>Referencia m&eacute;dica</center></div>
         <div class="card-body">
-        <a class="acards" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+        <a class="acards" data-bs-toggle="modal" data-bs-target="#referenciaMedicaModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
                         <div class="col my-auto">
-                            Registrar Signos Vitales
+                            Crear referencia m&eacute;dica
                         </div>
 
                         <div class="col-md-auto my-auto">
-                            <i class="fa-solid fa-heart-pulse fa-4x"></i>
+                            <i class="fa-solid fa-file-medical-alt fa-4x"></i>
                         </div>
                     </div>
                 </center>
@@ -243,11 +243,83 @@
         </div>
     </div>
     </div>
-</div>
+    <!-- Modal Referencia médica -->
+    <div class="modal fade" id="referenciaMedicaModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Crear referencia m&eacute;dica</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="POST" id="modalreferenciamedica">
+            @csrf
+              <label for="inputfechadereferencia">Fecha</label>
+              <div class="input-group date">
+                <input type="text" class="form-control" id="inputfechadereferencia" name="fechadereferencia" value="<?php echo date('Y-m-d'); ?>" >
+                <i class="fa-solid fa-calendar-days calendario"></i>
+              </div>
+        
+              <label for="Nombre">Nombre</label>
+              <input id="nombre" type="text" class="form-control" name="nombre-pac"
+
+              <label for="razon">Raz&oacute;n</label>
+              <textarea id="razon" class="form-control" name="razon"></textarea>
+
+              <label for="se-le-envia-a">Se le env&iacute;a a</label>
+              <textarea id="se-le-envia-a" class="form-control" name="lugar-referencia"></textarea>
+
+              <div class="modal-footer">
+                <button class="btn btn-secondary"
+                    type="button"
+                    name="continuar"
+                    data-bs-target="#referenciaMedicaModalCenterEditor"
+                    data-bs-toggle="modal" data-bs-dismiss="modal">Continuar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Segundo Model para referencia. -->
+    <div class="modal fade" id="referenciaMedicaModalCenterEditor" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalToggleLabel2">Editando</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            
+            <div class="centered">
+              <div class="row">
+	            <div class="document-editor__toolbar"></div>
+	          </div>
+	          <div class="row row-editor">
+	            <div class="editor-container">
+                  <div class="editor">
+                    <h2>Hola<h2>
+                    <p> Jajajaja</p>
+                  </div>
+                </div>
+              </div>
+            </div>     
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-dismiss="modal">Imprimir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
 @endsection
 
 @section('scripts')
 <script src="{{ asset('js/bootstrap-datepicker.es.js') }}"></script>
+<script src="{{ asset('js/ckeditor/build/ckeditor.js') }}"></script>
 <script>
     $(document).ready(function() {
             $('#inputfechadeexpedicion').datepicker({
@@ -263,6 +335,12 @@
                 language: 'es'
             });
             $('#inputfechadediagnostico').datepicker({
+                isRTL: false,
+                format: 'yyyy-mm-dd',
+                todayHighlight: true,
+                language: 'es'
+            });
+            $('#inputfechadereferencia').datepicker({
                 isRTL: false,
                 format: 'yyyy-mm-dd',
                 todayHighlight: true,
@@ -434,5 +512,16 @@
             })
         });
     });
+    
+    DecoupledDocumentEditor.create( document.querySelector( '.editor' ))
+	.then( editor => {
+	    window.editor = editor;
+	    // Set a custom container for the toolbar.
+		document.querySelector( '.document-editor__toolbar' ).appendChild( editor.ui.view.toolbar.element );
+		document.querySelector( '.ck-toolbar' ).classList.add( 'ck-reset_all' );
+	} )
+	.catch( error => {
+		console.error( error );
+	} );
 </script>
 @endsection

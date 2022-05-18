@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 class ReferenciaController extends Controller
 {
     public function index() {
-        return '';
+        return view('index');
     }
     
     public function editar_referencia() {
-        return '';
+        return view('editar-referencia');
     }
 }
