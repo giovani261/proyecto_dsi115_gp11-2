@@ -1,6 +1,11 @@
 @extends('layouts.plantilla')
  
 @section('contenido')
+
+<!-- Favicon.ico -->
+<link rel="shortcut icon" type="image/x-icon" href="imgs/logo.jpeg">
+<!-- Favicon.ico -->
+
 <div class="container py-5">
     <div class="row">
         <div class="col-md-12">

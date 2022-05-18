@@ -9,6 +9,11 @@
         @endforeach
     @endisset    -->
     <br>
+
+    <!-- Favicon.ico -->
+    <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.jpeg">
+    <!-- Favicon.ico -->
+
     <!-- Card Signos-->
     <div class="card" style="max-width: 18rem;">
         <div class="card-header text-primary"><center>Signos vitales</center></div>
@@ -225,44 +230,44 @@
     </div>
     <!-- Modal Expediente clinico-->
     <div class="modal fade" id="expedienteClinicoModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Registrar Expediente Clinico</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            </button>
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar Expediente Clinico</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" id="modalexpedienteclinico">
+            @csrf
+            <label for="inputnombrepaciente">Nombre del paciente</label>
+            <input type="text" class="form-control" id="inputnombrepaciente" name="nombreexpediente"  pattern="[a-zA-Z'-'\s]*" required>
+            <br>
+            <label for="inputedad">Edad</label>
+            <input type="text" class="form-control" id="inputedad" name="edad" pattern="^\d{1,3}$" required>
+            <br>
+            <label for="inputdomicilio">Domicilio</label>
+            <input type="text" class="form-control" id="inputdomicilio" name="domicilio" required>
+            <br>
+            <label for="inputresponsable">Responsable</label>
+            <input id="inputresponsable" type="text" class="form-control" name="responsable" pattern="[a-zA-Z'-'\s]*" required>
+            <br>
+            <label for="inputduipaciente">Dui del paciente</label>
+            <input id="inputduipaciente" type="text" class="form-control" name="duipaciente" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" required>
+            <br>
+            <label for="inputduiresponsable">Dui del responsable</label>
+            <input id="inputduiresponsable" type="text" class="form-control" name="duiresponsable" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" required>
+            <br>
+            <label for="inputantecedentes">Antecedentes patologicos</label>
+            <input id="inputantecedentes" type="text" class="form-control" name="antecedentes">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cerrar</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+            </div>
+            </form>
+            </div>
         </div>
-        <div class="modal-body">
-        <form method="POST" id="modalexpedienteclinico">
-        @csrf
-        <label for="inputnombrepaciente">Nombre del paciente</label>
-        <input type="text" class="form-control" id="inputnombrepaciente" name="nombreexpediente"  pattern="[a-zA-Z'-'\s]*" required>
-        <br>
-        <label for="inputedad">Edad</label>
-        <input type="text" class="form-control" id="inputedad" name="edad" pattern="^\d{1,3}$" required>
-        <br>
-        <label for="inputdomicilio">Domicilio</label>
-        <input type="text" class="form-control" id="inputdomicilio" name="domicilio" required>
-        <br>
-        <label for="inputresponsable">Responsable</label>
-        <input id="inputresponsable" type="text" class="form-control" name="responsable" pattern="[a-zA-Z'-'\s]*" required>
-        <br>
-        <label for="inputduipaciente">Dui del paciente</label>
-        <input id="inputduipaciente" type="text" class="form-control" name="duipaciente" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" required>
-        <br>
-        <label for="inputduiresponsable">Dui del responsable</label>
-        <input id="inputduiresponsable" type="text" class="form-control" name="duiresponsable" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" required>
-        <br>
-        <label for="inputantecedentes">Antecedentes patologicos</label>
-        <input id="inputantecedentes" type="text" class="form-control" name="antecedentes">
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cerrar</button>
-            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
-        </div>
-        </form>
-        </div>
-    </div>
     </div>
     
     <!-- Modal Incapacidad clinico-->
@@ -303,11 +308,11 @@
             <!-- <input id="inputobservaciones" type="text" class="form-control" name="observaciones" required> -->
             <br>
             <label for="inputdiasincapacidad">Dias de incapacidad</label>
-            <input type="number" class="form-control" id="inputdiasincapacidad"  name="diasincapacidad" min="0" max="100" required>
+            <input type="number" class="form-control" id="inputdiasincapacidad"  name="diasincapacidad" min="0" max="120" pattern="[0-120]" required>
             <br>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cerrar</button>
+                <a href="/editor" type="submit" class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Editar manualmente</a>
                 <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
             </div>
             </form>
@@ -447,6 +452,67 @@
                     });
             } else if (result.isDismissed) {
                 Swal.fire('Se cancelo el registro del hisotial', '', 'info')
+            }
+            })
+        });
+    });
+
+    //js para envio por ajax para la ventana de expediente
+    $(document).ready(function() {
+        $("#modalexpedienteclinico").submit(function(e) {
+        e.preventDefault();
+        var valinputnombrepaciente = document.getElementById("inputnombrepaciente").value;
+        var valinputedad = document.getElementById("inputedad").value;
+        var valinputdomicilio = document.getElementById("inputdomicilio").value;
+        var valinputresponsable = document.getElementById("inputresponsable").value;
+        var valinputduipaciente = document.getElementById("inputduipaciente").value;
+        var valinputduiresponsable = document.getElementById("inputduiresponsable").value;
+        var valinputantecedentes = document.getElementById("inputantecedentes").value;
+
+        Swal.fire({
+            icon: 'info',
+            title: 'Confirmar.',
+            text: '¿Desea continuar?',
+            showCancelButton: true,
+            confirmButtonText: 'Ok',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url:"{{route('expediente')}}",
+                    type:"POST",
+                    data:{
+                        'NombrePaciente': valinputnombrepaciente,
+                        'Edad': valinputedad,
+                        'Domicilio': valinputdomicilio,
+                        'Responsable': valinputresponsable,
+                        'DuiResponsable': valinputduiresponsable,
+                        'DuiPaciente': valinputduipaciente,
+                        'Antecedentes': valinputantecedentes,
+                        "_token": $("meta[name='csrf-token']").attr("content")
+                    },
+                    //dataType:"json",
+                    success: function(test){
+                        //document.getElementById("inputnombre").value="";
+                        if(test.estado === 'guardado'){
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Hecho!.',
+                                    text: 'Se registro correctamente el expediente de ' +test.nombrePaciente,
+                                    confirmButtonText: 'Ok',
+                                })
+                            }
+                        if(test.estado === 'error'){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Ocurrio un error!.',
+                                    text: 'No se pudo registrar el expediente de ' +test.nombrePaciente,
+                                    confirmButtonText: 'Ok',
+                                })
+                            }
+                        }
+                    });
+            } else if (result.isDismissed) {
+                Swal.fire('Se cancelo el registro del expediente', '', 'info')
             }
             })
         });

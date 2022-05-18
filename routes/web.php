@@ -11,6 +11,7 @@ use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\ReservaDeCitaController;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\IncapacidadController;
+use App\Http\Controllers\CKEditorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::match(['post'],'/expediente',[ExpedienteController::class,'registro'])->n
 
 Route::match(['post'],'/reserva', [ReservaDeCitaController::class,'registro'])->name('reserva');
 Route::match(['post'],'/incapacidad', [IncapacidadController::class,'registro'])->name('incapacidad');
+Route::match(['get','post'],'/editor', [CKEditorController::class,'editor'])->name('editor');
 
 
 // Route::match(['get', 'post'], '/db', function () {
