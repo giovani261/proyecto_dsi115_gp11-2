@@ -1,23 +1,48 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
+@extends('layouts.plantilla')
+@section('contenido')
+<h1>Edici&oacute;n de referencia m&eacute;dica<h1>
+<textarea cols="80" id="editor1" name="editor1" rows="10" data-sample-short>
+  <p>
+    <img alt="logo" class="img-thumbnail logo" src="{{ asset('imgs/logo.jpeg') }}" width="100" height="100" />
+  </p>
+  
+<h1><span style="font-size:20px"><strong>Unidad m&eacute;dica humana</strong></span><br />
+<span style="font-size:22px"><strong>Referencia m&eacute;dica</strong></span></h1>
 
-    <title>El título de mi página</title>
-    <link 
-        href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" 
-        rel="stylesheet"
-        type="text/css">
-    <!--<link 
-        rel="stylesheet"
-        href="style.css">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}"> -->
-  </head>
-  <body data-editor="DecoupledDocumentEditor" data-collaboration="false" data-revision-history="false">
-    <!-- Aquí empieza el encabezado principal que se mantendrá en todas las páginas del sitio web -->
+<table align="left" border="0" cellpadding="1" cellspacing="1" style="height:148px; width:619px">
+	<tbody>
+		<tr>
+			<td colspan="2">Paciente:</td>
+			<td colspan="3"><u>[Nombre del paciente]</u></td>
+		</tr>
+		<tr>
+			<td colspan="2">Raz&oacute;n o diagn&oacute;stico:</td>
+			<td colspan="3"><u>[Enfermedad por la cual se le refiere a otro lugar al paciente]</u></td>
+		</tr>
+		<tr>
+			<td colspan="2">Se refiere a:</td>
+			<td colspan="3"><u>[Lugar al que se refiere al paciente]</u></td>
+		</tr>
+		<tr>
+			<td colspan="2" style="white-space:nowrap">Firma del m&eacute;dico que refiere:</td>
+			<td><u>[Firma]</u></td>
+			<td>Fecha:</td>
+			<td><u><?php echo date('d-m-Y'); ?></u></td>
+		</tr>
+	</tbody>
+</table>
+</textarea>
+
+<!--come back button-->
+<br>
+<div class="form-group text-center">
+  <a href="{{ route('dashboard') }}" type="submit" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Regresar</a>
+</div>
+    
+    
+    <!--
     <h1>Crear referencia medica</h1>
     <p>Edite el cuerpo del documento.</p>
-    <!-- Aquí está el contenido principal de nuestra página -->
     <main>
       <div class="centered">
         <div class="row">
@@ -33,10 +58,7 @@
         </div>
       </div>
     </main>
-    <footer>
-      <p>©Copyright 2050 de nadie. Todos los derechos revertidos.</p>
-    </footer>
-    
+
     <script src="{{ asset('js/ckeditor/build/ckeditor.js') }}"></script>
     <script>
     DecoupledDocumentEditor.create( document.querySelector( '.editor' ))
@@ -50,6 +72,16 @@
 		console.error( error );
 	} );
     </script>
-  </body>
-</html>
+    -->
+@endsection
 
+@section('scripts')
+<script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace('editor1', {
+      height: 400,
+      baseFloatZIndex: 10005,
+      removeButtons: 'PasteFromWord'
+  });
+</script>
+@endsection

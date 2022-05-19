@@ -244,7 +244,8 @@
     </div>
     </div>
     <!-- Modal Referencia médica -->
-    <div class="modal fade" id="referenciaMedicaModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal fade" id="referenciaMedicaModalCenter" tabindex="-1"
+        role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
       <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -261,8 +262,14 @@
                 <i class="fa-solid fa-calendar-days calendario"></i>
               </div>
         
-              <label for="Nombre">Nombre</label>
-              <input id="nombre" type="text" class="form-control" name="nombre-pac"
+              <label for="expedienteid">
+              Seleccione el paciente al que se le har&aacute; la referencia, el formato de la lista es: Paciente -- Dui
+              </label>
+              <select class="form-select" aria-label="Default select example" name="idexpediente" id="expedienteid">
+                @foreach($expedientes as $expediente)
+                  <option value="{{$expediente->id}}" required>{{$expediente->nombre}} -- {{ $expediente->{'dui paciente'} }}</option>
+                @endforeach
+              </select>
 
               <label for="razon">Raz&oacute;n</label>
               <textarea id="razon" class="form-control" name="razon"></textarea>
@@ -319,7 +326,7 @@
 
 @section('scripts')
 <script src="{{ asset('js/bootstrap-datepicker.es.js') }}"></script>
-<script src="{{ asset('js/ckeditor/build/ckeditor.js') }}"></script>
+<script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
 <script>
     $(document).ready(function() {
             $('#inputfechadeexpedicion').datepicker({
@@ -514,20 +521,15 @@
     });
     
     
-    DecoupledDocumentEditor.create( document.querySelector( '.editor' ))
-	.then( editor => {
-	    window.editor = editor;
-	    // Set a custom container for the toolbar.
-		document.querySelector( '.document-editor__toolbar' ).appendChild( editor.ui.view.toolbar.element );
-		document.querySelector( '.ck-toolbar' ).classList.add( 'ck-reset_all' );
-	} )
-	.catch( error => {
-		console.error( error );
-	} );
+    CKEDITOR.replace('editor', {
+      height: 400,
+      baseFloatZIndex: 10005,
+      removeButtons: 'PasteFromWord'
+    });
 	
 	
 	$(document).ready(function() {
-	    $("#modalexpedienteclinico").submit(function(e) {
+	    $("#modalreferenciamedica").submit(function(e) {
             e.preventDefault();
             
             Swal.fire({
@@ -539,7 +541,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url:"{{route('expediente')}}",
+                        url:"{{route('editar_referencia')}}",
                         type:"POST",
                         data:{
                             'NombrePaciente': valinputnombrepaciente,
@@ -566,14 +568,14 @@
                                     Swal.fire({
                                         icon: 'error',
                                         title: 'Ocurrio un error!.',
-                                        text: 'No se pudo registrar el expediente de ' +test.nombrePaciente,
+                                        text: 'No se pudo registrar el la referencia ' +test.nombrePaciente,
                                         confirmButtonText: 'Ok',
                                     })
                                 }
                             }
                     });
                 } else if (result.isDismissed) {
-                   Swal.fire('Se cancelo el registro del expediente', '', 'info')
+                   Swal.fire('Se cancelo el registro de la referencia', '', 'info')
                 }
             } 
 	    });
