@@ -262,14 +262,10 @@
                 <i class="fa-solid fa-calendar-days calendario"></i>
               </div>
         
-              <label for="expedienteid">
-              Seleccione el paciente al que se le har&aacute; la referencia, el formato de la lista es: Paciente -- Dui
+              <label for="nombrepaciente">
+              Nombre del paciente
               </label>
-              <select class="form-select" aria-label="Default select example" name="idexpediente" id="expedienteid">
-                @foreach($expedientes as $expediente)
-                  <option value="{{$expediente->id}}" required>{{$expediente->nombre}} -- {{ $expediente->{'dui paciente'} }}</option>
-                @endforeach
-              </select>
+              <input id="nombrepaciente" type="text" class="form-control" name="duipaciente" required>
 
               <label for="razon">Raz&oacute;n</label>
               <textarea id="razon" class="form-control" name="razon"></textarea>
@@ -531,6 +527,8 @@
 	$(document).ready(function() {
 	    $("#modalreferenciamedica").submit(function(e) {
             e.preventDefault();
+            
+            const nombrepaciente = document.getElementById("inputnombrepaciente").value;
             
             Swal.fire({
                 icon: 'info',
