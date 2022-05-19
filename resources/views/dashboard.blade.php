@@ -513,6 +513,7 @@
         });
     });
     
+    
     DecoupledDocumentEditor.create( document.querySelector( '.editor' ))
 	.then( editor => {
 	    window.editor = editor;
@@ -523,5 +524,59 @@
 	.catch( error => {
 		console.error( error );
 	} );
+	
+	
+	$(document).ready(function() {
+	    $("#modalexpedienteclinico").submit(function(e) {
+            e.preventDefault();
+            
+            Swal.fire({
+                icon: 'info',
+                title: 'Confirmar.',
+                text: '¿Desea continuar?',
+                showCancelButton: true,
+                confirmButtonText: 'Ok',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url:"{{route('expediente')}}",
+                        type:"POST",
+                        data:{
+                            'NombrePaciente': valinputnombrepaciente,
+                            'Edad': valinputedad,
+                            'Domicilio': valinputdomicilio,
+                            'Responsable': valinputresponsable,
+                            'DuiResponsable': valinputduiresponsable,
+                            'DuiPaciente': valinputduipaciente,
+                            'Antecedentes': valinputantecedentes,
+                            "_token": $("meta[name='csrf-token']").attr("content")
+                        },
+                        //dataType:"json",
+                        success: function(test){
+                            //document.getElementById("inputnombre").value="";
+                            if(test.estado === 'guardado'){
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Hecho!.',
+                                        text: 'Se registro correctamente el expediente de ' +test.nombrePaciente,
+                                        confirmButtonText: 'Ok',
+                                    })
+                                }
+                            if(test.estado === 'error'){
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Ocurrio un error!.',
+                                        text: 'No se pudo registrar el expediente de ' +test.nombrePaciente,
+                                        confirmButtonText: 'Ok',
+                                    })
+                                }
+                            }
+                    });
+                } else if (result.isDismissed) {
+                   Swal.fire('Se cancelo el registro del expediente', '', 'info')
+                }
+            } 
+	    });
+	});
 </script>
 @endsection
