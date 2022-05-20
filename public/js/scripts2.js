@@ -13,9 +13,12 @@ window.addEventListener('DOMContentLoaded', event => {
     const sidebarToggle = document.body.querySelector('#sidebarToggle');
     if (sidebarToggle) {
         // Uncomment Below to persist sidebar toggle between refreshes
-        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-        //     document.body.classList.toggle('sb-sidenav-toggled');
-        // }
+        if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+            document.body.classList.toggle('sb-sidenav-toggled');
+        }
+        else {
+            $('#sidebarToggle').find("i").removeClass('fa-solid fa-bars fa-xl').addClass('fa-solid fa-xmark fa-xl');
+        }
         sidebarToggle.addEventListener('click', event => {
             event.preventDefault();
             document.body.classList.toggle('sb-sidenav-toggled');
@@ -30,3 +33,37 @@ $(window).on("load",function() {
     $(".loading-container").fadeOut("slow");
 });
 
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+
+function iconbar(){
+    var classToggle = $('#sidebarToggle').find("i").attr('class');
+    if (classToggle === "fa-solid fa-bars fa-xl"){
+        $('#sidebarToggle').find("i").removeClass('fa-solid fa-bars fa-xl').addClass('fa-solid fa-xmark fa-xl');
+    }
+    if (classToggle === "fa-solid fa-xmark fa-xl") {
+        $('#sidebarToggle').find("i").removeClass('fa-solid fa-xmark fa-xl').addClass('fa-solid fa-bars fa-xl');
+    }
+}
+
+function irArriba(pixeles) {
+	// body...
+	window.addEventListener("scroll", () => {
+		var scroll = document.documentElement.scrollTop;
+		//console.log(scroll);
+
+		if(scroll > pixeles){
+			btnSubir.style.right = 20 + "px";
+		}
+		else{
+			btnSubir.style.right = -100 + "px";
+		}
+	})
+}
+irArriba(300);
+
+$(window).on('hashchange', function(e){
+    history.replaceState ("", document.title, e.originalEvent.oldURL);
+});

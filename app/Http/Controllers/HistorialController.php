@@ -15,7 +15,7 @@ class HistorialController extends Controller
         if(Auth::user()->hasRole(['administrador']))
         {
             try {
-                $date = Carbon::now();
+                $date = Carbon::now()->timezone('America/El_Salvador');
                 $date = $date->format('Y-m-d');
                 $expedienteId = request('IdExpediente');
                 $fechaExpedicion = $date;

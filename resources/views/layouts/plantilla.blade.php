@@ -8,7 +8,7 @@
           }
         </style>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, user-scalable=no ,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
         <meta name="description" content="" />
         <meta name="author" content="" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -27,6 +27,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- bootstrap datepicker css cdn -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- select2 css cdn -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <!-- Bootstrap js cdn -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- jquery cdn -->
@@ -35,6 +37,8 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- bootstrap datepicker js cdn -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- select2 js cdn -->
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     </head>
     <body>
         <div class="loading-container">
@@ -52,7 +56,7 @@
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/dashboard"><i class="fa-solid fa-gauge fa-xl"></i> Panel de control</a>
                     @endrole
                     @role('administrador|secretaria')
-                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-calendar-days fa-xl"></i> Agendar cita</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/reserva"><i class="fa-solid fa-calendar-days fa-xl"></i> Agendar cita</a>
                     @endrole
                     @role('administrador')
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-users fa-xl"></i> Gestion de usuarios</a>
@@ -76,8 +80,8 @@
                 <!-- Top navigation-->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
-                        <button class="btn" id="sidebarToggle"><i class="fa-solid fa-bars fa-xl"></i></button>
-                        <a class="ahome" href="#!"><i class="fa-solid fa-user-doctor fa-xl"></i> MEDICINA Y CIRUGIA GASTROINTESTINAL</a> 
+                        <button class="btn" id="sidebarToggle" onclick="iconbar();"><i class="fa-solid fa-bars fa-xl"></i></button>
+                        <a class="ahome" href="#!"><i class="fa-solid fa-user-doctor fa-xl"></i> Unidad medica humana</a> 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
@@ -115,6 +119,24 @@
         </div>
 
         <footer id="footer" class="midnight-blue">
+            <style>
+                .col h4{
+                    color: white;
+                }
+                p{
+                    color: white;
+                    font-size: 85%;
+                }               
+                .fblink{
+                    color: white;
+                    font-size: 85%;                          
+                }
+                .twitterlink{
+                    color: white;
+                    font-size: 85%;                                             
+                }
+
+            </style>
             <br>
             <center>
             <div class="container">
@@ -164,5 +186,6 @@
         <!-- incluye el paquete, para mostar alertas desde los controladores -->
         @include('sweetalert::alert')
         @yield('scripts')
+        <a href="#wrapper" id="asubir"><img src="{{ asset('imgs/subir.png') }}" alt="Subir" class="btnSubir" id="btnSubir"></a>
     </body>
 </html>

@@ -3,11 +3,6 @@
 @section('contenido')
 <br>
 <div class="container-fluid containercardsdash">
-    <!-- @isset($name)
-        @foreach($name as $productname)
-            <h1>{{ $productname }},</h1>
-        @endforeach
-    @endisset    -->
     <br>
     <!-- Card Signos-->
     <div class="card" style="max-width: 18rem;">
@@ -73,7 +68,7 @@
         </div>
     </div>
     <!-- Card Generar historial clinico-->
-    <div class="card" style="max-width: 18rem;">
+    <div class="card" style="max-width: 18rem;" onclick="consultarexpedientes();">
         <div class="card-header text-primary"><center>Historial clinico</center></div>
         <div class="card-body">
         <a class="acards" data-bs-toggle="modal" data-bs-target="#historialClinicoModalCenter">
@@ -107,6 +102,27 @@
 
                         <div class="col-md-auto my-auto">
                             <i class="fa-solid fa-heart-pulse fa-4x"></i>
+                        </div>
+                    </div>
+                </center>
+            </div>   
+        </a>
+        </div>
+    </div>
+    <!-- Card Generar Incapacidad-->
+    <div class="card" style="max-width: 18rem;">
+        <div class="card-header text-primary"><center>Incapacidad medica</center></div>
+        <div class="card-body">
+        <a class="acards" data-bs-toggle="modal" data-bs-target="#incapacidadClinicoModalCenter">
+            <div class="container">
+                <center>
+                    <div class="row">
+                        <div class="col my-auto">
+                            Registrar Incapacidad Medica
+                        </div>
+
+                        <div class="col-md-auto my-auto">
+                            <i class="fa-solid fa-file-medical-alt fa-4x"></i>
                         </div>
                     </div>
                 </center>
@@ -149,48 +165,48 @@
         <div class="modal-body">
         <form method="POST" id="modalhistorialclinico">
         @csrf
-        <label for="expedienteid">Seleccione un paciente al que se le vinculara el historial, el formato de la lista es: Paciente -- Dui</label>
-        <select class="form-select" aria-label="Default select example" name="idexpediente" id="expedienteid">
-            @foreach($expedientes as $expediente)
-                <option value="{{$expediente->id}}" required>{{$expediente->nombre}} -- {{ $expediente->{'dui paciente'} }}</option>
-            @endforeach
+        <label for="expedienteid">Seleccione un paciente, el formato de la lista es: Paciente -- Dui</label>
+        <br>
+        <select class="form-select" aria-label="Default select example" name="idexpediente" id="expedienteid" data-bs-toggle="tooltip" title="Seleccione un paciente, el formato de la lista es: Paciente -- Dui">
+
         </select>
         <!-- <input type="text" class="form-control" id="expedienteid" name="idexpediente" required> -->
         <br>
+        <br>
         <label for="inputfechadeenfermedadactual">Fecha de enfermedad actual</label>
         <div class="input-group date">
-            <input type="text" class="form-control" id="inputfechadeenfermedadactual" name="fechaenfermedadactual" required>
+            <input type="text" class="form-control" id="inputfechadeenfermedadactual" name="fechaenfermedadactual" data-bs-toggle="tooltip" title="Seleccione una fecha" required>
             <i class="fa-solid fa-calendar-days calendario"></i>
         </div>
         <br>
         <label for="inputfechadediagnostico">Fecha de diagnostico</label>
         <div class="input-group date">
-            <input type="text" class="form-control" id="inputfechadediagnostico" name="fechadiagnostico" required>
+            <input type="text" class="form-control" id="inputfechadediagnostico" name="fechadiagnostico" data-bs-toggle="tooltip" title="Seleccione una fecha" required>
             <i class="fa-solid fa-calendar-days calendario"></i>
         </div>
         <br>
         <label for="inputenfermedadactual">Enfermedad actual</label>
-        <input id="inputenfermedadactual" type="text" class="form-control" name="enfermedadactual" required>
+        <input id="inputenfermedadactual" type="text" class="form-control" name="enfermedadactual" data-bs-toggle="tooltip" title="Seleccione una fecha" required>
         <br>
         <label for="inputexamenesprescritos">Examenes prescritos</label>
-        <input id="inputexamenesprescritos" type="text" class="form-control" name="examenesprescritos" required>
+        <input id="inputexamenesprescritos" type="text" class="form-control" name="examenesprescritos" data-bs-toggle="tooltip" title="Ingrese los examenes prescritos" required>
         <br>
         <label for="inputdiagnostico">Diagnostico</label>
-        <textarea class="form-control" id="inputdiagnostico" rows="3" name="diagnostico" required></textarea>
+        <textarea class="form-control" id="inputdiagnostico" rows="3" name="diagnostico" data-bs-toggle="tooltip" title="Ingrese el diagnostico" required></textarea>
         <!-- <input id="inputdiagnostico" type="text" class="form-control" name="diagnostico" required> -->
         <br>
         <label for="inputrecetaexpedida">Receta expedida</label>
-        <input id="inputdirecetaexpedida" type="text" class="form-control" name="receta" required>
+        <input id="inputdirecetaexpedida" type="text" class="form-control" name="receta" data-bs-toggle="tooltip" title="Ingrese la receta expedida" required>
         <br>
         <label for="inputobservaciones">Observaciones</label>
-        <textarea class="form-control" id="inputobservaciones" rows="3" name="observaciones" required></textarea>
+        <textarea class="form-control" id="inputobservaciones" rows="3" name="observaciones" data-bs-toggle="tooltip" title="Ingrese las observaciones" required></textarea>
         <!-- <input id="inputobservaciones" type="text" class="form-control" name="observaciones" required> -->
         <br>
         <label for="inputplanmedico">Plan medico a seguir</label>
-        <input id="inputplanmedico" type="text" class="form-control" name="planmedico" required>
+        <input id="inputplanmedico" type="text" class="form-control" name="planmedico" data-bs-toggle="tooltip" title="Ingrese el plan medico a seguir" required>
         <br>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" data-bs-toggle="tooltip" title="Presione si desea registrar la consulta subsecuente">
             <label class="form-check-label" for="flexCheckDefault">Consulta subsecuente</label>
         </div>
         </div>
@@ -215,25 +231,26 @@
         <form method="POST" id="modalexpedienteclinico">
         @csrf
         <label for="inputnombrepaciente">Nombre del paciente</label>
-        <input type="text" class="form-control" id="inputnombrepaciente" name="nombreexpediente"  pattern="[a-zA-Z'-'\s]*" required>
+        <input type="text" class="form-control" id="inputnombrepaciente" name="nombreexpediente"  pattern="[a-zA-Z'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el nombre del paciente, solo se permiten letras" required>
         <br>
         <label for="inputedad">Edad</label>
-        <input type="text" class="form-control" id="inputedad" name="edad" pattern="^\d{1,3}$" required>
+        <input type="text" class="form-control" id="inputedad" name="edad" pattern="^\d{1,3}$" data-bs-toggle="tooltip" title="Ingrese la edad del paciente, solo se permiten numeros entre 1 y 3 digitos" required>
         <br>
         <label for="inputdomicilio">Domicilio</label>
-        <input type="text" class="form-control" id="inputdomicilio" name="domicilio" required>
+        <input type="text" class="form-control" id="inputdomicilio" name="domicilio" data-bs-toggle="tooltip" title="Ingrese el docimicilio del paciente" required>
         <br>
         <label for="inputresponsable">Responsable</label>
-        <input id="inputresponsable" type="text" class="form-control" name="responsable" pattern="[a-zA-Z'-'\s]*" required>
+        <input id="inputresponsable" type="text" class="form-control" name="responsable" pattern="[a-zA-Z'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el responsable del paciente, solo se permiten letras" required>
         <br>
         <label for="inputduipaciente">Dui del paciente</label>
-        <input id="inputduipaciente" type="text" class="form-control" name="duipaciente" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" required>
+        <input id="inputduipaciente" type="text" class="form-control" name="duipaciente" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" data-bs-toggle="tooltip" title="Ingrese el dui del paciente, solo se permiten numeros de 9 digitos" required>
         <br>
         <label for="inputduiresponsable">Dui del responsable</label>
-        <input id="inputduiresponsable" type="text" class="form-control" name="duiresponsable" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" required>
+        <input id="inputduiresponsable" type="text" class="form-control" name="duiresponsable" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" data-bs-toggle="tooltip" title="Ingrese el dui del responsable, solo se permiten numeros de 9 digitos" required>
         <br>
         <label for="inputantecedentes">Antecedentes patologicos</label>
-        <input id="inputantecedentes" type="text" class="form-control" name="antecedentes">
+        <!-- <input id="inputantecedentes" type="text" class="form-control" name="antecedentes"> -->
+        <textarea class="form-control" id="inputantecedentes" rows="3" name="antecedentes" data-bs-toggle="tooltip" title="Ingrese los antecedentes patologicos del paciente"></textarea>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cerrar</button>
@@ -243,6 +260,7 @@
         </div>
     </div>
     </div>
+
     <!-- Modal Referencia médica -->
     <div class="modal fade" id="referenciaMedicaModalCenter" tabindex="-1"
         role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -294,12 +312,93 @@
       </div>
     </div>
     </div>
+
+        <!-- Modal Incapacidad clinico-->
+        <div class="modal fade" id="incapacidadClinicoModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar Incapacidad Medica</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" id="modalincapacidadclinico">
+            @csrf
+            <label for="inputfechadeincapacidad">Fecha de enfermedad actual</label>
+            <div class="input-group date">
+                <input type="text" class="form-control" id="inputfechadeincapacidad" name="fechaincapacidad" required>
+                <i class="fa-solid fa-calendar-days calendario"></i>
+            </div>
+            <br>
+            <label for="inputpaciente">Nombre del paciente</label>
+            <input id="inputpaciente" type="text" class="form-control" name="paciente" required>
+            <br>
+            <label for="inputdiagnosis">Diagnostico</label>
+            <textarea class="form-control" id="inputdiagnosis" rows="3" name="diagnosis" required></textarea>
+            <!-- <input id="inputdiagnostico" type="text" class="form-control" name="diagnostico" required> -->
+            <br>
+            <label for="inputmedicacion">Tratamiento</label>
+            <textarea class="form-control" id="inputmedicacion" rows="3" name="medicacion" required></textarea>
+            <!-- <input id="inputobservaciones" type="text" class="form-control" name="observaciones" required> -->
+            <br>
+            <label for="inputdiasincapacidad">Dias de incapacidad</label>
+            <input type="number" class="form-control" id="inputdiasincapacidad"  name="diasincapacidad" min="0" max="120" pattern="[0-120]" required>
+            <br>
+            </div>
+            <div class="modal-footer">
+                <a href="/editor" type="submit" class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Editar manualmente</a>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+            </div>
+            </form>
+            </div>
+        </div>
+        </div> 
+</div>
+
+<center>
+    <h5>Agenda de citas del dia</h5>
+</center>
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <div class="table-responsive container-fluid">
+            <table class="table table-hover table-bordered w-auto">
+                <thead class="tablehead">
+                    <tr class="text-center">
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Hora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if($citas->isEmpty())
+                        <tr class="text-center">
+                            <td colspan="3">Sin citas</td>
+                        </tr>
+                    @else
+                    @foreach($citas as $cita)
+                        <tr class="text-center">
+                            <td>{{$cita->nombre}}</td>
+                            <td>{{$cita->telefono}}</td>
+                            <td>{{$cita->hora}}</td>
+                        </tr>
+                    @endforeach
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </div> 
+</div>
 @endsection
 
 @section('scripts')
 <script src="{{ asset('js/bootstrap-datepicker.es.js') }}"></script>
 <script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
 <script>
+    $('#expedienteid').select2({
+        dropdownParent: $('#historialClinicoModalCenter'),
+        width: '100%'
+    });
     $(document).ready(function() {
             $('#inputfechadeexpedicion').datepicker({
                 isRTL: false,
@@ -314,6 +413,12 @@
                 language: 'es'
             });
             $('#inputfechadediagnostico').datepicker({
+                isRTL: false,
+                format: 'yyyy-mm-dd',
+                todayHighlight: true,
+                language: 'es'
+            });
+            $('#inputfechadeincapacidad').datepicker({
                 isRTL: false,
                 format: 'yyyy-mm-dd',
                 todayHighlight: true,
@@ -406,7 +511,14 @@
                     },
                     //dataType:"json",
                     success: function(test){
-                        //document.getElementById("inputnombre").value="";
+                        document.getElementById("inputfechadeenfermedadactual").value="";
+                        document.getElementById("inputfechadediagnostico").value="";
+                        document.getElementById("inputenfermedadactual").value="";
+                        document.getElementById("inputexamenesprescritos").value="";
+                        document.getElementById("inputdiagnostico").value="";
+                        document.getElementById("inputdirecetaexpedida").value="";
+                        document.getElementById("inputobservaciones").value="";
+                        document.getElementById("inputplanmedico").value="";
                             if(test.estado === 'guardado'){
                                 Swal.fire({
                                     icon: 'success',
@@ -431,6 +543,7 @@
             })
         });
     });
+
     //js para envio por ajax para la ventana de expediente
     $(document).ready(function() {
         $("#modalexpedienteclinico").submit(function(e) {
@@ -467,6 +580,13 @@
                     //dataType:"json",
                     success: function(test){
                         //document.getElementById("inputnombre").value="";
+                        document.getElementById("inputnombrepaciente").value="";
+                        document.getElementById("inputedad").value="";
+                        document.getElementById("inputdomicilio").value="";
+                        document.getElementById("inputresponsable").value="";
+                        document.getElementById("inputduipaciente").value="";
+                        document.getElementById("inputduiresponsable").value="";
+                        document.getElementById("inputantecedentes").value="";
                         if(test.estado === 'guardado'){
                                 Swal.fire({
                                     icon: 'success',
@@ -491,6 +611,7 @@
             })
         });
     });
+<<<<<<< HEAD
     
 	//js para envio por ajax para la ventana de referencia
 	$(document).ready(function() {
@@ -548,6 +669,90 @@
                 }
             }) 
 	    });
+	});
+
+function consultarexpedientes(){
+    var comboExpedientes = document.getElementById("expedienteid");
+    $.ajax({
+                    url:"{{route('expedienteconsultarajax')}}",
+                    type:"GET",
+                    data:{
+                    },
+                    //dataType:"json",
+                    success: function(test){
+                        //console.log(test);
+                        //console.log("legth "+test.expedientes.length);
+                        for (var j = test.expedientes.length; j >= 0; j--) {
+                            comboExpedientes.remove(j);
+                        }
+                        for (var i = 0; i < test.expedientes.length; i++) {
+                            const option = document.createElement('option');
+                            const valornombre = test.expedientes[i].nombre;
+                            const valordui = test.expedientes[i]["dui paciente"];
+                            option.value = test.expedientes[i].id;
+                            option.text = valornombre + "--" + valordui;
+                            comboExpedientes.appendChild(option);
+                        }
+                    }
+    });
+}
+    //js para envio por ajax para la ventana de incapacidad
+    $(document).ready(function() {
+        $("#modalincapacidadclinico").submit(function(e) {
+        e.preventDefault();
+        var valinputfechadeincapacidad = document.getElementById("inputfechadeincapacidad").value;
+        var valinputpaciente = document.getElementById("inputpaciente").value;
+        var valinputdiagnosis = document.getElementById("inputdiagnosis").value;
+        var valinputmedicacion = document.getElementById("inputmedicacion").value;
+        var valinputdiasincapacidad = document.getElementById("inputdiasincapacidad").value;
+        //console.log(selectexpedienteidvalue);
+
+        Swal.fire({
+            icon: 'info',
+            title: 'Confirmar.',
+            text: '¿Desea continuar?',
+            showCancelButton: true,
+            confirmButtonText: 'Ok',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url:"{{route('incapacidad')}}",
+                    type:"POST",
+                    data:{
+                        'FechaIncapacidad': valinputfechadeincapacidad,
+                        'NombredePaciente': valinputpaciente,
+                        'Diagnosis': valinputdiagnosis,
+                        'Medicacion': valinputmedicacion,
+                        'DiasIncapacidad': valinputdiasincapacidad,
+                        "_token": $("meta[name='csrf-token']").attr("content")
+                    },
+                    //dataType:"json",
+                    success: function(test){
+                        //document.getElementById("inputnombre").value="";
+                            if(test.estado === 'guardado'){
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Hecho!.',
+                                    text: 'Se registro correctamente la incapacidad del paciente: '+test.nombrePaciente,
+                                    confirmButtonText: 'Ok',
+                                    })
+                                $("#modalincapacidadclinico")[0].reset(); //Limpiar formulario
+                            }
+                            if(test.estado === 'error'){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Ocurrio un error!.',
+                                    text: 'No se pudo registrar la incapacidad del paciente: '+test.nombrePaciente,
+                                    confirmButtonText: 'Ok',
+                                    })
+                            }
+                        }
+                    });
+            } else if (result.isDismissed) {
+                Swal.fire('Se cancelo el registro de la incapacidad del paciente', '', 'info')
+            }
+            })
+        });
     });
 </script>
 @endsection

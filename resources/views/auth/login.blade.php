@@ -15,10 +15,12 @@ Swal.fire({
 <br>
 @endif
 <div class="container">
+    <center><img src="{{ asset('imgs/logo.jpeg') }}" alt="logo" class="img-thumbnail logo"></center> 
+    <br>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Inicio de sesion') }}</div>
+                <div class="card-header text-center"><i class="fa-solid fa-lock"></i> {{ __('Inicio de sesion') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -42,8 +44,12 @@ Swal.fire({
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('email') is-invalid @enderror" name="password" required autocomplete="current-password">
-
+                                <div class="input-group">
+                                    <input id="password" type="password" class="form-control @error('email') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <span class="input-group-btn">
+                                        <button id="eyebutton" class="btn btn-primary" type="button" onclick="mostrarContraseña();"><i class="fa-solid fa-eye-slash"></i></button>
+                                    </span>
+                                </div>
                                 <!-- @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -72,7 +78,7 @@ Swal.fire({
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Olvido su contraseña?') }}
+                                        {{ __('¿Olvido su contraseña?') }}
                                     </a>
                                 @endif
                             </div>
@@ -83,4 +89,18 @@ Swal.fire({
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+    <script>
+        function mostrarContraseña(){
+            var tipo = document.getElementById("password");
+            if(tipo.type == "password"){
+                tipo.type = "text";
+                $('#eyebutton').find("i").removeClass('fa-solid fa-eye-slash').addClass('fa-solid fa-eye');
+            } else{
+                tipo.type = "password";
+                $('#eyebutton').find("i").removeClass('fa-solid fa-eye').addClass('fa-solid fa-eye-slash');
+            }
+        }
+    </script>
 @endsection

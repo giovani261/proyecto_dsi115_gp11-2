@@ -48,4 +48,9 @@ class ExpedienteController extends Controller
         }
 
     }
+
+    public function consultarajax(){
+        $expedientes = Expediente::all();
+        return response()->json(['expedientes' => $expedientes]);
+    }
 }
