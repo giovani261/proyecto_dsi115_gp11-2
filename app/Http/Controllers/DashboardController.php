@@ -32,7 +32,8 @@ class DashboardController extends Controller
         if(Auth::user()->hasRole(['administrador']))
         {
             $expedientes = Expediente::all(); 
-            return view('dashboard')->with('expedientes', $expedientes);
+            $users = User::all(); 
+            return view('dashboard', ['expedientes' => $expedientes, 'users' => $users]);
         }
         else {
             Auth::logout();

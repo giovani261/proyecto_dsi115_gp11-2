@@ -43,5 +43,5 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/roles', [DashboardController::class, 'roles'])->name('roles');
 
-Route::get('crear-referencia', [ReferenciaController::class, 'index']);
-Route::get('editar_referencia', [ReferenciaController::class, 'editar_referencia'])->name('editar_referencia');
+Route::match(['post'], '/crear-referencia', [ReferenciaController::class, 'guardar_referencia_medica'])->name('crear_referencia');
+Route::get('/editar_referencia', [ReferenciaController::class, 'editar_referencia'])->name('editar_referencia');

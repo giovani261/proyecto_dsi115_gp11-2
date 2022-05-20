@@ -262,10 +262,18 @@
                 <i class="fa-solid fa-calendar-days calendario"></i>
               </div>
         
-              <label for="nombrepaciente">
+              <label for="nombrepacientereferencia">
               Nombre del paciente
               </label>
-              <input id="nombrepaciente" type="text" class="form-control" name="duipaciente" required>
+              <select class="form-select" aria-label="Default select example" name="nombrepaciente" id="nombrepacientereferencia">
+              @foreach($users as $user)
+                <option value="{{$user->id}}" required>{{$user->name}}</option>
+              @endforeach
+              </select>
+              
+              <label for="nombrereferencia">Nombre</label>
+              <input type="text" class="form-control" id="nombrereferencia" name="nombrereferencia"  required>
+              
 
               <label for="razon">Raz&oacute;n</label>
               <textarea id="razon" class="form-control" name="razon"></textarea>
@@ -274,45 +282,13 @@
               <textarea id="se-le-envia-a" class="form-control" name="lugar-referencia"></textarea>
 
               <div class="modal-footer">
+                <a href="{{route('editar_referencia')}}">Editar manualmente</a>
                 <button class="btn btn-secondary"
-                    type="button"
+                    type="submit"
                     name="continuar"
-                    data-bs-target="#referenciaMedicaModalCenterEditor"
-                    data-bs-toggle="modal" data-bs-dismiss="modal">Continuar</button>
+                    data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
               </div>
             </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Segundo Model para referencia. -->
-    <div class="modal fade" id="referenciaMedicaModalCenterEditor" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-      <div class="modal-dialog modal-xl modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalToggleLabel2">Editando</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            
-            <div class="centered">
-              <div class="row">
-	            <div class="document-editor__toolbar"></div>
-	          </div>
-	          <div class="row row-editor">
-	            <div class="editor-container">
-                  <div class="editor">
-                    <h2>Hola<h2>
-                    <p> Jajajaja</p>
-                  </div>
-                </div>
-              </div>
-            </div>     
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-dismiss="modal">Imprimir</button>
           </div>
         </div>
       </div>
@@ -516,19 +492,16 @@
         });
     });
     
-    
-    CKEDITOR.replace('editor', {
-      height: 400,
-      baseFloatZIndex: 10005,
-      removeButtons: 'PasteFromWord'
-    });
-	
-	
+	//js para envio por ajax para la ventana de referencia
 	$(document).ready(function() {
 	    $("#modalreferenciamedica").submit(function(e) {
             e.preventDefault();
             
-            const nombrepaciente = document.getElementById("inputnombrepaciente").value;
+            //const fecha = document.getElementById("inputfechadereferencia").value;
+            const pacientereferenciaid = document.getElementById("nombrepacientereferencia").value;
+            const referenciaNombre = document.getElementById("nombrereferencia").value;
+            const referenciaRazon = document.getElementById("razon").value;
+            const seLeEnviaA = document.getElementById("se-le-envia-a").value;
             
             Swal.fire({
                 icon: 'info',
@@ -539,26 +512,24 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url:"{{route('editar_referencia')}}",
+                        url:"{{route('crear_referencia')}}",
                         type:"POST",
                         data:{
-                            'NombrePaciente': valinputnombrepaciente,
-                            'Edad': valinputedad,
-                            'Domicilio': valinputdomicilio,
-                            'Responsable': valinputresponsable,
-                            'DuiResponsable': valinputduiresponsable,
-                            'DuiPaciente': valinputduipaciente,
-                            'Antecedentes': valinputantecedentes,
+                            //'fecha': fecha,
+                            'pacienteid': pacientereferenciaid,
+                            'nombre': referenciaNombre,
+                            'razon': referenciaRazon,
+                            'se le envia a': seLeEnviaA,
                             "_token": $("meta[name='csrf-token']").attr("content")
                         },
                         //dataType:"json",
-                        success: function(test){
+                        success: function(test) {
                             //document.getElementById("inputnombre").value="";
                             if(test.estado === 'guardado'){
                                     Swal.fire({
                                         icon: 'success',
                                         title: 'Hecho!.',
-                                        text: 'Se registro correctamente el expediente de ' +test.nombrePaciente,
+                                        text: 'Se registro correctamente la referencia del paciente ' +test.nombrePaciente,
                                         confirmButtonText: 'Ok',
                                     })
                                 }
@@ -566,17 +537,17 @@
                                     Swal.fire({
                                         icon: 'error',
                                         title: 'Ocurrio un error!.',
-                                        text: 'No se pudo registrar el la referencia ' +test.nombrePaciente,
+                                        text: 'No se pudo registrar el la referencia del paciente' +test.nombrePaciente,
                                         confirmButtonText: 'Ok',
                                     })
-                                }
                             }
+                        },
                     });
                 } else if (result.isDismissed) {
                    Swal.fire('Se cancelo el registro de la referencia', '', 'info')
                 }
-            } 
+            }) 
 	    });
-	});
+    });
 </script>
 @endsection

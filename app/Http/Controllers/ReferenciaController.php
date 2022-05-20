@@ -4,22 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Referencia;
+use Auth;
 
 class ReferenciaController extends Controller
 {
-    public function guardarReferenciaMedica() {
+    public function guardar_referencia_medica(Request $request) {
         if(Auth::user()->hasRole(['administrador'])) {
             try {
-                $referenciaId = request('user_id');
+                $referenciapacienteId = request('pacienteid');
                 $referenciaNombre = request('nombre');
                 $referenciaRazon = request('razon');
-                $referenciaSeLeEnviaA = request('se le envia a');   
+                $referenciaSeLeEnviaA = request('se le envia a');       
             
                 $referencia = new Referencia();
            
-                $referencia->user_id = $referenciaId;
+                $referencia->user_id = $referenciapacienteId;
                 $referencia->nombre = $referenciaNombre;
-                $referencia->razon = $referenciaNombre;
+                $referencia->razon = $referenciaRazon;
                 $referencia->{"se le envia a"} = $referenciaSeLeEnviaA;
             
                 $referencia->save();
@@ -38,7 +39,7 @@ class ReferenciaController extends Controller
         }
     }
     
-    public function editar_referencia() {
+    public function editar_referencia(Request $request) {
         return view('editar-referencia');
     }
 }
