@@ -6,9 +6,9 @@
     <br>
     <!-- Card Signos-->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center>Signos vitales</center></div>
+        <div class="card-header text-primary"><center><b>Signos vitales</b></center></div>
         <div class="card-body">
-        <a class="acards" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
@@ -27,9 +27,9 @@
     </div>
     <!-- Card Generar receta-->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center>Receta</center></div>
+        <div class="card-header text-primary"><center><b>Receta</b></center></div>
         <div class="card-body">
-        <a class="acards" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
@@ -48,9 +48,9 @@
     </div>
     <!-- Card Signos-->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center>Signos vitales</center></div>
+        <div class="card-header text-primary"><center><b>Signos vitales</b></center></div>
         <div class="card-body">
-        <a class="acards" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
@@ -69,9 +69,9 @@
     </div>
     <!-- Card Generar historial clinico-->
     <div class="card" style="max-width: 18rem;" onclick="consultarexpedientes();">
-        <div class="card-header text-primary"><center>Historial clinico</center></div>
+        <div class="card-header text-primary"><center><b>Historial clinico</b></center></div>
         <div class="card-body">
-        <a class="acards" data-bs-toggle="modal" data-bs-target="#historialClinicoModalCenter">
+        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#historialClinicoModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
@@ -90,9 +90,9 @@
     </div>
     <!-- Card Expediente clinico-->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center>Expediente clinico</center></div>
+        <div class="card-header text-primary"><center><b>Expediente clinico</b></center></div>
         <div class="card-body">
-        <a class="acards" data-bs-toggle="modal" data-bs-target="#expedienteClinicoModalCenter">
+        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#expedienteClinicoModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
@@ -111,9 +111,9 @@
     </div>
     <!-- Card Generar Incapacidad-->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center>Incapacidad medica</center></div>
+        <div class="card-header text-primary"><center><b>Incapacidad medica</b></center></div>
         <div class="card-body">
-        <a class="acards" data-bs-toggle="modal" data-bs-target="#incapacidadClinicoModalCenter">
+        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#incapacidadClinicoModalCenter">
             <div class="container">
                 <center>
                     <div class="row">

@@ -47,26 +47,26 @@
                 </div>
                 <div class="list-group list-group-flush">
                     @role('administrador')
-                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/dashboard"><i class="fa-solid fa-gauge fa-xl"></i> Panel de control</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="/dashboard"><i class="fa-solid fa-gauge fa-xl"></i> Panel de control</a>
                     @endrole
                     @role('administrador|secretaria')
-                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/reserva"><i class="fa-solid fa-calendar-days fa-xl"></i> Agendar cita</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="/reserva"><i class="fa-solid fa-calendar-days fa-xl"></i> Agendar cita</a>
                     @endrole
                     @role('administrador')
-                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-users fa-xl"></i> Gestion de usuarios</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="#!"><i class="fa-solid fa-users fa-xl"></i> Gestion de usuarios</a>
                     @endrole
                     @role('administrador|secretaria|asistente')
-                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-hammer fa-xl"></i> Gestion de insumos</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="#!"><i class="fa-solid fa-hammer fa-xl"></i> Gestion de insumos</a>
                     @endrole
                     @role('administrador|secretaria|asistente')
-                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-briefcase-medical fa-xl"></i> <span class="txtmenu"> Gestion de medicamentos</span></a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="#!"><i class="fa-solid fa-briefcase-medical fa-xl"></i> <span class="txtmenu"> Gestion de medicamentos</span></a>
                     @endrole
                     @role('administrador')
-                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-clipboard-list fa-xl"></i> Gestion de proveedores</a>
-                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!"><i class="fa-solid fa-chart-area fa-xl"></i> Generar reporte</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="#!"><i class="fa-solid fa-clipboard-list fa-xl"></i> Gestion de proveedores</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="#!"><i class="fa-solid fa-chart-area fa-xl"></i> Generar reporte</a>
                     @endrole
                     <!-- Para todos, incluidos los usuarios sin cuenta-->
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/"><i class="fa-solid fa-clipboard-list fa-xl"></i> Servicios</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="/"><i class="fa-solid fa-clipboard-list fa-xl"></i> Servicios</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -75,7 +75,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
                         <button class="btn" id="sidebarToggle" onclick="iconbar();"><i class="fa-solid fa-bars fa-xl"></i></button>
-                        <a class="ahome" href="#!"><i class="fa-solid fa-user-doctor fa-xl"></i> Unidad medica humana</a> 
+                        <a class="ahome text-dark" href="#!"><i class="fa-solid fa-user-doctor fa-xl"></i> Unidad medica humana</a> 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
