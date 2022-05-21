@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SignosController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\ExpedienteController;
+use App\Http\Controllers\ReferenciaController;
 use App\Http\Controllers\ReservaDeCitaController;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\IncapacidadController;
@@ -52,4 +53,8 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/roles', [DashboardController::class, 'roles'])->name('roles');
+
 Route::get('/reserva',[ReservaDeCitaController::class,'index'])->name('index');
+
+Route::match(['post'], '/crear-referencia', [ReferenciaController::class, 'guardar_referencia_medica'])->name('crear_referencia');
+Route::get('/editar_referencia', [ReferenciaController::class, 'editar_referencia'])->name('editar_referencia');
