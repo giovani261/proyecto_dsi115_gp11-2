@@ -290,28 +290,28 @@
               </select>
               
               <label for="nombrereferencia">Nombre</label>
-              <input type="text" class="form-control" id="nombrereferencia" name="nombrereferencia"  required>
+              <input type="text" class="form-control" id="nombrereferencia" name="nombrereferencia" title="Ingrese el nombre de la referencia" required>
               
 
               <label for="razon">Raz&oacute;n</label>
-              <textarea id="razon" class="form-control" name="razon"></textarea>
+              <textarea id="razon" class="form-control" name="razon" title="Ingrese la razón de la referencia" required></textarea>
 
               <label for="se-le-envia-a">Se le env&iacute;a a</label>
-              <textarea id="se-le-envia-a" class="form-control" name="lugar-referencia"></textarea>
+              <textarea id="se-le-envia-a" class="form-control" name="lugar-referencia" title="Ingrese el nombre del lugar donde se envía al paciente" required></textarea>
+            </div>
 
               <div class="modal-footer">
-                <a href="{{route('editar_referencia')}}">Editar manualmente</a>
-                <button class="btn btn-secondary"
+                <a href="{{route('editar_referencia')}}" class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Editar manualmente</a>
+                <button class="btn btn-primary"
                     type="submit"
                     name="continuar"
-                    data-bs-toggle="modal" data-bs-dismiss="modal">Guardar</button>
+                    data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
               </div>
             </form>
           </div>
         </div>
       </div>
-    </div>
-    </div>
+
 
         <!-- Modal Incapacidad clinico-->
         <div class="modal fade" id="incapacidadClinicoModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -611,7 +611,6 @@
             })
         });
     });
-<<<<<<< HEAD
     
 	//js para envio por ajax para la ventana de referencia
 	$(document).ready(function() {
@@ -640,7 +639,7 @@
                             'pacienteid': pacientereferenciaid,
                             'nombre': referenciaNombre,
                             'razon': referenciaRazon,
-                            'se le envia a': seLeEnviaA,
+                            'se_le_envia_a': seLeEnviaA,
                             "_token": $("meta[name='csrf-token']").attr("content")
                         },
                         //dataType:"json",

@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use APP\Models\User;
 use App\Models\Referencia;
 use Auth;
 
@@ -14,7 +14,7 @@ class ReferenciaController extends Controller
                 $referenciapacienteId = request('pacienteid');
                 $referenciaNombre = request('nombre');
                 $referenciaRazon = request('razon');
-                $referenciaSeLeEnviaA = request('se le envia a');       
+                $referenciaSeLeEnviaA = request('se_le_envia_a');       
             
                 $referencia = new Referencia();
            
