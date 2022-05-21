@@ -30,7 +30,9 @@ class DashboardController extends Controller
             $date = $date->format('Y-m-d');
             $citas = ReservaDeCita::whereDate('fecha','=',$date)->get();
             //dd($date);
-            return view('dashboard')->with('citas', $citas);
+            
+            $users = User::all();
+            return view('dashboard', ['citas' => $citas, 'users' => $users]);
         }
         else {
             Auth::logout();

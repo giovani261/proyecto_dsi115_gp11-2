@@ -46,20 +46,20 @@
         </a>
         </div>
     </div>
-    <!-- Card Signos-->
+    <!-- Card Referencia médica -->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center>Signos vitales</center></div>
+        <div class="card-header text-primary"><center>Referencia m&eacute;dica</center></div>
         <div class="card-body">
-        <a class="acards" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+        <a class="acards" data-bs-toggle="modal" data-bs-target="#referenciaMedicaModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
                         <div class="col my-auto">
-                            Registrar Signos Vitales
+                            Crear referencia m&eacute;dica
                         </div>
 
                         <div class="col-md-auto my-auto">
-                            <i class="fa-solid fa-heart-pulse fa-4x"></i>
+                            <i class="fa-solid fa-file-medical-alt fa-4x"></i>
                         </div>
                     </div>
                 </center>
@@ -260,6 +260,59 @@
         </div>
     </div>
     </div>
+
+    <!-- Modal Referencia médica -->
+    <div class="modal fade" id="referenciaMedicaModalCenter" tabindex="-1"
+        role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Crear referencia m&eacute;dica</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="POST" id="modalreferenciamedica">
+            @csrf
+              <label for="inputfechadereferencia">Fecha</label>
+              <div class="input-group date">
+                <input type="text" class="form-control" id="inputfechadereferencia" name="fechadereferencia" value="<?php echo date('Y-m-d'); ?>" >
+                <i class="fa-solid fa-calendar-days calendario"></i>
+              </div>
+        
+              <label for="nombrepacientereferencia">
+              Nombre del paciente
+              </label>
+              <select class="form-select" aria-label="Default select example" name="nombrepaciente" id="nombrepacientereferencia">
+              @foreach($users as $user)
+                <option value="{{$user->id}}" required>{{$user->name}}</option>
+              @endforeach
+              </select>
+              
+              <label for="nombrereferencia">Nombre</label>
+              <input type="text" class="form-control" id="nombrereferencia" name="nombrereferencia" title="Ingrese el nombre de la referencia" required>
+              
+
+              <label for="razon">Raz&oacute;n</label>
+              <textarea id="razon" class="form-control" name="razon" title="Ingrese la razón de la referencia" required></textarea>
+
+              <label for="se-le-envia-a">Se le env&iacute;a a</label>
+              <textarea id="se-le-envia-a" class="form-control" name="lugar-referencia" title="Ingrese el nombre del lugar donde se envía al paciente" required></textarea>
+            </div>
+
+              <div class="modal-footer">
+                <a href="{{route('editar_referencia')}}" class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Editar manualmente</a>
+                <button class="btn btn-primary"
+                    type="submit"
+                    name="continuar"
+                    data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
         <!-- Modal Incapacidad clinico-->
         <div class="modal fade" id="incapacidadClinicoModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
@@ -340,6 +393,7 @@
 
 @section('scripts')
 <script src="{{ asset('js/bootstrap-datepicker.es.js') }}"></script>
+<script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
 <script>
     $('#expedienteid').select2({
         dropdownParent: $('#historialClinicoModalCenter'),
@@ -365,6 +419,12 @@
                 language: 'es'
             });
             $('#inputfechadeincapacidad').datepicker({
+                isRTL: false,
+                format: 'yyyy-mm-dd',
+                todayHighlight: true,
+                language: 'es'
+            });
+            $('#inputfechadereferencia').datepicker({
                 isRTL: false,
                 format: 'yyyy-mm-dd',
                 todayHighlight: true,
@@ -551,6 +611,64 @@
             })
         });
     });
+    
+	//js para envio por ajax para la ventana de referencia
+	$(document).ready(function() {
+	    $("#modalreferenciamedica").submit(function(e) {
+            e.preventDefault();
+            
+            //const fecha = document.getElementById("inputfechadereferencia").value;
+            const pacientereferenciaid = document.getElementById("nombrepacientereferencia").value;
+            const referenciaNombre = document.getElementById("nombrereferencia").value;
+            const referenciaRazon = document.getElementById("razon").value;
+            const seLeEnviaA = document.getElementById("se-le-envia-a").value;
+            
+            Swal.fire({
+                icon: 'info',
+                title: 'Confirmar.',
+                text: '¿Desea continuar?',
+                showCancelButton: true,
+                confirmButtonText: 'Ok',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url:"{{route('crear_referencia')}}",
+                        type:"POST",
+                        data:{
+                            //'fecha': fecha,
+                            'pacienteid': pacientereferenciaid,
+                            'nombre': referenciaNombre,
+                            'razon': referenciaRazon,
+                            'se_le_envia_a': seLeEnviaA,
+                            "_token": $("meta[name='csrf-token']").attr("content")
+                        },
+                        //dataType:"json",
+                        success: function(test) {
+                            //document.getElementById("inputnombre").value="";
+                            if(test.estado === 'guardado'){
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Hecho!.',
+                                        text: 'Se registro correctamente la referencia del paciente ' +test.nombrePaciente,
+                                        confirmButtonText: 'Ok',
+                                    })
+                                }
+                            if(test.estado === 'error'){
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Ocurrio un error!.',
+                                        text: 'No se pudo registrar el la referencia del paciente' +test.nombrePaciente,
+                                        confirmButtonText: 'Ok',
+                                    })
+                            }
+                        },
+                    });
+                } else if (result.isDismissed) {
+                   Swal.fire('Se cancelo el registro de la referencia', '', 'info')
+                }
+            }) 
+	    });
+	});
 
 function consultarexpedientes(){
     var comboExpedientes = document.getElementById("expedienteid");
