@@ -48,7 +48,7 @@
     </div>
     <!-- Card Referencia médica -->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center>Referencia m&eacute;dica</center></div>
+        <div class="card-header text-primary"><center><b>Referencia m&eacute;dica</b></center></div>
         <div class="card-body">
         <a class="acards" data-bs-toggle="modal" data-bs-target="#referenciaMedicaModalCenter">
             <div class="container">
@@ -355,7 +355,7 @@
         </div>
         </div> 
 </div>
-
+<br>
 <center>
     <h5>Agenda de citas del dia</h5>
 </center>
@@ -389,11 +389,60 @@
         </div>
     </div> 
 </div>
+<br>
+<center>
+    <h5>Estadisticas</h5>
+</center>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <div class="card bg-c-blue counters-card">
+                <div class="card-block">
+                    <h6 class="m-b-20"><b>Enfermedad mas comun</b></h6>
+                        <h3 class="h3"><i class="fa-solid fa-virus"></i><span class="float-end text-break"> {{ $enfermedadMasComunName }} <span class="badge bg-secondary">{{ $enfermedadMasComunCount }}</span></span></h3>
+                    <p class="m-b-0">Enfermedades totales<span class="float-end"><span class="badge bg-secondary">{{ $historialesCount }}</span></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="card bg-c-yellow counters-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20"><b>Numero de personas con roles asignados</b></h6>
+                        <h3 class="h3"><i class="fa-solid fa-user-doctor"></i><span class="float-end text-break">Administrador <span class="badge bg-secondary">{{ $countRoleAdmin }}</span></span></h3>
+                        <h3 class="h3"><i class="fa-solid fa-book-open-reader"></i></i><span class="float-end text-break">Secretaria <span class="badge bg-secondary">{{ $countRoleSecretaria }}</span></span></h3>
+                        <h3 class="h3"><i class="fa-solid fa-user-nurse"></i><span class="float-end text-break">Asistente <span class="badge bg-secondary">{{ $countRoleAsistente }}</span></span></h3>
+                        <p class="m-b-0">Total de personas con rol<span class="float-end"><span class="badge bg-secondary">{{ $totalCountRoles }}</span></span></p>
+                    </div>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="card bg-c-green counters-card">
+                <div class="card-block">
+                    <h6 class="m-b-20"><b>Medicamento prescrito mas comun</b></h6>
+                        <h3 class="h3"><i class="fa-solid fa-capsules"></i><span class="float-end text-break"> {{ $enfermedadMasComunName }} <span class="badge bg-secondary">{{ $enfermedadMasComunCount }}</span></span></h3>
+                    <p class="m-b-0">Medicamentos totales<span class="float-end"><span class="badge bg-secondary">{{ $historialesCount }}</span></span></p>
+                </div>
+            </div>
+        </div>
+    </div> <!--fin de fila 1 -->
+    <center>
+    <div class="row">
+        <div class="col">
+            <div class="card w-50 graficoscard">
+                <div class="graficoscardblock">
+                    <canvas id="grafico1"></canvas>
+                </div>
+            </div>
+        </div>
+    </div> <!--fin de fila 2 --> 
+    </center>
+</div>
 @endsection
 
 @section('scripts')
 <script src="{{ asset('js/bootstrap-datepicker.es.js') }}"></script>
 <script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $('#expedienteid').select2({
         dropdownParent: $('#historialClinicoModalCenter'),
@@ -753,5 +802,67 @@ function consultarexpedientes(){
             })
         });
     });
+</script>
+<script>
+var data1Grafico1 = new Array();
+var data2Grafico1 = new Array();
+@foreach($grafico1Data1 as $data1)
+    data1Grafico1.push({{ $data1 }});
+@endforeach
+@foreach($grafico1Data2 as $data2)
+    data2Grafico1.push({{ $data2 }});
+@endforeach
+var ctx = document.getElementById('grafico1').getContext('2d');
+      var myChart1 = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: ['Reserva de citas'],
+              datasets: [{
+                  label: 'Horas pendientes a asignar',
+                  data: data1Grafico1,
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                  ],
+                  borderWidth: 1
+              },
+              {
+                  label: 'Horas asignadas',
+                  data: data2Grafico1,
+                  backgroundColor: [
+                      'rgba(54, 162, 235, 0.2)',
+                  ],
+                  borderColor: [
+                      'rgba(54, 162, 235, 1)',
+                  ],
+                  borderWidth: 1
+              }
+            ]
+          },
+          options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation:{
+                  duration: 2000,
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        position: 'bottom',
+                        text: 'Horas de reserva de citas a partir de {{ $dateNow }}'                        
+                    }
+                },
+          }
+});
+$(window).on('resize load', function() {
+  if ($(window).width() <= 498) { 
+    $(".graficoscard").removeClass("w-50");
+  }
+  else {
+    $(".graficoscard").addClass("w-50");
+  }
+});
 </script>
 @endsection

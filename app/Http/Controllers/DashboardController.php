@@ -13,7 +13,7 @@ use App\Models\User;
 use App\Models\ReservaDeCita;
 use Auth;
 use Carbon\Carbon;
-use App\Models\Expediente;
+use App\Models\Historial;
 
 class DashboardController extends Controller
 {
@@ -28,11 +28,46 @@ class DashboardController extends Controller
         {
             $date = Carbon::now()->timezone('America/El_Salvador');
             $date = $date->format('Y-m-d');
-            $citas = ReservaDeCita::whereDate('fecha','=',$date)->get();
+            $citas = ReservaDeCita::whereDate('fecha','=',$date)->orderBy('hora')->get();
             //dd($date);
-            
+            $enfermedadMasComun = Historial::select('enfermedad actual',DB::raw('COUNT ("enfermedad actual")'))->groupBy('enfermedad actual')->orderBy('count','desc')->limit(1)->get();
+            foreach ($enfermedadMasComun as $enfermedadMasComunVal) {
+                $enfermedadMasComunCount = $enfermedadMasComunVal->count;
+                $enfermedadMasComunName = $enfermedadMasComunVal->{"enfermedad actual"};
+            }
+            $historialesCount = Historial::all()->count();
+            $idadmin = DB::table('roles')->selectRaw('id')->where('name','=','administrador')->get();
+            $idsecretaria = DB::table('roles')->selectRaw('id')->where('name','=','secretaria')->get();
+            $idasistente = DB::table('roles')->selectRaw('id')->where('name','=','asistente')->get();
+            foreach ($idadmin as $idadminval) {
+                $valadminid = $idadminval->id;
+            }
+            foreach ($idsecretaria as $idsecretariaval) {
+                $valsecretariaid = $idsecretariaval->id;
+            }
+            foreach ($idasistente as $idasistenteval) {
+                $valasistenteid = $idasistenteval->id;
+            }
+            $adminCount = DB::table('model_has_roles')->selectRaw('COUNT(*)')->where('role_id','=',$valadminid)->get();
+            $secretariaCount = DB::table('model_has_roles')->selectRaw('COUNT(*)')->where('role_id','=',$valsecretariaid)->get();
+            $asistenteCount = DB::table('model_has_roles')->selectRaw('COUNT(*)')->where('role_id','=',$valasistenteid)->get();
+            foreach ($adminCount as $adminCountVal) {
+                $countRoleAdmin = $adminCountVal->count;
+            }
+            foreach ($secretariaCount as $secretariaCountVal) {
+                $countRoleSecretaria = $secretariaCountVal->count;
+            }
+            foreach ($asistenteCount as $asistenteCountVal) {
+                $countRoleAsistente = $asistenteCountVal->count;
+            }
+            $totalCountRoles = $countRoleAdmin+$countRoleSecretaria+$countRoleAsistente;
+            $horaCitasAsignada = ReservaDeCita::select('hora')->whereNotNull('hora')->whereDate('fecha','>=', $date)->get()->count();
+            $horaCitasPendiente = ReservaDeCita::select('hora')->whereNull('hora')->whereDate('fecha','>=', $date)->get()->count();
+            $grafico1Data1 = [$horaCitasPendiente];
+            $grafico1Data2 = [$horaCitasAsignada];
+            //dd($grafico1Data);
             $users = User::all();
-            return view('dashboard', ['citas' => $citas, 'users' => $users]);
+            return view('dashboard', ['citas' => $citas, 'users' => $users, 'enfermedadMasComunCount' => $enfermedadMasComunCount, 'enfermedadMasComunName' => $enfermedadMasComunName, 'historialesCount' => $historialesCount, 'countRoleAdmin' => $countRoleAdmin, 'countRoleSecretaria' => $countRoleSecretaria, 'countRoleAsistente' => $countRoleAsistente, 'totalCountRoles' => $totalCountRoles, 'grafico1Data1' => $grafico1Data1, 'grafico1Data2' => $grafico1Data2, 'dateNow' => $date]);
         }
         else {
             Auth::logout();
