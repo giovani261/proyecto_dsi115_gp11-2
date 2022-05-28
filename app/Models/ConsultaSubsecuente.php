@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ConsultaSubsecuente extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $table = 'consulta_subsecuente';
     protected $fillable = [
         'historial_id',
-        'nombre', 
         'presion arterial maxima',
         'temperatura',
         'pulso',
