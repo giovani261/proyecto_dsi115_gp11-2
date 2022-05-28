@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\ConsultaSubsecuente;
+use App\Models\User;
+use Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SignosController extends Controller
@@ -11,9 +13,46 @@ class SignosController extends Controller
     //    
     public function signos(Request $request){
                
-        if ($request->ajax()) {
-            $nombre = $request->input("NombreSigno","valor por default");
-            return response()->json(['nombre' => $nombre,'val' => "If pasado",]);
+        if(Auth::user()->hasRole(['administrador']))
+        {
+            try {
+                
+                $historialid = request('Historialid');
+                $presionmax = request('PresionMax');
+                $temperatura = request('Temperatura');
+                $pulso = request('Pulso');
+                $peso = request('Peso');
+                $imc = request('IMC');
+                $presionmin = request('PresionMin');
+                $talla = request('Talla');
+                $altura = request('Altura');
+    
+                $consulta = new ConsultaSubsecuente();
+            
+                $consulta->historial_id = $historialid;
+                $consulta->{"presion arterial maxima"} = $presionmax;
+                $consulta->temperatura = $temperatura;
+                $consulta->pulso = $pulso;
+                $consulta->peso = $peso;
+                $consulta->imc = $imc;
+                $consulta->{"presion arterial minima"} = $presionmin;
+                $consulta->talla = $talla;
+                $consulta->altura = $altura;
+                
+                $consulta->save();
+                return response()->json(['estado' => 'guardado']);
+            } catch (Throwable $e) {
+                //report($e);
+                return response()->json(['estado' => 'error']);
+            }
+
         }
+        else {
+            Auth::logout();
+            //$request->session()->invalidate();
+            return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se a cerrado su sesion');
+        }
+
     }
+
 }

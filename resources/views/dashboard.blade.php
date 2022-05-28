@@ -135,15 +135,37 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Registrar Signos Vitales</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Registrar Consulta Subsecuente</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
             </button>
         </div>
         <div class="modal-body">
         <form method="POST" id="modalsignos">
         @csrf
-        <label for="inputnombre">Nombre</label>
-        <input id="inputnombre" type="text" class="form-control" name="NombreSigno2" required>
+        <label for="inputhistorial_id">Historial_id</label>
+        <input id="inputhistorial_id" type="text" class="form-control" name="Historial_idSigno2" required>
+        <br>
+        <label for="inputpresionmax">Presion arterial maxima</label>
+        <input id="inputpresionmax" type="text" class="form-control" name="PresionMaxSigno2" title="Ingrese la presion arterial maxima" required>
+        <br>
+        <label for="inputtemperatura">Temperatura</label>
+        <input id="inputtemperatura" type="text" class="form-control" name="TemperaturaSigno2" title="Ingrese la temperatura" required>
+        <br>
+        <label for="inputpulso">Pulso</label>
+        <input id="inputpulso" type="text" class="form-control" name="pulsoSigno2" title="Ingrese el pulso" required>
+        <br>
+        <label for="inputpeso">Peso</label>
+        <input id="inputpeso" type="text" class="form-control" name="PesoSigno2" title="Ingrese el peso (en libras)"required>
+        <br>
+        <label for="inputpresionmin">Presion arterial minima</label>
+        <input id="inputpresionmin" type="text" class="form-control" name="PresionMinSigno2" title="Ingrese la presion arterial minima" required>
+        <br>
+        <label for="inputtalla">Talla</label>
+        <input id="inputtalla" type="text" class="form-control" name="TallaSigno2" title="Ingrese la talla" required>
+        <br>
+        <label for="inputaltura">Altura</label>
+        <input id="inputaltura" type="text" class="form-control" name="AlturaSigno2" title="Ingrese la altura (en metros)" required>
+        <br>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -484,7 +506,15 @@
     $(document).ready(function() {
         $("#modalsignos").submit(function(e) {
         e.preventDefault();
-        var valinputsigno = document.getElementById("inputnombre").value;
+        var valinputhistorial_id = document.getElementById("inputhistorial_id").value;
+        var valinputpresionmax = document.getElementById("inputpresionmax").value;
+        var valinputtemperatura = document.getElementById("inputtemperatura").value;
+        var valinputpulso = document.getElementById("inputpulso").value;
+        var valinputpeso = document.getElementById("inputpeso").value;
+        var valinputpresionmin = document.getElementById("inputpresionmin").value;
+        var valinputtalla = document.getElementById("inputtalla").value;
+        var valinputaltura = document.getElementById("inputaltura").value;
+        var valIMC = valinputpeso / (valinputaltura * valinputaltura);
 
         Swal.fire({
             icon: 'info',
@@ -498,22 +528,47 @@
                     url:"{{route('signos')}}",
                     type:"POST",
                     data:{
-                        'NombreSigno': valinputsigno,
+                        'Historialid': valinputhistorial_id,
+                        'PresionMax': valinputpresionmax,
+                        'Temperatura': valinputtemperatura,
+                        'Pulso': valinputpulso,
+                        'Peso': valinputpeso,
+                        'PresionMin': valinputpresionmin,
+                        'Talla': valinputtalla,
+                        'Altura': valinputaltura,
+                        'IMC': valIMC,
                         "_token": $("meta[name='csrf-token']").attr("content")
                     },
                     //dataType:"json",
                     success: function(test){
-                        document.getElementById("inputnombre").value="";
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Hecho!.',
-                            text: 'Se registraron correctamente los Signos Vitales ' +test.nombre,
-                            confirmButtonText: 'Ok',
-                            })
+                        document.getElementById("inputhistorial_id").value="";
+                        document.getElementById("inputpresionmax").value="";
+                        document.getElementById("inputtemperatura").value="";
+                        document.getElementById("inputpulso").value="";
+                        document.getElementById("inputpeso").value="";
+                        document.getElementById("inputpresionmin").value="";
+                        document.getElementById("inputtalla").value="";
+                        document.getElementById("inputaltura").value="";
+                        if(test.estado === 'guardado'){
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Hecho!.',
+                                    text: 'Se registro correctamente la consulta subsecuente',
+                                    confirmButtonText: 'Ok',
+                                    })    
+                            }
+                            if(test.estado === 'error'){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Ocurrio un error!.',
+                                    text: 'No se pudo registrar la consulta subsecuente',
+                                    confirmButtonText: 'Ok',
+                                    })
+                            }
                         }
                     });
             } else if (result.isDismissed) {
-                Swal.fire('No se registraron los signos vitales', '', 'info')
+                Swal.fire('No se registro la consulta subsecuente', '', 'info')
             }
             })
         });
@@ -574,7 +629,14 @@
                                     title: 'Hecho!.',
                                     text: 'Se registro correctamente el hisotial del paciente: '+selectexpedienteidtext,
                                     confirmButtonText: 'Ok',
-                                    })
+                                    }).then((resultado) => {
+                                        if(resultado.isConfirmed)
+                                        {
+                                            abrirformulario(); 
+                                        }
+                                    }
+                                    )
+                                    consultarhistorial(selectexpedienteidvalue, valinputfechaenfermedadactual, valinputenfermedadactual);
                             }
                             if(test.estado === 'error'){
                                 Swal.fire({
@@ -744,6 +806,37 @@ function consultarexpedientes(){
                     }
     });
 }
+
+function consultarhistorial(expediente, fecha, enfermedad){
+        $.ajax({
+                        url:"{{route('historialconsultarajax')}}",
+                        type:"POST",
+                        data:{
+                            'expedienteId': expediente,
+                            'fecha': fecha,  
+                            'enfermedad': enfermedad, 
+                            "_token": $("meta[name='csrf-token']").attr("content")                     
+                        },
+                        //dataType:"json",
+                        success: function(test){
+                            document.getElementById("inputhistorial_id").value = test.historialid[0].id;              
+                        }
+        });
+        
+    }
+
+    function abrirformulario(){
+
+        if(document.getElementById('flexCheckDefault').checked)
+        {
+            $("#historialClinicoModalCenter").modal("hide");
+            $("#exampleModalCenter").modal("show");
+        }
+
+
+    }
+
+
     //js para envio por ajax para la ventana de incapacidad
     $(document).ready(function() {
         $("#modalincapacidadclinico").submit(function(e) {

@@ -39,6 +39,7 @@ Route::match(['get'],'/expedienteconsultarajax',[ExpedienteController::class,'co
 Route::match(['post'],'/reserva', [ReservaDeCitaController::class,'registro'])->name('reserva');
 Route::match(['post'],'/incapacidad', [IncapacidadController::class,'registro'])->name('incapacidad');
 Route::match(['get','post'],'/editor', [CKEditorController::class,'editor'])->name('editor');
+Route::match(['post'],'/historialconsultarajax', [HistorialController::class,'consultarhistorial'])->name('historialconsultarajax');
 
 
 // Route::match(['get', 'post'], '/db', function () {
