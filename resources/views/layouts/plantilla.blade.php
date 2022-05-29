@@ -14,7 +14,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Unidad medica humana</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> -->
+        <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
         <!-- Core theme CSS (includes Bootstrap sidebar)-->
         <!-- <link href="{{ asset('../resources/css/sidebar.css') }}" rel="stylesheet" /> -->
         <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet" />
