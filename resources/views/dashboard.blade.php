@@ -55,7 +55,7 @@
                 <center>
                     <div class="row">
                         <div class="col my-auto">
-                            Crear referencia m&eacute;dica
+                            Registrar referencia m&eacute;dica
                         </div>
 
                         <div class="col-md-auto my-auto">
