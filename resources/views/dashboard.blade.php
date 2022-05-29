@@ -6,9 +6,9 @@
     <br>
     <!-- Card Signos-->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center>Signos vitales</center></div>
+        <div class="card-header text-primary"><center><b>Signos vitales</b></center></div>
         <div class="card-body">
-        <a class="acards" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
@@ -27,9 +27,9 @@
     </div>
     <!-- Card Generar receta-->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center>Receta</center></div>
+        <div class="card-header text-primary"><center><b>Receta</b></center></div>
         <div class="card-body">
-        <a class="acards" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
@@ -48,7 +48,7 @@
     </div>
     <!-- Card Referencia médica -->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center>Referencia m&eacute;dica</center></div>
+        <div class="card-header text-primary"><center><b>Referencia m&eacute;dica</b></center></div>
         <div class="card-body">
         <a class="acards" data-bs-toggle="modal" data-bs-target="#referenciaMedicaModalCenter">
             <div class="container">
@@ -69,9 +69,9 @@
     </div>
     <!-- Card Generar historial clinico-->
     <div class="card" style="max-width: 18rem;" onclick="consultarexpedientes();">
-        <div class="card-header text-primary"><center>Historial clinico</center></div>
+        <div class="card-header text-primary"><center><b>Historial clinico</b></center></div>
         <div class="card-body">
-        <a class="acards" data-bs-toggle="modal" data-bs-target="#historialClinicoModalCenter">
+        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#historialClinicoModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
@@ -90,9 +90,9 @@
     </div>
     <!-- Card Expediente clinico-->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center>Expediente clinico</center></div>
+        <div class="card-header text-primary"><center><b>Expediente clinico</b></center></div>
         <div class="card-body">
-        <a class="acards" data-bs-toggle="modal" data-bs-target="#expedienteClinicoModalCenter">
+        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#expedienteClinicoModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
@@ -111,9 +111,9 @@
     </div>
     <!-- Card Generar Incapacidad-->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center>Incapacidad medica</center></div>
+        <div class="card-header text-primary"><center><b>Incapacidad medica</b></center></div>
         <div class="card-body">
-        <a class="acards" data-bs-toggle="modal" data-bs-target="#incapacidadClinicoModalCenter">
+        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#incapacidadClinicoModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
@@ -135,15 +135,37 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Registrar Signos Vitales</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Registrar Consulta Subsecuente</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
             </button>
         </div>
         <div class="modal-body">
         <form method="POST" id="modalsignos">
         @csrf
-        <label for="inputnombre">Nombre</label>
-        <input id="inputnombre" type="text" class="form-control" name="NombreSigno2" required>
+        <label for="inputhistorial_id">Historial_id</label>
+        <input id="inputhistorial_id" type="text" class="form-control" name="Historial_idSigno2" required>
+        <br>
+        <label for="inputpresionmax">Presion arterial maxima</label>
+        <input id="inputpresionmax" type="text" class="form-control" name="PresionMaxSigno2" title="Ingrese la presion arterial maxima" required>
+        <br>
+        <label for="inputtemperatura">Temperatura</label>
+        <input id="inputtemperatura" type="text" class="form-control" name="TemperaturaSigno2" title="Ingrese la temperatura" required>
+        <br>
+        <label for="inputpulso">Pulso</label>
+        <input id="inputpulso" type="text" class="form-control" name="pulsoSigno2" title="Ingrese el pulso" required>
+        <br>
+        <label for="inputpeso">Peso</label>
+        <input id="inputpeso" type="text" class="form-control" name="PesoSigno2" title="Ingrese el peso (en libras)"required>
+        <br>
+        <label for="inputpresionmin">Presion arterial minima</label>
+        <input id="inputpresionmin" type="text" class="form-control" name="PresionMinSigno2" title="Ingrese la presion arterial minima" required>
+        <br>
+        <label for="inputtalla">Talla</label>
+        <input id="inputtalla" type="text" class="form-control" name="TallaSigno2" title="Ingrese la talla" required>
+        <br>
+        <label for="inputaltura">Altura</label>
+        <input id="inputaltura" type="text" class="form-control" name="AlturaSigno2" title="Ingrese la altura (en metros)" required>
+        <br>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -355,7 +377,7 @@
         </div>
         </div> 
 </div>
-
+<br>
 <center>
     <h5>Agenda de citas del dia</h5>
 </center>
@@ -389,11 +411,60 @@
         </div>
     </div> 
 </div>
+<br>
+<center>
+    <h5>Estadisticas</h5>
+</center>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <div class="card bg-c-blue counters-card">
+                <div class="card-block">
+                    <h6 class="m-b-20"><b>Enfermedad mas comun</b></h6>
+                        <h3 class="h3"><i class="fa-solid fa-virus"></i><span class="float-end text-break"> {{ $enfermedadMasComunName }} <span class="badge bg-secondary">{{ $enfermedadMasComunCount }}</span></span></h3>
+                    <p class="m-b-0">Enfermedades totales<span class="float-end"><span class="badge bg-secondary">{{ $historialesCount }}</span></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="card bg-c-yellow counters-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20"><b>Numero de personas con roles asignados</b></h6>
+                        <h3 class="h3"><i class="fa-solid fa-user-doctor"></i><span class="float-end text-break">Administrador <span class="badge bg-secondary">{{ $countRoleAdmin }}</span></span></h3>
+                        <h3 class="h3"><i class="fa-solid fa-book-open-reader"></i></i><span class="float-end text-break">Secretaria <span class="badge bg-secondary">{{ $countRoleSecretaria }}</span></span></h3>
+                        <h3 class="h3"><i class="fa-solid fa-user-nurse"></i><span class="float-end text-break">Asistente <span class="badge bg-secondary">{{ $countRoleAsistente }}</span></span></h3>
+                        <p class="m-b-0">Total de personas con rol<span class="float-end"><span class="badge bg-secondary">{{ $totalCountRoles }}</span></span></p>
+                    </div>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="card bg-c-green counters-card">
+                <div class="card-block">
+                    <h6 class="m-b-20"><b>Medicamento prescrito mas comun</b></h6>
+                        <h3 class="h3"><i class="fa-solid fa-capsules"></i><span class="float-end text-break"> {{ $enfermedadMasComunName }} <span class="badge bg-secondary">{{ $enfermedadMasComunCount }}</span></span></h3>
+                    <p class="m-b-0">Medicamentos totales<span class="float-end"><span class="badge bg-secondary">{{ $historialesCount }}</span></span></p>
+                </div>
+            </div>
+        </div>
+    </div> <!--fin de fila 1 -->
+    <center>
+    <div class="row">
+        <div class="col">
+            <div class="card w-50 graficoscard">
+                <div class="graficoscardblock">
+                    <canvas id="grafico1"></canvas>
+                </div>
+            </div>
+        </div>
+    </div> <!--fin de fila 2 --> 
+    </center>
+</div>
 @endsection
 
 @section('scripts')
 <script src="{{ asset('js/bootstrap-datepicker.es.js') }}"></script>
 <script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $('#expedienteid').select2({
         dropdownParent: $('#historialClinicoModalCenter'),
@@ -435,7 +506,15 @@
     $(document).ready(function() {
         $("#modalsignos").submit(function(e) {
         e.preventDefault();
-        var valinputsigno = document.getElementById("inputnombre").value;
+        var valinputhistorial_id = document.getElementById("inputhistorial_id").value;
+        var valinputpresionmax = document.getElementById("inputpresionmax").value;
+        var valinputtemperatura = document.getElementById("inputtemperatura").value;
+        var valinputpulso = document.getElementById("inputpulso").value;
+        var valinputpeso = document.getElementById("inputpeso").value;
+        var valinputpresionmin = document.getElementById("inputpresionmin").value;
+        var valinputtalla = document.getElementById("inputtalla").value;
+        var valinputaltura = document.getElementById("inputaltura").value;
+        var valIMC = valinputpeso / (valinputaltura * valinputaltura);
 
         Swal.fire({
             icon: 'info',
@@ -449,22 +528,47 @@
                     url:"{{route('signos')}}",
                     type:"POST",
                     data:{
-                        'NombreSigno': valinputsigno,
+                        'Historialid': valinputhistorial_id,
+                        'PresionMax': valinputpresionmax,
+                        'Temperatura': valinputtemperatura,
+                        'Pulso': valinputpulso,
+                        'Peso': valinputpeso,
+                        'PresionMin': valinputpresionmin,
+                        'Talla': valinputtalla,
+                        'Altura': valinputaltura,
+                        'IMC': valIMC,
                         "_token": $("meta[name='csrf-token']").attr("content")
                     },
                     //dataType:"json",
                     success: function(test){
-                        document.getElementById("inputnombre").value="";
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Hecho!.',
-                            text: 'Se registraron correctamente los Signos Vitales ' +test.nombre,
-                            confirmButtonText: 'Ok',
-                            })
+                        document.getElementById("inputhistorial_id").value="";
+                        document.getElementById("inputpresionmax").value="";
+                        document.getElementById("inputtemperatura").value="";
+                        document.getElementById("inputpulso").value="";
+                        document.getElementById("inputpeso").value="";
+                        document.getElementById("inputpresionmin").value="";
+                        document.getElementById("inputtalla").value="";
+                        document.getElementById("inputaltura").value="";
+                        if(test.estado === 'guardado'){
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Hecho!.',
+                                    text: 'Se registro correctamente la consulta subsecuente',
+                                    confirmButtonText: 'Ok',
+                                    })    
+                            }
+                            if(test.estado === 'error'){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Ocurrio un error!.',
+                                    text: 'No se pudo registrar la consulta subsecuente',
+                                    confirmButtonText: 'Ok',
+                                    })
+                            }
                         }
                     });
             } else if (result.isDismissed) {
-                Swal.fire('No se registraron los signos vitales', '', 'info')
+                Swal.fire('No se registro la consulta subsecuente', '', 'info')
             }
             })
         });
@@ -525,7 +629,14 @@
                                     title: 'Hecho!.',
                                     text: 'Se registro correctamente el hisotial del paciente: '+selectexpedienteidtext,
                                     confirmButtonText: 'Ok',
-                                    })
+                                    }).then((resultado) => {
+                                        if(resultado.isConfirmed)
+                                        {
+                                            abrirformulario(); 
+                                        }
+                                    }
+                                    )
+                                    consultarhistorial(selectexpedienteidvalue, valinputfechaenfermedadactual, valinputenfermedadactual);
                             }
                             if(test.estado === 'error'){
                                 Swal.fire({
@@ -695,6 +806,37 @@ function consultarexpedientes(){
                     }
     });
 }
+
+function consultarhistorial(expediente, fecha, enfermedad){
+        $.ajax({
+                        url:"{{route('historialconsultarajax')}}",
+                        type:"POST",
+                        data:{
+                            'expedienteId': expediente,
+                            'fecha': fecha,  
+                            'enfermedad': enfermedad, 
+                            "_token": $("meta[name='csrf-token']").attr("content")                     
+                        },
+                        //dataType:"json",
+                        success: function(test){
+                            document.getElementById("inputhistorial_id").value = test.historialid[0].id;              
+                        }
+        });
+        
+    }
+
+    function abrirformulario(){
+
+        if(document.getElementById('flexCheckDefault').checked)
+        {
+            $("#historialClinicoModalCenter").modal("hide");
+            $("#exampleModalCenter").modal("show");
+        }
+
+
+    }
+
+
     //js para envio por ajax para la ventana de incapacidad
     $(document).ready(function() {
         $("#modalincapacidadclinico").submit(function(e) {
@@ -753,5 +895,67 @@ function consultarexpedientes(){
             })
         });
     });
+</script>
+<script>
+var data1Grafico1 = new Array();
+var data2Grafico1 = new Array();
+@foreach($grafico1Data1 as $data1)
+    data1Grafico1.push({{ $data1 }});
+@endforeach
+@foreach($grafico1Data2 as $data2)
+    data2Grafico1.push({{ $data2 }});
+@endforeach
+var ctx = document.getElementById('grafico1').getContext('2d');
+      var myChart1 = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: ['Reserva de citas'],
+              datasets: [{
+                  label: 'Horas pendientes a asignar',
+                  data: data1Grafico1,
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                  ],
+                  borderWidth: 1
+              },
+              {
+                  label: 'Horas asignadas',
+                  data: data2Grafico1,
+                  backgroundColor: [
+                      'rgba(54, 162, 235, 0.2)',
+                  ],
+                  borderColor: [
+                      'rgba(54, 162, 235, 1)',
+                  ],
+                  borderWidth: 1
+              }
+            ]
+          },
+          options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation:{
+                  duration: 2000,
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        position: 'bottom',
+                        text: 'Horas de reserva de citas a partir de {{ $dateNow }}'                        
+                    }
+                },
+          }
+});
+$(window).on('resize load', function() {
+  if ($(window).width() <= 498) { 
+    $(".graficoscard").removeClass("w-50");
+  }
+  else {
+    $(".graficoscard").addClass("w-50");
+  }
+});
 </script>
 @endsection

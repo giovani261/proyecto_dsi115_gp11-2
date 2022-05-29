@@ -50,7 +50,7 @@ class ExpedienteController extends Controller
     }
 
     public function consultarajax(){
-        $expedientes = Expediente::all();
+        $expedientes = Expediente::select('id','nombre','dui paciente')->orderBy('nombre')->get();
         return response()->json(['expedientes' => $expedientes]);
     }
 }

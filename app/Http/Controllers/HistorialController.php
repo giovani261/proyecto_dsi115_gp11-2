@@ -56,4 +56,19 @@ class HistorialController extends Controller
         }
 
     }
+
+    public function consultarhistorial(Request $request){
+       
+        $expedienteid = request('expedienteId');
+        $fecha = request('fecha');
+        $enfermedad = request('enfermedad');
+       
+       
+        $historialid = Historial::select('id')->where('expediente_id',$expedienteid)->where('fecha de enfermedad actual',$fecha)->where('enfermedad actual',$enfermedad)->get();
+        
+        
+        return response()->json(['historialid' => $historialid]);
+   
+    }
+
 }
