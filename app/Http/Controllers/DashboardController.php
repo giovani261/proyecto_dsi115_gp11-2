@@ -66,8 +66,9 @@ class DashboardController extends Controller
             $grafico1Data1 = [$horaCitasPendiente];
             $grafico1Data2 = [$horaCitasAsignada];
             //dd($grafico1Data);
-            $users = User::all();
-            return view('dashboard', ['citas' => $citas, 'users' => $users, 'enfermedadMasComunCount' => $enfermedadMasComunCount, 'enfermedadMasComunName' => $enfermedadMasComunName, 'historialesCount' => $historialesCount, 'countRoleAdmin' => $countRoleAdmin, 'countRoleSecretaria' => $countRoleSecretaria, 'countRoleAsistente' => $countRoleAsistente, 'totalCountRoles' => $totalCountRoles, 'grafico1Data1' => $grafico1Data1, 'grafico1Data2' => $grafico1Data2, 'dateNow' => $date]);
+            
+            return view('dashboard', ['citas' => $citas, 'enfermedadMasComunCount' => $enfermedadMasComunCount, 'enfermedadMasComunName' => $enfermedadMasComunName, 'historialesCount' => $historialesCount, 'countRoleAdmin' => $countRoleAdmin, 'countRoleSecretaria' => $countRoleSecretaria, 'countRoleAsistente' => $countRoleAsistente, 'totalCountRoles' => $totalCountRoles, 'grafico1Data1' => $grafico1Data1, 'grafico1Data2' => $grafico1Data2, 'dateNow' => $date]);
+
         }
         else {
             Auth::logout();

@@ -47,7 +47,7 @@
         </div>
     </div>
     <!-- Card Referencia médica -->
-    <div class="card" style="max-width: 18rem;">
+    <div class="card" style="max-width: 18rem;" onclick="consultarexpedientes('nombrepacientereferencia');">
         <div class="card-header text-primary"><center><b>Referencia m&eacute;dica</b></center></div>
         <div class="card-body">
         <a class="acards" data-bs-toggle="modal" data-bs-target="#referenciaMedicaModalCenter">
@@ -68,7 +68,7 @@
         </div>
     </div>
     <!-- Card Generar historial clinico-->
-    <div class="card" style="max-width: 18rem;" onclick="consultarexpedientes();">
+    <div class="card" style="max-width: 18rem;" onclick="consultarexpedientes('expedienteid');">
         <div class="card-header text-primary"><center><b>Historial clinico</b></center></div>
         <div class="card-body">
         <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#historialClinicoModalCenter">
@@ -305,15 +305,9 @@
               <label for="nombrepacientereferencia">
               Nombre del paciente
               </label>
-              <select class="form-select" aria-label="Default select example" name="nombrepaciente" id="nombrepacientereferencia">
-              @foreach($users as $user)
-                <option value="{{$user->id}}" required>{{$user->name}}</option>
-              @endforeach
+              <select class="form-select" aria-label="Default select example" name="nombrepaciente"
+                      id="nombrepacientereferencia" data-bs-toggle="tooltip" title="Seleccione un paciente, el formato de la lista es: Paciente -- Dui">
               </select>
-              
-              <label for="nombrereferencia">Nombre</label>
-              <input type="text" class="form-control" id="nombrereferencia" name="nombrereferencia" title="Ingrese el nombre de la referencia" required>
-              
 
               <label for="razon">Raz&oacute;n</label>
               <textarea id="razon" class="form-control" name="razon" title="Ingrese la razón de la referencia" required></textarea>
@@ -468,6 +462,10 @@
 <script>
     $('#expedienteid').select2({
         dropdownParent: $('#historialClinicoModalCenter'),
+        width: '100%'
+    });
+    $('#nombrepacientereferencia').select2({
+        dropdownParent: $('#referenciaMedicaModalCenter'),
         width: '100%'
     });
     $(document).ready(function() {
@@ -729,8 +727,8 @@
             e.preventDefault();
             
             //const fecha = document.getElementById("inputfechadereferencia").value;
-            const pacientereferenciaid = document.getElementById("nombrepacientereferencia").value;
-            const referenciaNombre = document.getElementById("nombrereferencia").value;
+            const pacientereferencia = document.getElementById("nombrepacientereferencia");
+            const nombre = pacientereferencia.options[pacientereferencia.selectedIndex].text.slice(0, -11);
             const referenciaRazon = document.getElementById("razon").value;
             const seLeEnviaA = document.getElementById("se-le-envia-a").value;
             
@@ -747,8 +745,7 @@
                         type:"POST",
                         data:{
                             //'fecha': fecha,
-                            'pacienteid': pacientereferenciaid,
-                            'nombre': referenciaNombre,
+                            'nombre': nombre,
                             'razon': referenciaRazon,
                             'se_le_envia_a': seLeEnviaA,
                             "_token": $("meta[name='csrf-token']").attr("content")
@@ -763,6 +760,7 @@
                                         text: 'Se registro correctamente la referencia del paciente ' +test.nombrePaciente,
                                         confirmButtonText: 'Ok',
                                     })
+                                    $("#modalreferenciamedica")[0].reset(); //Limpiar formulario
                                 }
                             if(test.estado === 'error'){
                                     Swal.fire({
@@ -781,8 +779,8 @@
 	    });
 	});
 
-function consultarexpedientes(){
-    var comboExpedientes = document.getElementById("expedienteid");
+function consultarexpedientes(comboBox){
+    var comboExpedientes = document.getElementById(comboBox);
     $.ajax({
                     url:"{{route('expedienteconsultarajax')}}",
                     type:"GET",
