@@ -11,7 +11,7 @@ class ReferenciaController extends Controller
     public function guardar_referencia_medica(Request $request) {
         if(Auth::user()->hasRole(['administrador'])) {
             try {
-                $referenciapacienteId = request('pacienteid');
+                $referenciapacienteId = Auth::user()->id;
                 $referenciaNombre = request('nombre');
                 $referenciaRazon = request('razon');
                 $referenciaSeLeEnviaA = request('se_le_envia_a');       
