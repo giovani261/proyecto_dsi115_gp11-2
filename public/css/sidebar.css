@@ -649,7 +649,7 @@ progress {
   .container-md, .container-sm, .container {
     max-width: 720px;
   }
-}
+} 
 @media (min-width: 992px) {
   .container-lg, .container-md, .container-sm, .container {
     max-width: 960px;
@@ -11316,7 +11316,10 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     width: 100%;
   }
 
-  body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+   /* body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     margin-left: -15rem;
-  }
+  } */
+  #wrapper #sidebar-wrapper {
+    margin-left: -15rem;
+  } 
 }

@@ -14,6 +14,8 @@ use App\Models\ReservaDeCita;
 use Auth;
 use Carbon\Carbon;
 use App\Models\Historial;
+use App\Models\MedicamentosPrescritos;
+use App\Models\Medicamento;
 
 class DashboardController extends Controller
 {
@@ -66,8 +68,17 @@ class DashboardController extends Controller
             $grafico1Data1 = [$horaCitasPendiente];
             $grafico1Data2 = [$horaCitasAsignada];
             //dd($grafico1Data);
-            
-            return view('dashboard', ['citas' => $citas, 'enfermedadMasComunCount' => $enfermedadMasComunCount, 'enfermedadMasComunName' => $enfermedadMasComunName, 'historialesCount' => $historialesCount, 'countRoleAdmin' => $countRoleAdmin, 'countRoleSecretaria' => $countRoleSecretaria, 'countRoleAsistente' => $countRoleAsistente, 'totalCountRoles' => $totalCountRoles, 'grafico1Data1' => $grafico1Data1, 'grafico1Data2' => $grafico1Data2, 'dateNow' => $date]);
+            $medicamentoPrescritoMasComunId = MedicamentosPrescritos::select('medicamento_id',DB::raw('COUNT ("medicamento_id")'))->groupBy('medicamento_id')->orderBy('count','desc')->limit(1)->get();
+            foreach ($medicamentoPrescritoMasComunId as $medicamentoPrescritoMasComunIdVal) {
+                $medicamentoPrescritoMasComunIdCount = $medicamentoPrescritoMasComunIdVal->count;
+                $medicamentoPrescritoMasComunId = $medicamentoPrescritoMasComunIdVal->{"medicamento_id"};
+            }
+            $medicamentoPrescritoMasComun = Medicamento::select('nombre')->where('id','=',$medicamentoPrescritoMasComunId)->get();
+            foreach ($medicamentoPrescritoMasComun as $medicamentoPrescritoMasComunVal) {
+                $medicamentoPrescritoMasComunName = $medicamentoPrescritoMasComunVal->nombre;
+            }
+            $medicamentosPrescritosCount = MedicamentosPrescritos::all()->count();
+            return view('dashboard', ['citas' => $citas, 'enfermedadMasComunCount' => $enfermedadMasComunCount, 'enfermedadMasComunName' => $enfermedadMasComunName, 'historialesCount' => $historialesCount, 'countRoleAdmin' => $countRoleAdmin, 'countRoleSecretaria' => $countRoleSecretaria, 'countRoleAsistente' => $countRoleAsistente, 'totalCountRoles' => $totalCountRoles, 'grafico1Data1' => $grafico1Data1, 'grafico1Data2' => $grafico1Data2, 'dateNow' => $date, 'medicamentoPrescritoMasComunName' => $medicamentoPrescritoMasComunName, 'medicamentoPrescritoMasComunCount' => $medicamentoPrescritoMasComunIdCount, 'medicamentosPrescritosCount' => $medicamentosPrescritosCount]);
 
         }
         else {

@@ -435,8 +435,8 @@
             <div class="card bg-c-green counters-card">
                 <div class="card-block">
                     <h6 class="m-b-20"><b>Medicamento prescrito mas comun</b></h6>
-                        <h3 class="h3"><i class="fa-solid fa-capsules"></i><span class="float-end text-break"> {{ $enfermedadMasComunName }} <span class="badge bg-secondary">{{ $enfermedadMasComunCount }}</span></span></h3>
-                    <p class="m-b-0">Medicamentos totales<span class="float-end"><span class="badge bg-secondary">{{ $historialesCount }}</span></span></p>
+                        <h3 class="h3"><i class="fa-solid fa-capsules"></i><span class="float-end text-break"> {{ $medicamentoPrescritoMasComunName }} <span class="badge bg-secondary">{{ $medicamentoPrescritoMasComunCount }}</span></span></h3>
+                    <p class="m-b-0">Total de medicamentos prescritos<span class="float-end"><span class="badge bg-secondary">{{ $medicamentosPrescritosCount }}</span></span></p>
                 </div>
             </div>
         </div>

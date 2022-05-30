@@ -8,45 +8,45 @@
 // 
 
 window.addEventListener('DOMContentLoaded', event => {
-
     // Toggle the side navigation
+
     const sidebarToggle = document.body.querySelector('#sidebarToggle');
     if (sidebarToggle) {
         // Uncomment Below to persist sidebar toggle between refreshes
         if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
             document.body.classList.toggle('sb-sidenav-toggled');
         }
-        else {
-            $('#sidebarToggle').find("i").removeClass('fa-solid fa-bars fa-xl').addClass('fa-solid fa-xmark fa-xl');
-        }
         sidebarToggle.addEventListener('click', event => {
             event.preventDefault();
+            var classToggle = $('#sidebarToggle').find("i").attr('class');
+
+            if (classToggle === "fa-bars fa-solid fa-xl"){
+                $('#sidebarToggle').find("i").removeClass('fa-bars fa-solid fa-xl').addClass('fa-xmark fa-solid fa-xl');
+            }
+            if (classToggle === "fa-xmark fa-solid fa-xl") {
+                $('#sidebarToggle').find("i").removeClass('fa-xmark fa-solid fa-xl').addClass('fa-bars fa-solid fa-xl');
+            }
             document.body.classList.toggle('sb-sidenav-toggled');
             localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
         });
     }
-
 });
 
 $(window).on("load",function() {
     // body...
     $(".loading-container").fadeOut("slow");
+    if(document.body.classList.contains('sb-sidenav-toggled')==false){
+         $('#sidebarToggle').find("i").removeClass('fa-xmark fa-solid fa-xl').addClass('fa-bars fa-solid fa-xl');
+     }
+     if(document.body.classList.contains('sb-sidenav-toggled')==true){
+        $('#sidebarToggle').find("i").removeClass('fa-bars fa-solid fa-xl').addClass('fa-xmark fa-solid fa-xl');
+    }
 });
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
-
-function iconbar(){
-    var classToggle = $('#sidebarToggle').find("i").attr('class');
-    if (classToggle === "fa-solid fa-bars fa-xl"){
-        $('#sidebarToggle').find("i").removeClass('fa-solid fa-bars fa-xl').addClass('fa-solid fa-xmark fa-xl');
-    }
-    if (classToggle === "fa-solid fa-xmark fa-xl") {
-        $('#sidebarToggle').find("i").removeClass('fa-solid fa-xmark fa-xl').addClass('fa-solid fa-bars fa-xl');
-    }
-}
 
 function irArriba(pixeles) {
 	// body...
