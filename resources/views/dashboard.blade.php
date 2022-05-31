@@ -185,7 +185,7 @@
             </button>
         </div>
         <div class="modal-body">
-        <form method="POST" id="modalhistorialclinico">
+        <form method="POST" id="modalhistorialclinico" class="needs-validation" novalidate>
         @csrf
         <label for="expedienteid">Seleccione un paciente, el formato de la lista es: Paciente -- Dui</label>
         <br>
@@ -200,32 +200,56 @@
             <input type="text" class="form-control" id="inputfechadeenfermedadactual" name="fechaenfermedadactual" data-bs-toggle="tooltip" title="Seleccione una fecha" required>
             <i class="fa-solid fa-calendar-days calendario"></i>
         </div>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputfechadediagnostico">Fecha de diagnostico</label>
         <div class="input-group date">
             <input type="text" class="form-control" id="inputfechadediagnostico" name="fechadiagnostico" data-bs-toggle="tooltip" title="Seleccione una fecha" required>
             <i class="fa-solid fa-calendar-days calendario"></i>
         </div>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputenfermedadactual">Enfermedad actual</label>
-        <input id="inputenfermedadactual" type="text" class="form-control" name="enfermedadactual" data-bs-toggle="tooltip" title="Seleccione una fecha" required>
+        <input id="inputenfermedadactual" type="text" class="form-control" name="enfermedadactual" data-bs-toggle="tooltip" title="Ingrese la enfermedad actual" required>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputexamenesprescritos">Examenes prescritos</label>
         <input id="inputexamenesprescritos" type="text" class="form-control" name="examenesprescritos" data-bs-toggle="tooltip" title="Ingrese los examenes prescritos" required>
+        <div class="invalid-feedback">
+            Este campo no puede estar vacio.
+        </div>
         <br>
         <label for="inputdiagnostico">Diagnostico</label>
         <textarea class="form-control" id="inputdiagnostico" rows="3" name="diagnostico" data-bs-toggle="tooltip" title="Ingrese el diagnostico" required></textarea>
         <!-- <input id="inputdiagnostico" type="text" class="form-control" name="diagnostico" required> -->
+        <div class="invalid-feedback">
+            Este campo no puede estar vacio.
+        </div>
         <br>
         <label for="inputrecetaexpedida">Receta expedida</label>
         <input id="inputdirecetaexpedida" type="text" class="form-control" name="receta" data-bs-toggle="tooltip" title="Ingrese la receta expedida" required>
+        <div class="invalid-feedback">
+            Este campo no puede estar vacio.
+        </div>
         <br>
         <label for="inputobservaciones">Observaciones</label>
         <textarea class="form-control" id="inputobservaciones" rows="3" name="observaciones" data-bs-toggle="tooltip" title="Ingrese las observaciones" required></textarea>
         <!-- <input id="inputobservaciones" type="text" class="form-control" name="observaciones" required> -->
+        <div class="invalid-feedback">
+            Este campo no puede estar vacio.
+        </div>
         <br>
         <label for="inputplanmedico">Plan medico a seguir</label>
         <input id="inputplanmedico" type="text" class="form-control" name="planmedico" data-bs-toggle="tooltip" title="Ingrese el plan medico a seguir" required>
+        <div class="invalid-feedback">
+            Este campo no puede estar vacio.
+        </div>
         <br>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" data-bs-toggle="tooltip" title="Presione si desea registrar la consulta subsecuente">
@@ -250,25 +274,43 @@
             </button>
         </div>
         <div class="modal-body">
-        <form method="POST" id="modalexpedienteclinico">
+        <form method="POST" id="modalexpedienteclinico" class="needs-validation" novalidate>
         @csrf
         <label for="inputnombrepaciente">Nombre del paciente</label>
         <input type="text" class="form-control" id="inputnombrepaciente" name="nombreexpediente"  pattern="[a-zA-Z'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el nombre del paciente, solo se permiten letras" required>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputedad">Edad</label>
         <input type="text" class="form-control" id="inputedad" name="edad" pattern="^\d{1,3}$" data-bs-toggle="tooltip" title="Ingrese la edad del paciente, solo se permiten numeros entre 1 y 3 digitos" required>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputdomicilio">Domicilio</label>
         <input type="text" class="form-control" id="inputdomicilio" name="domicilio" data-bs-toggle="tooltip" title="Ingrese el docimicilio del paciente" required>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputresponsable">Responsable</label>
         <input id="inputresponsable" type="text" class="form-control" name="responsable" pattern="[a-zA-Z'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el responsable del paciente, solo se permiten letras" required>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputduipaciente">Dui del paciente</label>
         <input id="inputduipaciente" type="text" class="form-control" name="duipaciente" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" data-bs-toggle="tooltip" title="Ingrese el dui del paciente, solo se permiten numeros de 9 digitos" required>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputduiresponsable">Dui del responsable</label>
         <input id="inputduiresponsable" type="text" class="form-control" name="duiresponsable" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" data-bs-toggle="tooltip" title="Ingrese el dui del responsable, solo se permiten numeros de 9 digitos" required>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputantecedentes">Antecedentes patologicos</label>
         <!-- <input id="inputantecedentes" type="text" class="form-control" name="antecedentes"> -->
@@ -294,7 +336,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form method="POST" id="modalreferenciamedica">
+            <form method="POST" id="modalreferenciamedica" class="needs-validation" novalidate>
             @csrf
               <label for="inputfechadereferencia">Fecha</label>
               <div class="input-group date">
@@ -311,17 +353,19 @@
 
               <label for="razon">Raz&oacute;n</label>
               <textarea id="razon" class="form-control" name="razon" title="Ingrese la razón de la referencia" required></textarea>
-
+              <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+              </div>
               <label for="se-le-envia-a">Se le env&iacute;a a</label>
               <textarea id="se-le-envia-a" class="form-control" name="lugar-referencia" title="Ingrese el nombre del lugar donde se envía al paciente" required></textarea>
+              <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+              </div>
             </div>
 
               <div class="modal-footer">
                 <a href="{{route('editar_referencia')}}" class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Editar manualmente</a>
-                <button class="btn btn-primary"
-                    type="submit"
-                    name="continuar"
-                    data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+                <button class="btn btn-primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
               </div>
             </form>
           </div>
@@ -339,27 +383,42 @@
                 </button>
             </div>
             <div class="modal-body">
-            <form method="POST" id="modalincapacidadclinico">
+            <form method="POST" id="modalincapacidadclinico" class="needs-validation" novalidate>
             @csrf
             <label for="inputfechadeincapacidad">Fecha de enfermedad actual</label>
             <div class="input-group date">
                 <input type="text" class="form-control" id="inputfechadeincapacidad" name="fechaincapacidad" required>
                 <i class="fa-solid fa-calendar-days calendario"></i>
             </div>
+            <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+            </div>
             <br>
             <label for="inputpaciente">Nombre del paciente</label>
             <input id="inputpaciente" type="text" class="form-control" name="paciente" required>
+            <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+            </div>
             <br>
             <label for="inputdiagnosis">Diagnostico</label>
             <textarea class="form-control" id="inputdiagnosis" rows="3" name="diagnosis" required></textarea>
+            <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+            </div>
             <!-- <input id="inputdiagnostico" type="text" class="form-control" name="diagnostico" required> -->
             <br>
             <label for="inputmedicacion">Tratamiento</label>
             <textarea class="form-control" id="inputmedicacion" rows="3" name="medicacion" required></textarea>
+            <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+            </div>
             <!-- <input id="inputobservaciones" type="text" class="form-control" name="observaciones" required> -->
             <br>
             <label for="inputdiasincapacidad">Dias de incapacidad</label>
             <input type="number" class="form-control" id="inputdiasincapacidad"  name="diasincapacidad" min="0" max="120" pattern="[0-120]" required>
+            <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+            </div>
             <br>
             </div>
             <div class="modal-footer">
@@ -575,6 +634,7 @@
     $(document).ready(function() {
         $("#modalhistorialclinico").submit(function(e) {
         e.preventDefault();
+        var element = document.getElementById("modalhistorialclinico");
         var selectexpedienteid = document.getElementById('expedienteid');
         var selectexpedienteidvalue = selectexpedienteid.options[selectexpedienteid.selectedIndex].value;
         var selectexpedienteidtext = selectexpedienteid.options[selectexpedienteid.selectedIndex].text;
@@ -587,7 +647,7 @@
         var valinputobservaciones = document.getElementById("inputobservaciones").value;
         var valinputplanmedico = document.getElementById("inputplanmedico").value;
         //console.log(selectexpedienteidvalue);
-
+        if (element.checkValidity() === true) {
         Swal.fire({
             icon: 'info',
             title: 'Confirmar.',
@@ -613,6 +673,7 @@
                     },
                     //dataType:"json",
                     success: function(test){
+                        element.classList.remove("was-validated");
                         document.getElementById("inputfechadeenfermedadactual").value="";
                         document.getElementById("inputfechadediagnostico").value="";
                         document.getElementById("inputenfermedadactual").value="";
@@ -650,6 +711,7 @@
                 Swal.fire('Se cancelo el registro del hisotial', '', 'info')
             }
             })
+        }
         });
     });
 
@@ -657,6 +719,7 @@
     $(document).ready(function() {
         $("#modalexpedienteclinico").submit(function(e) {
         e.preventDefault();
+        var element = document.getElementById("modalexpedienteclinico");
         var valinputnombrepaciente = document.getElementById("inputnombrepaciente").value;
         var valinputedad = document.getElementById("inputedad").value;
         var valinputdomicilio = document.getElementById("inputdomicilio").value;
@@ -664,7 +727,7 @@
         var valinputduipaciente = document.getElementById("inputduipaciente").value;
         var valinputduiresponsable = document.getElementById("inputduiresponsable").value;
         var valinputantecedentes = document.getElementById("inputantecedentes").value;
-
+        if (element.checkValidity() === true) {       
         Swal.fire({
             icon: 'info',
             title: 'Confirmar.',
@@ -688,7 +751,7 @@
                     },
                     //dataType:"json",
                     success: function(test){
-                        //document.getElementById("inputnombre").value="";
+                        element.classList.remove("was-validated");
                         document.getElementById("inputnombrepaciente").value="";
                         document.getElementById("inputedad").value="";
                         document.getElementById("inputdomicilio").value="";
@@ -718,6 +781,7 @@
                 Swal.fire('Se cancelo el registro del expediente', '', 'info')
             }
             })
+        }
         });
     });
     
@@ -725,13 +789,13 @@
 	$(document).ready(function() {
 	    $("#modalreferenciamedica").submit(function(e) {
             e.preventDefault();
-            
+            var element = document.getElementById("modalreferenciamedica");
             //const fecha = document.getElementById("inputfechadereferencia").value;
             const pacientereferencia = document.getElementById("nombrepacientereferencia");
             const nombre = pacientereferencia.options[pacientereferencia.selectedIndex].text.slice(0, -11);
             const referenciaRazon = document.getElementById("razon").value;
             const seLeEnviaA = document.getElementById("se-le-envia-a").value;
-            
+        if (element.checkValidity() === true) {                 
             Swal.fire({
                 icon: 'info',
                 title: 'Confirmar.',
@@ -753,6 +817,7 @@
                         //dataType:"json",
                         success: function(test) {
                             //document.getElementById("inputnombre").value="";
+                            element.classList.remove("was-validated");
                             if(test.estado === 'guardado'){
                                     Swal.fire({
                                         icon: 'success',
@@ -775,7 +840,8 @@
                 } else if (result.isDismissed) {
                    Swal.fire('Se cancelo el registro de la referencia', '', 'info')
                 }
-            }) 
+            })
+        } 
 	    });
 	});
 
@@ -839,13 +905,14 @@ function consultarhistorial(expediente, fecha, enfermedad){
     $(document).ready(function() {
         $("#modalincapacidadclinico").submit(function(e) {
         e.preventDefault();
+        var element = document.getElementById("modalincapacidadclinico");
         var valinputfechadeincapacidad = document.getElementById("inputfechadeincapacidad").value;
         var valinputpaciente = document.getElementById("inputpaciente").value;
         var valinputdiagnosis = document.getElementById("inputdiagnosis").value;
         var valinputmedicacion = document.getElementById("inputmedicacion").value;
         var valinputdiasincapacidad = document.getElementById("inputdiasincapacidad").value;
         //console.log(selectexpedienteidvalue);
-
+        if (element.checkValidity() === true) {                 
         Swal.fire({
             icon: 'info',
             title: 'Confirmar.',
@@ -867,7 +934,7 @@ function consultarhistorial(expediente, fecha, enfermedad){
                     },
                     //dataType:"json",
                     success: function(test){
-                        //document.getElementById("inputnombre").value="";
+                        element.classList.remove("was-validated");
                             if(test.estado === 'guardado'){
                                 Swal.fire({
                                     icon: 'success',
@@ -891,6 +958,7 @@ function consultarhistorial(expediente, fecha, enfermedad){
                 Swal.fire('Se cancelo el registro de la incapacidad del paciente', '', 'info')
             }
             })
+        }
         });
     });
 </script>
