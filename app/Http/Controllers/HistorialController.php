@@ -44,7 +44,7 @@ class HistorialController extends Controller
                 $historial->save();
                 return response()->json(['estado' => 'guardado']);
             } catch (Throwable $e) {
-                //report($e);
+                //report($e); //report error
                 return response()->json(['estado' => 'error']);
             }
 

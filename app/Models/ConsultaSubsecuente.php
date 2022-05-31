@@ -9,7 +9,7 @@ class ConsultaSubsecuente extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = 'consulta_subsecuente';
+    protected $table = 'consulta_subsecuente'; //tabla
     protected $fillable = [
         'historial_id',
         'presion arterial maxima',

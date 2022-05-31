@@ -4,7 +4,7 @@
 <br>
 <div class="container-fluid containercardsdash">
     <br>
-    <!-- Card Signos-->
+    <!-- Card Signos a borrar-->
     <div class="card" style="max-width: 18rem;">
         <div class="card-header text-primary"><center><b>Signos vitales</b></center></div>
         <div class="card-body">

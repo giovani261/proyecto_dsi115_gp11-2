@@ -13,7 +13,7 @@
         <meta name="author" content="" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Unidad medica humana</title>
-        <!-- Favicon-->
+        <!-- Favicon icono de la clinica-->
         <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> -->
         <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
         <!-- Core theme CSS (includes Bootstrap sidebar)-->

@@ -68,7 +68,7 @@ $(window).on('hashchange', function(e){
     history.replaceState ("", document.title, e.originalEvent.oldURL);
 });
 
-// Example starter JavaScript for disabling form submissions if there are invalid fields
+// JavaScript for disabling form submissions if there are invalid fields
 (function () {
     'use strict'
   

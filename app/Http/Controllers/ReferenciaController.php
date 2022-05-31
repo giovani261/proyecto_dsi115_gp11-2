@@ -28,7 +28,7 @@ class ReferenciaController extends Controller
                 return response()->json(['nombrePaciente' => $referenciaNombre,'estado' => 'guardado']);
             
             } catch (Throwable $e) {
-                //report($e);
+                //report($e); //report error
                 return response()->json(['nombrePaciente' => $referenciaNombre,'estado' => 'error']);
             }
         }
