@@ -67,7 +67,7 @@ class DashboardController extends Controller
             $horaCitasPendiente = ReservaDeCita::select('hora')->whereNull('hora')->whereDate('fecha','>=', $date)->get()->count();
             $grafico1Data1 = [$horaCitasPendiente];
             $grafico1Data2 = [$horaCitasAsignada];
-            //dd($grafico1Data);
+            //dd($grafico1Data); //data de grafico
             $medicamentoPrescritoMasComunId = MedicamentosPrescritos::select('medicamento_id',DB::raw('COUNT ("medicamento_id")'))->groupBy('medicamento_id')->orderBy('count','desc')->limit(1)->get();
             foreach ($medicamentoPrescritoMasComunId as $medicamentoPrescritoMasComunIdVal) {
                 $medicamentoPrescritoMasComunIdCount = $medicamentoPrescritoMasComunIdVal->count;
