@@ -4,7 +4,7 @@
 <br>
 <div class="container-fluid containercardsdash">
     <br>
-    <!-- Card Signos-->
+    <!-- Card Signos a borrar-->
     <div class="card" style="max-width: 18rem;">
         <div class="card-header text-primary"><center><b>Signos vitales</b></center></div>
         <div class="card-body">
@@ -26,15 +26,15 @@
         </div>
     </div>
     <!-- Card Generar receta-->
-    <div class="card" style="max-width: 18rem;" onclick="consultas();">
+    <div class="card" style="max-width: 18rem;">
         <div class="card-header text-primary"><center><b>Receta</b></center></div>
         <div class="card-body">
-        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#recetaModalCenter">
+        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
                         <div class="col my-auto">
-                            Registrar Receta Médica
+                            Registrar Signos Vitales
                         </div>
 
                         <div class="col-md-auto my-auto">
@@ -47,7 +47,7 @@
         </div>
     </div>
     <!-- Card Referencia médica -->
-    <div class="card" style="max-width: 18rem;">
+    <div class="card" style="max-width: 18rem;" onclick="consultarexpedientes('nombrepacientereferencia');">
         <div class="card-header text-primary"><center><b>Referencia m&eacute;dica</b></center></div>
         <div class="card-body">
         <a class="acards" data-bs-toggle="modal" data-bs-target="#referenciaMedicaModalCenter">
@@ -55,7 +55,7 @@
                 <center>
                     <div class="row">
                         <div class="col my-auto">
-                            Crear referencia m&eacute;dica
+                            Registrar referencia m&eacute;dica
                         </div>
 
                         <div class="col-md-auto my-auto">
@@ -68,7 +68,7 @@
         </div>
     </div>
     <!-- Card Generar historial clinico-->
-    <div class="card" style="max-width: 18rem;" onclick="consultarexpedientes();">
+    <div class="card" style="max-width: 18rem;" onclick="consultarexpedientes('expedienteid');">
         <div class="card-header text-primary"><center><b>Historial clinico</b></center></div>
         <div class="card-body">
         <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#historialClinicoModalCenter">
@@ -132,18 +132,40 @@
     </div>
     <!-- Modal Signos-->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Registrar Signos Vitales</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Registrar Consulta Subsecuente</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
             </button>
         </div>
         <div class="modal-body">
         <form method="POST" id="modalsignos">
         @csrf
-        <label for="inputnombre">Nombre</label>
-        <input id="inputnombre" type="text" class="form-control" name="NombreSigno2" required>
+        <label for="inputhistorial_id">Historial_id</label>
+        <input id="inputhistorial_id" type="text" class="form-control" name="Historial_idSigno2" required>
+        <br>
+        <label for="inputpresionmax">Presion arterial maxima</label>
+        <input id="inputpresionmax" type="text" class="form-control" name="PresionMaxSigno2" title="Ingrese la presion arterial maxima" required>
+        <br>
+        <label for="inputtemperatura">Temperatura</label>
+        <input id="inputtemperatura" type="text" class="form-control" name="TemperaturaSigno2" title="Ingrese la temperatura" required>
+        <br>
+        <label for="inputpulso">Pulso</label>
+        <input id="inputpulso" type="text" class="form-control" name="pulsoSigno2" title="Ingrese el pulso" required>
+        <br>
+        <label for="inputpeso">Peso</label>
+        <input id="inputpeso" type="text" class="form-control" name="PesoSigno2" title="Ingrese el peso (en libras)"required>
+        <br>
+        <label for="inputpresionmin">Presion arterial minima</label>
+        <input id="inputpresionmin" type="text" class="form-control" name="PresionMinSigno2" title="Ingrese la presion arterial minima" required>
+        <br>
+        <label for="inputtalla">Talla</label>
+        <input id="inputtalla" type="text" class="form-control" name="TallaSigno2" title="Ingrese la talla" required>
+        <br>
+        <label for="inputaltura">Altura</label>
+        <input id="inputaltura" type="text" class="form-control" name="AlturaSigno2" title="Ingrese la altura (en metros)" required>
+        <br>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -163,7 +185,7 @@
             </button>
         </div>
         <div class="modal-body">
-        <form method="POST" id="modalhistorialclinico">
+        <form method="POST" id="modalhistorialclinico" class="needs-validation" novalidate>
         @csrf
         <label for="expedienteid">Seleccione un paciente, el formato de la lista es: Paciente -- Dui</label>
         <br>
@@ -178,32 +200,56 @@
             <input type="text" class="form-control" id="inputfechadeenfermedadactual" name="fechaenfermedadactual" data-bs-toggle="tooltip" title="Seleccione una fecha" required>
             <i class="fa-solid fa-calendar-days calendario"></i>
         </div>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputfechadediagnostico">Fecha de diagnostico</label>
         <div class="input-group date">
             <input type="text" class="form-control" id="inputfechadediagnostico" name="fechadiagnostico" data-bs-toggle="tooltip" title="Seleccione una fecha" required>
             <i class="fa-solid fa-calendar-days calendario"></i>
         </div>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputenfermedadactual">Enfermedad actual</label>
-        <input id="inputenfermedadactual" type="text" class="form-control" name="enfermedadactual" data-bs-toggle="tooltip" title="Seleccione una fecha" required>
+        <input id="inputenfermedadactual" type="text" class="form-control" name="enfermedadactual" data-bs-toggle="tooltip" title="Ingrese la enfermedad actual" required>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputexamenesprescritos">Examenes prescritos</label>
         <input id="inputexamenesprescritos" type="text" class="form-control" name="examenesprescritos" data-bs-toggle="tooltip" title="Ingrese los examenes prescritos" required>
+        <div class="invalid-feedback">
+            Este campo no puede estar vacio.
+        </div>
         <br>
         <label for="inputdiagnostico">Diagnostico</label>
         <textarea class="form-control" id="inputdiagnostico" rows="3" name="diagnostico" data-bs-toggle="tooltip" title="Ingrese el diagnostico" required></textarea>
         <!-- <input id="inputdiagnostico" type="text" class="form-control" name="diagnostico" required> -->
+        <div class="invalid-feedback">
+            Este campo no puede estar vacio.
+        </div>
         <br>
         <label for="inputrecetaexpedida">Receta expedida</label>
         <input id="inputdirecetaexpedida" type="text" class="form-control" name="receta" data-bs-toggle="tooltip" title="Ingrese la receta expedida" required>
+        <div class="invalid-feedback">
+            Este campo no puede estar vacio.
+        </div>
         <br>
         <label for="inputobservaciones">Observaciones</label>
         <textarea class="form-control" id="inputobservaciones" rows="3" name="observaciones" data-bs-toggle="tooltip" title="Ingrese las observaciones" required></textarea>
         <!-- <input id="inputobservaciones" type="text" class="form-control" name="observaciones" required> -->
+        <div class="invalid-feedback">
+            Este campo no puede estar vacio.
+        </div>
         <br>
         <label for="inputplanmedico">Plan medico a seguir</label>
         <input id="inputplanmedico" type="text" class="form-control" name="planmedico" data-bs-toggle="tooltip" title="Ingrese el plan medico a seguir" required>
+        <div class="invalid-feedback">
+            Este campo no puede estar vacio.
+        </div>
         <br>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" data-bs-toggle="tooltip" title="Presione si desea registrar la consulta subsecuente">
@@ -220,64 +266,51 @@
     </div>
     <!-- Modal Expediente clinico-->
     <div class="modal fade" id="expedienteClinicoModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Registrar Expediente Clinico</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <div class="modal-body">
-            <form method="POST" id="modalexpedienteclinico">
-            @csrf
-            <label for="inputnombrepaciente">Nombre del paciente</label>
-            <input type="text" class="form-control" id="inputnombrepaciente" name="nombreexpediente"  pattern="[a-zA-Z'-'\s]*" required>
-            <br>
-            <label for="inputedad">Edad</label>
-            <input type="text" class="form-control" id="inputedad" name="edad" pattern="^\d{1,3}$" required>
-            <br>
-            <label for="inputdomicilio">Domicilio</label>
-            <input type="text" class="form-control" id="inputdomicilio" name="domicilio" required>
-            <br>
-            <label for="inputresponsable">Responsable</label>
-            <input id="inputresponsable" type="text" class="form-control" name="responsable" pattern="[a-zA-Z'-'\s]*" required>
-            <br>
-            <label for="inputduipaciente">Dui del paciente</label>
-            <input id="inputduipaciente" type="text" class="form-control" name="duipaciente" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" required>
-            <br>
-            <label for="inputduiresponsable">Dui del responsable</label>
-            <input id="inputduiresponsable" type="text" class="form-control" name="duiresponsable" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" required>
-            <br>
-            <label for="inputantecedentes">Antecedentes patologicos</label>
-            <input id="inputantecedentes" type="text" class="form-control" name="antecedentes">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cerrar</button>
-                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
-            </div>
-            </form>
-            </div>
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Registrar Expediente Clinico</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            </button>
         </div>
         <div class="modal-body">
-        <form method="POST" id="modalexpedienteclinico">
+        <form method="POST" id="modalexpedienteclinico" class="needs-validation" novalidate>
         @csrf
         <label for="inputnombrepaciente">Nombre del paciente</label>
         <input type="text" class="form-control" id="inputnombrepaciente" name="nombreexpediente"  pattern="[a-zA-Z'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el nombre del paciente, solo se permiten letras" required>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputedad">Edad</label>
         <input type="text" class="form-control" id="inputedad" name="edad" pattern="^\d{1,3}$" data-bs-toggle="tooltip" title="Ingrese la edad del paciente, solo se permiten numeros entre 1 y 3 digitos" required>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputdomicilio">Domicilio</label>
         <input type="text" class="form-control" id="inputdomicilio" name="domicilio" data-bs-toggle="tooltip" title="Ingrese el docimicilio del paciente" required>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputresponsable">Responsable</label>
         <input id="inputresponsable" type="text" class="form-control" name="responsable" pattern="[a-zA-Z'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el responsable del paciente, solo se permiten letras" required>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputduipaciente">Dui del paciente</label>
         <input id="inputduipaciente" type="text" class="form-control" name="duipaciente" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" data-bs-toggle="tooltip" title="Ingrese el dui del paciente, solo se permiten numeros de 9 digitos" required>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputduiresponsable">Dui del responsable</label>
         <input id="inputduiresponsable" type="text" class="form-control" name="duiresponsable" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" data-bs-toggle="tooltip" title="Ingrese el dui del responsable, solo se permiten numeros de 9 digitos" required>
+        <div class="invalid-feedback">
+            Por favor, revise el formato del texto ingresado.
+        </div>
         <br>
         <label for="inputantecedentes">Antecedentes patologicos</label>
         <!-- <input id="inputantecedentes" type="text" class="form-control" name="antecedentes"> -->
@@ -303,7 +336,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form method="POST" id="modalreferenciamedica">
+            <form method="POST" id="modalreferenciamedica" class="needs-validation" novalidate>
             @csrf
               <label for="inputfechadereferencia">Fecha</label>
               <div class="input-group date">
@@ -314,29 +347,25 @@
               <label for="nombrepacientereferencia">
               Nombre del paciente
               </label>
-              <select class="form-select" aria-label="Default select example" name="nombrepaciente" id="nombrepacientereferencia">
-              @foreach($users as $user)
-                <option value="{{$user->id}}" required>{{$user->name}}</option>
-              @endforeach
+              <select class="form-select" aria-label="Default select example" name="nombrepaciente"
+                      id="nombrepacientereferencia" data-bs-toggle="tooltip" title="Seleccione un paciente, el formato de la lista es: Paciente -- Dui">
               </select>
-              
-              <label for="nombrereferencia">Nombre</label>
-              <input type="text" class="form-control" id="nombrereferencia" name="nombrereferencia" title="Ingrese el nombre de la referencia" required>
-              
 
               <label for="razon">Raz&oacute;n</label>
               <textarea id="razon" class="form-control" name="razon" title="Ingrese la razón de la referencia" required></textarea>
-
+              <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+              </div>
               <label for="se-le-envia-a">Se le env&iacute;a a</label>
               <textarea id="se-le-envia-a" class="form-control" name="lugar-referencia" title="Ingrese el nombre del lugar donde se envía al paciente" required></textarea>
+              <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+              </div>
             </div>
 
               <div class="modal-footer">
                 <a href="{{route('editar_referencia')}}" class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Editar manualmente</a>
-                <button class="btn btn-primary"
-                    type="submit"
-                    name="continuar"
-                    data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+                <button class="btn btn-primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
               </div>
             </form>
           </div>
@@ -354,27 +383,42 @@
                 </button>
             </div>
             <div class="modal-body">
-            <form method="POST" id="modalincapacidadclinico">
+            <form method="POST" id="modalincapacidadclinico" class="needs-validation" novalidate>
             @csrf
             <label for="inputfechadeincapacidad">Fecha de enfermedad actual</label>
             <div class="input-group date">
                 <input type="text" class="form-control" id="inputfechadeincapacidad" name="fechaincapacidad" required>
                 <i class="fa-solid fa-calendar-days calendario"></i>
             </div>
+            <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+            </div>
             <br>
             <label for="inputpaciente">Nombre del paciente</label>
             <input id="inputpaciente" type="text" class="form-control" name="paciente" required>
+            <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+            </div>
             <br>
             <label for="inputdiagnosis">Diagnostico</label>
             <textarea class="form-control" id="inputdiagnosis" rows="3" name="diagnosis" required></textarea>
+            <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+            </div>
             <!-- <input id="inputdiagnostico" type="text" class="form-control" name="diagnostico" required> -->
             <br>
             <label for="inputmedicacion">Tratamiento</label>
             <textarea class="form-control" id="inputmedicacion" rows="3" name="medicacion" required></textarea>
+            <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+            </div>
             <!-- <input id="inputobservaciones" type="text" class="form-control" name="observaciones" required> -->
             <br>
             <label for="inputdiasincapacidad">Dias de incapacidad</label>
             <input type="number" class="form-control" id="inputdiasincapacidad"  name="diasincapacidad" min="0" max="120" pattern="[0-120]" required>
+            <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+            </div>
             <br>
             </div>
             <div class="modal-footer">
@@ -386,52 +430,6 @@
         </div>
         </div> 
 </div>
-
-<!-- Modal receta médica -->
-<div class="modal fade" id="recetaModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Registrar Receta Medica</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <div class="modal-body">
-            <form method="POST" id="modalrecetaclinico">
-            @csrf
-            <label for="expedienterecetaid">Seleccione el paciente al que se se le prescribirá receta, el formato de la lista es: Paciente -- Dui</label>
-            <select class="form-select" aria-label="Default select example" name="idexpediente" id="expedienterecetaid" data-bs-toggle="tooltip" title="Seleccione al paciente">
-            </select>
-            <br>
-
-            <label for="inputespecialidadmedica">Especialidad</label>
-            <br>
-            <select class="form-control" id="inputespecialidadmedica" name="especialidadmedica" required>
-                <option value="gastritis">Gastritis y Cáncer del Estomago</option>
-                <option value="colitis">Colitis y cáncer de colon</option>
-                <option value="estreñimiento">Estreñimiento y sangrado rectal</option>
-                <option value="cancer">Cáncer recto y ano</option>
-                <option value="hemorroides">Hemorroides</option>
-                <option value="higado">Hígado y cálculos en vesícula</option>
-                <option value="reflujo">Reflujo gastro-esofágico</option>
-              </select>
-            <br>
-            <label for="medicamentoid">Seleccione los medicamentos</label>
-            <br>
-            <select class="form-control" aria-label="Default select example" name="medicamentoid[]" id="medicamentoid" multiple="multiple" title="Seleccione los medicamentos"></select>
-            <br>
-            <label for="inputindicacionespaciente">Indicaciones</label>
-            <textarea class="form-control" id="inputindicacionespaciente" rows="3" name="indicacionespaciente" required></textarea>
-            <br>
-            </div>
-            <div class="modal-footer">
-                <a href="/editorreceta" type="submit" class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Editar manualmente</a>
-                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
-            </div>
-            </form>
-            </div>
-        </div>
-    </div>
 <br>
 <center>
     <h5>Agenda de citas del dia</h5>
@@ -496,8 +494,8 @@
             <div class="card bg-c-green counters-card">
                 <div class="card-block">
                     <h6 class="m-b-20"><b>Medicamento prescrito mas comun</b></h6>
-                        <h3 class="h3"><i class="fa-solid fa-capsules"></i><span class="float-end text-break"> {{ $enfermedadMasComunName }} <span class="badge bg-secondary">{{ $enfermedadMasComunCount }}</span></span></h3>
-                    <p class="m-b-0">Medicamentos totales<span class="float-end"><span class="badge bg-secondary">{{ $historialesCount }}</span></span></p>
+                        <h3 class="h3"><i class="fa-solid fa-capsules"></i><span class="float-end text-break"> {{ $medicamentoPrescritoMasComunName }} <span class="badge bg-secondary">{{ $medicamentoPrescritoMasComunCount }}</span></span></h3>
+                    <p class="m-b-0">Total de medicamentos prescritos<span class="float-end"><span class="badge bg-secondary">{{ $medicamentosPrescritosCount }}</span></span></p>
                 </div>
             </div>
         </div>
@@ -525,15 +523,8 @@
         dropdownParent: $('#historialClinicoModalCenter'),
         width: '100%'
     });
-    $('#medicamentoid').select2({
-        dropdownParent: $('#recetaModalCenter'),
-        placeholder: 'Seleccione los medicamentos',
-        allowClear: true,
-        width: '100%'
-    });
-    $('#expedienterecetaid').select2({
-        dropdownParent: $('#recetaModalCenter'),
-        placeholder: 'Seleccione al paciente',
+    $('#nombrepacientereferencia').select2({
+        dropdownParent: $('#referenciaMedicaModalCenter'),
         width: '100%'
     });
     $(document).ready(function() {
@@ -572,7 +563,15 @@
     $(document).ready(function() {
         $("#modalsignos").submit(function(e) {
         e.preventDefault();
-        var valinputsigno = document.getElementById("inputnombre").value;
+        var valinputhistorial_id = document.getElementById("inputhistorial_id").value;
+        var valinputpresionmax = document.getElementById("inputpresionmax").value;
+        var valinputtemperatura = document.getElementById("inputtemperatura").value;
+        var valinputpulso = document.getElementById("inputpulso").value;
+        var valinputpeso = document.getElementById("inputpeso").value;
+        var valinputpresionmin = document.getElementById("inputpresionmin").value;
+        var valinputtalla = document.getElementById("inputtalla").value;
+        var valinputaltura = document.getElementById("inputaltura").value;
+        var valIMC = valinputpeso / (valinputaltura * valinputaltura);
 
         Swal.fire({
             icon: 'info',
@@ -586,82 +585,47 @@
                     url:"{{route('signos')}}",
                     type:"POST",
                     data:{
-                        'NombreSigno': valinputsigno,
+                        'Historialid': valinputhistorial_id,
+                        'PresionMax': valinputpresionmax,
+                        'Temperatura': valinputtemperatura,
+                        'Pulso': valinputpulso,
+                        'Peso': valinputpeso,
+                        'PresionMin': valinputpresionmin,
+                        'Talla': valinputtalla,
+                        'Altura': valinputaltura,
+                        'IMC': valIMC,
                         "_token": $("meta[name='csrf-token']").attr("content")
                     },
                     //dataType:"json",
                     success: function(test){
-                        document.getElementById("inputnombre").value="";
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Hecho!.',
-                            text: 'Se registraron correctamente los Signos Vitales ' +test.nombre,
-                            confirmButtonText: 'Ok',
-                            })
-                        }
-                    });
-            } else if (result.isDismissed) {
-                Swal.fire('No se registraron los signos vitales', '', 'info')
-            }
-            })
-        });
-    });
-//js para envio por ajax para la ventana de receta clinica
-$(document).ready(function() {
-        $("#modalrecetaclinico").submit(function(e) {
-        e.preventDefault();
-        var valinputnombredelpaciente = document.getElementById("expedienterecetaid").value;
-        var valinputespecialidadmedica = document.getElementById("inputespecialidadmedica").value;
-        var valinputindicacionespaciente = document.getElementById("inputindicacionespaciente").value;
-        var valinputmedicamentos=$('#medicamentoid').val();
-        console.log('antes de ir al controlador');
-        console.log(valinputmedicamentos);
-        //var valinputmedicamento = document.getElementByNa("idmedicamento").value;
-        //console.log(selectexpedienteidvalue);
-        Swal.fire({
-            icon: 'info',
-            title: 'Confirmar.',
-            text: '¿Desea continuar?',
-            showCancelButton: true,
-            confirmButtonText: 'Ok',
-            }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url:"{{route('receta')}}",
-                    type:"POST",
-                    data:{
-                        'nombredelpaciente': valinputnombredelpaciente,
-                        'especialidadmedica': valinputespecialidadmedica,
-                        'indicacionespaciente': valinputindicacionespaciente,
-                        'medicamentoid': valinputmedicamentos,
-                        "_token": $("meta[name='csrf-token']").attr("content")
-                    },
-                    //dataType:"json",
-                    success: function(test){
-                        //document.getElementById("inputnombre").value="";
-                        console.log(test);
-                            if(test.estado === 'guardado'){
+                        document.getElementById("inputhistorial_id").value="";
+                        document.getElementById("inputpresionmax").value="";
+                        document.getElementById("inputtemperatura").value="";
+                        document.getElementById("inputpulso").value="";
+                        document.getElementById("inputpeso").value="";
+                        document.getElementById("inputpresionmin").value="";
+                        document.getElementById("inputtalla").value="";
+                        document.getElementById("inputaltura").value="";
+                        if(test.estado === 'guardado'){
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Hecho!.',
-                                    text: 'Se registro correctamente la receta del paciente: '+test.nombrePaciente,
+                                    text: 'Se registro correctamente la consulta subsecuente',
                                     confirmButtonText: 'Ok',
-                                    })
-                                $("#modalrecetaclinico")[0].reset(); //Limpiar formulario
+                                    })    
                             }
                             if(test.estado === 'error'){
-                                console.log('entro a este if');
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Ocurrio un error!.',
-                                    text: 'No se pudo registrar la receta del paciente: '+test.nombrePaciente,
+                                    text: 'No se pudo registrar la consulta subsecuente',
                                     confirmButtonText: 'Ok',
                                     })
                             }
                         }
                     });
             } else if (result.isDismissed) {
-                Swal.fire('Se cancelo el registro la receta del paciente', '', 'info')
+                Swal.fire('No se registro la consulta subsecuente', '', 'info')
             }
             })
         });
@@ -670,6 +634,7 @@ $(document).ready(function() {
     $(document).ready(function() {
         $("#modalhistorialclinico").submit(function(e) {
         e.preventDefault();
+        var element = document.getElementById("modalhistorialclinico");
         var selectexpedienteid = document.getElementById('expedienteid');
         var selectexpedienteidvalue = selectexpedienteid.options[selectexpedienteid.selectedIndex].value;
         var selectexpedienteidtext = selectexpedienteid.options[selectexpedienteid.selectedIndex].text;
@@ -682,7 +647,7 @@ $(document).ready(function() {
         var valinputobservaciones = document.getElementById("inputobservaciones").value;
         var valinputplanmedico = document.getElementById("inputplanmedico").value;
         //console.log(selectexpedienteidvalue);
-
+        if (element.checkValidity() === true) {
         Swal.fire({
             icon: 'info',
             title: 'Confirmar.',
@@ -708,6 +673,7 @@ $(document).ready(function() {
                     },
                     //dataType:"json",
                     success: function(test){
+                        element.classList.remove("was-validated");
                         document.getElementById("inputfechadeenfermedadactual").value="";
                         document.getElementById("inputfechadediagnostico").value="";
                         document.getElementById("inputenfermedadactual").value="";
@@ -722,7 +688,14 @@ $(document).ready(function() {
                                     title: 'Hecho!.',
                                     text: 'Se registro correctamente el hisotial del paciente: '+selectexpedienteidtext,
                                     confirmButtonText: 'Ok',
-                                    })
+                                    }).then((resultado) => {
+                                        if(resultado.isConfirmed)
+                                        {
+                                            abrirformulario(); 
+                                        }
+                                    }
+                                    )
+                                    consultarhistorial(selectexpedienteidvalue, valinputfechaenfermedadactual, valinputenfermedadactual);
                             }
                             if(test.estado === 'error'){
                                 Swal.fire({
@@ -738,6 +711,7 @@ $(document).ready(function() {
                 Swal.fire('Se cancelo el registro del hisotial', '', 'info')
             }
             })
+        }
         });
     });
 
@@ -745,6 +719,7 @@ $(document).ready(function() {
     $(document).ready(function() {
         $("#modalexpedienteclinico").submit(function(e) {
         e.preventDefault();
+        var element = document.getElementById("modalexpedienteclinico");
         var valinputnombrepaciente = document.getElementById("inputnombrepaciente").value;
         var valinputedad = document.getElementById("inputedad").value;
         var valinputdomicilio = document.getElementById("inputdomicilio").value;
@@ -752,7 +727,7 @@ $(document).ready(function() {
         var valinputduipaciente = document.getElementById("inputduipaciente").value;
         var valinputduiresponsable = document.getElementById("inputduiresponsable").value;
         var valinputantecedentes = document.getElementById("inputantecedentes").value;
-
+        if (element.checkValidity() === true) {       
         Swal.fire({
             icon: 'info',
             title: 'Confirmar.',
@@ -776,7 +751,7 @@ $(document).ready(function() {
                     },
                     //dataType:"json",
                     success: function(test){
-                        //document.getElementById("inputnombre").value="";
+                        element.classList.remove("was-validated");
                         document.getElementById("inputnombrepaciente").value="";
                         document.getElementById("inputedad").value="";
                         document.getElementById("inputdomicilio").value="";
@@ -806,6 +781,7 @@ $(document).ready(function() {
                 Swal.fire('Se cancelo el registro del expediente', '', 'info')
             }
             })
+        }
         });
     });
     
@@ -813,13 +789,13 @@ $(document).ready(function() {
 	$(document).ready(function() {
 	    $("#modalreferenciamedica").submit(function(e) {
             e.preventDefault();
-            
+            var element = document.getElementById("modalreferenciamedica");
             //const fecha = document.getElementById("inputfechadereferencia").value;
-            const pacientereferenciaid = document.getElementById("nombrepacientereferencia").value;
-            const referenciaNombre = document.getElementById("nombrereferencia").value;
+            const pacientereferencia = document.getElementById("nombrepacientereferencia");
+            const nombre = pacientereferencia.options[pacientereferencia.selectedIndex].text.slice(0, -11);
             const referenciaRazon = document.getElementById("razon").value;
             const seLeEnviaA = document.getElementById("se-le-envia-a").value;
-            
+        if (element.checkValidity() === true) {                 
             Swal.fire({
                 icon: 'info',
                 title: 'Confirmar.',
@@ -833,8 +809,7 @@ $(document).ready(function() {
                         type:"POST",
                         data:{
                             //'fecha': fecha,
-                            'pacienteid': pacientereferenciaid,
-                            'nombre': referenciaNombre,
+                            'nombre': nombre,
                             'razon': referenciaRazon,
                             'se_le_envia_a': seLeEnviaA,
                             "_token": $("meta[name='csrf-token']").attr("content")
@@ -842,6 +817,7 @@ $(document).ready(function() {
                         //dataType:"json",
                         success: function(test) {
                             //document.getElementById("inputnombre").value="";
+                            element.classList.remove("was-validated");
                             if(test.estado === 'guardado'){
                                     Swal.fire({
                                         icon: 'success',
@@ -849,6 +825,7 @@ $(document).ready(function() {
                                         text: 'Se registro correctamente la referencia del paciente ' +test.nombrePaciente,
                                         confirmButtonText: 'Ok',
                                     })
+                                    $("#modalreferenciamedica")[0].reset(); //Limpiar formulario
                                 }
                             if(test.estado === 'error'){
                                     Swal.fire({
@@ -863,12 +840,13 @@ $(document).ready(function() {
                 } else if (result.isDismissed) {
                    Swal.fire('Se cancelo el registro de la referencia', '', 'info')
                 }
-            }) 
+            })
+        } 
 	    });
 	});
 
-function consultarexpedientes(){
-    var comboExpedientes = document.getElementById("expedienteid");
+function consultarexpedientes(comboBox){
+    var comboExpedientes = document.getElementById(comboBox);
     $.ajax({
                     url:"{{route('expedienteconsultarajax')}}",
                     type:"GET",
@@ -893,76 +871,48 @@ function consultarexpedientes(){
     });
 }
 
-function consultarexpedientes_receta(){
-    var comboExpedientes = document.getElementById("expedienterecetaid");
-    $.ajax({
-                    url:"{{route('exprecetaconsultarajax')}}",
-                    type:"GET",
-                    data:{
-                    },
-                    //dataType:"json",
-                    success: function(test){
-                        //console.log(test);
-                        //console.log("legth "+test.expedientes.length);
-                        for (var j = test.expedientes.length; j >= 0; j--) {
-                            comboExpedientes.remove(j);
+function consultarhistorial(expediente, fecha, enfermedad){
+        $.ajax({
+                        url:"{{route('historialconsultarajax')}}",
+                        type:"POST",
+                        data:{
+                            'expedienteId': expediente,
+                            'fecha': fecha,  
+                            'enfermedad': enfermedad, 
+                            "_token": $("meta[name='csrf-token']").attr("content")                     
+                        },
+                        //dataType:"json",
+                        success: function(test){
+                            document.getElementById("inputhistorial_id").value = test.historialid[0].id;              
                         }
-                        for (var i = 0; i < test.expedientes.length; i++) {
-                            const option = document.createElement('option');
-                            const valornombre = test.expedientes[i].nombre;
-                            const valordui = test.expedientes[i]["dui paciente"];
-                            option.value = test.expedientes[i].nombre;
-                            option.text = valornombre + "--" + valordui;
-                            comboExpedientes.appendChild(option);
-                        }
-                    }
-    });
-}
+        });
+        
+    }
 
-function consultarmedicamentos(){
-    var comboMedicamentos = document.getElementById("medicamentoid");
-    $.ajax({
-                    url:"{{route('medicamentoconsultarajax')}}",
-                    type:"GET",
-                    data:{
-                    },
-                    //dataType:"json",
-                    success: function(test){
-                        //console.log(test);
-                        //console.log("legth "+test.medicamentos.length);
-                        for (var j = test.medicamentos.length; j >= 0; j--) {
-                            comboMedicamentos.remove(j);
-                        }
-                        for (var i = 0; i < test.medicamentos.length; i++) {
-                            const option = document.createElement('option');
-                            const valornombre = test.medicamentos[i].nombre;
-                            option.value = test.medicamentos[i].id;
-                            option.text = valornombre;
-                            comboMedicamentos.appendChild(option);
-                        }
-                    }
-    });
-}
-$('#medicamentoid').on("select2:select", function (e) {
-    console.log("ID seleccionado: " + e.params.data.id);
- });
+    function abrirformulario(){
 
-function consultas() {
-    consultarexpedientes_receta();
-    consultarmedicamentos();
-    
-}
+        if(document.getElementById('flexCheckDefault').checked)
+        {
+            $("#historialClinicoModalCenter").modal("hide");
+            $("#exampleModalCenter").modal("show");
+        }
+
+
+    }
+
+
     //js para envio por ajax para la ventana de incapacidad
     $(document).ready(function() {
         $("#modalincapacidadclinico").submit(function(e) {
         e.preventDefault();
+        var element = document.getElementById("modalincapacidadclinico");
         var valinputfechadeincapacidad = document.getElementById("inputfechadeincapacidad").value;
         var valinputpaciente = document.getElementById("inputpaciente").value;
         var valinputdiagnosis = document.getElementById("inputdiagnosis").value;
         var valinputmedicacion = document.getElementById("inputmedicacion").value;
         var valinputdiasincapacidad = document.getElementById("inputdiasincapacidad").value;
         //console.log(selectexpedienteidvalue);
-
+        if (element.checkValidity() === true) {                 
         Swal.fire({
             icon: 'info',
             title: 'Confirmar.',
@@ -984,7 +934,7 @@ function consultas() {
                     },
                     //dataType:"json",
                     success: function(test){
-                        //document.getElementById("inputnombre").value="";
+                        element.classList.remove("was-validated");
                             if(test.estado === 'guardado'){
                                 Swal.fire({
                                     icon: 'success',
@@ -1008,6 +958,7 @@ function consultas() {
                 Swal.fire('Se cancelo el registro de la incapacidad del paciente', '', 'info')
             }
             })
+        }
         });
     });
 </script>
