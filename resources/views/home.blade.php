@@ -17,7 +17,7 @@
     <!-- Favicon.ico -->
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> este archivo es bootstrap 4, genera conflicto con los modal y la plantilla que se extiende debido a que usa bootstrap 5-->
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -31,34 +31,33 @@
 </head>
 <body>
     <br>
+    <style>
+        .img-thumbnail asc1{
+            height: 2%;
+            width: 2%;
+            }
+        .img-thumbnail asc2{
+            height: 5%;
+            width: 5%;
+        }
+        .img-thumbnail asc3{
+            height: 5%;
+            width: 5%;
+        }   
+        .col{
+            text-align: center; 
+            display: inline-block;
+        }     
+    </style>
     <div class="row">
         <div class="col-xl-12">
-            <div class="col">   
-                <style>
-                    .img-thumbnail asc1{
-                        height: 2%;
-                        width: 2%;
-                    }
-                    .img-thumbnail asc2{
-                        height: 5%;
-                        width: 5%;
-                    }
-                    .img-thumbnail asc3{
-                        height: 5%;
-                        width: 5%;
-                    }   
-                    .col{
-
-                        text-align: center; 
-                        display: inline-block;
-                    }     
-                </style> 
-                <h4>Asociaciones</h4>
-                <a href="http://asccelsalvador.com/" target="_blank"><img src="{{ asset('imgs/asc1.jpeg') }}" alt="asociacion 1" class="img-thumbnail asc1"></a>
-                <a href="https://www.acedes.net/" target="_blank"><img src="{{ asset('imgs/asc2.jpeg') }}" alt="asociacion 2" class="img-thumbnail asc2"></a>
-                <a href="https://www.ascgelsalvador.com/" target="_blank"><img src="{{ asset('imgs/asc3.jpeg') }}" alt="asociacion 3" class="img-thumbnail asc3"></a>
-            </div>
-
+            <center>
+                    <h4>Asociaciones</h4>
+                    <a href="http://asccelsalvador.com/" target="_blank"><img src="{{ asset('imgs/asc1.jpeg') }}" alt="asociacion 1" class="img-thumbnail asc1"></a>
+                    <a href="https://www.acedes.net/" target="_blank"><img src="{{ asset('imgs/asc2.jpeg') }}" alt="asociacion 2" class="img-thumbnail asc2"></a>
+                    <a href="https://www.ascgelsalvador.com/" target="_blank"><img src="{{ asset('imgs/asc3.jpeg') }}" alt="asociacion 3" class="img-thumbnail asc3"></a>
+            </center>
+            <br>
             <div class="section_title text-center mb-55">
                 <h3>MEDICINA Y CIRUGÍA GASTROINTESTINAL <br>
                     J.V.P.M. 1668
@@ -110,7 +109,7 @@
                 <div class="col-xl-12">
                     <div class="section_title text-center mb-55">
                         <h3>Nuestros servicios</h3>
-                        <p>Contamos que varios servicios.</p>
+                        <p>Contamos con varios servicios.</p>
                     </div>
                 </div>
             </div>
@@ -121,8 +120,11 @@
                             <img src="imgs/department/1.jpg" alt="">
                         </div>
                         <div class="department_content">
-                            <h3><a href="#">Gastritis y Cáncer del Estomago</a></h3>
+                            <h3><a href="#" style="text-decoration:none;">Gastritis y Cáncer del Estomago</a></h3>
                             <p>Esteem spirit temper too say adieus who direct esteem.</p>
+                            <center>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#citaModal" onclick="especialidad('gastritis');">Agendar cita</button>
+                            </center>
                         </div>
                     </div>
                 </div>
@@ -132,8 +134,11 @@
                             <img src="imgs/department/2.jpg" alt="">
                         </div>
                         <div class="department_content">
-                            <h3><a href="#">Colitis y cáncer de colon</a></h3>
+                            <h3><a href="#" style="text-decoration:none;">Colitis y cáncer de colon</a></h3>
                             <p>Esteem spirit temper too say adieus who direct esteem.</p>
+                            <center>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#citaModal" onclick="especialidad('colitis');">Agendar cita</button>
+                            </center>
                         </div>
                     </div>
                 </div>
@@ -143,8 +148,11 @@
                             <img src="imgs/department/3.jpg" alt="">
                         </div>
                         <div class="department_content">
-                            <h3><a href="#">Estreñimiento y sangrado rectal</a></h3>
+                            <h3><a href="#" style="text-decoration:none;">Estreñimiento y sangrado rectal</a></h3>
                             <p>Esteem spirit temper too say adieus who direct esteem.</p>
+                            <center>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#citaModal" onclick="especialidad('estreñimiento');">Agendar cita</button>
+                            </center>
                         </div>
                     </div>
                 </div>
@@ -154,8 +162,11 @@
                             <img src="imgs/department/4.jpg" alt="">
                         </div>
                         <div class="department_content">
-                            <h3><a href="#">Hemorroides</a></h3>
+                            <h3><a href="#" style="text-decoration:none;">Hemorroides</a></h3>
                             <p>Esteem spirit temper too say adieus who direct esteem.</p>
+                            <center>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#citaModal" onclick="especialidad('hemorroides');">Agendar cita</button>
+                            </center>
                         </div>
                     </div>
                 </div>
@@ -165,8 +176,11 @@
                             <img src="imgs/department/5.jpg" alt="">
                         </div>
                         <div class="department_content">
-                            <h3><a href="#">Cáncer recto y ano</a></h3>
+                            <h3><a href="#" style="text-decoration:none;">Cáncer recto y ano</a></h3>
                             <p>Esteem spirit temper too say adieus who direct esteem.</p>
+                            <center>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#citaModal" onclick="especialidad('cancer');">Agendar cita</button>
+                            </center>
                         </div>
                     </div>
                 </div>
@@ -176,8 +190,11 @@
                             <img src="imgs/department/6.jpg" alt="">
                         </div>
                         <div class="department_content">
-                            <h3><a href="#">Hígado y cálculos en vesícula</a></h3>
+                            <h3><a href="#" style="text-decoration:none;">Hígado y cálculos en vesícula</a></h3>
                             <p>Esteem spirit temper too say adieus who direct esteem.</p>
+                            <center>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#citaModal" onclick="especialidad('higado');">Agendar cita</button>
+                            </center>
                         </div>
                     </div>
                 </div>
@@ -187,8 +204,11 @@
                             <img src="imgs/department/7.jpg" alt="">
                         </div>
                         <div class="department_content">
-                            <h3><a href="#">Reflujo gastro-esofágico</a></h3>
+                            <h3><a href="#" style="text-decoration:none;">Reflujo gastro-esofágico</a></h3>
                             <p>Esteem spirit temper too say adieus who direct esteem.</p>
+                            <center>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#citaModal" onclick="especialidad('reflujo');">Agendar cita</button>
+                            </center>
                         </div>
                     </div>
                 </div>
@@ -196,6 +216,48 @@
         </div>
     </div>
     <!-- offers_area_end -->
+<!-- Modal Agendar Cita-->
+<div class="modal fade" id="citaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Rservación de Citas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="removevalidateform('reservarCita');"></button>
+            </div>
+            <div class="modal-body"> 
+                <form method="POST" id="reservarCita" class="needs-validation" novalidate>
+                @csrf
+                <div class="from-group mb-3">
+                    <label for="" class="text-dark">Nombre completo</label>
+                    <input type="text" class="name form-control" id="inputnombre" pattern="[a-zA-Z'-'\s]*" required>
+                    <div class="invalid-feedback">
+                    Por favor, revise el formato del texto ingresado.
+                    </div>
+                </div>
+                <div class="from-group mb-3">
+                    <label for="" class="text-dark">Telefono</label>
+                    <input type="text" class="phone form-control" id="inputTelefono" pattern="[0-9]{8}" required>
+                    <div class="invalid-feedback">
+                    Por favor, revise el formato del texto ingresado.
+                    </div>
+                </div>
+                <label for="" class="text-dark">Fecha</label>
+                <div class="input-group date">
+                    <input type="text" class="date form-control" id="inputfecha" required>
+                    <i class="fa-solid fa-calendar-days calendario"></i>
+                    <div class="invalid-feedback">
+                    Este campo no puede quedar vacio.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="removevalidateform('reservarCita');">Cancelar</button>
+            </div></form>  
+        </div>
+    </div>
+</div>
+<!-- Fin Modal Agendar Cita-->
 
     <!-- business_expert_area_start  -->
     <div class="business_expert_area">
@@ -261,7 +323,7 @@
     <script src="js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="js/bootstrap.min.js"></script> -->
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/isotope.pkgd.min.js"></script>
     <script src="js/ajax-form.js"></script>
@@ -286,4 +348,76 @@
 </body>
 </html>
 
+@endsection
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ asset('js/bootstrap-datepicker.es.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        var datesForDisable = ["2022-06-03", "08-10-2021", "08-15-2021", "08-20-2021"]; 
+            $('#inputfecha').datepicker({
+                isRTL: false,
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayHighlight: true,
+                daysOfWeekDisabled: [0], //inhabilita días domingos
+                startDate: new Date(),//Inhabilita fechas anteriores a la actual
+                weekStart: [1],//Establece incicio de semana en lunes
+                datesDisabled: datesForDisable,
+                language: 'es'
+            });
+    });
+    function especialidad(tipo){
+    //console.log(tipo);
+    $(document).ready(function(){
+        $("#reservarCita").submit(function(e){
+            e.preventDefault();
+            //console.log(tipoesp);
+            var element = document.getElementById("reservarCita");
+            var valinputnombre = document.getElementById("inputnombre").value;
+            var valinputTelefono = document.getElementById("inputTelefono").value;
+            var valinputfecha = document.getElementById("inputfecha").value;
+            //var valinputhora = document.getElementById("inputhora").value;
+            var valinputespecialidad = tipo;
+            //console.log(valinputnombre);
+        if (element.checkValidity() === true) {
+            Swal.fire({
+            icon: 'info',
+            title: 'Confirmar.',
+            text: '¿Desea continuar?',
+            showCancelButton: true,
+            confirmButtonText: 'Ok',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url:"{{route('reserva')}}",
+                    type:"POST",
+                    data:{
+                        'NombrePaciente': valinputnombre,
+                        'Telefono': valinputTelefono,
+                        'Fecha': valinputfecha,
+                        'Especialidad': valinputespecialidad,
+                        "_token": $("meta[name='csrf-token']").attr("content")
+                    },
+                    //dataType:"json",
+                    success: function(test){
+                        //document.getElementById("inputnombre").value="";
+                        element.classList.remove("was-validated");
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Hecho!.',
+                            text: 'Se reservo correctamente su cita ' +test.nombrePaciente+', espere la confirmacion, le llamaremos lo antes posible',
+                            confirmButtonText: 'Ok',
+                            })
+                        }
+                    });
+            } else if (result.isDismissed) {
+                Swal.fire('No se registro la reserva de su cita médica', '', 'info')
+            }
+            })
+        }
+        });
+    });
+}
+</script>
 @endsection
