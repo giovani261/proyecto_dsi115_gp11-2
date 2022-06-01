@@ -11,7 +11,7 @@ class ReferenciaController extends Controller
     public function guardar_referencia_medica(Request $request) {
         if(Auth::user()->hasRole(['administrador'])) {
             try {
-                $referenciapacienteId = Auth::user()->id;
+                $referenciapacienteId = request('pacienteid');
                 $referenciaNombre = request('nombre');
                 $referenciaRazon = request('razon');
                 $referenciaSeLeEnviaA = request('se_le_envia_a');       
@@ -25,11 +25,11 @@ class ReferenciaController extends Controller
             
                 $referencia->save();
             
-                return response()->json(['nombrePaciente' => $referenciaNombre,'estado' => 'guardado']);
+                return response()->json(['nombrePaciente'=>$referenciaNombre,'estado' => 'guardado']);
             
             } catch (Throwable $e) {
-                //report($e); //report error
-                return response()->json(['nombrePaciente' => $referenciaNombre,'estado' => 'error']);
+                //report($e);
+                return response()->json(['nombrePaciente'=>$referenciaNombre,'estado' => 'error']);
             }
         }
         else {

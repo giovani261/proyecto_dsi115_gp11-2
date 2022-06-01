@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="robots" content="noindex, nofollow">
-  <title>Editar Incapacidad</title>
+  <title>Editar Receta Medica</title>
   <script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -48,28 +48,22 @@
     </div>
     <br> 
     <div class="titulo">
-        <h6 style="text-align: center; font-size: 18px; padding-top:15px;" class="text-white">EDITAR INCAPACIDAD</h6>
+        <h6 style="text-align: center; font-size: 18px; padding-top:15px;" class="text-white">EDITAR RECETA MEDICA</h6>
     </div> 
   <textarea cols="80" id="editor1" name="editor1" rows="10" data-sample-short>
         <br>
         <br>
-      A QUIEN CORRESPONDA&#58;
-      EL INFRASCRITO&#44; MEDICO Y CIRUJANO&#44; POR ESTE MEDIO
-      CERTIFICA QUE LA PACIENTE &#91;NOMBRE DEL/LA PACIENTE&#93;&#44; HA 
-      CONSULTADO CON MI PERSONA EL DIA &#91;FECHA&#93;&#44; DEL 
-      EN CURSO&#44; Y DESPUES DE VERIFICARLE EXAMEN FISICO&#44; SE LE HA DIAGNOSTICADO&#44;
-        <br>
-        <br>
-      &#91;DIAGNOSTICO&#93;
-        <br>
-        <br>
-      POR LO QUE SE LE INSTITUYE TRATAMIENTO MEDICO&#44; PARA 
-      CADA UNA DE SUS PATOLOGIAS&#44; Y SE LE DEJA UNA CITA MEDICA &#91;FECHA/TIEMPO&#93;
-        <br>
-        <br>
-      Y PARA LOS USOS QUE LA/EL INTERESADA CREA CONVENIENTE&#44;
-      SE EXTIENDE LA PRESENTE &#91;FECHA&#93;&#46;
-
+      <strong>FECHA&#58;</strong>
+      <br>
+      <strong>HORA&#58;</strong>
+      <br>
+      <strong>NOMBRE&#58;</strong>
+      <br>
+      <strong>PRESCRIPCION&#58;</strong>
+      <br>
+      <br>
+      <br>
+      <strong>PROXIMA CITA&#58;</strong>
   </textarea>
   <script>
     CKEDITOR.replace('editor1', {
