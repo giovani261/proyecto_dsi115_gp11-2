@@ -8,6 +8,7 @@
 // 
 
 window.addEventListener('DOMContentLoaded', event => {
+
     // Toggle the side navigation
 
     const sidebarToggle = document.body.querySelector('#sidebarToggle');
@@ -30,17 +31,18 @@ window.addEventListener('DOMContentLoaded', event => {
             localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
         });
     }
+
 });
 
 $(window).on("load",function() {
     // body...
     $(".loading-container").fadeOut("slow");
     if(document.body.classList.contains('sb-sidenav-toggled')==false){
-         $('#sidebarToggle').find("i").removeClass('fa-xmark fa-solid fa-xl').addClass('fa-bars fa-solid fa-xl');
-     }
-     if(document.body.classList.contains('sb-sidenav-toggled')==true){
-        $('#sidebarToggle').find("i").removeClass('fa-bars fa-solid fa-xl').addClass('fa-xmark fa-solid fa-xl');
+        $('#sidebarToggle').find("i").removeClass('fa-xmark fa-solid fa-xl').addClass('fa-bars fa-solid fa-xl');
     }
+    if(document.body.classList.contains('sb-sidenav-toggled')==true){
+       $('#sidebarToggle').find("i").removeClass('fa-bars fa-solid fa-xl').addClass('fa-xmark fa-solid fa-xl');
+   }
 });
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))

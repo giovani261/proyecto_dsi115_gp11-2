@@ -26,15 +26,15 @@
         </div>
     </div>
     <!-- Card Generar receta-->
-    <div class="card" style="max-width: 18rem;">
+    <div class="card" style="max-width: 18rem;" onclick="consultas();">
         <div class="card-header text-primary"><center><b>Receta</b></center></div>
         <div class="card-body">
-        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#recetaModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
                         <div class="col my-auto">
-                            Registrar Signos Vitales
+                            Registrar Receta Médica
                         </div>
 
                         <div class="col-md-auto my-auto">
@@ -430,6 +430,53 @@
         </div>
         </div> 
 </div>
+
+<!-- Modal receta médica -->
+<div class="modal fade" id="recetaModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registrar Receta Medica</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" id="modalrecetaclinico">
+            @csrf
+            <label for="expedienterecetaid">Seleccione el paciente al que se se le prescribirá receta, el formato de la lista es: Paciente -- Dui</label>
+            <select class="form-select" aria-label="Default select example" name="idexpediente" id="expedienterecetaid" data-bs-toggle="tooltip" title="Seleccione al paciente">
+            </select>
+            <br>
+
+            <label for="inputespecialidadmedica">Especialidad</label>
+            <br>
+            <select class="form-control" id="inputespecialidadmedica" name="especialidadmedica" required>
+                <option value="gastritis">Gastritis y Cáncer del Estomago</option>
+                <option value="colitis">Colitis y cáncer de colon</option>
+                <option value="estreñimiento">Estreñimiento y sangrado rectal</option>
+                <option value="cancer">Cáncer recto y ano</option>
+                <option value="hemorroides">Hemorroides</option>
+                <option value="higado">Hígado y cálculos en vesícula</option>
+                <option value="reflujo">Reflujo gastro-esofágico</option>
+              </select>
+            <br>
+            <label for="medicamentoid">Seleccione los medicamentos</label>
+            <br>
+            <select class="form-control" aria-label="Default select example" name="medicamentoid[]" id="medicamentoid" multiple="multiple" title="Seleccione los medicamentos"></select>
+            <br>
+            <label for="inputindicacionespaciente">Indicaciones</label>
+            <textarea class="form-control" id="inputindicacionespaciente" rows="3" name="indicacionespaciente" required></textarea>
+            <br>
+            </div>
+            <div class="modal-footer">
+                <a href="/editorreceta" type="submit" class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Editar manualmente</a>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+            </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
 <br>
 <center>
     <h5>Agenda de citas del dia</h5>
@@ -525,6 +572,17 @@
     });
     $('#nombrepacientereferencia').select2({
         dropdownParent: $('#referenciaMedicaModalCenter'),
+        width: '100%'
+    });
+    $('#medicamentoid').select2({
+        dropdownParent: $('#recetaModalCenter'),
+        placeholder: 'Seleccione los medicamentos',
+        allowClear: true,
+        width: '100%'
+    });
+    $('#expedienterecetaid').select2({
+        dropdownParent: $('#recetaModalCenter'),
+        placeholder: 'Seleccione al paciente',
         width: '100%'
     });
     $(document).ready(function() {
@@ -626,6 +684,66 @@
                     });
             } else if (result.isDismissed) {
                 Swal.fire('No se registro la consulta subsecuente', '', 'info')
+            }
+            })
+        });
+    });
+//js para envio por ajax para la ventana de receta clinica
+$(document).ready(function() {
+        $("#modalrecetaclinico").submit(function(e) {
+        e.preventDefault();
+        var valinputnombredelpaciente = document.getElementById("expedienterecetaid").value;
+        var valinputespecialidadmedica = document.getElementById("inputespecialidadmedica").value;
+        var valinputindicacionespaciente = document.getElementById("inputindicacionespaciente").value;
+        var valinputmedicamentos=$('#medicamentoid').val();
+        console.log('antes de ir al controlador');
+        console.log(valinputmedicamentos);
+        //var valinputmedicamento = document.getElementByNa("idmedicamento").value;
+        //console.log(selectexpedienteidvalue);
+        Swal.fire({
+            icon: 'info',
+            title: 'Confirmar.',
+            text: '¿Desea continuar?',
+            showCancelButton: true,
+            confirmButtonText: 'Ok',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url:"{{route('receta')}}",
+                    type:"POST",
+                    data:{
+                        'nombredelpaciente': valinputnombredelpaciente,
+                        'especialidadmedica': valinputespecialidadmedica,
+                        'indicacionespaciente': valinputindicacionespaciente,
+                        'medicamentoid': valinputmedicamentos,
+                        "_token": $("meta[name='csrf-token']").attr("content")
+                    },
+                    //dataType:"json",
+                    success: function(test){
+                        //document.getElementById("inputnombre").value="";
+                        console.log(test);
+                            if(test.estado === 'guardado'){
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Hecho!.',
+                                    text: 'Se registro correctamente la receta del paciente: '+test.nombrePaciente,
+                                    confirmButtonText: 'Ok',
+                                    })
+                                $("#modalrecetaclinico")[0].reset(); //Limpiar formulario
+                            }
+                            if(test.estado === 'error'){
+                                console.log('entro a este if');
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Ocurrio un error!.',
+                                    text: 'No se pudo registrar la receta del paciente: '+test.nombrePaciente,
+                                    confirmButtonText: 'Ok',
+                                    })
+                            }
+                        }
+                    });
+            } else if (result.isDismissed) {
+                Swal.fire('Se cancelo el registro la receta del paciente', '', 'info')
             }
             })
         });
@@ -870,6 +988,62 @@ function consultarexpedientes(comboBox){
                     }
     });
 }
+function consultarexpedientes_receta(){
+    var comboExpedientes = document.getElementById("expedienterecetaid");
+    $.ajax({
+                    url:"{{route('exprecetaconsultarajax')}}",
+                    type:"GET",
+                    data:{
+                    },
+                    //dataType:"json",
+                    success: function(test){
+                        //console.log(test);
+                        //console.log("legth "+test.expedientes.length);
+                        for (var j = test.expedientes.length; j >= 0; j--) {
+                            comboExpedientes.remove(j);
+                        }
+                        for (var i = 0; i < test.expedientes.length; i++) {
+                            const option = document.createElement('option');
+                            const valornombre = test.expedientes[i].nombre;
+                            const valordui = test.expedientes[i]["dui paciente"];
+                            option.value = test.expedientes[i].nombre;
+                            option.text = valornombre + "--" + valordui;
+                            comboExpedientes.appendChild(option);
+                        }
+                    }
+    });
+}
+function consultarmedicamentos(){
+    var comboMedicamentos = document.getElementById("medicamentoid");
+    $.ajax({
+                    url:"{{route('medicamentoconsultarajax')}}",
+                    type:"GET",
+                    data:{
+                    },
+                    //dataType:"json",
+                    success: function(test){
+                        //console.log(test);
+                        //console.log("legth "+test.medicamentos.length);
+                        for (var j = test.medicamentos.length; j >= 0; j--) {
+                            comboMedicamentos.remove(j);
+                        }
+                        for (var i = 0; i < test.medicamentos.length; i++) {
+                            const option = document.createElement('option');
+                            const valornombre = test.medicamentos[i].nombre;
+                            option.value = test.medicamentos[i].id;
+                            option.text = valornombre;
+                            comboMedicamentos.appendChild(option);
+                        }
+                    }
+    });
+}
+function consultas() {
+    consultarexpedientes_receta();
+    consultarmedicamentos();
+    
+}
+
+
 
 function consultarhistorial(expediente, fecha, enfermedad){
         $.ajax({

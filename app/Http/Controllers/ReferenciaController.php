@@ -25,11 +25,11 @@ class ReferenciaController extends Controller
             
                 $referencia->save();
             
-                return response()->json(['nombrePaciente' => $referenciaNombre,'estado' => 'guardado']);
+                return response()->json(['nombrePaciente'=>$referenciaNombre,'estado' => 'guardado']);
             
             } catch (Throwable $e) {
-                //report($e); //report error
-                return response()->json(['nombrePaciente' => $referenciaNombre,'estado' => 'error']);
+                //report($e);
+                return response()->json(['nombrePaciente'=>$referenciaNombre,'estado' => 'error']);
             }
         }
         else {

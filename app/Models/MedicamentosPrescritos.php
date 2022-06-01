@@ -14,6 +14,8 @@ class MedicamentosPrescritos extends Model
      *
      * @var array<int, string>
      */
+    public $timestamps = false;
+    protected $table="medicamentos_prescritos";
     protected $fillable = [
         'receta_id',
         'medicamento_id',

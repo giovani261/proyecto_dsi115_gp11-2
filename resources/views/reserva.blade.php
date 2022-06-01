@@ -78,13 +78,6 @@
                 language: 'es'
             });
     });
-
-    $(document).ready(function(){
-        $("#inputhora").clockTimePicker({
-            
-        });
-    });
-
     $(document).ready(function(){
         $("#reservarCita").submit(function(e){
             e.preventDefault();
