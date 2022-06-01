@@ -13,9 +13,8 @@
         <meta name="author" content="" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Unidad medica humana</title>
-        <!-- Favicon icono de la clinica-->
-        <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> -->
-        <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap sidebar)-->
         <!-- <link href="{{ asset('../resources/css/sidebar.css') }}" rel="stylesheet" /> -->
         <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet" />
@@ -81,14 +80,14 @@
                 <!-- Top navigation-->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
-                        <button class="btn" id="sidebarToggle"><i class="fa-bars fa-solid fa-xl"></i></button>
+                        <button class="btn" id="sidebarToggle" onclick="iconbar();"><i class="fa-solid fa-bars fa-xl"></i></button>
                         <a class="ahome text-dark" href="#!"><i class="fa-solid fa-user-doctor fa-xl"></i> Unidad medica humana</a> 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                                 @auth
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user fa-xl"></i> {{ Auth::user()->name }}</a>
+                                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-circle-user fa-xl"></i> {{ Auth::user()->name }}</a>
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
