@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
- 
+
 @section('contenido')
 
 <!-- Favicon.ico -->
@@ -9,21 +9,30 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Citas médicas
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#citaModal" class="btn btn-primary float-end btn-sm">Agendar cita</a>
-                    </h4>
-                </div>
-                <div class="card-body">
-                </div>
+            <div class="card-header">
+                <h4>Citas médicas</h4>
             </div>
+            <br>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#citaModal" class="btn btn-primary col-sm-3">Agendar cita</a>
+            <br>
+           <br>
+            <table class="table text-md-nowrap" id="datatable">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Especialidad</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
 </div>
 <!-- Modal Agendar Cita-->
 <div class="modal fade" id="citaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Rservación de Citas</h5>
@@ -32,24 +41,75 @@
             <div class="modal-body"> <form method="POST" id="reservarCita">
                 @csrf
                 <div class="from-group mb-3">
-                    <label for="">Nombre del paciente</label>
-                    <input type="text" class="name form-control" id="inputnombre" required>
+                    <label for="" class="form-label">Nombre del paciente</label>
+                    <input type="text" class="name form-control" id="inputnombre" pattern="[a-zA-Z'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el nombre del paciente, solo se permiten letras" required required>
+                    <div class="invalid-feedback">
+                        Este campo no puede estar vacío.
+                    </div>
                 </div>
                 <div class="from-group mb-3">
                     <label for="">Telefono</label>
-                    <input type="text" class="phone form-control" id="inputTelefono" required>
+                    <input type="text" class="phone form-control" id="inputTelefono" pattern="^(2|7)[0-9]{7}$" data-bs-toggle="tooltip" title="Ingrese el número de téfono fijo o celular" required>
+                </div>
+                <div class="invalid-feedback">
+                    Este campo no puede estar vacio.
                 </div>
                 <div class="from-group mb-3">
                     <label for="">Fecha</label>
-                    <input type="text" class="date form-control" id="inputfecha" required><i class="fa fa-calendar"></i>
+                    <input type="text" class="date form-control" id="inputfecha" data-bs-toggle="tooltip" title="Ingrese la fecha" required><i class="fa fa-calendar"></i>
                 </div>
+                <div class="invalid-feedback">
+                    Este campo no puede estar vacio.
+                </div>
+                <style>
+                    div {
+                        margin-bottom: 10px;
+                        position: relative;
+                        }
+
+                        input[type="number"] {
+                        width: 100px;
+                        }
+
+                        input + span {
+                        padding-right: 30px;
+                        }
+
+                        input:invalid+span:after {
+                        position: absolute;
+                        content: '✖';
+                        padding-left: 5px;
+                        }
+
+                        input:valid+span:after {
+                        position: absolute;
+                        content: '✓';
+                        padding-left: 5px;
+                        }
+                </style>
                 <div class="from-group mb-3">
                     <label for="">Hora</label>
-                    <input type="text" class="time form-control" id="inputhora" required>
+                    <input type="time" min="09:00" max="13:00" step="120" class="time form-control" id="inputhora"data-bs-toggle="tooltip" title="Ingrese la hora"  required>
+                    <span class="validity"></span>
                 </div>
+                <div class="invalid-feedback">
+                    Este campo no puede estar vacio.
+                </div>
+                <label for="inputespecialidadmedica">Especialidad</label>
+                <br>
                 <div class="from-group mb-3">
-                    <label for="">Especialidad</label>
-                    <input type="text" class="name form-control" id="inputespecialidad" required>
+                    <select class="form-control" id="inputespecialidad" name="especialidad" data-bs-toggle="tooltip" title="Ingrese el motivo de la consulta" required>
+                        <option value="gastritis">Gastritis y Cáncer del Estomago</option>
+                        <option value="colitis">Colitis y cáncer de colon</option>
+                        <option value="estreñimiento">Estreñimiento y sangrado rectal</option>
+                        <option vvalue="cancer">Cáncer recto y ano</option>
+                        <option alue="hemorroides">Hemorroides</option>
+                        <option value="higado">Hígado y cálculos en vesícula</option>
+                        <option value="reflujo">Reflujo gastro-esofágico</option>
+                    </select>
+                </div>
+                <div class="invalid-feedback">
+                    Este campo no puede estar vacio.
                 </div>
             </div>
             <div class="modal-footer">
@@ -63,7 +123,12 @@
 @endsection
 @section('scripts')
 <script src="{{ asset('js/bootstrap-datepicker.es.js') }}"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
 <script>
+
     $(document).ready(function() {
         var datesForDisable = ["08-5-2021", "08-10-2021", "08-15-2021", "08-20-2021"]; 
             $('#inputfecha').datepicker({
@@ -78,6 +143,7 @@
                 language: 'es'
             });
     });
+
     $(document).ready(function(){
         $("#reservarCita").submit(function(e){
             e.preventDefault();
@@ -101,6 +167,7 @@
                 $.ajax({
                     url:"{{route('reserva')}}",
                     type:"POST",
+                    dataType:"json",
                     data:{
                         'NombrePaciente': valinputnombre,
                         'Telefono': valinputTelefono,
@@ -109,22 +176,71 @@
                         'Especialidad': valinputespecialidad,
                         "_token": $("meta[name='csrf-token']").attr("content")
                     },
-                    //dataType:"json",
                     success: function(test){
                         //document.getElementById("inputnombre").value="";
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Hecho!.',
-                            text: 'Se reservo correctamente la cita del paciente ' +test.nombrePaciente,
-                            confirmButtonText: 'Ok',
-                            })
+                        $('#inputnombre').val(null);
+                        $('#inputTelefono').val(null);
+                        $('#inputfecha').val(null).trigger('change');
+                        $('#inputhora').val(null);
+                        $('#inputespecialidad').val(null).trigger('change');
+                        $('#datatable').DataTable().ajax.reload(null,false);
+                        if(test.estado === 'guardado'){
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Hecho!.',
+                                    text: 'Se registro correctamente la cita médica del paciente: '+test.nombrePaciente,
+                                    confirmButtonText: 'Ok',
+                                    })
+                                
+                            }
+                            if(test.estado === 'error'){
+                                //console.log('entro a este if');
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Ocurrio un error!.',
+                                    text: 'No se pudo registrar la serva de cita médica del paciente: '+test.nombrePaciente,
+                                    confirmButtonText: 'Ok',
+                                    })
+                            }
                         }
+                        //table.draw();
                     });
             } else if (result.isDismissed) {
                 Swal.fire('No se registro la reserva de cita médica', '', 'info')
             }
             })
         });
+    });
+
+    $(document).ready(function () {
+        $('#datatable').DataTable({
+            "responsive":true,
+            "ajax": "{{route('reservas_data')}}",
+            "type":"GET",
+            "columns":[
+                {data:'nombre'},
+                {data:'telefono'},
+                {data:'fecha'},
+                {data:'hora'},
+                {data:'especialidad'}
+            ],
+
+            "language":{
+                "decimal":        "",
+                "emptyTable":     "No data available in table",
+                "info":           "Mostrando la página _START_ de _END_ de _TOTAL_ registros",
+                "infoEmpty":      "Showing 0 to 0 of 0 entries",
+                "infoFiltered":   "(Filtrado de _MAX_ registros totales)",
+                "lengthMenu":     "Mostrar _MENU_ registros por páginas",
+                "loadingRecords": "Cargando registros...",
+                "processing":     "",
+                "search":         "Buscar:",
+                "zeroRecords":    "No se encontraron registros",
+                
+               
+            } 
+        });
+        
     });
 </script>
 @endsection

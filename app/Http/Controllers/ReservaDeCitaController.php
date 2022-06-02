@@ -59,6 +59,13 @@ class ReservaDeCitaController extends Controller
             return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se a cerrado su sesion');
         }
     }
+    public function reservas_data(){
+        $reservas = ReservaDeCita::select('nombre','telefono','fecha','hora','especialidad')->orderBy('fecha')->get();
+        //return response()->json(['reservas' => $reservas]);
+        //return $reservas;
+        return datatables($reservas)->toJson();
+    
+}
 
     public function create()
     {

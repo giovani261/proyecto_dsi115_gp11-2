@@ -65,6 +65,8 @@ Route::get('/reserva',[ReservaDeCitaController::class,'index'])->name('index');
 Route::match(['post'], '/crear-referencia', [ReferenciaController::class, 'guardar_referencia_medica'])->name('crear_referencia');
 Route::get('/editar_referencia', [ReferenciaController::class, 'editar_referencia'])->name('editar_referencia');
 
+Route::get('reservas_data',[ReservaDeCitaController::class,'reservas_data'])->name('reservas_data');
+
 Route::get('/informes', function () {
     return view('informe');
 });
