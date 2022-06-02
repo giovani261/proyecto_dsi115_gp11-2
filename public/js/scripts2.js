@@ -70,6 +70,11 @@ $(window).on('hashchange', function(e){
     history.replaceState ("", document.title, e.originalEvent.oldURL);
 });
 
+function removevalidateform(formid){
+    var element = document.getElementById(formid);
+    element.classList.remove("was-validated");
+}
+
 // JavaScript for disabling form submissions if there are invalid fields
 (function () {
     'use strict'

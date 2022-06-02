@@ -4,27 +4,6 @@
 <br>
 <div class="container-fluid containercardsdash">
     <br>
-    <!-- Card Signos a borrar-->
-    <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center><b>Signos vitales</b></center></div>
-        <div class="card-body">
-        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-            <div class="container">
-                <center>
-                    <div class="row">
-                        <div class="col my-auto">
-                            Registrar Signos Vitales
-                        </div>
-
-                        <div class="col-md-auto my-auto">
-                            <i class="fa-solid fa-heart-pulse fa-4x"></i>
-                        </div>
-                    </div>
-                </center>
-            </div>   
-        </a>
-        </div>
-    </div>
     <!-- Card Generar receta-->
     <div class="card" style="max-width: 18rem;" onclick="consultas();">
         <div class="card-header text-primary"><center><b>Receta</b></center></div>
@@ -136,7 +115,7 @@
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Registrar Consulta Subsecuente</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="removevalidateform('modalsignos');">
             </button>
         </div>
         <div class="modal-body">
@@ -168,7 +147,7 @@
         <br>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="removevalidateform('modalsignos');">Cerrar</button>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
         </form>
@@ -181,7 +160,7 @@
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Registrar Historial Clinico</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="removevalidateform('modalhistorialclinico');">
             </button>
         </div>
         <div class="modal-body">
@@ -257,7 +236,7 @@
         </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cerrar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="removevalidateform('modalhistorialclinico');"><i class="fa-solid fa-xmark"></i> Cerrar</button>
             <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
         </div>
         </form>
@@ -270,7 +249,7 @@
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Registrar Expediente Clinico</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="removevalidateform('modalexpedienteclinico');">
             </button>
         </div>
         <div class="modal-body">
@@ -317,7 +296,7 @@
         <textarea class="form-control" id="inputantecedentes" rows="3" name="antecedentes" data-bs-toggle="tooltip" title="Ingrese los antecedentes patologicos del paciente"></textarea>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cerrar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="removevalidateform('modalexpedienteclinico');"><i class="fa-solid fa-xmark"></i> Cerrar</button>
             <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
         </div>
         </form>
@@ -332,7 +311,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Crear referencia m&eacute;dica</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="removevalidateform('modalreferenciamedica');">
             </button>
           </div>
           <div class="modal-body">
@@ -379,7 +358,7 @@
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Registrar Incapacidad Medica</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="removevalidateform('modalincapacidadclinico');">
                 </button>
             </div>
             <div class="modal-body">
@@ -437,17 +416,19 @@
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Registrar Receta Medica</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="removevalidateform('modalrecetaclinico');">
                 </button>
             </div>
             <div class="modal-body">
-            <form method="POST" id="modalrecetaclinico">
+            <form method="POST" id="modalrecetaclinico" class="needs-validation" novalidate>
             @csrf
-            <label for="expedienterecetaid">Seleccione el paciente al que se se le prescribirá receta, el formato de la lista es: Paciente -- Dui</label>
+            <label for="expedienterecetaid">Seleccione el paciente al que se le prescribirá receta, el formato de la lista es: Paciente -- Dui</label>
             <select class="form-select" aria-label="Default select example" name="idexpediente" id="expedienterecetaid" data-bs-toggle="tooltip" title="Seleccione al paciente">
             </select>
+            <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+            </div>
             <br>
-
             <label for="inputespecialidadmedica">Especialidad</label>
             <br>
             <select class="form-control" id="inputespecialidadmedica" name="especialidadmedica" required>
@@ -459,13 +440,22 @@
                 <option value="higado">Hígado y cálculos en vesícula</option>
                 <option value="reflujo">Reflujo gastro-esofágico</option>
               </select>
+            <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+            </div>
             <br>
             <label for="medicamentoid">Seleccione los medicamentos</label>
             <br>
             <select class="form-control" aria-label="Default select example" name="medicamentoid[]" id="medicamentoid" multiple="multiple" title="Seleccione los medicamentos"></select>
+            <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+            </div>
             <br>
             <label for="inputindicacionespaciente">Indicaciones</label>
             <textarea class="form-control" id="inputindicacionespaciente" rows="3" name="indicacionespaciente" required></textarea>
+            <div class="invalid-feedback">
+                Este campo no puede estar vacio.
+            </div>
             <br>
             </div>
             <div class="modal-footer">
@@ -692,6 +682,7 @@
 $(document).ready(function() {
         $("#modalrecetaclinico").submit(function(e) {
         e.preventDefault();
+        var element = document.getElementById("modalrecetaclinico");
         var valinputnombredelpaciente = document.getElementById("expedienterecetaid").value;
         var valinputespecialidadmedica = document.getElementById("inputespecialidadmedica").value;
         var valinputindicacionespaciente = document.getElementById("inputindicacionespaciente").value;
@@ -700,6 +691,7 @@ $(document).ready(function() {
         console.log(valinputmedicamentos);
         //var valinputmedicamento = document.getElementByNa("idmedicamento").value;
         //console.log(selectexpedienteidvalue);
+        if (element.checkValidity() === true) {
         Swal.fire({
             icon: 'info',
             title: 'Confirmar.',
@@ -721,6 +713,7 @@ $(document).ready(function() {
                     //dataType:"json",
                     success: function(test){
                         //document.getElementById("inputnombre").value="";
+                        element.classList.remove("was-validated");
                         console.log(test);
                             if(test.estado === 'guardado'){
                                 Swal.fire({
@@ -746,6 +739,7 @@ $(document).ready(function() {
                 Swal.fire('Se cancelo el registro la receta del paciente', '', 'info')
             }
             })
+        }
         });
     });
     //js para envio por ajax para la ventana de historial
