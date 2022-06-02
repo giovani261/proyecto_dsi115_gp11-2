@@ -435,8 +435,8 @@
                 <option value="gastritis">Gastritis y Cáncer del Estomago</option>
                 <option value="colitis">Colitis y cáncer de colon</option>
                 <option value="estreñimiento">Estreñimiento y sangrado rectal</option>
-                <option value="cancer">Cáncer recto y ano</option>
-                <option value="hemorroides">Hemorroides</option>
+                <option vvalue="cancer">Cáncer recto y ano</option>
+                <option alue="hemorroides">Hemorroides</option>
                 <option value="higado">Hígado y cálculos en vesícula</option>
                 <option value="reflujo">Reflujo gastro-esofágico</option>
               </select>
@@ -687,8 +687,8 @@ $(document).ready(function() {
         var valinputespecialidadmedica = document.getElementById("inputespecialidadmedica").value;
         var valinputindicacionespaciente = document.getElementById("inputindicacionespaciente").value;
         var valinputmedicamentos=$('#medicamentoid').val();
-        console.log('antes de ir al controlador');
-        console.log(valinputmedicamentos);
+        //console.log('antes de ir al controlador');
+        //console.log(valinputmedicamentos);
         //var valinputmedicamento = document.getElementByNa("idmedicamento").value;
         //console.log(selectexpedienteidvalue);
         if (element.checkValidity() === true) {

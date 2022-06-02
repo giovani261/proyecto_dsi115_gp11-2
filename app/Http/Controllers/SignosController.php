@@ -55,4 +55,11 @@ class SignosController extends Controller
 
     }
 
+    public function signos_informes(){
+        $signos = ConsultaSubsecuente::select('historial_id','presion arterial maxima','temperatura','pulso','peso','imc','presion arterial minima','talla','altura')->get();
+            //return response()->json(['reservas' => $reservas]);
+            //return $reservas;
+            return datatables($signos)->toJson();
+    }
+
 }
