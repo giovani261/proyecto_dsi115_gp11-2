@@ -64,3 +64,11 @@ Route::get('/reserva',[ReservaDeCitaController::class,'index'])->name('index');
 
 Route::match(['post'], '/crear-referencia', [ReferenciaController::class, 'guardar_referencia_medica'])->name('crear_referencia');
 Route::get('/editar_referencia', [ReferenciaController::class, 'editar_referencia'])->name('editar_referencia');
+
+Route::get('/informes', function () {
+    return view('informe');
+});
+Route::get('/signos-informes', function () {
+    return view('signosInforme');
+});
+Route::get('signos_informes',[SignosController::class,'signos_informes'])->name('signos_informes');
