@@ -176,7 +176,7 @@
         <br>
         <label for="inputfechadeenfermedadactual">Fecha de enfermedad actual</label>
         <div class="input-group date">
-            <input type="text" class="form-control" id="inputfechadeenfermedadactual" name="fechaenfermedadactual" data-bs-toggle="tooltip" title="Seleccione una fecha" required>
+            <input type="text" class="form-control" id="inputfechadeenfermedadactual" name="fechaenfermedadactual" data-bs-toggle="tooltip" title="Seleccione una fecha" autocomplete="off" required>
             <i class="fa-solid fa-calendar-days calendario"></i>
         </div>
         <div class="invalid-feedback">
@@ -185,7 +185,7 @@
         <br>
         <label for="inputfechadediagnostico">Fecha de diagnostico</label>
         <div class="input-group date">
-            <input type="text" class="form-control" id="inputfechadediagnostico" name="fechadiagnostico" data-bs-toggle="tooltip" title="Seleccione una fecha" required>
+            <input type="text" class="form-control" id="inputfechadediagnostico" name="fechadiagnostico" data-bs-toggle="tooltip" title="Seleccione una fecha" autocomplete="off" required>
             <i class="fa-solid fa-calendar-days calendario"></i>
         </div>
         <div class="invalid-feedback">
@@ -365,7 +365,7 @@
             @csrf
             <label for="inputfechadeincapacidad">Fecha de enfermedad actual</label>
             <div class="input-group date">
-                <input type="text" class="form-control" id="inputfechadeincapacidad" name="fechaincapacidad" required>
+                <input type="text" class="form-control" id="inputfechadeincapacidad" name="fechaincapacidad" autocomplete="off" required>
                 <i class="fa-solid fa-calendar-days calendario"></i>
             </div>
             <div class="invalid-feedback">

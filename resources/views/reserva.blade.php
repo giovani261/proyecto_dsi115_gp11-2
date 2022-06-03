@@ -35,10 +35,11 @@
     <div class="modal-dialog modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Rservación de Citas</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Reservación de Citas</h5>
                 <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
             </div>
-            <div class="modal-body"> <form method="POST" id="reservarCita">
+            <div class="modal-body"> 
+                <form method="POST" id="reservarCita" class="needs-validation" novalidate>
                 @csrf
                 <div class="from-group mb-3">
                     <label for="" class="form-label">Nombre del paciente</label>
@@ -54,9 +55,10 @@
                 <div class="invalid-feedback">
                     Este campo no puede estar vacio.
                 </div>
-                <div class="from-group mb-3">
-                    <label for="">Fecha</label>
-                    <input type="text" class="date form-control" id="inputfecha" data-bs-toggle="tooltip" title="Ingrese la fecha" required><i class="fa fa-calendar"></i>
+                <label for="">Fecha</label>
+                <div class="input-group date">
+                    <input type="text" class="date form-control" id="inputfecha" data-bs-toggle="tooltip" title="Ingrese la fecha" autocomplete="off" required>
+                    <i class="fa fa-calendar calendario"></i>
                 </div>
                 <div class="invalid-feedback">
                     Este campo no puede estar vacio.
@@ -73,18 +75,6 @@
 
                         input + span {
                         padding-right: 30px;
-                        }
-
-                        input:invalid+span:after {
-                        position: absolute;
-                        content: '✖';
-                        padding-left: 5px;
-                        }
-
-                        input:valid+span:after {
-                        position: absolute;
-                        content: '✓';
-                        padding-left: 5px;
                         }
                 </style>
                 <div class="from-group mb-3">
@@ -114,7 +104,7 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
-                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="removevalidateform('reservarCita');">Cancelar</button>
             </div></form>  
         </div>
     </div>
@@ -148,14 +138,14 @@
         $("#reservarCita").submit(function(e){
             e.preventDefault();
             //console.log("Hola");
-
+            var element = document.getElementById("reservarCita");
             var valinputnombre = document.getElementById("inputnombre").value;
             var valinputTelefono = document.getElementById("inputTelefono").value;
             var valinputfecha = document.getElementById("inputfecha").value;
             var valinputhora = document.getElementById("inputhora").value;
             var valinputespecialidad = document.getElementById("inputespecialidad").value;
             //console.log(valinputnombre);
-
+        if (element.checkValidity() === true) {
             Swal.fire({
             icon: 'info',
             title: 'Confirmar.',
@@ -178,6 +168,7 @@
                     },
                     success: function(test){
                         //document.getElementById("inputnombre").value="";
+                        element.classList.remove("was-validated");
                         $('#inputnombre').val(null);
                         $('#inputTelefono').val(null);
                         $('#inputfecha').val(null).trigger('change');
@@ -209,6 +200,7 @@
                 Swal.fire('No se registro la reserva de cita médica', '', 'info')
             }
             })
+        }
         });
     });
 

@@ -60,7 +60,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/roles', [DashboardController::class, 'roles'])->name('roles');
 
-Route::get('/reserva',[ReservaDeCitaController::class,'index'])->name('index');
+Route::get('/reserva',[ReservaDeCitaController::class,'index'])->middleware('auth')->name('index');
 
 Route::match(['post'], '/crear-referencia', [ReferenciaController::class, 'guardar_referencia_medica'])->name('crear_referencia');
 Route::get('/editar_referencia', [ReferenciaController::class, 'editar_referencia'])->name('editar_referencia');
@@ -69,8 +69,8 @@ Route::get('reservas_data',[ReservaDeCitaController::class,'reservas_data'])->na
 
 Route::get('/informes', function () {
     return view('informe');
-});
+})->middleware('auth');
 Route::get('/signos-informes', function () {
     return view('signosInforme');
-});
-Route::get('signos_informes',[SignosController::class,'signos_informes'])->name('signos_informes');
+})->middleware('auth');
+Route::get('signos_informes',[SignosController::class,'signos_informes'])->middleware('auth')->name('signos_informes');

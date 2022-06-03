@@ -8,6 +8,10 @@ use App\Models\Medicamento;
 class MedicamentoController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function consultarmedicamentoajax(){
         $medicamentos = Medicamento::select('id','nombre')->orderBy('nombre')->get();
         return response()->json(['medicamentos' => $medicamentos]);

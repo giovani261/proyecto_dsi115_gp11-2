@@ -8,6 +8,11 @@ use Auth;
 
 class ReferenciaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function guardar_referencia_medica(Request $request) {
         if(Auth::user()->hasRole(['administrador'])) {
             try {

@@ -11,6 +11,11 @@ use Carbon\Carbon;
 class HistorialController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function registro(Request $request){
         if(Auth::user()->hasRole(['administrador']))
         {

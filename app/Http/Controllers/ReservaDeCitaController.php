@@ -16,7 +16,14 @@ class ReservaDeCitaController extends Controller
      */
     public function index()
     {
-        return view('reserva');
+        if(Auth::user()->hasRole(['administrador|secretaria'])){
+            return view('reserva');
+        }
+        else{
+            Auth::logout();
+            //$request->session()->invalidate();
+            return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se a cerrado su sesion');
+        }
     }
 
     /**
@@ -24,13 +31,14 @@ class ReservaDeCitaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
     public function registro(Request $request){
-        if(Auth::user()->hasRole(['administrador']))
-        {
             try {
-                $user_id = Auth::user()->id;
+                if(!Auth::guest()){   
+                    $user_id = Auth::user()->id;
+                }
+                else{
+                    $user_id = NULL;
+                }
                 $nombrePaciente = request('NombrePaciente');
                 $telefono = request('Telefono');
                 $fecha = request('Fecha');
@@ -52,12 +60,6 @@ class ReservaDeCitaController extends Controller
                 //report($e);
                 return response()->json(['nombrePaciente' => $nombrePaciente, 'estado' => 'error']);
             }
-        }
-        else {
-            Auth::logout();
-            //$request->session()->invalidate();
-            return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se a cerrado su sesion');
-        }
     }
     public function reservas_data(){
         $reservas = ReservaDeCita::select('nombre','telefono','fecha','hora','especialidad')->orderBy('fecha')->get();

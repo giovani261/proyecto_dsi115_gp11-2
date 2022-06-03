@@ -243,7 +243,7 @@
                 </div>
                 <label for="" class="text-dark">Fecha</label>
                 <div class="input-group date">
-                    <input type="text" class="date form-control" id="inputfecha" required>
+                    <input type="text" class="date form-control" id="inputfecha" autocomplete="off" required>
                     <i class="fa-solid fa-calendar-days calendario"></i>
                     <div class="invalid-feedback">
                     Este campo no puede quedar vacio.

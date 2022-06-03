@@ -9,6 +9,11 @@ use Auth;
 
 class RecetaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function registro(Request $request){
         //return $request;
         if(Auth::user()->hasRole(['administrador']))
