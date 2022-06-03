@@ -351,7 +351,6 @@
         </div>
       </div>
 
-
         <!-- Modal Incapacidad clinico-->
         <div class="modal fade" id="incapacidadClinicoModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
@@ -394,7 +393,7 @@
             <!-- <input id="inputobservaciones" type="text" class="form-control" name="observaciones" required> -->
             <br>
             <label for="inputdiasincapacidad">Dias de incapacidad</label>
-            <input type="number" class="form-control" id="inputdiasincapacidad"  name="diasincapacidad" min="0" max="120" pattern="[0-120]" required>
+            <input type="number" class="form-control" id="inputdiasincapacidad"  name="diasincapacidad" min="0" max="120" pattern="[0-120]" placeholder="Solo números enteros" required>
             <div class="invalid-feedback">
                 Este campo no puede estar vacio.
             </div>
@@ -429,6 +428,7 @@
                 Este campo no puede estar vacio.
             </div>
             <br>
+            <br>
             <label for="inputespecialidadmedica">Especialidad</label>
             <br>
             <select class="form-control" id="inputespecialidadmedica" name="especialidadmedica" required>
@@ -450,6 +450,7 @@
             <div class="invalid-feedback">
                 Este campo no puede estar vacio.
             </div>
+            <br>
             <br>
             <label for="inputindicacionespaciente">Indicaciones</label>
             <textarea class="form-control" id="inputindicacionespaciente" rows="3" name="indicacionespaciente" required></textarea>
