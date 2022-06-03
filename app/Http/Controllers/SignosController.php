@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ConsultaSubsecuente;
 use App\Models\User;
 use Auth;
+use DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SignosController extends Controller
@@ -56,9 +57,10 @@ class SignosController extends Controller
     }
 
     public function signos_informes(){
-        $signos = ConsultaSubsecuente::select('historial_id','presion arterial maxima','temperatura','pulso','peso','imc','presion arterial minima','talla','altura')->get();
+        //$signos = ConsultaSubsecuente::select('historial_id','presion arterial maxima','temperatura','pulso','peso','imc','presion arterial minima','talla','altura')->get();
             //return response()->json(['reservas' => $reservas]);
             //return $reservas;
+            $signos=DB::select('SELECT e.nombre, e.edad,"presion arterial maxima",temperatura,pulso,peso,imc,"presion arterial minima",talla,altura FROM consulta_subsecuente INNER JOIN historiales h ON consulta_subsecuente.historial_id=h.id INNER JOIN expedientes e ON h.expediente_id=e.id');
             return datatables($signos)->toJson();
     }
 
