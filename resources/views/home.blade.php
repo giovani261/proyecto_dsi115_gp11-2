@@ -300,11 +300,18 @@
                                                     <div class="icon">
                                                         <i class="flaticon-first-aid-kit"></i>
                                                     </div>
-                                                    <h3>Leading edge care for Your family</h3>
-                                                    <p>Esteem spirit temper too say adieus who direct esteem.
-                                                        It esteems luckily picture placing drawing. Apartments frequently or motionless on
-                                                        reasonable projecting expression.
-                                                    </p>
+                                                        <div class="department_content">
+                                                            <h3>Excelente servicio m&#233;dico</h3>
+                                                            <p style="font-size: 15px;"> &#34;Medicina y Cirug&#237;a Gastrointestinal J.V.P.M. 1668&#34; es una clinica
+                                                                que atiende enfermedades gastrointestinales. Ofrecemos servicios m&#233;dicos de
+                                                                excelencia, eficiente y accesibles.<br><br>
+                                                                Cualquier tipo de informaci&#243;n adional, con gusto le corresponderemos.
+                                                                Haga su cita o contactemos en nuestras redes sociales.                
+                                                            </p>
+                                                        </div>   
+                                                    <div class="modal-footer" style="text-align: right;">
+                                                        <a href="#href" type="submit" class="btn btn-primary"><i class="fa-solid fa-calendar-days"></i> Haz tu cita</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-md-6">
@@ -314,7 +321,7 @@
                                             </div>
                                     </div>
                             </div>
-                          </div>
+                    </div>
             </div>
         </div>
     </div>

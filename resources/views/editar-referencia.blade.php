@@ -1,14 +1,58 @@
 @extends('layouts.plantilla')
 @section('contenido')
-<h1>Edici&oacute;n de referencia m&eacute;dica<h1>
-<textarea cols="80" id="editor1" name="editor1" rows="10" data-sample-short>
-  <p>
-    <img alt="logo" class="img-thumbnail logo" src="{{ asset('imgs/logo.jpeg') }}" width="100" height="100" />
-  </p>
-  
-<h1><span style="font-size:20px"><strong>Unidad m&eacute;dica humana</strong></span><br />
-<span style="font-size:22px"><strong>Referencia m&eacute;dica</strong></span></h1>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Editar Referencia Medica</title>
+  <script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <br>
+    <div style="margin: 0; padding:0;" class="col">   
+        <style>
+            .img-thumbnail asc1{
+                height: 2%;
+                width: 2%;
+            }
+            .img-thumbnail asc2{
+                height: 5%;
+                width: 5%;
+            }
+            .img-thumbnail asc3{
+                height: 5%;
+                width: 5%;
+            }   
+            .col{
 
+                text-align: center; 
+                display: inline-block;
+            }     
+            .titulo{
+            background-color: #6a2730;
+            height: 50px;
+        }
+        </style> 
+    </div> 
+    <div style="margin: 0; padding:0;" class="section_title text-center mb-55">
+        <h3 style="font-size: 25px;">MEDICINA Y CIRUGÍA GASTROINTESTINAL - J.V.P.M. 1668 </h3>
+        <p><strong>DR. RENE RODRÍGUEZ ROMERO.</strong></p>
+    </div>
+    <br> 
+    <div class="titulo">
+        <h6 style="text-align: center; font-size: 18px; padding-top:15px;" class="text-white">EDITAR REFERENCIA MEDICA</h6>
+    </div>  
+<textarea cols="80" id="editor1" name="editor1" rows="10" data-sample-short>
+	<br>
+	<br>
+  <p>
+    <img alt="logo" class="img-thumbnail logo" src="{{ asset('imgs/logo.jpeg') }}" width="100" height="100" style="margin: auto; display: block" />
+  </p>
+<h1 style="text-align: center;"><span style="font-size:20px"><strong>Unidad m&eacute;dica humana</strong></span><br />
+<span style="font-size:22px"><strong>Referencia m&eacute;dica</strong></span></h1>
 <table align="left" border="0" cellpadding="1" cellspacing="1" style="height:148px; width:619px">
 	<tbody>
 		<tr>
@@ -84,4 +128,6 @@
       removeButtons: 'PasteFromWord'
   });
 </script>
+</body>
+</html>
 @endsection
