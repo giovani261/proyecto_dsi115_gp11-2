@@ -51,19 +51,48 @@
         <h6 style="text-align: center; font-size: 18px; padding-top:15px;" class="text-white">EDITAR RECETA MEDICA</h6>
     </div> 
   <textarea cols="80" id="editor1" name="editor1" rows="10" data-sample-short>
-        <br>
-        <br>
-      <strong>FECHA&#58;</strong>
-      <br>
-      <strong>HORA&#58;</strong>
-      <br>
-      <strong>NOMBRE&#58;</strong>
-      <br>
-      <strong>PRESCRIPCION&#58;</strong>
       <br>
       <br>
       <br>
-      <strong>PROXIMA CITA&#58;</strong>
+      <h1 style="text-align: center;"><span style="font-size:20px"><strong>Unidad m&eacute;dica humana</strong></span><br />
+        <span style="font-size:22px"><strong>Referencia m&eacute;dica</strong></span></h1>
+
+    <table align="left" border="0" cellpadding="1" cellspacing="1" style="height:148px; width:619px">
+        <tbody>
+            <tr>
+                <td colspan="2">Fecha&#58;</td>
+                <td colspan="3"><u><?php echo date('d-m-Y'); ?></u></td>
+            </tr>
+            <tr>
+                <td colspan="2">Hora&#58;</td>
+                <td colspan="3"><u>[Hora de expedici&#243;n]</u></td>
+            </tr>
+            <tr>
+                <td colspan="2">Nombre&#58;</td>
+                <td colspan="3"><u>[Nombre del paciente]</u></td>
+            </tr>
+            <tr>
+                <td colspan="2">Prescripci&#243;n&#58;</td>
+                <td colspan="3"><u>[Prescripciones m&#233;dicas]</u></td>
+            </tr>
+            <tr>
+                <td colspan="2">Pr&#243;xima cita&#58;</td>
+                <td colspan="3"><u>[Fecha de pr&#243;xima cita]</u></td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="3"><u></u></td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="3"><u></u></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="white-space:nowrap">Firma del m&eacute;dico que refiere:</td>
+                <td colspan="3"><u>&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;&#95;</u></td>
+            </tr>
+        </tbody>
+    </table>
   </textarea>
   <script>
     CKEDITOR.replace('editor1', {

@@ -147,46 +147,42 @@
             </style>
             <br>
             <center>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div>
-                            <h3>Contactos</h3>        
-                            <a href="https://twitter.com/rene_romer" class="twitterlink" target="_blank">
-                                <i class="fa-brands fa-twitter twittericon"></i>
-                                <br>
-                                @rene_romer
-                            </a>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div>
+                                <h5 style="color: white;">Contactos</h5>        
+                                <a href="https://twitter.com/rene_romer" class="twitterlink" target="_blank">
+                                    <i class="fa-brands fa-twitter twittericon"></i>
+                                    <br>
+                                    @rene_romer
+                                </a>
+                            </div>
+                            <br>
+                            <span class="fbspan">   
+                                    <i class="fa-brands fa-facebook fbicon"></i>
+                                    <br>
+                                    <a href="https://www.facebook.com/UNIDADMEDICAHUMANA/" class="fblink" target="_blank" style="font-size: 12px;">/UNIDADMEDICAHUMANA</a>
+                                    <br>
+                                    <a href="https://www.facebook.com/rene.r.romero.7" class="fblink" target="_blank" style="font-size: 12px;">/rene.r.romero.7</a>
+                            </span>
+                            <br>
                         </div>
-                        <br>
-                        <span class="fbspan">   
-                                <i class="fa-brands fa-facebook fbicon"></i>
-                                <br>
-                                <a href="https://www.facebook.com/UNIDADMEDICAHUMANA/" class="fblink" target="_blank">/UNIDADMEDICAHUMANA</a>
-                                <br>
-                                <a href="https://www.facebook.com/rene.r.romero.7" class="fblink" target="_blank">/rene.r.romero.7</a>
-                        </span>
-                        <br>
-                    </div>
-                    <div class="col">
-                        <h3>Unidad Medica Humana</h3>
-                        <br>
-                        <p><i class="fa-solid fa-map-location-dot"></i> 23 Av. Nte. # 1318. Col. Medica. Contiguo Hospital PNC</p>
-                        <br>
-                        <p><i class="fa-solid fa-phone"></i> TEL.: 2519-3909</p>
-                        <br>
-                        <p><i class="fa-solid fa-window-maximize"></i> https://unidad-medica-humana.herokuapp.com/</p>
-                        <br>
-                        <p><i class="fa-solid fa-envelope"></i> drrodriguezromero@gmail.com</p>
-                    </div>
-                    <div class="col">
-                        <h3>Asociaciones</h3>
-                        <a href="http://asccelsalvador.com/" target="_blank"><img src="{{ asset('imgs/asc1.jpeg') }}" alt="asociacion 1" class="img-thumbnail asc1"></a>
-                        <a href="https://www.acedes.net/" target="_blank"><img src="{{ asset('imgs/asc2.jpeg') }}" alt="asociacion 2" class="img-thumbnail asc2"></a>
-                        <a href="https://www.ascgelsalvador.com/" target="_blank"><img src="{{ asset('imgs/asc3.jpeg') }}" alt="asociacion 3" class="img-thumbnail asc3"></a>
+                        <div class="col">
+                            <h5 style="color: white;">Unidad Medica Humana</h5>
+                            <p style="font-size: 12px;"><i class="fa-solid fa-map-location-dot"></i> 23 Av. Nte. # 1318. Col. Medica. Contiguo Hospital PNC</p>
+                            <p style="font-size: 12px;"><i class="fa-solid fa-phone"></i> TEL.: 2519-3909</p>
+                            <p style="font-size: 12px;"><i class="fa-solid fa-window-maximize"></i> https://unidad-medica-humana.herokuapp.com/</p>
+                            <p style="font-size: 12px;"><i class="fa-solid fa-envelope"></i> drrodriguezromero@gmail.com</p>
+                        </div>
+                        <div class="col">
+                            <h5 style="color: white;">Asociaciones</h5>
+                            <a href="http://asccelsalvador.com/" target="_blank"><img src="{{ asset('imgs/asc1.jpeg') }}" alt="asociacion 1" class="img-thumbnail asc1" style="height: 80px; width: 80px;"></a>
+                            <a href="https://www.acedes.net/" target="_blank"><img src="{{ asset('imgs/asc2.jpeg') }}" alt="asociacion 2" class="img-thumbnail asc2" style="height: 80px; width: 80px;"></a>
+                            <a href="https://www.ascgelsalvador.com/" target="_blank"><img src="{{ asset('imgs/asc3.jpeg') }}" alt="asociacion 3" class="img-thumbnail asc3" style="height: 80px; width: 80px;"></a>
+                        </div>
                     </div>
                 </div>
-            </div>
             </center>
        </footer>
 
