@@ -125,25 +125,25 @@
         <input id="inputhistorial_id" type="text" class="form-control" name="Historial_idSigno2" required>
         <br>
         <label for="inputpresionmax">Presion arterial maxima</label>
-        <input id="inputpresionmax" type="text" class="form-control" name="PresionMaxSigno2" title="Ingrese la presion arterial maxima" required>
+        <input id="inputpresionmax" type="text" class="form-control" pattern="^\d{3}$" name="PresionMaxSigno2" title="Ingrese la presion arterial maxima" required>
         <br>
         <label for="inputtemperatura">Temperatura</label>
-        <input id="inputtemperatura" type="text" class="form-control" name="TemperaturaSigno2" title="Ingrese la temperatura" required>
+        <input id="inputtemperatura" type="text" class="form-control" pattern="^\d{2}$" name="TemperaturaSigno2" title="Ingrese la temperatura" required>
         <br>
         <label for="inputpulso">Pulso</label>
-        <input id="inputpulso" type="text" class="form-control" name="pulsoSigno2" title="Ingrese el pulso" required>
+        <input id="inputpulso" type="text" class="form-control" pattern="^\d{2,3}$" name="pulsoSigno2" title="Ingrese el pulso" required>
         <br>
         <label for="inputpeso">Peso</label>
-        <input id="inputpeso" type="text" class="form-control" name="PesoSigno2" title="Ingrese el peso (en libras)"required>
+        <input id="inputpeso" type="text" class="form-control" pattern="^\d{2,3}\.\d{1,2}$" name="PesoSigno2" title="Ingrese el peso (en libras)"required>
         <br>
         <label for="inputpresionmin">Presion arterial minima</label>
-        <input id="inputpresionmin" type="text" class="form-control" name="PresionMinSigno2" title="Ingrese la presion arterial minima" required>
+        <input id="inputpresionmin" type="text" class="form-control" pattern="^\d{2}$" name="PresionMinSigno2" title="Ingrese la presion arterial minima" required>
         <br>
         <label for="inputtalla">Talla</label>
-        <input id="inputtalla" type="text" class="form-control" name="TallaSigno2" title="Ingrese la talla" required>
+        <input id="inputtalla" type="text" class="form-control" pattern="^\d{1,2}\.\d{1,2}$" name="TallaSigno2" title="Ingrese la talla" required>
         <br>
         <label for="inputaltura">Altura</label>
-        <input id="inputaltura" type="text" class="form-control" name="AlturaSigno2" title="Ingrese la altura (en metros)" required>
+        <input id="inputaltura" type="text" class="form-control" pattern="^\d{1}\.\d{1,2}$" name="AlturaSigno2" title="Ingrese la altura (en metros)" required>
         <br>
         </div>
         <div class="modal-footer">
@@ -435,8 +435,8 @@
                 <option value="gastritis">Gastritis y Cáncer del Estomago</option>
                 <option value="colitis">Colitis y cáncer de colon</option>
                 <option value="estreñimiento">Estreñimiento y sangrado rectal</option>
-                <option vvalue="cancer">Cáncer recto y ano</option>
-                <option alue="hemorroides">Hemorroides</option>
+                <option value="cancer">Cáncer recto y ano</option>
+                <option value="hemorroides">Hemorroides</option>
                 <option value="higado">Hígado y cálculos en vesícula</option>
                 <option value="reflujo">Reflujo gastro-esofágico</option>
               </select>

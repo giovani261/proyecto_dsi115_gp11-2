@@ -17,7 +17,8 @@ class ReservaDeCitaController extends Controller
     public function index()
     {
         if(Auth::user()->hasRole(['administrador|secretaria'])){
-            return view('reserva');
+            $citas = ReservaDeCita::select('id','nombre','telefono')->whereNull('hora')->get();
+            return view('reserva',compact('citas'));
         }
         else{
             Auth::logout();
@@ -69,10 +70,40 @@ class ReservaDeCitaController extends Controller
     
 }
 
+    public function actualizarCitas(Request $request)
+    {
+        if(Auth::user()->hasRole(['administrador']) || Auth::user()->hasRole(['secretaria']))
+        {
+            try {
+                $citaid = request('Citaid');
+                $hora = request('Hora');
+               
+    
+                $cita = ReservaDeCita::findOrFail($citaid);
+                $cita->hora = $hora;
+            
+                $cita->save();
+                return response()->json(['estado' => 'actualizado']);
+            } catch (Throwable $e) {
+                //report($e); //report error
+                return response()->json(['estado' => 'error']);
+            }
+
+        }
+        else {
+            Auth::logout();
+            //$request->session()->invalidate();
+            return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se a cerrado su sesion');
+        }
+
+        return redirect('/reserva');
+    }
+
     public function create()
     {
         //
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -129,4 +160,6 @@ class ReservaDeCitaController extends Controller
     {
         //
     }
+
+
 }
