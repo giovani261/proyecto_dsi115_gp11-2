@@ -30,6 +30,38 @@
         </div>
     </div>
 </div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-header">
+                <h4>Asignación de horas de citas pendientes</h4>
+            </div>
+            <br>
+            <form method="POST" id="actualizarCita">
+            @csrf   
+            <label for="reservanull">Seleccione una cita, el formato de la lista es: Nombre -- Teléfono</label>
+            <br>
+            <select class="form-select" aria-label="Default select example" name="citas" id="reservanull" data-bs-toggle="tooltip" title="Seleccione los datos del paciente, el formato de la lista es: Nombre -- Telefono">
+                @if($citas->isEmpty())
+                    <option value="0" required>No hay citas</option>    
+                @else
+                @foreach($citas as $cita)
+                    <option value="{{$cita->id}}" required>{{$cita->nombre }} - {{ $cita->telefono }}</option>
+                @endforeach
+                @endif
+            </select>
+            <br>    
+            <label for="inputhorareserva">Seleccione Hora</label>
+            <br>
+            <input type="time" min="09:00" max="13:00" step="120" class="time form-control" id="inputhorareserva" data-bs-toggle="tooltip" title="Ingrese la hora"  required>
+            <br>
+            <button type="submit" class="btn btn-primary" id="guardarhoracita">Establecer Hora</button>
+           </form>
+
+        </div>
+    </div>
+</div>
 <!-- Modal Agendar Cita-->
 <div class="modal fade" id="citaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
@@ -234,5 +266,60 @@
         });
         
     });
+
+    $(document).ready(function() {
+        $("#actualizarCita").submit(function(e) {
+        e.preventDefault();
+        var hora = document.getElementById("inputhorareserva").value;
+        var cita = document.getElementById('reservanull');
+        var citaid = cita.options[cita.selectedIndex].value;
+
+        Swal.fire({
+            icon: 'info',
+            title: 'Confirmar.',
+            text: '¿Desea continuar?',
+            showCancelButton: true,
+            confirmButtonText: 'Ok',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url:"{{route('citasactualizarajax')}}",
+                    type:"POST",
+                    data:{
+                        'Citaid': citaid,
+                        'Hora': hora,
+                        "_token": $("meta[name='csrf-token']").attr("content")
+                    },
+                    //dataType:"json",
+                    success: function(test){
+                        document.getElementById("inputhorareserva").value="";
+                        document.getElementById('reservanull').value = "";
+                        
+                        if(test.estado === 'actualizado'){
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Hecho!.',
+                                    text: 'Se guardo correctamente la hora elegida',
+                                    confirmButtonText: 'Ok',
+                                    })    
+                                    location.reload();
+                            }
+                            if(test.estado === 'error'){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Ocurrio un error!.',
+                                    text: 'No se pudo guardar la hora',
+                                    confirmButtonText: 'Ok',
+                                    })
+                            }
+                        }
+                    });
+            } else if (result.isDismissed) {
+                Swal.fire('No se registro la hora seleccionada', '', 'info')
+            }
+            })
+        });
+    });
+   
 </script>
 @endsection

@@ -45,6 +45,7 @@ Route::match(['post'],'/reserva', [ReservaDeCitaController::class,'registro'])->
 Route::match(['post'],'/incapacidad', [IncapacidadController::class,'registro'])->name('incapacidad');
 Route::match(['get','post'],'/editor', [CKEditorController::class,'editor'])->name('editor');
 Route::match(['post'],'/historialconsultarajax', [HistorialController::class,'consultarhistorial'])->name('historialconsultarajax');
+Route::match(['post'],'/citasactualizarajax', [ReservaDeCitaController::class,'actualizarCitas'])->name('citasactualizarajax');
 Route::match(['get','post'],'/editorreceta', [CKEditorrecetaController ::class,'editor'])->name('editorreceta');
 
 // Route::match(['get', 'post'], '/db', function () {
