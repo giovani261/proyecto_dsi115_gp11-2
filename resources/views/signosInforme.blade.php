@@ -17,6 +17,7 @@
             <table class="table text-md-nowrap" id="datatable">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Nombre</th>
                         <th>Edad</th>
                         <th>Presion Máxima</th>
@@ -193,6 +194,18 @@
         var table=$('#datatable').DataTable({
             responsive:true,
             dom: 'Bfrtilp',
+            //"lengthMenu":[5,10,25,50,100],
+            //Columna checkbox
+            columnDefs: [{
+                orderable: false,
+                className: 'select-checkbox',
+                targets: 0
+            }],
+                select: {
+                style: 'os',
+                selector: 'td:first-child'
+            },
+            order: [[ 1, 'asc' ]],
                 buttons: [
                 {
                     extend:'pdfHtml5',
@@ -201,9 +214,10 @@
                     className:'btn btn-success',
                     title:'Unidad Médica humana',
                     exportOptions:{
-                        columns:[0,1,2,3,4,5,6,7,8,9]
+                        columns:[1,2,3,4,5,6,7,8,9,10]
                     },
                     pageSize: 'A4',
+                    orientation:'landscape',
                     customize: function (doc) {
                         var rcout = doc.content[doc.content.length - 1].table.body.length - 1;
                         doc.content.splice(0, 1);
@@ -286,7 +300,7 @@
                     extend:"excel",
                     text:'<i class="fas fa-file-excel"></i>',
                     exportOptions:{
-                        columns:[0,1,2,3,4,5,6,7,8,9]
+                        columns:[1,2,3,4,5,6,7,8,9,10]
                     },
                     autoFilter:true,
                     pageStyle: {
@@ -334,10 +348,11 @@
                     },
                 },
             ],
-            select:true,
+            //select:true,
             ajax: "{{route('signos_informes')}}",
             type:"GET",
             columns:[
+                {data: null, defaultContent: ''},
                 {data:'nombre'},
                 {data:'edad'},
                 {data:'presion arterial maxima'},
@@ -361,7 +376,17 @@
                 "loadingRecords": "Cargando registros...",
                 "processing":     "",
                 "search":         "Buscar:",
-                "zeroRecords":    "No se encontraron registros",   
+                "zeroRecords":    "No se encontraron registros",
+                "paginate":{
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                },
+                "select": {
+                        "rows": {
+                            "1": "1 fila seleccionada",
+                            "_": "%d filas seleccionadas"
+                    }
+                }      
             } 
 
         });
