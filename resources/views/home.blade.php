@@ -251,7 +251,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
+                <button type="submit" class="btn btn-primary" id="guardar"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="removevalidateform('reservarCita');">Cancelar</button>
             </div></form>  
         </div>
@@ -361,7 +361,7 @@
 <script src="{{ asset('js/bootstrap-datepicker.es.js') }}"></script>
 <script>
     $(document).ready(function() {
-        var datesForDisable = ["2022-06-03", "08-10-2021", "08-15-2021", "08-20-2021"]; 
+        var datesForDisable = ["2021-06-03", "08-10-2021", "08-15-2021", "08-20-2021"]; 
             $('#inputfecha').datepicker({
                 isRTL: false,
                 format: 'yyyy-mm-dd',

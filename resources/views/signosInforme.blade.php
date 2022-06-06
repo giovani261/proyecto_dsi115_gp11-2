@@ -34,7 +34,139 @@
         </div>
     </div>
 </div>
-
+<!-- Modal Comparacion de signos-->
+<div class="modal fade" id="comparacionsignos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Analisis del paciente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+    <center><h3 id="txtpaciente"></h3></center>
+    <br>
+    <!-- Tabla de presion maxima -->
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <div class="table-responsive container-fluid">
+                <table class="table table-hover table-bordered w-auto">
+                    <thead class="tablehead">
+                        <tr class="text-center">
+                        <th scope="col">Presion Maxima</th>
+                        <th scope="col">Valor Normal</th>
+                        <th scope="col">Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td id="tdpresionmax"></td>
+                            <td id="tdpresionmaxnormal"></td>
+                            <td id="tdobservacionpresionmax"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+    </div>
+    <!-- Tabla de temperatura -->
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <div class="table-responsive container-fluid">
+                <table class="table table-hover table-bordered w-auto">
+                    <thead class="tablehead">
+                        <tr class="text-center">
+                        <th scope="col">Temperatura</th>
+                        <th scope="col">Valor Normal</th>
+                        <th scope="col">Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td id="tdtemperatura"></td>
+                            <td id="tdtemperaturanormal"></td>
+                            <td id="tdobservaciontemperatura"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+    </div>
+    <!-- <div class="modal-footer">
+        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+    </div> -->
+    <!-- Tabla de pulso -->
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <div class="table-responsive container-fluid">
+                <table class="table table-hover table-bordered w-auto">
+                    <thead class="tablehead">
+                        <tr class="text-center">
+                        <th scope="col">Pulso</th>
+                        <th scope="col">Valor Normal</th>
+                        <th scope="col">Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td id="tdpulso"></td>
+                            <td id="tdpulsonormal"></td>
+                            <td id="tdobservacionpulso"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+    </div>
+    <!-- Tabla de imc -->
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <div class="table-responsive container-fluid">
+                <table class="table table-hover table-bordered w-auto">
+                    <thead class="tablehead">
+                        <tr class="text-center">
+                        <th scope="col">Imc</th>
+                        <th scope="col">Valor Normal</th>
+                        <th scope="col">Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td id="tdimc"></td>
+                            <td id="tdimcnormal"></td>
+                            <td id="tdobservacionimc"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+    </div>
+    <!-- Tabla de presion minima -->
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <div class="table-responsive container-fluid">
+                <table class="table table-hover table-bordered w-auto">
+                    <thead class="tablehead">
+                        <tr class="text-center">
+                        <th scope="col">Presion Minima</th>
+                        <th scope="col">Valor Normal</th>
+                        <th scope="col">Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td id="tdpresionminima"></td>
+                            <td id="tdpresionminimanormal"></td>
+                            <td id="tdobservacionpresionminima"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+    </div>
+</div>
+</div>
+</div> 
+</div>
 @endsection
 @section('scripts')
 <script src="{{ asset('js/bootstrap-datepicker.es.js') }}"></script>
@@ -216,7 +348,7 @@
                 {data:'presion arterial minima'},
                 {data:'talla'},
                 {data:'altura'},
-                {defaultContent:"<button>Comparar</button>"}
+                {defaultContent:"<button class='btn btn-primary'>Comparar</button>"}
             ],
 
             language:{
@@ -234,6 +366,89 @@
 
         });
 
+    $('#datatable tbody').on('click', 'button', function () {
+    var data = table.row($(this).parents('tr')).data();
+    var nombre = data.nombre;
+    var edad = data.edad;
+    var presionmax = data["presion arterial maxima"];
+    var temperatura = data.temperatura;
+    var pulso = data.pulso;
+    var peso = data.peso;
+    var imc = data.imc;
+    var presionmin = data["presion arterial minima"];
+    var talla = data.talla;
+    var altura = data.altura;
+    $("#comparacionsignos").modal("show");
+    document.getElementById("txtpaciente").innerHTML = nombre + ", "+edad+" años";
+    document.getElementById("tdpresionmax").innerHTML = presionmax;
+    document.getElementById("tdpresionmaxnormal").innerHTML = 120;
+    document.getElementById("tdtemperatura").innerHTML = temperatura;
+    document.getElementById("tdtemperaturanormal").innerHTML = "36 a 37";
+    document.getElementById("tdpulso").innerHTML = pulso;
+    document.getElementById("tdpulsonormal").innerHTML = "60 a 100";
+    document.getElementById("tdimc").innerHTML = imc;
+    document.getElementById("tdimcnormal").innerHTML = "18.5 a 24.9";
+    document.getElementById("tdpresionminima").innerHTML = presionmin;
+    document.getElementById("tdpresionminimanormal").innerHTML = 80;
+
+    //calculos para el analisis de la presion maxima
+    if(presionmax <=120){
+        document.getElementById("tdobservacionpresionmax").innerHTML = "La presion maxima se encuentra bien";
+    }
+    if(presionmax >120){
+        document.getElementById("tdobservacionpresionmax").innerHTML = "La presion maxima se encuentra alta, se excede por un valor de "+(presionmax-120);
+    }
+
+    //calculos para el analisis de la temperatura
+    if(temperatura == 36 || temperatura == 37){
+        document.getElementById("tdobservaciontemperatura").innerHTML = "La temperatura corporal se encuentra en el rango normal";
+    }
+
+    if(temperatura <=35){
+        document.getElementById("tdobservaciontemperatura").innerHTML = "La temperatura corporal se encuentra muy baja, paciente con hipotermia";
+    }
+    if(temperatura >=38){
+        document.getElementById("tdobservaciontemperatura").innerHTML = "La temperatura corporal se encuentra muy alta, paciente con fiebre a causa de una infeccion o enfermedad";
+    }
+
+    //calculos para el analisis del pulso
+    if(pulso>=60 || pulso<=100){
+        document.getElementById("tdobservacionpulso").innerHTML = "El pulso se encuentra bien";
+    }
+    if(pulso<60){
+        document.getElementById("tdobservacionpulso").innerHTML = "El pulso se encuentra muy bajo, paciente con bradicardia";
+    }
+    if(pulso>100){
+        document.getElementById("tdobservacionpulso").innerHTML = "El pulso se encuentra muy alto, paciente con taquicardia";
+    }
+
+    //calculos para el analisis del imc
+    if(imc<18.5){
+        document.getElementById("tdobservacionimc").innerHTML = "El nivel de peso es bajo considerando su altura";  
+    }
+
+    if(imc>=18.5 && imc<=24.9){
+        document.getElementById("tdobservacionimc").innerHTML = "El nivel de peso es normal considerando su altura";
+    }
+
+    if(imc>=25 && imc<=29.9){
+        document.getElementById("tdobservacionimc").innerHTML = "El nivel de peso es alto considerando su altura, paciente con sobrepeso";
+    }
+
+    if(imc>=30){
+        document.getElementById("tdobservacionimc").innerHTML = "El nivel de peso es muy alto considerando su altura, paciente con obesidad";
+    }
+
+    //calculos para el analisis de la presion minima
+    if(presionmin <=80){
+        document.getElementById("tdobservacionpresionminima").innerHTML = "La presion minima se encuentra bien";
+    }
+    if(presionmin >80){
+        document.getElementById("tdobservacionpresionminima").innerHTML = "La presion minima se encuentra alta, se excede por un valor de "+(presionmin-80);
+    }
 });
+});
+
+
 </script>
 @endsection

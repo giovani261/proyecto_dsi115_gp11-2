@@ -77,12 +77,18 @@ class ReservaDeCitaController extends Controller
             try {
                 $citaid = request('Citaid');
                 $hora = request('Hora');
-               
+                $fecha = request('Fecha');
     
                 $cita = ReservaDeCita::findOrFail($citaid);
-                $cita->hora = $hora;
-            
-                $cita->save();
+                if($fecha!=NULL){
+                    $cita->hora = $hora;
+                    $cita->fecha = $fecha;
+                    $cita->save();
+                }
+                if($fecha==NULL){
+                    $cita->hora = $hora;
+                    $cita->save();
+                }
                 return response()->json(['estado' => 'actualizado']);
             } catch (Throwable $e) {
                 //report($e); //report error

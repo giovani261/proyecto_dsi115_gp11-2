@@ -17,7 +17,7 @@
                         </div>
 
                         <div class="col-md-auto my-auto">
-                            <i class="fa-solid fa-heart-pulse fa-4x"></i>
+                            <i class="fa-solid fa-prescription-bottle fa-4x"></i>
                         </div>
                     </div>
                 </center>
@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="col-md-auto my-auto">
-                            <i class="fa-solid fa-file-medical-alt fa-4x"></i>
+                            <i class="fa-solid fa-truck-medical fa-4x"></i>
                         </div>
                     </div>
                 </center>
@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="col-md-auto my-auto">
-                            <i class="fa-solid fa-file-medical-alt fa-4x"></i>
+                            <i class="fa-solid fa-file-medical fa-4x"></i>
                         </div>
                     </div>
                 </center>
@@ -101,7 +101,7 @@
                         </div>
 
                         <div class="col-md-auto my-auto">
-                            <i class="fa-solid fa-file-medical-alt fa-4x"></i>
+                            <i class="fa-solid fa-rectangle-list fa-4x"></i>
                         </div>
                     </div>
                 </center>
@@ -119,7 +119,7 @@
             </button>
         </div>
         <div class="modal-body">
-        <form method="POST" id="modalsignos">
+        <form method="POST" id="modalsignos" class="needs-validation" novalidate>
         @csrf
         <label for="inputhistorial_id">Historial_id</label>
         <input id="inputhistorial_id" type="text" class="form-control" name="Historial_idSigno2" required>
@@ -147,8 +147,8 @@
         <br>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="removevalidateform('modalsignos');">Cerrar</button>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="removevalidateform('modalsignos');"><i class="fa-solid fa-xmark"></i> Cerrar</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
         </div>
         </form>
         </div>
@@ -612,6 +612,7 @@
     $(document).ready(function() {
         $("#modalsignos").submit(function(e) {
         e.preventDefault();
+        var element = document.getElementById("modalsignos");
         var valinputhistorial_id = document.getElementById("inputhistorial_id").value;
         var valinputpresionmax = document.getElementById("inputpresionmax").value;
         var valinputtemperatura = document.getElementById("inputtemperatura").value;
@@ -622,6 +623,7 @@
         var valinputaltura = document.getElementById("inputaltura").value;
         var valIMC = valinputpeso / (valinputaltura * valinputaltura);
 
+        if (element.checkValidity() === true) {
         Swal.fire({
             icon: 'info',
             title: 'Confirmar.',
@@ -647,6 +649,7 @@
                     },
                     //dataType:"json",
                     success: function(test){
+                        element.classList.remove("was-validated");
                         document.getElementById("inputhistorial_id").value="";
                         document.getElementById("inputpresionmax").value="";
                         document.getElementById("inputtemperatura").value="";
@@ -677,6 +680,7 @@
                 Swal.fire('No se registro la consulta subsecuente', '', 'info')
             }
             })
+        }
         });
     });
 //js para envio por ajax para la ventana de receta clinica

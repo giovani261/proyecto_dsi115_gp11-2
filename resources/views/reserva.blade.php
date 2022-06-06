@@ -13,7 +13,7 @@
                 <h4>Citas médicas</h4>
             </div>
             <br>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#citaModal" class="btn btn-primary col-sm-3">Agendar cita</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#citaModal" class="btn btn-primary col-sm-3"><i class="fa-solid fa-calendar-day"></i> Agendar cita</a>
             <br>
            <br>
             <table class="table text-md-nowrap" id="datatable">
@@ -56,7 +56,13 @@
             <br>
             <input type="time" min="09:00" max="13:00" step="120" class="time form-control" id="inputhorareserva" data-bs-toggle="tooltip" title="Ingrese la hora"  required>
             <br>
-            <button type="submit" class="btn btn-primary" id="guardarhoracita">Establecer Hora</button>
+            <label for="inputfechamodreserva">Seleccione la nueva fecha en caso de querer modificarla</label>
+            <div class="input-group date">
+                <input type="text" class="form-control" id="inputfechamodreserva" name="fechamodreserva" data-bs-toggle="tooltip" title="Seleccione una fecha" autocomplete="off">
+                <i class="fa-solid fa-calendar-days calendario"></i>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary" id="guardarhoracita"><i class="fa-solid fa-clock"></i> Establecer Hora</button>
            </form>
 
         </div>
@@ -150,6 +156,13 @@
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
 <script>
+    $('#inputfechamodreserva').datepicker({
+        isRTL: false,
+        format: 'yyyy-mm-dd',
+        todayHighlight: true,
+        startDate: new Date(),//Inhabilita fechas anteriores a la actual
+        language: 'es'
+    });
 
     $(document).ready(function() {
         var datesForDisable = ["08-5-2021", "08-10-2021", "08-15-2021", "08-20-2021"]; 
@@ -158,7 +171,6 @@
                 format: 'yyyy-mm-dd',
                 autoclose: true,
                 todayHighlight: true,
-                daysOfWeekDisabled: [0], //inhabilita días domingos
                 startDate: new Date(),//Inhabilita fechas anteriores a la actual
                 weekStart: [1],//Establece incicio de semana en lunes
                 datesDisabled: datesForDisable,
@@ -273,7 +285,8 @@
         var hora = document.getElementById("inputhorareserva").value;
         var cita = document.getElementById('reservanull');
         var citaid = cita.options[cita.selectedIndex].value;
-
+        var valinputmodfechareserva = document.getElementById("inputfechamodreserva").value;
+        //console.log(valinputmodfechareserva);
         Swal.fire({
             icon: 'info',
             title: 'Confirmar.',
@@ -288,6 +301,7 @@
                     data:{
                         'Citaid': citaid,
                         'Hora': hora,
+                        'Fecha':valinputmodfechareserva,
                         "_token": $("meta[name='csrf-token']").attr("content")
                     },
                     //dataType:"json",
