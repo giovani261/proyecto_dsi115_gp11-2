@@ -446,7 +446,7 @@
             <br>
             <label for="medicamentoid">Seleccione los medicamentos</label>
             <br>
-            <select class="form-control" aria-label="Default select example" name="medicamentoid[]" id="medicamentoid" multiple="multiple" title="Seleccione los medicamentos"></select>
+            <select class="form-control" aria-label="Default select example" name="medicamentoid[]" id="medicamentoid" multiple="multiple" title="Seleccione los medicamentos" required></select>
             <div class="invalid-feedback">
                 Este campo no puede estar vacio.
             </div>
@@ -719,6 +719,9 @@ $(document).ready(function() {
                     success: function(test){
                         //document.getElementById("inputnombre").value="";
                         element.classList.remove("was-validated");
+                        $('#expedienterecetaid').val(null).trigger('change');
+                        $('#inputespecialidadmedica').val(null).trigger('change');
+                        $('#medicamentoid').val(null).trigger('change');
                         console.log(test);
                             if(test.estado === 'guardado'){
                                 Swal.fire({
