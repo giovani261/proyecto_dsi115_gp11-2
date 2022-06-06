@@ -68,7 +68,7 @@
                         <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="/reserva"><i class="fa-solid fa-calendar-days fa-xl"></i> Agendar cita</a>
                     @endrole
                     @role('administrador')
-                        <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="#!"><i class="fa-solid fa-users fa-xl"></i> Gestion de usuarios</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="/usuarios"><i class="fa-solid fa-users fa-xl"></i> Gestion de usuarios</a>
                     @endrole
                     @role('administrador|secretaria|asistente')
                         <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="#!"><i class="fa-solid fa-hammer fa-xl"></i> Gestion de insumos</a>
