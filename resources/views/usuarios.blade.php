@@ -68,7 +68,7 @@
                 {data:'email'},
                 {data:'created_at'},
                 {data:'updated_at'},
-                {defaultContent: "<button id='edit'>Editar</button> / <button id='delete'>Eliminar</button>"}
+                {defaultContent: "<button class='btn btn-warning' >Editar</button> / <button class='btn btn-danger'>Eliminar</button>"}
             ],
 
             "language":{
