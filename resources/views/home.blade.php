@@ -15,7 +15,6 @@
     <!-- Favicon.ico -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.jpeg">
     <!-- Favicon.ico -->
-
     <!-- CSS -->
     <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> este archivo es bootstrap 4, genera conflicto con los modal y la plantilla que se extiende debido a que usa bootstrap 5-->
     <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -215,7 +214,7 @@
             </div>
         </div>
     </div>
-    <!-- offers_area_end -->
+
 <!-- Modal Agendar Cita-->
 <div class="modal fade" id="citaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
@@ -329,6 +328,7 @@
     <!-- JS here -->
     <script src="js/vendor/modernizr-3.5.0.min.js"></script>
     <!--<script src="js/vendor/jquery-1.12.4.min.js"></script>-->
+
     <script src="js/popper.min.js"></script>
     <!-- <script src="js/bootstrap.min.js"></script> -->
     <script src="js/owl.carousel.min.js"></script>
@@ -345,6 +345,7 @@
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/gijgo.min.js"></script>
+
     <!--contact js-->
     <script src="js/contact.js"></script>
     <script src="js/jquery.ajaxchimp.min.js"></script>
