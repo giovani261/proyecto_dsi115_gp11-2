@@ -138,7 +138,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
+                <button type="submit" class="btn btn-primary" id="guardar"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="removevalidateform('reservarCita');">Cancelar</button>
             </div></form>  
         </div>
