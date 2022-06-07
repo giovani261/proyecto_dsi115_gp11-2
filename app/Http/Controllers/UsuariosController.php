@@ -16,7 +16,7 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->hasRole(['administrador|secretaria'])){
+        if(Auth::user()->hasRole(['administrador'])){
             $usuarios = Usuarios::select('id','name','email','created_at', 'updated_at')->get();
             return view('usuarios',compact('usuarios'));
         }
