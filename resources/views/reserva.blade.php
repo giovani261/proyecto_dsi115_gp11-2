@@ -117,7 +117,7 @@
                 </style>
                 <div class="from-group mb-3">
                     <label for="">Hora</label>
-                    <input type="time" min="09:00" max="13:00" step="120" class="time form-control" id="inputhora"data-bs-toggle="tooltip" title="Ingrese la hora">
+                    <input type="time" min="09:00" max="13:00" step="120" class="time form-control" id="inputhora"data-bs-toggle="tooltip" title="Ingrese la hora" required> 
                     <span class="validity"></span>
                 </div>
                 <label for="inputespecialidadmedica">Especialidad</label>

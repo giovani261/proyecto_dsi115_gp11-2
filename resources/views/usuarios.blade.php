@@ -13,7 +13,7 @@
                 <h4>Usuarios</h4>
             </div>
             <br>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#usuariosModal" class="btn btn-primary col-sm-3">Consulta Usuarios</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#usuariosModal" class="btn btn-primary col-sm-3">Agregar Usuarios</a>
             <br>
            <br>
             <table class="table text-md-nowrap" id="datatable">
@@ -23,6 +23,7 @@
                         <th>Correo Electronico</th>
                         <th>Fecha de Creacion</th>
                         <th>Fecha de Actualizacion</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
             </table>
@@ -66,7 +67,8 @@
                 {data:'name'},
                 {data:'email'},
                 {data:'created_at'},
-                {data:'updated_at'}
+                {data:'updated_at'},
+                {defaultContent: "<button class='btn btn-warning' >Editar</button> / <button class='btn btn-danger'>Eliminar</button>"}
             ],
 
             "language":{

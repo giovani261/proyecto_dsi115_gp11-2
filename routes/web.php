@@ -74,7 +74,7 @@ Route::get('/editar_referencia', [ReferenciaController::class, 'editar_referenci
 
 Route::get('reservas_data',[ReservaDeCitaController::class,'reservas_data'])->name('reservas_data');
 
-Route::get('usuarios_data',[UsuariosController::class,'usuarios_data'])->name('usuarios_data');
+Route::get('usuarios_data',[UsuariosController::class,'usuarios_data'])->middleware('auth')->name('usuarios_data');
 
 Route::get('/informes', function () {
     return view('informe');
