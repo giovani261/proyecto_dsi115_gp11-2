@@ -37,7 +37,7 @@ class AgendaController extends Controller
                 
                 $reserva->save();
                 return response()->json(['nombrePaciente' => $nombrePaciente, 'estado' => 'guardado']);
-            } catch (Throwable $e) {
+            } catch (\Exception $e) {
                 //report($e);
                 return response()->json(['nombrePaciente' => $nombrePaciente, 'estado' => 'error']);
             }

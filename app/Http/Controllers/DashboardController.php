@@ -33,6 +33,12 @@ class DashboardController extends Controller
             $citas = ReservaDeCita::whereDate('fecha','=',$date)->orderBy('hora')->get();
             //dd($date);
             $enfermedadMasComun = Historial::select('enfermedad actual',DB::raw('COUNT ("enfermedad actual")'))->groupBy('enfermedad actual')->orderBy('count','desc')->limit(1)->get();
+            ///variables para cuando no hay datos en la bd
+            $enfermedadMasComunCount = 0;
+            $enfermedadMasComunName = "No hay datos";
+            $medicamentoPrescritoMasComunName = "No hay datos";
+            $medicamentoPrescritoMasComunIdCount = 0;
+
             foreach ($enfermedadMasComun as $enfermedadMasComunVal) {
                 $enfermedadMasComunCount = $enfermedadMasComunVal->count;
                 $enfermedadMasComunName = $enfermedadMasComunVal->{"enfermedad actual"};
@@ -68,10 +74,13 @@ class DashboardController extends Controller
             $grafico1Data1 = [$horaCitasPendiente];
             $grafico1Data2 = [$horaCitasAsignada];
             //dd($grafico1Data); //data de grafico
-            $medicamentoPrescritoMasComunId = MedicamentosPrescritos::select('medicamento_id',DB::raw('COUNT ("medicamento_id")'))->groupBy('medicamento_id')->orderBy('count','desc')->limit(1)->get();
-            foreach ($medicamentoPrescritoMasComunId as $medicamentoPrescritoMasComunIdVal) {
+            $medicamentoPrescritoMasComunIdSelect = MedicamentosPrescritos::select('medicamento_id',DB::raw('COUNT ("medicamento_id")'))->groupBy('medicamento_id')->orderBy('count','desc')->limit(1)->get();
+            foreach ($medicamentoPrescritoMasComunIdSelect as $medicamentoPrescritoMasComunIdVal) {
                 $medicamentoPrescritoMasComunIdCount = $medicamentoPrescritoMasComunIdVal->count;
                 $medicamentoPrescritoMasComunId = $medicamentoPrescritoMasComunIdVal->{"medicamento_id"};
+            }
+            if($medicamentoPrescritoMasComunIdSelect->isEmpty()){
+                $medicamentoPrescritoMasComunId = 0; //bypass para cuando no hay datos en la bd
             }
             $medicamentoPrescritoMasComun = Medicamento::select('nombre')->where('id','=',$medicamentoPrescritoMasComunId)->get();
             foreach ($medicamentoPrescritoMasComun as $medicamentoPrescritoMasComunVal) {

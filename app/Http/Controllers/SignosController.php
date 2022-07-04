@@ -42,7 +42,7 @@ class SignosController extends Controller
                 
                 $consulta->save();
                 return response()->json(['estado' => 'guardado']);
-            } catch (Throwable $e) {
+            } catch (\Exception $e) {
                 //report($e); //report error
                 return response()->json(['estado' => 'error']);
             }

@@ -15,11 +15,11 @@ class CreateReservasDeCitasTable extends Migration
     {
         Schema::create('reservas_de_citas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('nombre', 1024);
             $table->integer('telefono');
             $table->date('fecha');
-            $table->time('hora');
+            $table->time('hora')->nullable();
             $table->string('especialidad', 1024);
             $table->foreign('user_id')->references('id')->on('users');
         });

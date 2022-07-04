@@ -256,7 +256,7 @@
         <form method="POST" id="modalexpedienteclinico" class="needs-validation" novalidate>
         @csrf
         <label for="inputnombrepaciente">Nombre del paciente</label>
-        <input type="text" class="form-control" id="inputnombrepaciente" name="nombreexpediente"  pattern="[a-zA-Z'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el nombre del paciente, solo se permiten letras" required>
+        <input type="text" class="form-control" id="inputnombrepaciente" name="nombreexpediente"  pattern="[a-zA-Z\u00f1\u00d1'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el nombre del paciente, solo se permiten letras" required>
         <div class="invalid-feedback">
             Por favor, revise el formato del texto ingresado.
         </div>
@@ -274,16 +274,13 @@
         </div>
         <br>
         <label for="inputresponsable">Responsable</label>
-        <input id="inputresponsable" type="text" class="form-control" name="responsable" pattern="[a-zA-Z'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el responsable del paciente, solo se permiten letras" required>
+        <input id="inputresponsable" type="text" class="form-control" name="responsable" pattern="[a-zA-Z\u00f1\u00d1'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el responsable del paciente, solo se permiten letras" required>
         <div class="invalid-feedback">
             Por favor, revise el formato del texto ingresado.
         </div>
         <br>
         <label for="inputduipaciente">Dui del paciente</label>
-        <input id="inputduipaciente" type="text" class="form-control" name="duipaciente" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" data-bs-toggle="tooltip" title="Ingrese el dui del paciente, solo se permiten numeros de 9 digitos" required>
-        <div class="invalid-feedback">
-            Por favor, revise el formato del texto ingresado.
-        </div>
+        <input id="inputduipaciente" type="text" class="form-control" name="duipaciente" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" data-bs-toggle="tooltip" title="Ingrese el dui del paciente, solo se permiten numeros de 9 digitos">
         <br>
         <label for="inputduiresponsable">Dui del responsable</label>
         <input id="inputduiresponsable" type="text" class="form-control" name="duiresponsable" placeholder="9 digitos sin guiones" pattern="[0-9]{9}" data-bs-toggle="tooltip" title="Ingrese el dui del responsable, solo se permiten numeros de 9 digitos" required>

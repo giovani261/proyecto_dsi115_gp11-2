@@ -41,7 +41,7 @@ class ExpedienteController extends Controller
                 
                 $expediente->save();
                 return response()->json(['nombrePaciente' => $nombrePaciente, 'estado' => 'guardado']);
-            } catch (Throwable $e) {
+            } catch (\Exception $e) {
                 //report($e);
                 return response()->json(['nombrePaciente' => $nombrePaciente, 'estado' => 'error']);
             }

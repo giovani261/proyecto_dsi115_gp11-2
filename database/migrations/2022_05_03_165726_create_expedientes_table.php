@@ -20,10 +20,11 @@ class CreateExpedientesTable extends Migration
             $table->integer('edad');
             $table->string('domicilio');
             $table->string('responsable',50);
-            $table->char('dui paciente',9);
+            $table->char('dui paciente',9)->nullable();
             $table->char('dui responsable',9);
             $table->string('antecedentes patologicos')->nullable();
 
+            $table->unique('dui paciente', 'dui_paciente_expedientes');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

@@ -57,7 +57,7 @@ class ReservaDeCitaController extends Controller
                 
                 $reserva->save();
                 return response()->json(['nombrePaciente' => $nombrePaciente, 'estado' => 'guardado']);
-            } catch (Throwable $e) {
+            } catch (\Exception $e) {
                 //report($e);
                 return response()->json(['nombrePaciente' => $nombrePaciente, 'estado' => 'error']);
             }
@@ -90,7 +90,7 @@ class ReservaDeCitaController extends Controller
                     $cita->save();
                 }
                 return response()->json(['estado' => 'actualizado']);
-            } catch (Throwable $e) {
+            } catch (\Exception $e) {
                 //report($e); //report error
                 return response()->json(['estado' => 'error']);
             }

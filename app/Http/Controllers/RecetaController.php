@@ -39,7 +39,7 @@ class RecetaController extends Controller
                 $receta->medicamentos()->attach($request->medicamentoid);
 
                 return response()->json(['nombrePaciente' => $nombredelPaciente, 'estado' => 'guardado','prueba'=>$request->medicamentoid]);
-            } catch (Throwable $e) {
+            } catch (\Exception $e) {
                 //report($e);
              
                 return response()->json(['nombrePaciente' => $nombredelPaciente, 'estado' => 'error']);
