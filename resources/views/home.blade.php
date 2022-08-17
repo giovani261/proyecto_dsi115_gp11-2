@@ -10,10 +10,11 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Unidad medica humana</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
     <!-- Favicon.ico -->
     <link rel="shortcut icon" type="image/x-icon" href="imgs/logo.jpeg">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
     <!-- Favicon.ico -->
 
     <!-- CSS -->
@@ -49,7 +50,16 @@
         .col{
             text-align: center; 
             display: inline-block;
-        }     
+        }
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.35);
+            width: 100%;
+            left: 0;
+            color: white;
+        }
+        .carousel-caption h5 {
+            color: white;
+        }
     </style>
     <div class="row">
         <div class="col-xl-12">
@@ -170,118 +180,93 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-4 col-md-6 col-lg-4">
-                    <div class="single_department">
-                        <div class="department_thumb">
-                            <img src="imgs/department/1.jpg" alt="">
-                        </div>
-                        <div class="department_content">
-                            <h3><a href="#" style="text-decoration:none;">Gastritis y C&#225;ncer del Est&#243;mago</a></h3>
-                            <p>La gastritis es un t&#233;rmino para un grupo de enfermedades con un punto en com&#250;n: 
+            
+            
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="imgs/department/1.jpg" class="d-block w-100" alt="">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Gastritis y C&#225;ncer del Est&#243;mago</h5>
+                                <p>La gastritis es un t&#233;rmino para un grupo de enfermedades con un punto en com&#250;n: 
                                 la inflamaci&#243;n del revestimiento del est&#243;mago. El c&#225;ncer de est&#243;mago, es una 
-                                enfermedad por la que se forman c&#233;lulas malignas en el revestimiento del est&#243;mago
-                                </p>
-                            <center>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#citaModal" onclick="especialidad('gastritis');">Agendar cita</button>
-                            </center>
+                                enfermedad por la que se forman c&#233;lulas malignas en el revestimiento del est&#243;mago.</p>
+                                <button type="button" class="btn btn-outline-light" onclick="especialidad('gastritis');">Agendar cita</button>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 col-lg-4">
-                    <div class="single_department">
-                        <div class="department_thumb">
-                            <img src="imgs/department/2.jpg" alt="">
+                        <div class="carousel-item">
+                            <img src="imgs/department/2.jpg" class="d-block w-100" alt="">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Colitis y c&#225;ncer de colon</h5>
+                                <p>La colitis ulcerativa es una enfermedad que causa inflamaci&#243;n y &#250;lceras.
+                            El c&#225;ncer de colon es una enfermedad por la que se forman c&#233;lulas malignas en los tejidos del colon.</p>
+                                <button type="button" class="btn btn-outline-light" onclick="especialidad('colitis');">Agendar cita</button>
+                            </div>
                         </div>
-                        <div class="department_content">
-                            <h3><a href="#" style="text-decoration:none;">Colitis y c&#225;ncer de colon</a></h3>
-                            <p>La colitis ulcerativa es una enfermedad que causa inflamaci&#243;n y &#250;lceras.
-                            El c&#225;ncer de colon es una enfermedad por la que se forman c&#233;lulas malignas en los tejidos del colon.
-                            </p>
-                            <br><br>
-                            <center>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#citaModal" onclick="especialidad('colitis');">Agendar cita</button>
-                            </center>
+                        <div class="carousel-item">
+                            <img src="imgs/department/3.jpg" class="d-block w-100" alt="">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Estre&ntildeimiento y sangrado rectal</h5>
+                                <p>El estreñimiento se caracteriza por las deposiciones poco frecuentes o la dificultad para evacuar.
+                                El sangrado rectal leve tiene lugar cuando se refiere a la eliminaci&#243;n de unas pocas gotas de sangre de color rojo.</p>
+                                <button type="button" class="btn btn-outline-light"  onclick="especialidad('estreñimiento');">Agendar cita</button>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 col-lg-4">
-                    <div class="single_department">
-                        <div class="department_thumb">
-                            <img src="imgs/department/3.jpg" alt="">
-                        </div>
-                        <div class="department_content">
-                            <h3><a href="#" style="text-decoration:none;">Estreñimiento y sangrado rectal</a></h3>
-                            <p>El estreñimiento se caracteriza por las deposiciones poco frecuentes o la dificultad para evacuar.
-                            El sangrado rectal leve tiene lugar cuando se refiere a la eliminaci&#243;n de unas pocas gotas de sangre de color rojo
-                            </p>
-                            <center>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#citaModal" onclick="especialidad('estreñimiento');">Agendar cita</button>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 col-lg-4">
-                    <div class="single_department">
-                        <div class="department_thumb">
-                            <img src="imgs/department/4.jpg" alt="">
-                        </div>
-                        <div class="department_content">
-                            <h3><a href="#" style="text-decoration:none;">Hemorroides</a></h3>
-                            <p>Las hemorroides o almorranas son un conjunto de tejidos inflamados en la zona anal. Contienen vasos sangu&#237;neos,
+                        <div class="carousel-item">
+                            <img src="imgs/department/4.jpg" class="d-block w-100" alt="">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Hemorroides</h5>
+                                <p>Las hemorroides o almorranas son un conjunto de tejidos inflamados en la zona anal. Contienen vasos sangu&#237;neos,
                                  tejido conjuntivo, m&#250;sculo y fibras el&#225;sticas.</p>
-                            <br>
-                            <center>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#citaModal" onclick="especialidad('hemorroides');">Agendar cita</button>
-                            </center>
+                                <button type="button" class="btn btn-outline-light"  onclick="especialidad('hemorroides');">Agendar cita</button>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 col-lg-4">
-                    <div class="single_department">
-                        <div class="department_thumb">
-                            <img src="imgs/department/5.jpg" alt="">
-                        </div>
-                        <div class="department_content">
-                            <h3><a href="#" style="text-decoration:none;">C&#225;ncer recto y ano</a></h3>
-                            <p>El c&#225;ncer del recto es un c&#225;ncer que comienza en el recto. El recto consiste en los &#250;ltimos 
+                        <div class="carousel-item">
+                            <img src="imgs/department/5.jpg" class="d-block w-100" alt="">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>C&#225;ncer recto y ano</h5>
+                                <p>El c&#225;ncer del recto es un c&#225;ncer que comienza en el recto. El recto consiste en los &#250;ltimos 
                                 cent&#237;metros del intestino grueso. El cáncer de ano es una enfermedad por la que se forman c&#233;lulas 
-                                malignas en los tejidos del ano</p>
-                            <center>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#citaModal" onclick="especialidad('cancer');">Agendar cita</button>
-                            </center>
+                                malignas en los tejidos del ano.</p>
+                                <button type="button" class="btn btn-outline-light" onclick="especialidad('cancer');">Agendar cita</button>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 col-lg-4">
-                    <div class="single_department">
-                        <div class="department_thumb">
-                            <img src="imgs/department/6.jpg" alt="">
-                        </div>
-                        <div class="department_content">
-                            <h3><a href="#" style="text-decoration:none;">H&#237;gado y cálculos en ves&#237;cula</a></h3>
-                            <p>Los c&#225;lculos biliares son dep&#243;sitos endurecidos de fluido digestivo que se pueden 
+                        <div class="carousel-item">
+                            <img src="imgs/department/6.jpg" class="d-block w-100" alt="">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>H&#237;gado y cálculos en ves&#237;cula</h5>
+                                <p>Los c&#225;lculos biliares son dep&#243;sitos endurecidos de fluido digestivo que se pueden 
                             formar en la ves&#237;cula biliar.</p>
-                             <br><br>
-                            <center>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#citaModal" onclick="especialidad('higado');">Agendar cita</button>
-                            </center>
+                                <button type="button" class="btn btn-outline-light" onclick="especialidad('higado');">Agendar cita</button>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imgs/department/7.jpg" class="d-block w-100" alt="">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Reflujo gastro-esof&#225;gico</h5>
+                                <p>La enfermedad por reflujo gastroesof&#225;gico es una afecci&#243;n en la cual los contenidos estomacales se devuelven 
+                            desde el est&#243;mago hacia el esófago. Los alimentos van desde la boca hasta el est&#243;mago a través del es&#243;fago.</p>
+                                <button type="button" class="btn btn-outline-light" onclick="especialidad('reflujo');">Agendar cita</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-4 col-md-6 col-lg-4">
-                    <div class="single_department">
-                        <div class="department_thumb">
-                            <img src="imgs/department/7.jpg" alt="">
-                        </div>
-                        <div class="department_content">
-                            <h3><a href="#" style="text-decoration:none;">Reflujo gastro-esof&#225;gico</a></h3>
-                            <p>La enfermedad por reflujo gastroesof&#225;gico es una afecci&#243;n en la cual los contenidos estomacales se devuelven 
-                            desde el est&#243;mago hacia el esófago. Los alimentos van desde la boca hasta el est&#243;mago a través del es&#243;fago</p>
-                            <center>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#citaModal" onclick="especialidad('reflujo');">Agendar cita</button>
-                            </center>
-                        </div>
-                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
         </div>
