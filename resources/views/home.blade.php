@@ -52,13 +52,21 @@
             display: inline-block;
         }
         .carousel-caption {
-            background: rgba(0, 0, 0, 0.35);
+            background: #353d5d66;
             width: 100%;
             left: 0;
-            color: white;
+            bottom: 0;
+            padding: 1.25rem 1.30rem 3rem;
         }
         .carousel-caption h5 {
             color: white;
+        }
+        .carousel-caption p {
+            height: 84px;   
+        }
+        .carousel-item img {
+            width: 1024px;
+            height: 576px;
         }
     </style>
     <div class="row">
