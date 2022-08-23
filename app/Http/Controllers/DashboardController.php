@@ -121,6 +121,8 @@ class DashboardController extends Controller
         //User::find(7)->assignRole('administrador');
         /*Rol para gabriela*/ 
         //User::find(8)->assignRole('administrador');
+        /*Rol para el Doctor*/ 
+        //User::find(9)->assignRole('administrador');
         //return "hecho";
     }
 }
