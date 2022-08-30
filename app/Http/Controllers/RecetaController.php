@@ -36,7 +36,7 @@ class RecetaController extends Controller
                 $receta->save();
 
                 
-                $receta->medicamentos()->attach($request->medicamentoid);
+                $receta->medicamentos()->sync($request->medicamentoid);
 
                 return response()->json(['nombrePaciente' => $nombredelPaciente, 'estado' => 'guardado','prueba'=>$request->medicamentoid]);
             } catch (\Exception $e) {

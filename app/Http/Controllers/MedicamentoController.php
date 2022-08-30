@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Medicamento;
+use App\Models\MedicamentosPrescritos;
+use App\Models\Receta;
 use Auth;
 
 class MedicamentoController extends Controller
@@ -67,17 +69,20 @@ class MedicamentoController extends Controller
                     return response()->json(['estado' => 'error', 'mensaje' => 'No se pudo registrar el medicamento correctamente, el nombre proporcionado ya existe en nuestros registros']);
                 }
 
-                $cantidad = request('Cantidad');
-                $precio=request('Precio');
+                $nombreMedicamento= request('NombreMedicamento');
+                $cantidadMedicamento = request('Cantidad');
+                $precioMedicamento = request('Precio');
 
-
-                $medicamento = Medicamento::create([
-                    'nombre' => request('NombreMedicamento'),
-                    'cantidad' => request('Cantidad'),
-                    'precio' => request('Precio'),
-                ]);
-
+                $medicamento= new Medicamento();
+            
                 $IdMedicamento = $medicamento->id;
+                $medicamento->nombre = $nombreMedicamento;
+                $medicamento->cantidad = $cantidadMedicamento;
+                $medicamento->precio = $precioMedicamento;
+                
+                
+                $medicamento->save();
+                
                 return response()->json(['estado' => 'creado']);
             } catch (\Exception $e) {
                 //report($e); //report error
@@ -127,7 +132,10 @@ class MedicamentoController extends Controller
         //
         if(Auth::user()->hasRole(['administrador'])){
             try{
-                Medicamento::find(request('IdMedicamento'))->delete();
+                $id = request('IdMedicamento');
+                $medicamento = Medicamento::findOrFail($id);
+                $medicamento->delete();
+                $medicamento->recetas()->detach($request->id);
                 return response()->json(['estado' => 'eliminado']);
             }catch(\Exception $e){
                 return response()->json(['estado' => 'error']);
