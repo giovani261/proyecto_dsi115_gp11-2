@@ -259,18 +259,32 @@
             ],
 
             "language":{
-                "decimal":        "",
-                "emptyTable":     "No data available in table",
-                "info":           "Mostrando la página _START_ de _END_ de _TOTAL_ registros",
-                "infoEmpty":      "Showing 0 to 0 of 0 entries",
+                "decimal":        ".",
+                "emptyTable":     "No hay datos disponibles en la tabla",
+                "info":           "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                "infoEmpty":      "Mostrando del 0 al 0 de un todal de 0 registros",
                 "infoFiltered":   "(Filtrado de _MAX_ registros totales)",
-                "lengthMenu":     "Mostrar _MENU_ registros por páginas",
-                "loadingRecords": "Cargando registros...",
+                "lengthMenu":     "Mostrar _MENU_ registros por página",
+                "loadingRecords": "Cargando...",
                 "processing":     "",
                 "search":         "Buscar:",
-                "zeroRecords":    "No se encontraron registros",
-                
-               
+                "zeroRecords":    "No se encontraron resultados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Último",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                },
+                "aria": {
+                    "sortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sortDescending": ": Activar para ordenar la columna de manera descendente"
+                },
+                "select": {
+                    "rows": {
+                        "1": "1 fila seleccionada",
+                        "_": "%d filas seleccionadas"
+                    }
+                },
             } 
         });
         

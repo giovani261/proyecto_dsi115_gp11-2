@@ -88,5 +88,9 @@ Route::post('/editar_usuario',[UsuariosController::class,'update'])->middleware(
 Route::post('/crear_usuario',[UsuariosController::class,'create'])->middleware('auth')->name('crear_usuario');
 Route::post('/eliminar_usuario',[UsuariosController::class,'destroy'])->middleware('auth')->name('eliminar_usuario');
 
-
-
+Route::get('/medicamentos',[MedicamentoController::class,'index'])->middleware('auth')->name('index');
+Route::get('medicamentos_data',[MedicamentoController::class,'medicamentos_data'])->middleware('auth')->name('medicamentos_data');
+Route::get('/consultarmedicamento',[MedicamentoController::class,'consultarMedicamento'])->middleware('auth')->name('consultarmedicamento');
+Route::post('/editar_medicamento',[MedicamentoController::class,'update'])->middleware('auth')->name('editar_medicamento');
+Route::post('/crear_medicamento',[MedicamentoController::class,'create'])->middleware('auth')->name('crear_medicamento');
+Route::post('/eliminar_medicamento',[MedicamentoController::class,'destroy'])->middleware('auth')->name('eliminar_medicamento');
