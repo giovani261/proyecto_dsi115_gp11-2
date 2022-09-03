@@ -123,24 +123,6 @@ class InsumoController extends Controller
             return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se ha cerrado su sesión');
         }
     }
-    public function destroy(Request $request)
-    {
-        //
-        if(Auth::user()->hasRole(['administrador'])){
-            try{
-                $id = request('IdInsumo');
-                $insumo = Insumo::findOrFail($id);
-                $insumo->delete();
-                return response()->json(['estado' => 'eliminado']);
-            }catch(\Exception $e){
-                return response()->json(['estado' => 'error']);
-            }
-        }
-        else {
-            Auth::logout();
-            //$request->session()->invalidate();
-            return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se ha cerrado su sesión');
-        }
-    }
+
 }
 

@@ -41,7 +41,7 @@ Route::match(['post'],'/expediente',[ExpedienteController::class,'registro'])->n
 Route::match(['get'],'/expedienteconsultarajax',[ExpedienteController::class,'consultarajax'])->name('expedienteconsultarajax');
 
 Route::match(['get'],'/medicamentoconsultarajax',[MedicamentoController::class,'consultarmedicamentoajax'])->name('medicamentoconsultarajax');
-Route::match(['get'],'/insumoajax',[MedicamentoController::class,'consultarinsumoajax'])->name('insumoajax');
+Route::match(['get'],'/insumoajax',[InsumoController::class,'consultarinsumoajax'])->name('insumoajax');
 Route::match(['get'],'/exprecetaconsultarajax',[ExpedienteController::class,'consultarajax'])->name('exprecetaconsultarajax');
 
 Route::match(['post'],'/reserva', [ReservaDeCitaController::class,'registro'])->name('reserva');
@@ -102,4 +102,4 @@ Route::get('insumos_data',[InsumoController::class,'insumos_data'])->middleware(
 Route::get('/consultarinsumo',[InsumoController::class,'consultarInsumo'])->middleware('auth')->name('consultarinsumo');
 Route::post('/editar_insumo',[InsumoController::class,'update'])->middleware('auth')->name('editar_insumo');
 Route::post('/crear_insumo',[InsumoController::class,'create'])->middleware('auth')->name('crear_insumo');
-Route::post('/eliminar_insumo',[InsumoController::class,'destroy'])->middleware('auth')->name('eliminar_insumo');
+//Route::post('/eliminar_insumo',[InsumoController::class,'destroy'])->middleware('auth')->name('eliminar_insumo');

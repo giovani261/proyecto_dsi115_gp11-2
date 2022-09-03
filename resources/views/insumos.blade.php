@@ -152,7 +152,7 @@
                     "data": null,
                     render:function(data)
                     {
-                    return "<button class='btn btn-warning' onclick='consultarData(" + data.id + ")'><i class='fa-solid fa-pen-to-square'></i> Editar</button> <button class='btn btn-danger' onclick='eliminarInsumo(" + data.id + ")'><i class='fa-solid fa-trash-can'></i> Eliminar</button>";
+                    return "<button class='btn btn-warning' onclick='consultarData(" + data.id + ")'><i class='fa-solid fa-pen-to-square'></i> Editar</button>";
                     }
                     //defaultContent: "<button class='btn btn-warning' onclick='prueba({data:'id'})'>Editar</button> / <button class='btn btn-danger'>Eliminar</button>"
                 }
@@ -349,48 +349,6 @@ function consultarData(id){
         });
     });
 }
-//js de función eliminar insumo
-function eliminarInsumo(id){
-    Swal.fire({
-        icon: 'warning',
-        title: '¿Está seguro de realizar esta acción?',
-        text: '¡No podrá revertir esto!',
-        showCancelButton: true,
-        confirmButtonText: 'Ok',
-        }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url:"{{route('eliminar_insumo')}}",
-                type:"POST",
-                data:{
-                    'IdInsumo': id,
-                    "_token": $("meta[name='csrf-token']").attr("content")
-                },
-                //dataType:"json",
-                success: function(test){
-                    $('#datatable').DataTable().ajax.reload();
-                    if(test.estado === 'eliminado'){
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Hecho!.',
-                                text: 'Se eliminó correctamente el insumo',
-                                confirmButtonText: 'Ok',
-                            })
-                        }
-                    if(test.estado === 'error'){
-                            Swal.fire({
-                                icon: 'error',
-                                title: '¡Ocurrió un error!.',
-                                text: 'No se pudo eliminar el insumo correctamente',
-                                confirmButtonText: 'Ok',
-                            })
-                        }
-                    }
-                });
-        } else if (result.isDismissed) {
-            Swal.fire('Se canceló la eliminación del insumo', '', 'info')
-        }
-    })
-}
+
 </script>
 @endsection 
