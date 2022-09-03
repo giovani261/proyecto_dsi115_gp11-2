@@ -71,7 +71,7 @@
                         <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="/usuarios"><i class="fa-solid fa-users fa-xl"></i> Gestion de usuarios</a>
                     @endrole
                     @role('administrador|secretaria|asistente')
-                        <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="#!"><i class="fa-solid fa-hammer fa-xl"></i> Gestion de insumos</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="/insumos"><i class="fa-solid fa-hammer fa-xl"></i> Gestion de insumos</a>
                     @endrole
                     @role('administrador|secretaria|asistente')
                         <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="/medicamentos"><i class="fa-solid fa-briefcase-medical fa-xl"></i> <span class="txtmenu"> Gestion de medicamentos</span></a>

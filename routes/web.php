@@ -15,6 +15,7 @@ use App\Http\Controllers\IncapacidadController;
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\CKEditorrecetaController ;
 use App\Http\Controllers\MedicamentoController;
+use App\Http\Controllers\InsumoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::match(['post'],'/expediente',[ExpedienteController::class,'registro'])->n
 Route::match(['get'],'/expedienteconsultarajax',[ExpedienteController::class,'consultarajax'])->name('expedienteconsultarajax');
 
 Route::match(['get'],'/medicamentoconsultarajax',[MedicamentoController::class,'consultarmedicamentoajax'])->name('medicamentoconsultarajax');
+Route::match(['get'],'/insumoajax',[MedicamentoController::class,'consultarinsumoajax'])->name('insumoajax');
 Route::match(['get'],'/exprecetaconsultarajax',[ExpedienteController::class,'consultarajax'])->name('exprecetaconsultarajax');
 
 Route::match(['post'],'/reserva', [ReservaDeCitaController::class,'registro'])->name('reserva');
@@ -94,3 +96,10 @@ Route::get('/consultarmedicamento',[MedicamentoController::class,'consultarMedic
 Route::post('/editar_medicamento',[MedicamentoController::class,'update'])->middleware('auth')->name('editar_medicamento');
 Route::post('/crear_medicamento',[MedicamentoController::class,'create'])->middleware('auth')->name('crear_medicamento');
 Route::post('/eliminar_medicamento',[MedicamentoController::class,'destroy'])->middleware('auth')->name('eliminar_medicamento');
+
+Route::get('/insumos',[InsumoController::class,'index'])->middleware('auth')->name('index');
+Route::get('insumos_data',[InsumoController::class,'insumos_data'])->middleware('auth')->name('insumos_data');
+Route::get('/consultarinsumo',[InsumoController::class,'consultarInsumo'])->middleware('auth')->name('consultarinsumo');
+Route::post('/editar_insumo',[InsumoController::class,'update'])->middleware('auth')->name('editar_insumo');
+Route::post('/crear_insumo',[InsumoController::class,'create'])->middleware('auth')->name('crear_insumo');
+Route::post('/eliminar_insumo',[InsumoController::class,'destroy'])->middleware('auth')->name('eliminar_insumo');
