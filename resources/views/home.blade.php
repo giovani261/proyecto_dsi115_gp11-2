@@ -53,18 +53,28 @@
         }
         .carousel-caption {
             background: #353d5d66;
-            width: 100%;
-            height: 13rem;
-            left: 0;
-            bottom: 0;
-            padding: 1.25rem 1.30rem 3rem;
+             border-radius: 25px;
         }
         .carousel-caption h5 {
             color: white;
         }
         .carousel-item img {
-            width: 1024px;
-            height: 576px;
+            width: 55.5em;
+	        height: 33.12em;
+	        object-fit: cover;
+        }
+        .carousel {
+            width: 80%; margin: auto;
+        }
+        @media only screen and (max-width: 768px) {
+            /* For mobile phones: */
+            .carousel {
+                width: 100%;
+            }
+            /*.carousel-caption p {
+                display: none;
+            }
+            .carousel-indicators { display:none; }*/
         }
     </style>
     <div class="row">
@@ -175,19 +185,52 @@
     <!-- service_area_end -->
 
     <!-- offers_area_start -->
-    <div class="our_department_area">
+    <div class="our_department_area pt-5">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
-                    <div class="section_title text-center mb-55">
-                        <h3>Nuestros servicios</h3>
-                        <p>Contamos con varios servicios.</p>
+                    <div class="section_subtitle text-center mb-5">
+                        <h3>Im&aacute;genes de la cl&iacute;nica</h3>
                     </div>
                 </div>
             </div>
             <div class="row">
-            
-            
+                <!-- -->
+                <div id="carouselImages" class="carousel slide carouselImages" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="imgs/clinica/img1.jpg" class="d-block w-100" alt="">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imgs/clinica/img2.jpg" class="d-block w-100" alt="">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imgs/clinica/img3.jpg" class="d-block w-100" alt="">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imgs/clinica/img4.jpg" class="d-block w-100" alt="">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselImages" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>      
+                <!-- -->
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section_subtitle text-center mb-5 mt-5">
+                        <h3>Nuestros servicios</h3>
+                        <!-- <p>Contamos con varios servicios.</p> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-interval="false">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -201,11 +244,11 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="imgs/department/1.jpg" class="d-block w-100" alt="">
-                            <div class="carousel-caption d-none d-md-block">
+                            <div class="carousel-caption">
                                 <h5>Gastritis y C&#225;ncer del Est&#243;mago</h5>
-                                <p>La gastritis es un t&#233;rmino para un grupo de enfermedades con un punto en com&#250;n: 
-                                la inflamaci&#243;n del revestimiento del est&#243;mago. El c&#225;ncer de est&#243;mago, es una 
-                                enfermedad por la que se forman c&#233;lulas malignas en el revestimiento del est&#243;mago.</p>
+                                <p>La gastritis es un grupo de enfermedades con un punto en com&#250;n: 
+                                inflamaci&#243;n del revestimiento del est&#243;mago. El c&#225;ncer de est&#243;mago, consiste en
+                                la formación de c&#233;lulas malignas en el revestimiento del est&#243;mago.</p>
                                 <button type="button" class="btn btn-outline-light"
                                         data-bs-toggle="modal" data-bs-target="#citaModal"
                                         onclick="especialidad('gastritis');">Agendar cita</button>
@@ -213,7 +256,7 @@
                         </div>
                         <div class="carousel-item">
                             <img src="imgs/department/2.jpg" class="d-block w-100" alt="">
-                            <div class="carousel-caption d-none d-md-block">
+                            <div class="carousel-caption">
                                 <h5>Colitis y c&#225;ncer de colon</h5>
                                 <p>La colitis ulcerativa es una enfermedad que causa inflamaci&#243;n y &#250;lceras.
                             El c&#225;ncer de colon es una enfermedad por la que se forman c&#233;lulas malignas en los tejidos del colon.</p>
@@ -224,7 +267,7 @@
                         </div>
                         <div class="carousel-item">
                             <img src="imgs/department/3.jpg" class="d-block w-100" alt="">
-                            <div class="carousel-caption d-none d-md-block">
+                            <div class="carousel-caption">
                                 <h5>Estre&ntildeimiento y sangrado rectal</h5>
                                 <p>El estreñimiento se caracteriza por las deposiciones poco frecuentes o la dificultad para evacuar.
                                 El sangrado rectal leve tiene lugar cuando se refiere a la eliminaci&#243;n de unas pocas gotas de sangre de color rojo.</p>
@@ -234,8 +277,8 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="imgs/department/4.jpg" class="d-block w-100" alt="">
-                            <div class="carousel-caption d-none d-md-block">
+                            <img src="imgs/department/4.jpeg" class="d-block w-100" alt="">
+                            <div class="carousel-caption">
                                 <h5>Hemorroides</h5>
                                 <p>Las hemorroides o almorranas son un conjunto de tejidos inflamados en la zona anal. Contienen vasos sangu&#237;neos,
                                  tejido conjuntivo, m&#250;sculo y fibras el&#225;sticas.</p>
@@ -246,7 +289,7 @@
                         </div>
                         <div class="carousel-item">
                             <img src="imgs/department/5.jpg" class="d-block w-100" alt="">
-                            <div class="carousel-caption d-none d-md-block">
+                            <div class="carousel-caption">
                                 <h5>C&#225;ncer recto y ano</h5>
                                 <p>El c&#225;ncer del recto es un c&#225;ncer que comienza en el recto. El recto consiste en los &#250;ltimos 
                                 cent&#237;metros del intestino grueso. El cáncer de ano es una enfermedad por la que se forman c&#233;lulas 
@@ -258,7 +301,7 @@
                         </div>
                         <div class="carousel-item">
                             <img src="imgs/department/6.jpg" class="d-block w-100" alt="">
-                            <div class="carousel-caption d-none d-md-block">
+                            <div class="carousel-caption">
                                 <h5>H&#237;gado y cálculos en ves&#237;cula</h5>
                                 <p>Los c&#225;lculos biliares son dep&#243;sitos endurecidos de fluido digestivo que se pueden 
                             formar en la ves&#237;cula biliar.</p>
@@ -269,7 +312,7 @@
                         </div>
                         <div class="carousel-item">
                             <img src="imgs/department/7.jpg" class="d-block w-100" alt="">
-                            <div class="carousel-caption d-none d-md-block">
+                            <div class="carousel-caption">
                                 <h5>Reflujo gastro-esof&#225;gico</h5>
                                 <p>La enfermedad por reflujo gastroesof&#225;gico es una afecci&#243;n en la cual los contenidos estomacales se devuelven 
                             desde el est&#243;mago hacia el esófago. Los alimentos van desde la boca hasta el est&#243;mago a través del es&#243;fago.</p>
