@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Unidad medica humana</title>
+    <title>Unidad m&eacute;dica humana</title>
     <meta name="description" content="">
 
 
@@ -90,7 +90,7 @@
                 <h3>MEDICINA Y CIRUGÍA GASTROINTESTINAL <br>
                     J.V.P.M. 1668
                 </h3>
-                <p><strong>DR. RENE RODRÍGUEZ ROMERO.</strong></p>
+                <p><strong>DR. REN&Eacute; RODRÍGUEZ ROMERO</strong></p>
             </div>
         </div>
     </div>
@@ -313,7 +313,7 @@
                         <div class="carousel-item">
                             <img src="imgs/department/7.jpg" class="d-block w-100" alt="">
                             <div class="carousel-caption">
-                                <h5>Reflujo gastro-esof&#225;gico</h5>
+                                <h5>Reflujo gastroesof&#225;gico</h5>
                                 <p>La enfermedad por reflujo gastroesof&#225;gico es una afecci&#243;n en la cual los contenidos estomacales se devuelven 
                             desde el est&#243;mago hacia el esófago. Los alimentos van desde la boca hasta el est&#243;mago a través del es&#243;fago.</p>
                                 <button type="button" class="btn btn-outline-light"
@@ -340,7 +340,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Rservación de Citas</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Reservación de citas</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="removevalidateform('reservarCita');"></button>
             </div>
             <div class="modal-body"> 
@@ -354,7 +354,7 @@
                     </div>
                 </div>
                 <div class="from-group mb-3">
-                    <label for="" class="text-dark">Telefono</label>
+                    <label for="" class="text-dark">Tel&eacute;fono</label>
                     <input type="text" class="phone form-control" id="inputTelefono" pattern="[0-9]{8}" required>
                     <div class="invalid-feedback">
                     Por favor, revise el formato del texto ingresado.
@@ -393,7 +393,7 @@
 
                             <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-                            aria-selected="false" style="text-shadow: 5px 5px 5px #de1a22; font-size: 24px;">Medico calificado.</a>
+                            aria-selected="false" style="text-shadow: 5px 5px 5px #de1a22; font-size: 24px;">M&eacute;dico calificado.</a>
                             </li>
 
 
