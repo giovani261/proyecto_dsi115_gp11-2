@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Proveedor;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 
@@ -17,8 +18,7 @@ class proveedoresController extends Controller
     public function index()
     {
         if(Auth::user()->hasRole(['administrador'])){
-            $proveedores = User::select('id','name','email','created_at', 'updated_at')->get();
-            return view('proveedores',compact('proveedores'));
+            return view('proveedores/index');
         }
         else{
             Auth::logout();
@@ -27,18 +27,11 @@ class proveedoresController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function registro(Request $request){
-                
-    }
+
     public function proveedores_data(){
         if(Auth::user()->hasRole(['administrador']))
         {
-            $proveedores = User::select('id','name','email','created_at', 'updated_at')->orderBy('name')->get();
+            $proveedores = Proveedor::get();
             return datatables($proveedores)->toJson();    
         }
         else {
@@ -48,42 +41,13 @@ class proveedoresController extends Controller
         }
     }
 
-    public function create(Request $request)
+
+    public function store(Request $request)
     {
         if(Auth::user()->hasRole(['administrador']))
         {
-            try {
-                $correoVerificacion = User::select('email')->where('email','=',request('CorreoProveedor'))->get();
-                if(!$correoVerificacion->isEmpty()){
-                    return response()->json(['estado' => 'error', 'mensaje' => 'No se pudo crear el proveedor correctamente, el correo proporcionado ya existe en nuestros registros']);
-                }
-
-                $Contra = request('ContraseñaProveedor');
-                $ContraConfirm = request('ContraseñaConfirmProveedor');
-
-                if(strcmp($Contra, $ContraConfirm) !== 0){
-                    return response()->json(['estado' => 'error', 'mensaje' => 'No se pudo crear el proveedor correctamente, las contraseñas ingresadas no coinciden']);
-                }
-
-                $user = User::create([
-                    'name' => request('NombreProveedor'),
-                    'email' => request('CorreoProveedor'),
-                    'password' => Hash::make(request('ContraseñaProveedor')),
-                ]);
-
-                $IdProveedor = $user->id;
-                $RolesAssign = request('RolesAssign');
-
-                if(!empty($RolesAssign)){
-                    foreach($RolesAssign as $rolAssign){
-                        User::find($IdProveedor)->assignRole($rolAssign);
-                    }
-                }
-                return response()->json(['estado' => 'creado']);
-            } catch (\Exception $e) {
-                //report($e); //report error
-                return response()->json(['estado' => 'error', 'mensaje' => 'No se pudo crear el proveedor correctamente']);
-            }
+            Proveedor::create($request->all());
+            return response()->json(['estado' => 'creado']);
         }
         else {
             Auth::logout();
