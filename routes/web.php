@@ -53,6 +53,8 @@ Route::match(['get','post'],'/editor', [CKEditorController::class,'editor'])->na
 Route::match(['post'],'/historialconsultarajax', [HistorialController::class,'consultarhistorial'])->name('historialconsultarajax');
 Route::match(['post'],'/citasactualizarajax', [ReservaDeCitaController::class,'actualizarCitas'])->name('citasactualizarajax');
 Route::match(['get','post'],'/editorreceta', [CKEditorrecetaController ::class,'editor'])->name('editorreceta');
+Route::match(['get'],'/pacientes-informe',[ExpedienteController::class,'index'])->name('pacientes-informe');
+
 
 // Route::match(['get', 'post'], '/db', function () {
 //     //consulta
@@ -103,3 +105,4 @@ Route::get('/consultarinsumo',[InsumoController::class,'consultarInsumo'])->midd
 Route::post('/editar_insumo',[InsumoController::class,'update'])->middleware('auth')->name('editar_insumo');
 Route::post('/crear_insumo',[InsumoController::class,'create'])->middleware('auth')->name('crear_insumo');
 //Route::post('/eliminar_insumo',[InsumoController::class,'destroy'])->middleware('auth')->name('eliminar_insumo');
+Route::get('/pacienteconsulta',[ExpedienteController::class,'pacienteajax'])->middleware('auth')->name('pacienteconsulta');

@@ -34,6 +34,34 @@
         </div>
     </div>
 </div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <div class="card" style="max-width: 18rem;">
+                <div class="card-header text-primary"><center><b>Pacientes</b></center></div>
+                    <div class="card-body">
+                        <a class="acards text-primary" href="/pacientes-informe">
+                            <div class="container">
+                                <center>
+                                    <div class="row">
+                                        <div class="col my-auto">
+                                            Informes de pacientes
+                                        </div>
+                                        <div class="col-md-auto my-auto">
+                                            <i class="fa-solid fa-heart-pulse fa-4x"></i>
+                                        </div>
+                                    </div>
+                                </center>
+                            </div>   
+                        </a>
+                    </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
 @endsection
 @section('scripts')
 <script src="{{ asset('js/bootstrap-datepicker.es.js') }}"></script>
