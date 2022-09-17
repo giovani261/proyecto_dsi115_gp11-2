@@ -77,7 +77,9 @@
                         <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="/medicamentos"><i class="fa-solid fa-briefcase-medical fa-xl"></i> <span class="txtmenu"> Gestion de medicamentos</span></a>
                     @endrole
                     @role('administrador')
-                        <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="#!"><i class="fa-solid fa-clipboard-list fa-xl"></i> Gestion de proveedores</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="/proveedores"><i class="fa-solid fa-clipboard-list fa-xl"></i> Gestion de proveedores</a>
+                    @endrole
+                        @role('administrador')
                         <a class="list-group-item list-group-item-action list-group-item-light p-3 text-dark" href="/informes"><i class="fa-solid fa-chart-area fa-xl"></i> Generar reporte</a>
                     @endrole
                     <!-- Para todos, incluidos los usuarios sin cuenta-->

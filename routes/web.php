@@ -10,6 +10,7 @@ use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\ReferenciaController;
 use App\Http\Controllers\ReservaDeCitaController;
+use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\IncapacidadController;
 use App\Http\Controllers\CKEditorController;
@@ -68,9 +69,7 @@ Auth::routes(['register' => false]);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/roles', [DashboardController::class, 'roles'])->name('roles');
-
 Route::get('/reserva',[ReservaDeCitaController::class,'index'])->middleware('auth')->name('index');
-
 Route::get('/usuarios',[UsuariosController::class,'index'])->middleware('auth')->name('index');
 
 Route::match(['post'], '/crear-referencia', [ReferenciaController::class, 'guardar_referencia_medica'])->name('crear_referencia');
@@ -79,6 +78,7 @@ Route::get('/editar_referencia', [ReferenciaController::class, 'editar_referenci
 Route::get('reservas_data',[ReservaDeCitaController::class,'reservas_data'])->name('reservas_data');
 
 Route::get('usuarios_data',[UsuariosController::class,'usuarios_data'])->middleware('auth')->name('usuarios_data');
+
 
 Route::get('/informes', function () {
     return view('informe');
@@ -91,6 +91,12 @@ Route::get('/consultarusuariosajax',[UsuariosController::class,'consultarUsuario
 Route::post('/editar_usuario',[UsuariosController::class,'update'])->middleware('auth')->name('editar_usuario');
 Route::post('/crear_usuario',[UsuariosController::class,'create'])->middleware('auth')->name('crear_usuario');
 Route::post('/eliminar_usuario',[UsuariosController::class,'destroy'])->middleware('auth')->name('eliminar_usuario');
+
+Route::get('signos_informes',[SignosController::class,'signos_informes'])->middleware('auth')->name('signos_informes');
+Route::get('/consultarproveedoresajax',[ProveedoresController::class,'consultarProveedores'])->middleware('auth')->name('consultarproveedoresajax');
+Route::post('/editar_proveedor',[ProveedoresController::class,'update'])->middleware('auth')->name('editar_proveedor');
+Route::post('/crear_proveedor',[ProveedoresController::class,'create'])->middleware('auth')->name('crear_proveedor');
+Route::post('/eliminar_proveedor',[ProveedoresController::class,'destroy'])->middleware('auth')->name('eliminar_proveedor');
 
 Route::get('/medicamentos',[MedicamentoController::class,'index'])->middleware('auth')->name('index');
 Route::get('medicamentos_data',[MedicamentoController::class,'medicamentos_data'])->middleware('auth')->name('medicamentos_data');
@@ -105,4 +111,11 @@ Route::get('/consultarinsumo',[InsumoController::class,'consultarInsumo'])->midd
 Route::post('/editar_insumo',[InsumoController::class,'update'])->middleware('auth')->name('editar_insumo');
 Route::post('/crear_insumo',[InsumoController::class,'create'])->middleware('auth')->name('crear_insumo');
 //Route::post('/eliminar_insumo',[InsumoController::class,'destroy'])->middleware('auth')->name('eliminar_insumo');
-Route::get('/pacienteconsulta',[ExpedienteController::class,'pacienteajax'])->middleware('auth')->name('pacienteconsulta');
+//<<<<<<< main(1)
+Route::get('/proveedores',[ProveedoresController::class,'index'])->middleware('auth')->name('proveedores');
+Route::get('/proveedores_data',[ProveedoresController::class,'proveedores_data'])->middleware('auth')->name('proveedores_data');
+Route::post('/proveedores',[ProveedoresController::class,'store'])->middleware('auth')->name('store_proveedor');
+Route::put('/proveedores/{proveedor}',[ProveedoresController::class,'proveedores_data'])->middleware('auth')->name('update_proveedor');
+=======
+//Route::get('/pacienteconsulta',[ExpedienteController::class,'pacienteajax'])->middleware('auth')->name('pacienteconsulta');
+//>>>>>>> main
