@@ -54,6 +54,8 @@ Route::match(['get','post'],'/editor', [CKEditorController::class,'editor'])->na
 Route::match(['post'],'/historialconsultarajax', [HistorialController::class,'consultarhistorial'])->name('historialconsultarajax');
 Route::match(['post'],'/citasactualizarajax', [ReservaDeCitaController::class,'actualizarCitas'])->name('citasactualizarajax');
 Route::match(['get','post'],'/editorreceta', [CKEditorrecetaController ::class,'editor'])->name('editorreceta');
+Route::match(['get'],'/pacientes-informe',[ExpedienteController::class,'index'])->name('pacientes-informe');
+
 
 // Route::match(['get', 'post'], '/db', function () {
 //     //consulta
@@ -109,9 +111,11 @@ Route::get('/consultarinsumo',[InsumoController::class,'consultarInsumo'])->midd
 Route::post('/editar_insumo',[InsumoController::class,'update'])->middleware('auth')->name('editar_insumo');
 Route::post('/crear_insumo',[InsumoController::class,'create'])->middleware('auth')->name('crear_insumo');
 //Route::post('/eliminar_insumo',[InsumoController::class,'destroy'])->middleware('auth')->name('eliminar_insumo');
-
-
+//<<<<<<< main(1)
 Route::get('/proveedores',[ProveedoresController::class,'index'])->middleware('auth')->name('proveedores');
 Route::get('/proveedores_data',[ProveedoresController::class,'proveedores_data'])->middleware('auth')->name('proveedores_data');
-// Route::post('/proveedores',[ProveedoresController::class,'store'])->middleware('auth')->name('store_proveedor');
-// Route::put('/proveedores/{proveedor}',[ProveedoresController::class,'proveedores_data'])->middleware('auth')->name('update_proveedor');
+Route::post('/proveedores',[ProveedoresController::class,'store'])->middleware('auth')->name('store_proveedor');
+Route::put('/proveedores/{proveedor}',[ProveedoresController::class,'proveedores_data'])->middleware('auth')->name('update_proveedor');
+=======
+//Route::get('/pacienteconsulta',[ExpedienteController::class,'pacienteajax'])->middleware('auth')->name('pacienteconsulta');
+//>>>>>>> main

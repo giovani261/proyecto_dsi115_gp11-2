@@ -58,4 +58,22 @@ class ExpedienteController extends Controller
         $expedientes = Expediente::select('id','nombre','dui paciente')->orderBy('nombre')->get();
         return response()->json(['expedientes' => $expedientes]);
     }
+
+    public function pacienteajax(){
+        $expedientes = Expediente::select('nombre','edad','domicilio','responsable','dui paciente','dui responsable', 'antecedentes patologicos')->orderBy('nombre')->get();
+        return  datatables($expedientes)->toJson();
+    }
+
+    public function index()
+    {
+        if(Auth::user()->hasRole(['administrador'])){
+            $expedientes = Expediente::select('edad')->get();
+            return view('pacientesinforme',['expedientes' => $expedientes]);
+        }
+        else{
+            Auth::logout();
+            //$request->session()->invalidate();
+            return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se ha cerrado su sesion');
+        }
+    }
 }
