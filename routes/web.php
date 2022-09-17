@@ -96,7 +96,6 @@ Route::get('signos_informes',[SignosController::class,'signos_informes'])->middl
 Route::get('/consultarproveedoresajax',[ProveedoresController::class,'consultarProveedores'])->middleware('auth')->name('consultarproveedoresajax');
 Route::post('/editar_proveedor',[ProveedoresController::class,'update'])->middleware('auth')->name('editar_proveedor');
 Route::post('/crear_proveedor',[ProveedoresController::class,'create'])->middleware('auth')->name('crear_proveedor');
-Route::post('/eliminar_proveedor',[ProveedoresController::class,'destroy'])->middleware('auth')->name('eliminar_proveedor');
 
 Route::get('/medicamentos',[MedicamentoController::class,'index'])->middleware('auth')->name('index');
 Route::get('medicamentos_data',[MedicamentoController::class,'medicamentos_data'])->middleware('auth')->name('medicamentos_data');
@@ -111,11 +110,6 @@ Route::get('/consultarinsumo',[InsumoController::class,'consultarInsumo'])->midd
 Route::post('/editar_insumo',[InsumoController::class,'update'])->middleware('auth')->name('editar_insumo');
 Route::post('/crear_insumo',[InsumoController::class,'create'])->middleware('auth')->name('crear_insumo');
 //Route::post('/eliminar_insumo',[InsumoController::class,'destroy'])->middleware('auth')->name('eliminar_insumo');
-//<<<<<<< main(1)
 Route::get('/proveedores',[ProveedoresController::class,'index'])->middleware('auth')->name('proveedores');
 Route::get('/proveedores_data',[ProveedoresController::class,'proveedores_data'])->middleware('auth')->name('proveedores_data');
-Route::post('/proveedores',[ProveedoresController::class,'store'])->middleware('auth')->name('store_proveedor');
-Route::put('/proveedores/{proveedor}',[ProveedoresController::class,'proveedores_data'])->middleware('auth')->name('update_proveedor');
-=======
-//Route::get('/pacienteconsulta',[ExpedienteController::class,'pacienteajax'])->middleware('auth')->name('pacienteconsulta');
-//>>>>>>> main
+Route::get('/pacienteconsulta',[ExpedienteController::class,'pacienteajax'])->middleware('auth')->name('pacienteconsulta');

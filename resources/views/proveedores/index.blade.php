@@ -14,7 +14,7 @@
             </div>
             <br>
             <a href="#" data-bs-toggle="modal" data-bs-target="#crearProveedor" class="btn btn-primary"><i
-                    class="fa-solid fa-user-plus"></i> Agregar Proveedor</a>
+                    class="fa-solid fa-circle-plus"></i> Agregar Proveedor</a>
             <br>
             <br>
             <table class="table text-md-nowrap" id="datatable">
@@ -37,14 +37,14 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Crear Proveedor</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    onclick="removevalidateform('modalCrearProveedor');removecheck('modalCrear');">
+                    onclick="removevalidateform('modalCrearProveedor');">
                 </button>
             </div>
             <div class="modal-body">
                 <form method="POST" id="modalCrearProveedor" class="needs-validation" novalidate>
                     @csrf
                     <label for="nombre">{{ __('Nombre') }}</label>
-                    <input id="nombre" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}"
+                    <input id="nombre" type="text" class="form-control" name="nombre"
                         required autocomplete="off" autofocus>
                     <div class="invalid-feedback">
                         Este campo no puede quedar vacio.
@@ -60,36 +60,6 @@
         </div>
     </div>
 </div>
-<!-- Modal editar usuarios -->
-<!-- <div class="modal fade" id="editarProveedor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Editar Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    onclick="removevalidateform('modalEditarProveedor');removecheck('modalEditar');">
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" id="modalEditarProveedor" class="needs-validation" novalidate>
-                    @csrf
-                    <label for="nombre">{{ __('Nombre') }}</label>
-                    <input id="nombre" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}"
-                        required autocomplete="off" autofocus>
-                    <div class="invalid-feedback">
-                        Este campo no puede quedar vacio.
-                    </div>
-                    <br>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">
-                            Registrar
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div> -->
 
     <div class="modal fade" id="editarProveedor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -98,15 +68,14 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Editar Proveedor</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    onclick="removevalidateform('modalEditarProveedor');removecheck('modalCrear');">
+                    onclick="removevalidateform('modalEditarProveedor');">
                 </button>
             </div>
             <div class="modal-body">
                 <form method="POST" id="modalEditarProveedor" class="needs-validation" novalidate>
                     @csrf
-                    @method('PUT')
                     <label for="nombre">{{ __('Nombre') }}</label>
-                    <input id="nombre" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}"
+                    <input id="nombreEditar" type="text" class="form-control" name="nombre"
                         required autocomplete="off" autofocus>
                     <div class="invalid-feedback">
                         Este campo no puede quedar vacio.
@@ -143,8 +112,7 @@
                     {
                         "data": null,
                         render: function (data) {
-                            console.log("data",data);
-                            return "<button class='btn btn-warning'><i class='fa-solid fa-pen-to-square'></i> Editar</button> <button class='btn btn-danger' onclick='eliminarProveedor(" + data.id + ")'><i class='fa-solid fa-trash-can'></i> Eliminar</button>";
+                            return "<button class='btn btn-warning' onclick='consultarProveedor(" + data.id + ")'><i class='fa-solid fa-pen-to-square'></i> Editar</button>";
                         }
                         //defaultContent: "<button class='btn btn-warning' onclick='prueba({data:'id'})'>Editar</button> / <button class='btn btn-danger'>Eliminar</button>"
                     }
@@ -182,55 +150,29 @@
 
         });
 
-        function removecheck(modal) {
-            if (modal === "modalEditar") {
-                $('#AdministradorCheck').prop('checked', false);
-                $('#SecretariaCheck').prop('checked', false);
-                $('#AsistenteCheck').prop('checked', false);
-            }
-            if (modal === "modalCrear") {
-                $('#AdministradorCrearCheck').prop('checked', false);
-                $('#SecretariaCrearCheck').prop('checked', false);
-                $('#AsistenteCrearCheck').prop('checked', false);
-            }
-        }
-
-
             //js para envio por ajax para la ventana de editar usuario
+    function consultarProveedor(id){
+            $.ajax({
+                    url:"{{route('consultarproveedoresajax')}}",
+                    type:"GET",
+                    data:{
+                        'IdProveedor': id,
+                    },
+                    //dataType:"json",
+                    success: function(test){
+                        $("#editarProveedor").modal("show");
+                        //console.log(test);
+                        document.getElementById("nombreEditar").value = test.Proveedor[0].nombre;
+                        }
+                    });
+
             $(document).ready(function () {
                 $("#modalEditarProveedor").submit(function (e) {
                     e.preventDefault();
                     var element = document.getElementById("modalEditarProveedor");
-                    var valinputnombreusuario = document.getElementById("inputnombreusuario").value;
-                    var valinputcorreo = document.getElementById("inputcorreousuario").value;
-                    var rolesAssign = [];
-                    var rolesUnassign = [];
-
-                    //Asignar roles cuando esta marcado el checkbox
-                    if ($('#AdministradorCheck').is(':checked')) {
-                        rolesAssign.push("administrador");
-                    }
-                    if ($('#SecretariaCheck').is(':checked')) {
-                        rolesAssign.push("secretaria");
-                    }
-                    if ($('#AsistenteCheck').is(':checked')) {
-                        rolesAssign.push("asistente");
-                    }
-
-                    //Quitar roles cuando esta desmarcado el checkbox
-                    if ($('#AdministradorCheck').is(':checked') == false) {
-                        rolesUnassign.push("administrador");
-                    }
-                    if ($('#SecretariaCheck').is(':checked') == false) {
-                        rolesUnassign.push("secretaria");
-                    }
-                    if ($('#AsistenteCheck').is(':checked') == false) {
-                        rolesUnassign.push("asistente");
-                    }
+                    var valinputnombreproveedor = document.getElementById("nombreEditar").value;
 
                     if (element.checkValidity() === true) {
-                        console.log(rolesAssign);
-                        console.log(rolesUnassign);
                         Swal.fire({
                             icon: 'info',
                             title: 'Confirmar.',
@@ -240,21 +182,17 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: "{{route('editar_usuario')}}",
+                                    url: "{{route('editar_proveedor')}}",
                                     type: "POST",
                                     data: {
-                                        'NombreUsuario': valinputnombreusuario,
-                                        'CorreoUsuario': valinputcorreo,
-                                        'IdUsuario': id,
-                                        'RolesAssign': rolesAssign,
-                                        'RolesUnassign': rolesUnassign,
+                                        'NombreProveedor': valinputnombreproveedor,
+                                        'IdProveedor': id,
                                         "_token": $("meta[name='csrf-token']").attr("content")
                                     },
                                     //dataType:"json",
                                     success: function (test) {
                                         element.classList.remove("was-validated");
-                                        document.getElementById("inputnombreusuario").value = "";
-                                        document.getElementById("inputcorreousuario").value = "";
+                                        document.getElementById("nombreEditar").value = "";
                                         $("#editarProveedor").modal("hide");
                                         $('#datatable').DataTable().ajax.reload();
 
@@ -262,7 +200,7 @@
                                             Swal.fire({
                                                 icon: 'success',
                                                 title: 'Hecho!.',
-                                                text: 'Se actualizo correctamente el usuario',
+                                                text: 'Se actualizo correctamente el proveedor',
                                                 confirmButtonText: 'Ok',
                                             })
                                         }
@@ -270,141 +208,74 @@
                                             Swal.fire({
                                                 icon: 'error',
                                                 title: 'Ocurrio un error!.',
-                                                text: 'No se pudo actualizar el usuario',
+                                                text: 'No se pudo actualizar el proveedor',
                                                 confirmButtonText: 'Ok',
                                             })
                                         }
                                     }
                                 });
                             } else if (result.isDismissed) {
-                                Swal.fire('Se cancelo la actualizacion del usuario', '', 'info')
+                                Swal.fire('Se cancelo la actualizacion del proveedor', '', 'info')
                             }
                         })
                     }
                 });
             });
-        
-        //js para envio por ajax para la ventana de crear usuario
-        // $(document).ready(function () {
-        //     $("#modalCrearProveedor").submit(function (e) {
-        //         e.preventDefault();
-        //         var element = document.getElementById("modalCrearProveedor");
-        //         var valinputnombreusuario = document.getElementById("name").value;
-        //         var valinputcorreo = document.getElementById("email").value;
-        //         var valcontra = document.getElementById("password").value;
-        //         var valcontraconfirm = document.getElementById("password-confirm").value;
-        //         var rolesAssign = [];
+    }  
+        // js para envio por ajax para la ventana de crear usuario
+        $(document).ready(function () {
+            $("#modalCrearProveedor").submit(function (e) {
+                e.preventDefault();
+                var element = document.getElementById("modalCrearProveedor");
+                var valinputnombreproveedor = document.getElementById("nombre").value;
 
-        //         //Asignar roles cuando esta marcado el checkbox
-        //         if ($('#AdministradorCrearCheck').is(':checked')) {
-        //             rolesAssign.push("administrador");
-        //         }
-        //         if ($('#SecretariaCrearCheck').is(':checked')) {
-        //             rolesAssign.push("secretaria");
-        //         }
-        //         if ($('#AsistenteCrearCheck').is(':checked')) {
-        //             rolesAssign.push("asistente");
-        //         }
+                if (element.checkValidity() === true) {
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Confirmar.',
+                        text: '¿Desea continuar?',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ok',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: "{{route('crear_proveedor')}}",
+                                type: "POST",
+                                data: {
+                                    'NombreProveedor': valinputnombreproveedor,
+                                    "_token": $("meta[name='csrf-token']").attr("content")
+                                },
+                                //dataType:"json",
+                                success: function (test) {
+                                    element.classList.remove("was-validated");
+                                    document.getElementById("nombre").value = "";
+                                    $("#crearProveedor").modal("hide");
+                                    $('#datatable').DataTable().ajax.reload();
 
-        //         if (element.checkValidity() === true) {
-        //             Swal.fire({
-        //                 icon: 'info',
-        //                 title: 'Confirmar.',
-        //                 text: '¿Desea continuar?',
-        //                 showCancelButton: true,
-        //                 confirmButtonText: 'Ok',
-        //             }).then((result) => {
-        //                 if (result.isConfirmed) {
-        //                     $.ajax({
-        //                         url: "{{route('crear_usuario')}}",
-        //                         type: "POST",
-        //                         data: {
-        //                             'NombreUsuario': valinputnombreusuario,
-        //                             'CorreoUsuario': valinputcorreo,
-        //                             'ContraseñaUsuario': valcontra,
-        //                             'ContraseñaConfirmUsuario': valcontraconfirm,
-        //                             'RolesAssign': rolesAssign,
-        //                             "_token": $("meta[name='csrf-token']").attr("content")
-        //                         },
-        //                         //dataType:"json",
-        //                         success: function (test) {
-        //                             element.classList.remove("was-validated");
-        //                             document.getElementById("name").value = "";
-        //                             document.getElementById("email").value = "";
-        //                             document.getElementById("password").value = "";
-        //                             document.getElementById("password-confirm").value = "";
-        //                             removecheck('modalCrear');
-        //                             $("#crearProveedor").modal("hide");
-        //                             $('#datatable').DataTable().ajax.reload();
-
-        //                             if (test.estado === 'creado') {
-        //                                 Swal.fire({
-        //                                     icon: 'success',
-        //                                     title: 'Hecho!.',
-        //                                     text: 'Se creo correctamente el usuario',
-        //                                     confirmButtonText: 'Ok',
-        //                                 })
-        //                             }
-        //                             if (test.estado === 'error') {
-        //                                 Swal.fire({
-        //                                     icon: 'error',
-        //                                     title: 'Ocurrio un error!.',
-        //                                     text: test.mensaje,
-        //                                     confirmButtonText: 'Ok',
-        //                                 })
-        //                             }
-        //                         }
-        //                     });
-        //                 } else if (result.isDismissed) {
-        //                     Swal.fire('Se cancelo la creacion del usuario', '', 'info')
-        //                 }
-        //             })
-        //         }
-        //     });
-        // });
-
-        // function eliminarProveedor(id) {
-        //     Swal.fire({
-        //         icon: 'warning',
-        //         title: '¿Estas seguro que deseas realizar esta accion?',
-        //         text: '¡No podras revertir esto!',
-        //         showCancelButton: true,
-        //         confirmButtonText: 'Ok',
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             $.ajax({
-        //                 url: "{{route('eliminar_usuario')}}",
-        //                 type: "POST",
-        //                 data: {
-        //                     'IdUsuario': id,
-        //                     "_token": $("meta[name='csrf-token']").attr("content")
-        //                 },
-        //                 //dataType:"json",
-        //                 success: function (test) {
-        //                     $('#datatable').DataTable().ajax.reload();
-
-        //                     if (test.estado === 'eliminado') {
-        //                         Swal.fire({
-        //                             icon: 'success',
-        //                             title: 'Hecho!.',
-        //                             text: 'Se elimino correctamente el usuario',
-        //                             confirmButtonText: 'Ok',
-        //                         })
-        //                     }
-        //                     if (test.estado === 'error') {
-        //                         Swal.fire({
-        //                             icon: 'error',
-        //                             title: 'Ocurrio un error!.',
-        //                             text: 'No se pudo eliminar el usuario correctamente',
-        //                             confirmButtonText: 'Ok',
-        //                         })
-        //                     }
-        //                 }
-        //             });
-        //         } else if (result.isDismissed) {
-        //             Swal.fire('Se cancelo la eliminacion del usuario', '', 'info')
-        //         }
-        //     })
-        // }
+                                    if (test.estado === 'creado') {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Hecho!.',
+                                            text: 'Se creo correctamente el proveedor',
+                                            confirmButtonText: 'Ok',
+                                        })
+                                    }
+                                    if (test.estado === 'error') {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Ocurrio un error!.',
+                                            text: test.mensaje,
+                                            confirmButtonText: 'Ok',
+                                        })
+                                    }
+                                }
+                            });
+                        } else if (result.isDismissed) {
+                            Swal.fire('Se cancelo la creacion del proveedor', '', 'info')
+                        }
+                    })
+                }
+            });
+        });
     </script>
     @endsection

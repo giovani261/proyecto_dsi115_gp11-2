@@ -42,11 +42,21 @@ class proveedoresController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function create(Request $request)
     {
         if(Auth::user()->hasRole(['administrador']))
         {
-            Proveedor::create($request->all());
+            try{
+                $nombreProveedor = request('NombreProveedor');
+                $proveedor = new Proveedor();
+                $proveedor->user_id = Auth::user()->id;
+                $proveedor->nombre = $nombreProveedor;
+                $proveedor->save();
+            }catch (\Exception $e) {
+                //report($e); //report error
+                return response()->json(['estado' => 'error', 'mensaje' => 'No se pudo crear el proveedor correctamente']);
+            }
+
             return response()->json(['estado' => 'creado']);
         }
         else {
@@ -70,24 +80,10 @@ class proveedoresController extends Controller
             try {
                 $IdProveedor = request('IdProveedor');
                 $NombreProveedor = request('NombreProveedor');
-                $CorreoProveedor = request('CorreoProveedor');
-                $RolesAssign = request('RolesAssign');
-                $RolesUnassign = request('RolesUnassign');
 
-                $Proveedor = User::findOrFail($IdProveedor);
-                $Proveedor->name = $NombreProveedor;
-                $Proveedor->email = $CorreoProveedor;
+                $Proveedor = Proveedor::findOrFail($IdProveedor);
+                $Proveedor->nombre = $NombreProveedor;
 
-                if(!empty($RolesAssign)){
-                    foreach($RolesAssign as $rolAssign){
-                        User::find($IdProveedor)->assignRole($rolAssign);
-                    }
-                }
-                if(!empty($RolesUnassign)){
-                    foreach($RolesUnassign as $rolUnassign){
-                        User::find($IdProveedor)->removeRole($rolUnassign);
-                    }
-                }
                 $Proveedor->save();
                 return response()->json(['estado' => 'actualizado']);
 
@@ -111,26 +107,13 @@ class proveedoresController extends Controller
      */
     public function destroy(Request $request)
     {
-        //
-        if(Auth::user()->hasRole(['administrador'])){
-            try{
-                User::find(request('IdProveedor'))->delete();
-                return response()->json(['estado' => 'eliminado']);
-            }catch(\Exception $e){
-                return response()->json(['estado' => 'error']);
-            }
-        }
-        else {
-            Auth::logout();
-            //$request->session()->invalidate();
-            return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se a cerrado su sesion');
-        }
+
     }
 
-    public function consultarProveedor(Request $request){
+    public function consultarProveedores(Request $request){
         $IdProveedor = request('IdProveedor');
         if(Auth::user()->hasRole(['administrador'])){
-            $proveedor = User::select('id','name','email','created_at', 'updated_at')->where('id','=',$IdProveedor)->with('roles')->get();
+            $proveedor = Proveedor::select('id','nombre')->where('id','=',$IdProveedor)->get();
             return response()->json(['Proveedor' => $proveedor]);
         }
         else{
