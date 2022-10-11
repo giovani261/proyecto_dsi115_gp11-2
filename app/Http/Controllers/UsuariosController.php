@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Auth;
 
 class UsuariosController extends Controller
@@ -170,6 +171,47 @@ class UsuariosController extends Controller
             return response()->json(['Usuario' => $usuario]);
         }
         else{
+            Auth::logout();
+            //$request->session()->invalidate();
+            return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se a cerrado su sesion');
+        }
+    }
+    public function informe(){
+        $idadmin = DB::table('roles')->selectRaw('id')->where('name','=','administrador')->get();
+        $idsecretaria = DB::table('roles')->selectRaw('id')->where('name','=','secretaria')->get();
+        $idasistente = DB::table('roles')->selectRaw('id')->where('name','=','asistente')->get();
+        foreach ($idadmin as $idadminval) {
+            $valadminid = $idadminval->id;
+        }
+        foreach ($idsecretaria as $idsecretariaval) {
+            $valsecretariaid = $idsecretariaval->id;
+        }
+        foreach ($idasistente as $idasistenteval) {
+            $valasistenteid = $idasistenteval->id;
+        }
+        $adminCount = DB::table('model_has_roles')->selectRaw('COUNT(*)')->where('role_id','=',$valadminid)->get();
+        $secretariaCount = DB::table('model_has_roles')->selectRaw('COUNT(*)')->where('role_id','=',$valsecretariaid)->get();
+        $asistenteCount = DB::table('model_has_roles')->selectRaw('COUNT(*)')->where('role_id','=',$valasistenteid)->get();
+        foreach ($adminCount as $adminCountVal) {
+            $countRoleAdmin = $adminCountVal->count;
+        }
+        foreach ($secretariaCount as $secretariaCountVal) {
+            $countRoleSecretaria = $secretariaCountVal->count;
+        }
+        foreach ($asistenteCount as $asistenteCountVal) {
+            $countRoleAsistente = $asistenteCountVal->count;
+        }
+
+        return view('personalinforme',['grafico1Data1' => $countRoleAdmin,'grafico1Data2' => $countRoleSecretaria,'grafico1Data3' => $countRoleAsistente]);
+    }
+
+    public function personalDataInforme(){
+        if(Auth::user()->hasRole(['administrador']))
+        {
+            $usuariosInforme = User::select()->with('roles')->orderBy('name')->get();
+            return datatables($usuariosInforme)->toJson();    
+        }
+        else {
             Auth::logout();
             //$request->session()->invalidate();
             return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se a cerrado su sesion');

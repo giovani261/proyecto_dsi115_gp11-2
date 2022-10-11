@@ -113,3 +113,7 @@ Route::post('/crear_insumo',[InsumoController::class,'create'])->middleware('aut
 Route::get('/proveedores',[ProveedoresController::class,'index'])->middleware('auth')->name('proveedores');
 Route::get('/proveedores_data',[ProveedoresController::class,'proveedores_data'])->middleware('auth')->name('proveedores_data');
 Route::get('/pacienteconsulta',[ExpedienteController::class,'pacienteajax'])->middleware('auth')->name('pacienteconsulta');
+Route::match(['get'],'/personal-informe',[UsuariosController::class,'informe'])->name('personalInforme');
+Route::get('personal_informe',[UsuariosController::class,'personalDataInforme'])->middleware('auth')->name('personalDataInforme');
+
+
