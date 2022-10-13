@@ -9,14 +9,11 @@
         <div class="row">
             <div class="col-md-12">
                 <br>
-                <div class="row">
-            <div class="col-md-12">
-                <br>
                 <!-- Card Citas médicas informe-->
                 <div class="card" style="max-width: 18rem;">
-                    <div class="card-header text-primary"><center><b>Citas médicas</b></center></div>
+                    <div class="card-header text-danger"><center><b>Citas médicas</b></center></div>
                         <div class="card-body">
-                            <a class="acards text-primary" href="/citas-informe">
+                            <a class="acards text-black" href="/citas-informe">
                                 <div class="container">
                                     <center>
                                         <div class="row">
@@ -24,7 +21,7 @@
                                                 Informes citas médicas
                                             </div>
                                             <div class="col-md-auto my-auto">
-                                                <i class="fa-solid fa-heart-pulse fa-4x"></i>
+                                                <i class="fa-solid fa-heart-pulse fa-4x" style="color:#DC3545"></i>
                                             </div>
                                         </div>
                                     </center>
@@ -36,19 +33,22 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-12">
+                <br>
                 <!-- Card Signos informes-->
                 <div class="card" style="max-width: 18rem;">
-                    <div class="card-header text-primary"><center><b>Consultas subsecuentes</b></center></div>
+                    <div class="card-header text-danger"><center><b>Consultas subsecuentes</b></center></div>
                         <div class="card-body">
-                            <a class="acards text-primary" href="/signos-informes">
+                            <a class="acards text-black" href="/signos-informes">
                                 <div class="container">
                                     <center>
                                         <div class="row">
                                             <div class="col my-auto">
-                                                Informes de consultas subsecuentes
+                                                Informes consultas subsecuentes
                                             </div>
                                             <div class="col-md-auto my-auto">
-                                                <i class="fa-solid fa-heart-pulse fa-4x"></i>
+                                                <i class="fa-solid fa-heart-pulse fa-4x" style="color:#DC3545"></i>
                                             </div>
                                         </div>
                                     </center>
@@ -64,9 +64,9 @@
             <div class="col-md-12">
                 <br>
                 <div class="card" style="max-width: 18rem;">
-                    <div class="card-header text-primary"><center><b>Pacientes</b></center></div>
+                    <div class="card-header text-danger"><center><b>Pacientes</b></center></div>
                         <div class="card-body">
-                            <a class="acards text-primary" href="/pacientes-informe">
+                            <a class="acards text-black" href="/pacientes-informe">
                                 <div class="container">
                                     <center>
                                         <div class="row">
@@ -74,7 +74,7 @@
                                                 Informes de pacientes
                                             </div>
                                             <div class="col-md-auto my-auto">
-                                                <i class="fa-solid fa-heart-pulse fa-4x"></i>
+                                                <i class="fa-solid fa-heart-pulse fa-4x" style="color:#DC3545"></i>
                                             </div>
                                         </div>
                                     </center>
@@ -90,9 +90,9 @@
             <div class="col-md-12">
                 <br>
                 <div class="card" style="max-width: 18rem;">
-                    <div class="card-header text-primary"><center><b>Personal de la clinica</b></center></div>
+                    <div class="card-header text-danger"><center><b>Personal de la clinica</b></center></div>
                         <div class="card-body">
-                            <a class="acards text-primary" href="/personal-informe">
+                            <a class="acards text-black" href="/personal-informe">
                                 <div class="container">
                                     <center>
                                         <div class="row">
@@ -100,7 +100,7 @@
                                                 Informe del<br> personal
                                             </div>
                                             <div class="col-md-auto my-auto">
-                                            <i class="fa-sharp fa-solid fa-user-tie fa-4x"></i>
+                                            <i class="fa-sharp fa-solid fa-user-tie fa-4x" style="color:#DC3545"></i>
                                             </div>
                                         </div>
                                     </center>

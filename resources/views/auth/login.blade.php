@@ -47,7 +47,7 @@ Swal.fire({
                                 <div class="input-group">
                                     <input id="password" type="password" class="form-control @error('email') is-invalid @enderror" name="password" required autocomplete="current-password">
                                     <span class="input-group-btn">
-                                        <button id="eyebutton" class="btn btn-primary" type="button" onclick="mostrarContraseña();"><i class="fa-solid fa-eye-slash"></i></button>
+                                        <button id="eyebutton" class="btn btn-danger" type="button" onclick="mostrarContraseña();"><i class="fa-solid fa-eye-slash"></i></button>
                                     </span>
                                 </div>
                                 <!-- @error('password')
@@ -72,7 +72,7 @@ Swal.fire({
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-danger">
                                     {{ __('Iniciar sesion') }}
                                 </button>
 

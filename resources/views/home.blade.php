@@ -161,8 +161,8 @@
                         <p>La excelencia clínica debe ser la prioridad para cualquier proveedor de servicios de atención m&#233;dica.</p>
                     </div>
                 </div>
-                <div class="col-xl-4 col-md-4">
-                    <div class="single_service">
+                <div class="col-xl-4 col-md-4" style="background: #FF7373">
+                    <div class="single_service"style="background: #FF7373" >
                         <div class="icon">
                             <i class="flaticon-emergency-call"></i>
                         </div>
@@ -423,7 +423,7 @@
                                             <div class="col-xl-6 col-md-6">
                                                 <div class="business_info">
                                                     <div class="icon">
-                                                        <i class="flaticon-first-aid-kit"></i>
+                                                        <i class="flaticon-first-aid-kit" Style="background: #DC3545"></i>
                                                     </div>
                                                         <div class="department_content">
                                                             <h3>Unidad M&#233;dica Humana.</h3>
@@ -436,7 +436,7 @@
                                                             </p>
                                                         </div>   
                                                     <div class="modal-footer" style="text-align: right;">
-                                                        <a href="#href" type="submit" class="btn btn-primary"><i class="fa-solid fa-calendar-days"></i> Haz tu cita</a>
+                                                        <a href="#href" type="submit" class="btn btn-danger"><i class="fa-solid fa-calendar-days"></i> Haz tu cita</a>
                                                     </div>
                                                 </div>
                                             </div>

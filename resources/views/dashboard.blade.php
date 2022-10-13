@@ -6,9 +6,9 @@
     <br>
     <!-- Card Generar receta-->
     <div class="card" style="max-width: 18rem;" onclick="consultas();">
-        <div class="card-header text-primary"><center><b>Receta</b></center></div>
+        <div class="card-header text-danger"><center><b>Receta</b></center></div>
         <div class="card-body">
-        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#recetaModalCenter">
+        <a class="acards text-black" data-bs-toggle="modal" data-bs-target="#recetaModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
@@ -17,7 +17,7 @@
                         </div>
 
                         <div class="col-md-auto my-auto">
-                            <i class="fa-solid fa-prescription-bottle fa-4x"></i>
+                            <i class="fa-solid fa-prescription-bottle fa-4x" style="color:#DC3545"></i>
                         </div>
                     </div>
                 </center>
@@ -27,9 +27,9 @@
     </div>
     <!-- Card Referencia médica -->
     <div class="card" style="max-width: 18rem;" onclick="consultarexpedientes('nombrepacientereferencia');">
-        <div class="card-header text-primary"><center><b>Referencia m&eacute;dica</b></center></div>
+        <div class="card-header text-danger"><center><b>Referencia m&eacute;dica</b></center></div>
         <div class="card-body">
-        <a class="acards" data-bs-toggle="modal" data-bs-target="#referenciaMedicaModalCenter">
+        <a class="acards text-black" data-bs-toggle="modal" data-bs-target="#referenciaMedicaModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="col-md-auto my-auto">
-                            <i class="fa-solid fa-truck-medical fa-4x"></i>
+                            <i class="fa-solid fa-truck-medical fa-4x"style="color:#DC3545"></i>
                         </div>
                     </div>
                 </center>
@@ -48,9 +48,9 @@
     </div>
     <!-- Card Generar historial clinico-->
     <div class="card" style="max-width: 18rem;" onclick="consultarexpedientes('expedienteid');">
-        <div class="card-header text-primary"><center><b>Historial clinico</b></center></div>
+        <div class="card-header text-danger"><center><b>Historial clinico</b></center></div>
         <div class="card-body">
-        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#historialClinicoModalCenter">
+        <a class="acards text-black" data-bs-toggle="modal" data-bs-target="#historialClinicoModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="col-md-auto my-auto">
-                            <i class="fa-solid fa-file-medical fa-4x"></i>
+                            <i class="fa-solid fa-file-medical fa-4x" style="color:#DC3545"></i>
                         </div>
                     </div>
                 </center>
@@ -69,18 +69,17 @@
     </div>
     <!-- Card Expediente clinico-->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center><b>Expediente clinico</b></center></div>
+        <div class="card-header text-danger"><center><b>Expediente clinico</b></center></div>
         <div class="card-body">
-        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#expedienteClinicoModalCenter">
+        <a class="acards text-black" data-bs-toggle="modal" data-bs-target="#expedienteClinicoModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
                         <div class="col my-auto">
                             Registrar Expediente Clinico
                         </div>
-
                         <div class="col-md-auto my-auto">
-                            <i class="fa-solid fa-heart-pulse fa-4x"></i>
+                            <i class="fa-solid fa-heart-pulse fa-4x" style="color:#DC3545"></i>
                         </div>
                     </div>
                 </center>
@@ -90,9 +89,9 @@
     </div>
     <!-- Card Generar Incapacidad-->
     <div class="card" style="max-width: 18rem;">
-        <div class="card-header text-primary"><center><b>Incapacidad medica</b></center></div>
+        <div class="card-header text-danger"><center><b>Incapacidad medica</b></center></div>
         <div class="card-body">
-        <a class="acards text-primary" data-bs-toggle="modal" data-bs-target="#incapacidadClinicoModalCenter">
+        <a class="acards text-black" data-bs-toggle="modal" data-bs-target="#incapacidadClinicoModalCenter">
             <div class="container">
                 <center>
                     <div class="row">
@@ -101,7 +100,7 @@
                         </div>
 
                         <div class="col-md-auto my-auto">
-                            <i class="fa-solid fa-rectangle-list fa-4x"></i>
+                            <i class="fa-solid fa-rectangle-list fa-4x" style="color:#DC3545"></i>
                         </div>
                     </div>
                 </center>

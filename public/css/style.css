@@ -630,7 +630,7 @@ h3 {
 .section_title h3::before {
   position: absolute;
   left: 0;
-  background: #5DB2FF;
+  background: #ff5d5d;
   height: 2px;
   width: 50px;
   content: '';
@@ -2840,7 +2840,7 @@ h3 {
 
 /* line 1, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_service.scss */
 .service_area {
-  background: #83C4FF;
+  background: #DC3545;
 }
 
 /* line 3, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_service.scss */
