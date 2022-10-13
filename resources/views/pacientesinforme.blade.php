@@ -88,9 +88,9 @@ var table=$('#table_pacient').DataTable({
         buttons: [
         {
             extend:'pdfHtml5',
-            text:'<i class="fa fa-file-pdf"></i>',
+            text:'<i class="fa fa-file-pdf"></i>PDF',
             titleAttr: 'Exportar a PDF',
-            className:'btn btn-success',
+            className:'btn btn-danger',
             title:'Informe de Paciente / Unidad Médica humana',
             exportOptions:{
                 columns:[1,2,3,4,5,6,7]
@@ -176,7 +176,9 @@ var table=$('#table_pacient').DataTable({
         {
             extend:"excel",
             title: 'Unidad Médica Humana - Pacientes',
-            text:'<i class="fas fa-file-excel"></i>',
+            text:'<i class="fas fa-file-excel"></i>Excel',
+            titleAttr: 'Exportar a Excel',
+            className:'btn btn-success',
             exportOptions:{
                 columns:[1,2,3,4,5,6,7]
             },

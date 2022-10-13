@@ -211,9 +211,9 @@
                 buttons: [
                 {
                     extend:'pdfHtml5',
-                    text:'<i class="fa fa-file-pdf"></i>',
+                    text:'<i class="fa fa-file-pdf"></i>PDF',
                     titleAttr: 'Exportar a PDF',
-                    className:'btn btn-success',
+                    className:'btn btn-danger',
                     title:'Unidad Médica humana - Signos Vitales',
                     exportOptions:{
                         columns:[1,2,3,4,5,6,7,8,9,10]
@@ -300,8 +300,10 @@
                 
                 {
                     extend:"excel",
+                    titleAttr: 'Exportar a Excel',
                     title: 'Unidad Médica Humana - Signos Vitales',
-                    text:'<i class="fas fa-file-excel"></i>',
+                    text:'<i class="fas fa-file-excel"></i>Excel',
+                    className:'btn btn-success',
                     exportOptions:{
                         columns:[1,2,3,4,5,6,7,8,9,10]
                     },

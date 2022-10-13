@@ -159,9 +159,9 @@
                 buttons: [
                 {
                     extend:'pdfHtml5',
-                    text:'<i class="fa fa-file-pdf"></i>',
+                    text:'<i class="fa fa-file-pdf"></i>PDF',
                     titleAttr: 'Exportar a PDF',
-                    className:'btn btn-success',
+                    className:'btn btn-danger',
                     title:'Unidad Médica humana - Citas Médicas',
                     exportOptions:{
                         columns:[1,2,3,4,5]
@@ -249,7 +249,9 @@
                 {
                     extend:"excel",
                     title: 'Unidad Médica Humana - Citas Médicas',
-                    text:'<i class="fas fa-file-excel"></i>',
+                    text:'<i class="fas fa-file-excel"></i>Excel',
+                    titleAttr: 'Exportar a Excel',
+                    className:'btn btn-success',
                     exportOptions:{
                         columns:[1,2,3,4,5]
                     },
