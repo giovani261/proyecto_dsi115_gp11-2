@@ -40,6 +40,10 @@ transition: all 0.8s;
   background: linear-gradient(45deg,#4099ff,#73b4ff);
 }
 
+.bg-c-red {
+  background: linear-gradient(45deg,#ff4040,#ff7373);
+}
+
 .bg-c-yellow {
   background: linear-gradient(45deg,#FFB64D,#ffcb80);
 }
@@ -70,7 +74,7 @@ border-color: var(--bs-gray-300) !important;
 }
 
 .tablehead{
-background-color: orange !important;
+background-color: #ff7373 !important;
 }
 
 .calendario {

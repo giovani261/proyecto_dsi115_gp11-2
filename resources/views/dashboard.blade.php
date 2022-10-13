@@ -521,7 +521,7 @@
                         <h3 class="h3"><i class="fa-solid fa-user-doctor"></i><span class="float-end text-break">Administrador <span class="badge bg-secondary">{{ $countRoleAdmin }}</span></span></h3>
                         <h3 class="h3"><i class="fa-solid fa-book-open-reader"></i></i><span class="float-end text-break">Secretaria <span class="badge bg-secondary">{{ $countRoleSecretaria }}</span></span></h3>
                         <h3 class="h3"><i class="fa-solid fa-user-nurse"></i><span class="float-end text-break">Asistente <span class="badge bg-secondary">{{ $countRoleAsistente }}</span></span></h3>
-                        <p class="m-b-0">Total de personas con rol<span class="float-end"><span class="badge bg-secondary">{{ $totalCountRoles }}</span></span></p>
+                        <p class="m-b-0"><br><br>Total de personas con rol<span class="float-end"><span class="badge bg-secondary">{{ $totalCountRoles }}</span></span></p>
                     </div>
             </div>
         </div>
@@ -1069,8 +1069,6 @@ function consultarhistorial(expediente, fecha, enfermedad){
             $("#historialClinicoModalCenter").modal("hide");
             $("#exampleModalCenter").modal("show");
         }
-
-
     }
 
 

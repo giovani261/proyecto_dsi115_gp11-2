@@ -9,7 +9,34 @@
         <div class="row">
             <div class="col-md-12">
                 <br>
-                <!-- Card Signos a borrar-->
+                <div class="row">
+            <div class="col-md-12">
+                <br>
+                <!-- Card Citas médicas informe-->
+                <div class="card" style="max-width: 18rem;">
+                    <div class="card-header text-primary"><center><b>Citas médicas</b></center></div>
+                        <div class="card-body">
+                            <a class="acards text-primary" href="/citas-informe">
+                                <div class="container">
+                                    <center>
+                                        <div class="row">
+                                            <div class="col my-auto">
+                                                Informes citas médicas
+                                            </div>
+                                            <div class="col-md-auto my-auto">
+                                                <i class="fa-solid fa-heart-pulse fa-4x"></i>
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>   
+                            </a>
+                        </div>
+                </div>
+                <br>
+            </div>
+        </div>
+
+                <!-- Card Signos informes-->
                 <div class="card" style="max-width: 18rem;">
                     <div class="card-header text-primary"><center><b>Consultas subsecuentes</b></center></div>
                         <div class="card-body">

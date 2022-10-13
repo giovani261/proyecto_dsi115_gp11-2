@@ -18,6 +18,7 @@ use App\Http\Controllers\CKEditorrecetaController ;
 use App\Http\Controllers\MedicamentoController;
 use App\Http\Controllers\InsumoController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -86,13 +87,18 @@ Route::get('/informes', function () {
 Route::get('/signos-informes', function () {
     return view('signosInforme');
 })->middleware('auth');
+Route::get('/citas-informe', function () {
+    return view('citasInforme');
+})->middleware('auth');
+Route::get('citas_informes',[ReservaDeCitaController::class,'reservas_data'])->middleware('auth')->name('citas_informes');
+Route::match(['get'],'/citas-informe',[ReservaDeCitaController::class,'graficos'])->name('citas-informe');
 Route::get('signos_informes',[SignosController::class,'signos_informes'])->middleware('auth')->name('signos_informes');
 Route::get('/consultarusuariosajax',[UsuariosController::class,'consultarUsuarios'])->middleware('auth')->name('consultarusuariosajax');
 Route::post('/editar_usuario',[UsuariosController::class,'update'])->middleware('auth')->name('editar_usuario');
 Route::post('/crear_usuario',[UsuariosController::class,'create'])->middleware('auth')->name('crear_usuario');
 Route::post('/eliminar_usuario',[UsuariosController::class,'destroy'])->middleware('auth')->name('eliminar_usuario');
 
-Route::get('signos_informes',[SignosController::class,'signos_informes'])->middleware('auth')->name('signos_informes');
+
 Route::get('/consultarproveedoresajax',[ProveedoresController::class,'consultarProveedores'])->middleware('auth')->name('consultarproveedoresajax');
 Route::post('/editar_proveedor',[ProveedoresController::class,'update'])->middleware('auth')->name('editar_proveedor');
 Route::post('/crear_proveedor',[ProveedoresController::class,'create'])->middleware('auth')->name('crear_proveedor');

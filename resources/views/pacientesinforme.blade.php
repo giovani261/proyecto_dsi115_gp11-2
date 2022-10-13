@@ -59,6 +59,8 @@
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/select/1.4.0/js/dataTables.select.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap5.min.js"></script>
+<link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.templates.min.js"></script>
@@ -173,6 +175,7 @@ var table=$('#table_pacient').DataTable({
         
         {
             extend:"excel",
+            title: 'Unidad Médica Humana - Pacientes',
             text:'<i class="fas fa-file-excel"></i>',
             exportOptions:{
                 columns:[1,2,3,4,5,6,7]
@@ -358,7 +361,6 @@ const NAMED_COLORS = [
       }
     }
   }
-          
     });
 </script>   
 @endsection

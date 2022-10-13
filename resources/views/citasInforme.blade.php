@@ -10,163 +10,111 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-header">
-                <h4>Signos Vitales</h4>
+                <h4>Citas médicas</h4>
             </div>
             <br>
-           <br>
+                <input class="form-check-input" type="radio" name="flexradio1" id="flexradio1">
+                <label class="form-check-label" for="flexradio1">
+                    Citas sin hora
+                </label>
+                <input class="form-check-input" type="radio" name="flexradio1" id="flexradio2">
+                <label class="form-check-label" for="flexradio2">
+                    Citas con hora
+                </label>
+                <input class="form-check-input" type="radio" name="flexradio1" id="flexradio3">
+                <label class="form-check-label" for="flexradio3">
+                    Todas
+                </label>
+            <br>
+            <br>
             <table class="table text-md-nowrap" id="datatable">
                 <thead>
                     <tr>
                         <th></th>
                         <th>Nombre</th>
-                        <th>Edad</th>
-                        <th>Presion Máxima</th>
-                        <th>Temperatura</th>
-                        <th>Pulso</th>
-                        <th>Peso</th>
-                        <th>IMC</th>
-                        <th>Presion Minima</th>
-                        <th>Talla</th>
-                        <th>Altura</th>
-                        <th>Acciones</th>
+                        <th>Teléfono</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Especialidad</th>
                     </tr>
                 </thead>
             </table>
+            <center>
+    <h5>Agenda de citas del dia</h5>
+</center>
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <div class="table-responsive container-fluid">
+            <table class="table table-hover table-bordered w-auto">
+                <thead class="tablehead">
+                    <tr class="text-center">
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Hora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if($citas->isEmpty())
+                        <tr class="text-center">
+                            <td colspan="3">Sin citas</td>
+                        </tr>
+                    @else
+                    @foreach($citas as $cita)
+                        <tr class="text-center">
+                            <td>{{$cita->nombre}}</td>
+                            <td>{{$cita->telefono}}</td>
+                            <td>{{$cita->hora}}</td>
+                        </tr>
+                    @endforeach
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </div> 
+</div>
+        </div>
+            <div class="col-auto">
+                <div class="card bg-c-red counters-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20"><b>CANTIDAD DE CITAS RESERVADAS</b></h6>
+                        <h3 class="h3"><i class="fa-solid fa-calendar-xmark"></i></i><span class="float-end text-break">Sin hora asignada <span class="badge bg-secondary">{{ $horaPendiente }}</span></span></h3>
+                        <h3 class="h3"><i class="fa-solid fa-calendar"></i></i><span class="float-end text-break">Con hora asignada <span class="badge bg-secondary">{{ $horaAsignada }}</span></span></h3>
+                        <h6 class="m-b-0"><br><br>Total de citas a partir del {{ $dateNow }}<span class="float-end"><span class="badge bg-secondary">{{ $citasCantidad }}</span></span></h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="card bg-c-red counters-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20"><b>CANTIDAD DE CITAS PARA HOY</b></h6>
+                        <h3 class="h3"><i class="fa-solid fa-calendar-xmark"></i></i><span class="float-end text-break"> Sin hora asignada <span class="badge bg-secondary">{{ $todayWithoutTime }}</span></span></h3>
+                        <h3 class="h3"><i class="fa-solid fa-calendar"></i></i><span class="float-end text-break">  Con hora asignada <span class="badge bg-secondary">{{ $todayWithTime }}</span></span></h3>
+                        <h6 class="m-b-0"><br><br>Total de citas<span class="float-end"><span class="badge bg-secondary">{{ $todayAll }}</span></span></h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="card bg-c-red counters-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20"><b>Especialidad con más demanada</b></h6>
+                        <h3 class="h3"><i class="fa-solid fa-viruses"></i><span class="float-end text-break">{{ $illnesCommunName }}<span class="badge bg-secondary">{{ $illnesCommunCount }}</span></span></h3>
+                        <h6 class="m-b-20"><b><br><br>Fecha con más rserva de citas</b></h6>
+                        <h3 class="h3"><i class="fa-solid fa-calendar-check"></i><span class="float-end text-break">{{ $dateCommunName }}<span class="badge bg-secondary">{{ $dateCommunCount }}</span></span></h3>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <center>
+    <div class="row">
+        <div class="col">
+            
+                <div class="graficoscardblock">
+                    <canvas id="grafico1"></canvas>
+                </div>
+            
         </div>
     </div>
-</div>
-<!-- Modal Comparacion de signos-->
-<div class="modal fade" id="comparacionsignos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-<div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Analisis del paciente</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-    <center><h3 id="txtpaciente"></h3></center>
-    <br>
-    <!-- Tabla de presion maxima -->
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <div class="table-responsive container-fluid">
-                <table class="table table-hover table-bordered w-auto">
-                    <thead class="tablehead">
-                        <tr class="text-center">
-                        <th scope="col">Presion Maxima</th>
-                        <th scope="col">Valor Normal</th>
-                        <th scope="col">Observaciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="text-center">
-                            <td id="tdpresionmax"></td>
-                            <td id="tdpresionmaxnormal"></td>
-                            <td id="tdobservacionpresionmax"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div> 
-    </div>
-    <!-- Tabla de temperatura -->
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <div class="table-responsive container-fluid">
-                <table class="table table-hover table-bordered w-auto">
-                    <thead class="tablehead">
-                        <tr class="text-center">
-                        <th scope="col">Temperatura</th>
-                        <th scope="col">Valor Normal</th>
-                        <th scope="col">Observaciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="text-center">
-                            <td id="tdtemperatura"></td>
-                            <td id="tdtemperaturanormal"></td>
-                            <td id="tdobservaciontemperatura"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div> 
-    </div>
-    <!-- <div class="modal-footer">
-        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
-    </div> -->
-    <!-- Tabla de pulso -->
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <div class="table-responsive container-fluid">
-                <table class="table table-hover table-bordered w-auto">
-                    <thead class="tablehead">
-                        <tr class="text-center">
-                        <th scope="col">Pulso</th>
-                        <th scope="col">Valor Normal</th>
-                        <th scope="col">Observaciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="text-center">
-                            <td id="tdpulso"></td>
-                            <td id="tdpulsonormal"></td>
-                            <td id="tdobservacionpulso"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div> 
-    </div>
-    <!-- Tabla de imc -->
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <div class="table-responsive container-fluid">
-                <table class="table table-hover table-bordered w-auto">
-                    <thead class="tablehead">
-                        <tr class="text-center">
-                        <th scope="col">Imc</th>
-                        <th scope="col">Valor Normal</th>
-                        <th scope="col">Observaciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="text-center">
-                            <td id="tdimc"></td>
-                            <td id="tdimcnormal"></td>
-                            <td id="tdobservacionimc"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div> 
-    </div>
-    <!-- Tabla de presion minima -->
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <div class="table-responsive container-fluid">
-                <table class="table table-hover table-bordered w-auto">
-                    <thead class="tablehead">
-                        <tr class="text-center">
-                        <th scope="col">Presion Minima</th>
-                        <th scope="col">Valor Normal</th>
-                        <th scope="col">Observaciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="text-center">
-                            <td id="tdpresionminima"></td>
-                            <td id="tdpresionminimanormal"></td>
-                            <td id="tdobservacionpresionminima"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div> 
-    </div>
-</div>
-</div>
-</div> 
+    </center>
 </div>
 @endsection
 @section('scripts')
@@ -189,21 +137,21 @@
 <script src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.templates.min.js"></script>
 
-<script>
-    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script> 
     $(document).ready(function () {
-
         var table=$('#datatable').DataTable({
             responsive:true,
-            dom: 'Bfrtilp',
-            //"lengthMenu":[5,10,25,50,100],
+            dom: 'Bfrtlip',
             //Columna checkbox
-            columnDefs: [{
-                orderable: false,
-                className: 'select-checkbox',
-                targets: 0
-            }],
-                select: {
+            columnDefs: [
+                {
+                    orderable: false,
+                    className: 'select-checkbox',
+                    targets: 0
+                }
+            ],
+            select: {
                 style: 'os',
                 selector: 'td:first-child'
             },
@@ -214,9 +162,9 @@
                     text:'<i class="fa fa-file-pdf"></i>',
                     titleAttr: 'Exportar a PDF',
                     className:'btn btn-success',
-                    title:'Unidad Médica humana - Signos Vitales',
+                    title:'Unidad Médica humana - Citas Médicas',
                     exportOptions:{
-                        columns:[1,2,3,4,5,6,7,8,9,10]
+                        columns:[1,2,3,4,5]
                     },
                     pageSize: 'A4',
                     orientation:'landscape',
@@ -252,7 +200,7 @@
                                                 text:
                                                     [
                                                         {text: 'Unidad Médica Humana \n Dr. Rene Rodriguez Romero', alingment: 'center', fontSize: 14, bold: true, width: 'auto'},'\n',
-                                                        { text: 'Signos Vitales: ', bold: true, alingment:'center'},
+                                                        { text: 'Citas Médicas: ', bold: true, alingment:'center'},
                                                     ]
                                                 
                                                 //, margin: [0, 10, 0, 0]
@@ -300,10 +248,10 @@
                 
                 {
                     extend:"excel",
-                    title: 'Unidad Médica Humana - Signos Vitales',
+                    title: 'Unidad Médica Humana - Citas Médicas',
                     text:'<i class="fas fa-file-excel"></i>',
                     exportOptions:{
-                        columns:[1,2,3,4,5,6,7,8,9,10]
+                        columns:[1,2,3,4,5]
                     },
                     autoFilter:true,
                     pageStyle: {
@@ -352,23 +300,18 @@
                 },
             ],
             //select:true,
-            ajax: "{{route('signos_informes')}}",
+            ajax: "{{route('citas_informes')}}",
             type:"GET",
             columns:[
                 {data: null, defaultContent: ''},
                 {data:'nombre'},
-                {data:'edad'},
-                {data:'presion arterial maxima'},
-                {data:'temperatura'},
-                {data:'pulso'},
-                {data:'peso'},
-                {data:'imc'},
-                {data:'presion arterial minima'},
-                {data:'talla'},
-                {data:'altura'},
-                {defaultContent:"<button class='btn btn-primary'>Comparar</button>"}
+                {data:'telefono'},
+                {data:'fecha'},
+                {data:'hora'},
+                {data:'especialidad'}
             ],
 
+            
             language:{
                 "decimal":        ".",
                 "emptyTable":     "No hay datos disponibles en la tabla",
@@ -396,93 +339,158 @@
                         "_": "%d filas seleccionadas"
                     }
                 },
-            } 
+            }
+        });    
+});
 
+$(document).ready( function () {
+    var dt = $('#datatable').DataTable();
+    $.fn.dataTable.ext.search.push(
+    function (settings, searchData, index, rowData, counter) {
+        var checked = $('input:radio[id="flexradio1"]').is(':checked');
+        var checked_2 = $('input:radio[id="flexradio2"]').is(':checked'); 
+            if (checked_2 && searchData[4] === '') {
+                return false;
+            }
+            if(checked && searchData[4]!=''){
+                return false;
+            }
+            return true;
         });
-
-    $('#datatable tbody').on('click', 'button', function () {
-    var data = table.row($(this).parents('tr')).data();
-    var nombre = data.nombre;
-    var edad = data.edad;
-    var presionmax = data["presion arterial maxima"];
-    var temperatura = data.temperatura;
-    var pulso = data.pulso;
-    var peso = data.peso;
-    var imc = data.imc;
-    var presionmin = data["presion arterial minima"];
-    var talla = data.talla;
-    var altura = data.altura;
-    $("#comparacionsignos").modal("show");
-    document.getElementById("txtpaciente").innerHTML = nombre + ", "+edad+" años";
-    document.getElementById("tdpresionmax").innerHTML = presionmax;
-    document.getElementById("tdpresionmaxnormal").innerHTML = 120;
-    document.getElementById("tdtemperatura").innerHTML = temperatura;
-    document.getElementById("tdtemperaturanormal").innerHTML = "36 a 37";
-    document.getElementById("tdpulso").innerHTML = pulso;
-    document.getElementById("tdpulsonormal").innerHTML = "60 a 100";
-    document.getElementById("tdimc").innerHTML = imc;
-    document.getElementById("tdimcnormal").innerHTML = "18.5 a 24.9";
-    document.getElementById("tdpresionminima").innerHTML = presionmin;
-    document.getElementById("tdpresionminimanormal").innerHTML = 80;
-
-    //calculos para el analisis de la presion maxima
-    if(presionmax <=120){
-        document.getElementById("tdobservacionpresionmax").innerHTML = "La presion maxima se encuentra bien";
-    }
-    if(presionmax >120){
-        document.getElementById("tdobservacionpresionmax").innerHTML = "La presion maxima se encuentra alta, se excede por un valor de "+(presionmax-120);
-    }
-
-    //calculos para el analisis de la temperatura
-    if(temperatura == 36 || temperatura == 37){
-        document.getElementById("tdobservaciontemperatura").innerHTML = "La temperatura corporal se encuentra en el rango normal";
-    }
-
-    if(temperatura <=35){
-        document.getElementById("tdobservaciontemperatura").innerHTML = "La temperatura corporal se encuentra muy baja, paciente con hipotermia";
-    }
-    if(temperatura >=38){
-        document.getElementById("tdobservaciontemperatura").innerHTML = "La temperatura corporal se encuentra muy alta, paciente con fiebre a causa de una infeccion o enfermedad";
-    }
-
-    //calculos para el analisis del pulso
-    if(pulso>=60 || pulso<=100){
-        document.getElementById("tdobservacionpulso").innerHTML = "El pulso se encuentra bien";
-    }
-    if(pulso<60){
-        document.getElementById("tdobservacionpulso").innerHTML = "El pulso se encuentra muy bajo, paciente con bradicardia";
-    }
-    if(pulso>100){
-        document.getElementById("tdobservacionpulso").innerHTML = "El pulso se encuentra muy alto, paciente con taquicardia";
-    }
-
-    //calculos para el analisis del imc
-    if(imc<18.5){
-        document.getElementById("tdobservacionimc").innerHTML = "El nivel de peso es bajo considerando su altura";  
-    }
-
-    if(imc>=18.5 && imc<=24.9){
-        document.getElementById("tdobservacionimc").innerHTML = "El nivel de peso es normal considerando su altura";
-    }
-
-    if(imc>=25 && imc<=29.9){
-        document.getElementById("tdobservacionimc").innerHTML = "El nivel de peso es alto considerando su altura, paciente con sobrepeso";
-    }
-
-    if(imc>=30){
-        document.getElementById("tdobservacionimc").innerHTML = "El nivel de peso es muy alto considerando su altura, paciente con obesidad";
-    }
-
-    //calculos para el analisis de la presion minima
-    if(presionmin <=80){
-        document.getElementById("tdobservacionpresionminima").innerHTML = "La presion minima se encuentra bien";
-    }
-    if(presionmin >80){
-        document.getElementById("tdobservacionpresionminima").innerHTML = "La presion minima se encuentra alta, se excede por un valor de "+(presionmin-80);
-    }
+        $('input:radio').on('change', function () {
+            dt.draw();
+        });
 });
+</script>
+
+<script>
+    var data1chart1 = new Array();
+    var data2chart1 = new Array();
+    var data3chart1 = new Array();
+    var data4chart1 = new Array();
+    var data5chart1 = new Array();
+    var data6chart1 = new Array();
+    var data7chart1 = new Array();
+    @foreach($grafico1Data1 as $data1)
+        data1chart1.push({{ $data1 }});
+    @endforeach
+    @foreach($grafico1Data2 as $data2)
+        data2chart1.push({{ $data2 }});
+    @endforeach
+    @foreach($grafico1Data3 as $data3)
+        data3chart1.push({{ $data3 }});
+    @endforeach
+    @foreach($grafico1Data4 as $data4)
+        data4chart1.push({{ $data4 }});
+    @endforeach
+    @foreach($grafico1Data5 as $data5)
+        data5chart1.push({{ $data5 }});
+    @endforeach
+    @foreach($grafico1Data6 as $data6)
+        data6chart1.push({{ $data6 }});
+    @endforeach
+    @foreach($grafico1Data7 as $data7)
+        data7chart1.push({{ $data7 }});
+    @endforeach
+    var ctx = document.getElementById('grafico1').getContext('2d');
+      var myChart1 = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: ['CITAS POR ESPECIALIDADES'],
+              datasets: [{
+                  label: 'Colitis',
+                  data: data1chart1,
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                  ],
+                  borderWidth: 1
+              },
+              {
+                  label: 'Estreñemiento',
+                  data: data2chart1,
+                  backgroundColor: [
+                      'rgb(255, 159, 64, 0.2)',
+                  ],
+                  borderColor: [
+                      'rgba(255, 159, 64, 1)',
+                  ],
+                  borderWidth: 1
+              },
+              {
+                  label: 'Cancér',
+                  data: data3chart1,
+                  backgroundColor: [
+                      'rgba(58, 184, 199, 0.2)',
+                  ],
+                  borderColor: [
+                      'rgba(58, 184, 199, 1)',
+                  ],
+                  borderWidth: 1
+              },
+              {
+                  label: 'Hemorroides',
+                  data: data4chart1,
+                  backgroundColor: [
+                      'rgba(54, 162, 235, 0.2)',
+                  ],
+                  borderColor: [
+                      'rgba(54, 162, 235, 1)',
+                  ],
+                  borderWidth: 1
+              },
+              {
+                  label: 'Hígado',
+                  data: data5chart1,
+                  backgroundColor: [
+                      'rgba(255, 205, 86, 0.2)',
+                  ],
+                  borderColor: [
+                      'rgba(255, 205, 86, 1)',
+                  ],
+                  borderWidth: 1
+              },
+              {
+                  label: 'Reflujo',
+                  data: data6chart1,
+                  backgroundColor: [
+                      'rgba(201, 203, 207, 0.2)',
+                  ],
+                  borderColor: [
+                      'rgba(201, 203, 207, 1)',
+                  ],
+                  borderWidth: 1
+              },
+              {
+                  label: 'Gastritis',
+                  data: data7chart1,
+                  backgroundColor: [
+                      'rgba(161, 84, 22, 0.2)',
+                  ],
+                  borderColor: [
+                      'rgba(161, 84, 22, 1)',
+                  ],
+                  borderWidth: 1
+              }
+            ]
+          },
+          options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation:{
+                  duration: 2000,
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        position: 'bottom',                        
+                    }
+                },
+          }
 });
 
-
+   
 </script>
 @endsection
