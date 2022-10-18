@@ -81,17 +81,17 @@
                 @csrf
                 <div class="from-group mb-3">
                     <label for="" class="form-label">Nombre del paciente</label>
-                    <input type="text" class="name form-control" id="inputnombre" pattern="[a-zA-Z'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el nombre del paciente, solo se permiten letras" required required>
+                    <input type="text" class="name form-control" id="inputnombre" maxlength="60" pattern="[a-zA-ZñÑ'-'\s\W]*" data-bs-toggle="tooltip" title="Ingrese el nombre del paciente, solo se permiten letras" required required>
                     <div class="invalid-feedback">
                         Este campo no puede estar vacío.
                     </div>
                 </div>
                 <div class="from-group mb-3">
                     <label for="">Telefono</label>
-                    <input type="text" class="phone form-control" id="inputTelefono" pattern="^(2|7)[0-9]{7}$" data-bs-toggle="tooltip" title="Ingrese el número de téfono fijo o celular" required>
+                    <input type="text" class="phone form-control" maxlength="8" id="inputTelefono" placeholder="79999999 o 29999999" pattern="^(2|7)[0-9]{7}$" data-bs-toggle="tooltip" title="Ingrese el número de téfono fijo o celular" required>
                 </div>
                 <div class="invalid-feedback">
-                    Este campo no puede estar vacio.
+                    Este campo no puede estar vacio. Revise el formato utilizado.
                 </div>
                 <label for="">Fecha</label>
                 <div class="input-group date">
@@ -99,7 +99,7 @@
                     <i class="fa fa-calendar calendario"></i>
                 </div>
                 <div class="invalid-feedback">
-                    Este campo no puede estar vacio.
+                    Este campo no puede estar vacio. Revise el formato utilizado.
                 </div>
                 <style>
                     div {
