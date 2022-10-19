@@ -136,9 +136,9 @@ class MedicamentoController extends Controller
                 $medicamento = Medicamento::findOrFail($id);
                 $medicamento->delete();
                 $medicamento->recetas()->detach($request->id);
-                return response()->json(['estado' => 'eliminado']);
-            }catch(\Exception $e){
                 return response()->json(['estado' => 'error']);
+            }catch(\Exception $e){
+                return response()->json(['estado' => 'eliminado']);
             }
         }
         else {

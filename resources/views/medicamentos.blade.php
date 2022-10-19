@@ -44,21 +44,21 @@
         <form method="POST" id="modalcrearmedicamento" class="needs-validation" novalidate>
             @csrf
             <label for="name"class="form-label">Nombre de Medicamento</label>
-            <input id="inputnombre" type="text" class="form-control" name="name" value="" pattern="[a-zA-Z\u00f1\u00d1'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el nombre, solo se permiten letras" required autofocus>
+            <input id="inputnombre" type="text" class="form-control" maxlength="60" name="name" value="" pattern="[a-zA-Z\u00f1\u00d1'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el nombre, solo se permiten letras" required autofocus>
             <div class="invalid-feedback">
-                Este campo no puede quedar vacio.
+                Este campo no puede quedar vacio. Revise el formato utilizado.
             </div>
             <br>
                 <label for="cantidad" class="form-label">Cantidad</label>
                 <input type="number" class="form-control" id="inputcantidad" min="0" pattern="^[0-9]+$" data-bs-toggle="tooltip" title="Ingrese la cantidad, solo se permiten números" required>
                 <div class="invalid-feedback">
-                    Por favor, revise el formato del texto ingresado.
+                    Por favor, revise el formato del texto ingresado. Revise el formato utilizado.
                 </div>
             <br>
                 <label for="precio">Precio</label>
                 <span class="input-group-text">$</span><input id="inputprecio" type="text" class="form-control" name="precio" required minlength="1" pattern="^([0-9]?)*(\.\d{1,2})$" data-bs-toggle="tooltip" title="Ingrese el precio en el formato $0.00" required>
                 <div class="invalid-feedback">
-                    Este campo no puede quedar vacio, ni tener menos de 1 caracter.
+                    Este campo no puede quedar vacio, ni tener menos de 1 caracter. Revise el formato utilizado.
                 </div>
             <br>
             <br>
@@ -88,7 +88,7 @@
         <form method="POST" id="modaleditarmedicamento" class="needs-validation" novalidate>
             @csrf
             <label for="name"class="form-label">Nombre de Medicamento</label>
-            <input id="inputeditnombre" type="text" class="form-control" name="name" autofocus>
+            <input id="inputeditnombre" type="text" class="form-control" maxlength="60" name="name" value="" pattern="[a-zA-Z\u00f1\u00d1'-'\s]*" data-bs-toggle="tooltip" title="Ingrese el nombre, solo se permiten letras" required autofocus>
             <div class="invalid-feedback">
                 Este campo no puede quedar vacio.
             </div>

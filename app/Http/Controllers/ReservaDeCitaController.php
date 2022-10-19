@@ -112,13 +112,13 @@ class ReservaDeCitaController extends Controller
             }
 
             //Gráfica de enfermedades
-            $colitis=ReservaDeCita::select('especialidad')->where('especialidad','=','colitis')->get()->count();
-            $estreñimiento=ReservaDeCita::select('especialidad')->where('especialidad','=','estreñimiento')->get()->count();
-            $cancer=ReservaDeCita::select('especialidad')->where('especialidad','=','cancer')->get()->count();
-            $hemorroides=ReservaDeCita::select('especialidad')->where('especialidad','=','hemorroides')->get()->count();
-            $higado=ReservaDeCita::select('especialidad')->where('especialidad','=','higado')->get()->count();
-            $reflujo=ReservaDeCita::select('especialidad')->where('especialidad','=','reflujo')->get()->count();
-            $gastritis=ReservaDeCita::select('especialidad')->where('especialidad','=','gastritis')->get()->count();
+            $colitis=ReservaDeCita::select('especialidad')->where('especialidad','=','colitis')->where('fecha','=',$date)->get()->count();
+            $estreñimiento=ReservaDeCita::select('especialidad')->where('especialidad','=','estreñimiento')->where('fecha','=',$date)->get()->count();
+            $cancer=ReservaDeCita::select('especialidad')->where('especialidad','=','cancer')->where('fecha','=',$date)->get()->count();
+            $hemorroides=ReservaDeCita::select('especialidad')->where('especialidad','=','hemorroides')->where('fecha','=',$date)->get()->count();
+            $higado=ReservaDeCita::select('especialidad')->where('especialidad','=','higado')->where('fecha','=',$date)->get()->count();
+            $reflujo=ReservaDeCita::select('especialidad')->where('especialidad','=','reflujo')->where('fecha','=',$date)->get()->count();
+            $gastritis=ReservaDeCita::select('especialidad')->where('especialidad','=','gastritis')->where('fecha','=',$date)->get()->count();
             $grafico1Data1 = [$colitis];
             $grafico1Data2 = [$estreñimiento];
             $grafico1Data3 = [$cancer];

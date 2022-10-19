@@ -354,21 +354,21 @@
                 @csrf
                 <div class="from-group mb-3">
                     <label for="" class="text-dark">Nombre completo</label>
-                    <input type="text" class="name form-control" id="inputnombre" pattern="[a-zA-Z'-'\s]*" required>
+                    <input type="text" class="name form-control" id="inputnombre" maxlength="60" pattern="[a-zA-ZñÑ'-'\s\W]*"  data-bs-toggle="tooltip" title="Ingrese el nombre del paciente, solo se permiten letras" required>
                     <div class="invalid-feedback">
                     Por favor, revise el formato del texto ingresado.
                     </div>
                 </div>
                 <div class="from-group mb-3">
                     <label for="" class="text-dark">Tel&eacute;fono</label>
-                    <input type="text" class="phone form-control" id="inputTelefono" pattern="[0-9]{8}" required>
+                    <input type="text" class="phone form-control" id="inputTelefono" maxlength="8" placeholder="79999999 o 29999999" pattern="^(2|7)[0-9]{7}$" data-bs-toggle="tooltip" title="Ingrese el número de téfono fijo o celular" required>
                     <div class="invalid-feedback">
                     Por favor, revise el formato del texto ingresado.
                     </div>
                 </div>
                 <label for="" class="text-dark">Fecha</label>
                 <div class="input-group date">
-                    <input type="text" class="date form-control" id="inputfecha" autocomplete="off" required>
+                    <input type="text" class="date form-control" id="inputfecha" data-bs-toggle="tooltip" title="Ingrese la fecha" autocomplete="off" required>
                     <i class="fa-solid fa-calendar-days calendario"></i>
                     <div class="invalid-feedback">
                     Este campo no puede quedar vacio.
