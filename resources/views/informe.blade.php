@@ -111,6 +111,31 @@
                 <br>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <div class="card" style="max-width: 18rem;">
+                    <div class="card-header text-danger"><center><b>Insumos de la clinica</b></center></div>
+                        <div class="card-body">
+                            <a class="acards text-black" href="/insumos-informes">
+                                <div class="container">
+                                    <center>
+                                        <div class="row">
+                                            <div class="col my-auto">
+                                                Informe de<br> Insumos Médicos
+                                            </div>
+                                            <div class="col-md-auto my-auto">
+                                            <i class="fa-sharp fa-solid fa-user-tie fa-4x" style="color:#DC3545"></i>
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>   
+                            </a>
+                        </div>
+                </div>
+                <br>
+            </div>
+        </div>
 </div>
 @endsection
 @section('scripts')

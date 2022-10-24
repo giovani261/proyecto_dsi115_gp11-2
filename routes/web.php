@@ -120,4 +120,6 @@ Route::get('/pacienteconsulta',[ExpedienteController::class,'pacienteajax'])->mi
 Route::match(['get'],'/personal-informe',[UsuariosController::class,'informe'])->name('personalInforme');
 Route::get('personal_informe',[UsuariosController::class,'personalDataInforme'])->middleware('auth')->name('personalDataInforme');
 
+Route::get('/insumoconsulta',[InsumoController::class,'insumos_ajax'])->middleware('auth')->name('insumoconsulta');
+Route::match(['get'],'/insumos-informes',[InsumoController::class,'index_informes'])->name('insumos-informes');
 

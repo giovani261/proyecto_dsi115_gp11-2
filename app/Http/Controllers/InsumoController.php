@@ -34,7 +34,27 @@ class InsumoController extends Controller
             return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se a cerrado su sesion');
         }
     }
-  
+
+    public function index_informes()
+    {
+        if(Auth::user()->hasRole(['administrador'])){
+            $insumos = Insumo::select('nombre','cantidad','precio','categoria')->get();
+            return view('insumosInforme',['insumos' => $insumos]);
+        }
+        else{
+            Auth::logout();
+            //$request->session()->invalidate();
+            return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se ha cerrado su sesion');
+        }
+    }
+    
+    public function insumos_ajax(){
+        $insumos = Insumo::select('nombre','cantidad','precio','categoria')->get();
+        //return response()->json(['reservas' => $reservas]);
+        //return $reservas;
+        return datatables($insumos)->toJson();
+    }
+
     public function consultarinsumoajax(){
         $insumos = Insumo::select('id','nombre')->orderBy('nombre')->get();
         return response()->json(['insumos' => $insumos]);
