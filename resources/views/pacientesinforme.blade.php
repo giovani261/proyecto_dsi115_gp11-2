@@ -13,7 +13,7 @@
                 <h4>Pacientes</h4>
             </div>
            <br>
-            <table class="table text-md-nowrap" id="table_pacient">
+            <table class="table text-md-nowrap dt-responsive" id="table_pacient" style="width:100%">
                 <thead>
                     <tr>
                         <th></th>
@@ -67,6 +67,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.js.map"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js"></script>
+
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+<link href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.css" rel="stylesheet">
 <script>
     $(document).ready(function () {
 

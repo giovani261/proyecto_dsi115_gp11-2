@@ -17,7 +17,7 @@
                     class="fa-solid fa-circle-plus"></i> Agregar Proveedor</a>
             <br>
             <br>
-            <table class="table text-md-nowrap" id="datatable">
+            <table class="table text-md-nowrap dt-responsive" id="datatable" style="width:100%">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -98,7 +98,9 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+    <link href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.css" rel="stylesheet">
 
     <script>
         $(document).ready(function () {

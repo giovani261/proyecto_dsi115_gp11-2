@@ -27,7 +27,7 @@
                 </label>
             <br>
             <br>
-            <table class="table text-md-nowrap" id="datatable">
+            <table class="table text-md-nowrap dt-responsive" id="datatable" style="width:100%">
                 <thead>
                     <tr>
                         <th></th>
@@ -138,6 +138,9 @@
 <script src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.templates.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+<link href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.css" rel="stylesheet">
 <script> 
     $(document).ready(function () {
         var table=$('#datatable').DataTable({
