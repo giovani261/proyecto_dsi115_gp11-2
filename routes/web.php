@@ -58,6 +58,9 @@ Route::match(['get'],'/pacientes-informe',[ExpedienteController::class,'index'])
 Route::get('/signoconsulta',[SignosController::class,'signos_informes'])->middleware('auth')->name('signoconsulta');
 Route::match(['get'],'/signos-informe',[SignosController::class,'index'])->name('signos-informe');
 
+Route::get('/citaconsulta',[ReservaDeCitaController::class,'reservas_data'])->middleware('auth')->name('citaconsulta');
+Route::match(['get'],'/citas-informe',[ReservaDeCitaController::class,'graficos'])->name('citas-informe');
+
 // Route::match(['get', 'post'], '/db', function () {
 //     //consulta
 //     $sql = 'SELECT * FROM products';
@@ -84,11 +87,8 @@ Route::get('usuarios_data',[UsuariosController::class,'usuarios_data'])->middlew
 Route::get('/informes', function () {
     return view('informe');
 })->middleware('auth');
-Route::get('/citas-informe', function () {
-    return view('citasInforme');
-})->middleware('auth');
 Route::get('citas_informes',[ReservaDeCitaController::class,'reservas_data'])->middleware('auth')->name('citas_informes');
-Route::match(['get'],'/citas-informe',[ReservaDeCitaController::class,'graficos'])->name('citas-informe');
+
 Route::get('signos_informes',[SignosController::class,'signos_informes'])->middleware('auth')->name('signos_informes');
 Route::get('/consultarusuariosajax',[UsuariosController::class,'consultarUsuarios'])->middleware('auth')->name('consultarusuariosajax');
 Route::post('/editar_usuario',[UsuariosController::class,'update'])->middleware('auth')->name('editar_usuario');
