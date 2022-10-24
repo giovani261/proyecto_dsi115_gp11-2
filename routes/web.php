@@ -35,13 +35,11 @@ Route::get('/laravel', function () {
 });
 
 Route::match(['get','post'],'/dashboard', [DashboardController::class,'dashboard'])->name('dashboard');
-
 Route::match(['post'],'/signos',[SignosController::class,'signos'])->name('signos');
 Route::match(['post'],'/receta', [RecetaController::class,'registro'])->name('receta');
 Route::match(['post'],'/historial',[HistorialController::class,'registro'])->name('historial');
 Route::match(['post'],'/expediente',[ExpedienteController::class,'registro'])->name('expediente');
 Route::match(['get'],'/expedienteconsultarajax',[ExpedienteController::class,'consultarajax'])->name('expedienteconsultarajax');
-
 Route::match(['get'],'/medicamentoconsultarajax',[MedicamentoController::class,'consultarmedicamentoajax'])->name('medicamentoconsultarajax');
 Route::match(['get'],'/insumoajax',[InsumoController::class,'consultarinsumoajax'])->name('insumoajax');
 Route::match(['get'],'/exprecetaconsultarajax',[ExpedienteController::class,'consultarajax'])->name('exprecetaconsultarajax');
@@ -57,6 +55,8 @@ Route::match(['post'],'/citasactualizarajax', [ReservaDeCitaController::class,'a
 Route::match(['get','post'],'/editorreceta', [CKEditorrecetaController ::class,'editor'])->name('editorreceta');
 Route::match(['get'],'/pacientes-informe',[ExpedienteController::class,'index'])->name('pacientes-informe');
 
+Route::get('/signoconsulta',[SignosController::class,'signos_informes'])->middleware('auth')->name('signoconsulta');
+Route::match(['get'],'/signos-informe',[SignosController::class,'index'])->name('signos-informe');
 
 // Route::match(['get', 'post'], '/db', function () {
 //     //consulta
@@ -83,9 +83,6 @@ Route::get('usuarios_data',[UsuariosController::class,'usuarios_data'])->middlew
 
 Route::get('/informes', function () {
     return view('informe');
-})->middleware('auth');
-Route::get('/signos-informes', function () {
-    return view('signosInforme');
 })->middleware('auth');
 Route::get('/citas-informe', function () {
     return view('citasInforme');
@@ -119,6 +116,7 @@ Route::post('/crear_insumo',[InsumoController::class,'create'])->middleware('aut
 Route::get('/proveedores',[ProveedoresController::class,'index'])->middleware('auth')->name('proveedores');
 Route::get('/proveedores_data',[ProveedoresController::class,'proveedores_data'])->middleware('auth')->name('proveedores_data');
 Route::get('/pacienteconsulta',[ExpedienteController::class,'pacienteajax'])->middleware('auth')->name('pacienteconsulta');
+
 Route::match(['get'],'/personal-informe',[UsuariosController::class,'informe'])->name('personalInforme');
 Route::get('personal_informe',[UsuariosController::class,'personalDataInforme'])->middleware('auth')->name('personalDataInforme');
 

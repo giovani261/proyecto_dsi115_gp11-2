@@ -40,7 +40,7 @@
                 <div class="card" style="max-width: 18rem;">
                     <div class="card-header text-danger"><center><b>Consultas subsecuentes</b></center></div>
                         <div class="card-body">
-                            <a class="acards text-black" href="/signos-informes">
+                            <a class="acards text-black" href="/signos-informe">
                                 <div class="container">
                                     <center>
                                         <div class="row">

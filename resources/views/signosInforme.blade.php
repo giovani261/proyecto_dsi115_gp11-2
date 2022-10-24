@@ -34,6 +34,17 @@
             </table>
         </div>
     </div>
+    <center>
+    <div class="row">
+        <div class="col">
+            <div class="card w-50 graficoscard">
+                <div class="graficoscardblock">
+                    <canvas id="grafico_signos"></canvas>
+                </div>
+            </div>
+        </div>
+    </div> <!--fin de fila 2 --> 
+    </center> 
 </div>
 <!-- Modal Comparacion de signos-->
 <div class="modal fade" id="comparacionsignos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -166,7 +177,7 @@
     </div>
 </div>
 </div>
-</div> 
+</div>
 </div>
 @endsection
 @section('scripts')
@@ -188,6 +199,11 @@
 
 <script src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.templates.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.js.map"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js"></script>
 
 <script>
     
@@ -354,7 +370,7 @@
                 },
             ],
             //select:true,
-            ajax: "{{route('signos_informes')}}",
+            ajax: "{{route('signoconsulta')}}",
             type:"GET",
             columns:[
                 {data: null, defaultContent: ''},
@@ -487,4 +503,94 @@
 
 
 </script>
+
+
+<script>
+    
+    var edad = new Array();
+    var edad_string = new Array();
+    var colores = new Array();
+    var convert;
+    var coleccion = {};
+    var i = 0;
+    
+    const CHART_COLORS = {
+     red: 'rgb(255, 99, 132)',
+     orange: 'rgb(255, 159, 64)',
+     yellow: 'rgb(255, 205, 86)',
+     green: 'rgb(75, 192, 192)',
+     blue: 'rgb(54, 162, 235)',
+     purple: 'rgb(153, 102, 255)',
+     grey: 'rgb(201, 203, 207)',
+     turcoise: 'rgb(58, 184, 199)',
+     green_dark: 'rgb(24, 84, 22)',
+     brown: 'rgb(95, 84, 22)',
+     light_brown: 'rgb(161, 84, 22)'
+};
+
+const NAMED_COLORS = [
+  CHART_COLORS.red,
+  CHART_COLORS.red,
+  CHART_COLORS.orange,
+  CHART_COLORS.yellow,
+  CHART_COLORS.green,
+  CHART_COLORS.blue,
+  CHART_COLORS.purple,
+  CHART_COLORS.grey,
+  CHART_COLORS.turcoise,
+  CHART_COLORS.green_dark,
+  CHART_COLORS.brown,
+  CHART_COLORS.light_brown,
+];
+    @foreach($signos as $data)
+    var random = Math.floor(Math.random() * (13-1) + 1);
+        convert = {{ $data->edad }}
+        if(coleccion[convert])
+        {
+            coleccion[convert]++;
+        }
+        else
+        {
+            coleccion[convert] = 1;
+            colores.push(NAMED_COLORS[random]);
+        }
+    @endforeach
+
+    for(elemento in coleccion)
+    {
+        edad_string.push(elemento.toString());
+    }
+    
+    var ctx = document.getElementById('grafico_signos').getContext('2d');
+      var myChart1 = new Chart(ctx, {
+          type: 'pie',
+          data: {
+              labels: edad_string,
+              datasets: [{
+                  label: "Cantidad de pacientes por edades",
+                  data: Object.values(coleccion),
+                  backgroundColor: colores,
+                  borderColor: colores,
+                  borderWidth: 1
+              },
+            ]
+          },
+          options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation:{
+                  duration: 2000,
+                }, 
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                title: {
+                    display: true,
+                    text: 'Edades de pacientes'
+      }
+    }
+  }
+    });
+</script>   
 @endsection
