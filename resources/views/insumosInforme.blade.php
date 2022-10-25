@@ -270,6 +270,71 @@
 });
 
 </script>
+<script>
+    var data1Grafico1 = new Array();
+    var data2Grafico1 = new Array();
+    var colores = new Array();
+    const CHART_COLORS = {
+     red: 'rgb(255, 99, 132)',
+     orange: 'rgb(255, 159, 64)',
+     yellow: 'rgb(255, 205, 86)',
+     green: 'rgb(75, 192, 192)',
+     blue: 'rgb(54, 162, 235)',
+     purple: 'rgb(153, 102, 255)',
+     grey: 'rgb(201, 203, 207)',
+     turcoise: 'rgb(58, 184, 199)',
+     green_dark: 'rgb(24, 84, 22)',
+     brown: 'rgb(95, 84, 22)',
+     light_brown: 'rgb(161, 84, 22)'
+    };
 
+    const NAMED_COLORS = [
+    CHART_COLORS.red,
+    CHART_COLORS.red,
+    CHART_COLORS.orange,
+    CHART_COLORS.yellow,
+    CHART_COLORS.green,
+    CHART_COLORS.blue,
+    CHART_COLORS.purple,
+    CHART_COLORS.grey,
+    CHART_COLORS.turcoise,
+    CHART_COLORS.green_dark,
+    CHART_COLORS.brown,
+    CHART_COLORS.light_brown,
+    ];
+
+    @foreach($categoriaArray as $cate)
+        var random = Math.floor(Math.random() * (13-1) + 1);
+        data1Grafico1.push("{{ $cate }}");
+        colores.push(NAMED_COLORS[random]);
+    @endforeach
+    
+    @foreach($countArray as $count)
+        data2Grafico1.push({{ $count }});
+    @endforeach
+
+    var ctx = document.getElementById('grafico1').getContext('2d');
+        var myChart1 = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: data1Grafico1,
+                datasets: [{
+                    label: 'Insumos',
+                    data: data2Grafico1,
+                    backgroundColor:colores,
+                    borderColor:colores,
+                    borderWidth: 1
+                }
+                ]
+            },
+            options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation:{
+                    duration: 2000,
+                    },
+            }
+    });
+</script>
 
 @endsection

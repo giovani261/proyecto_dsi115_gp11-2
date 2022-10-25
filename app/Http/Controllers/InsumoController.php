@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Insumo;
+use Illuminate\Support\Facades\DB;
 use Auth;
 
 class InsumoController extends Controller
@@ -38,8 +39,20 @@ class InsumoController extends Controller
     public function index_informes()
     {
         if(Auth::user()->hasRole(['administrador'])){
-            $insumos = Insumo::select('nombre','cantidad','precio','categoria')->get();
-            return view('insumosInforme',['insumos' => $insumos]);
+            //$insumos = Insumo::select('nombre','cantidad','precio','categoria')->get();
+            $query = 'SELECT distinct categoria, count(categoria) FROM insumos GROUP BY categoria ORDER BY categoria';
+            $data = DB::select(DB::raw($query));
+            $cate = array();
+            $count = array();
+
+            foreach ($data as $dat) {
+                array_push($cate,$dat->categoria);
+            }
+            foreach ($data as $dat) {
+                array_push($count,$dat->count);
+            }
+            //dd($cate,$count);
+            return view('insumosInforme',['categoriaArray' => $cate, 'countArray' => $count]);
         }
         else{
             Auth::logout();
