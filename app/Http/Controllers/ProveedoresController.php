@@ -122,4 +122,22 @@ class proveedoresController extends Controller
             return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se a cerrado su sesion');
         }
     }
+
+    public function proveedorajax(){
+        $proveedores = Proveedor::select('nombre')->orderBy('nombre')->get();
+        return  datatables($proveedores)->toJson();
+    }
+
+    public function index2()
+    {
+        if(Auth::user()->hasRole(['administrador'])){
+            $proveedores = Proveedor::select('nombre')->get();
+            return view('proveedor',['proveedores' => $proveedores]);
+        }
+        else{
+            Auth::logout();
+            //$request->session()->invalidate();
+            return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se ha cerrado su sesion');
+        }
+    }
 }
