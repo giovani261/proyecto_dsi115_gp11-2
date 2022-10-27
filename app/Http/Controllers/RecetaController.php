@@ -52,4 +52,22 @@ class RecetaController extends Controller
         }
 
     }
+
+    public function recetaajax(){
+        $proveedores = Receta::select('nombre','especialidad','indicaciones')->orderBy('nombre')->get();
+        return  datatables($proveedores)->toJson();
+    }
+
+    public function index()
+    {
+        if(Auth::user()->hasRole(['administrador'])){
+            $recetas = Receta::select('especialidad')->get();
+            return view('receta',['recetas' => $recetas]);
+        }
+        else{
+            Auth::logout();
+            //$request->session()->invalidate();
+            return redirect('/login')->withErrors('Usted a intentado acceder a una pagina a la que no tiene permiso, se ha cerrado su sesion');
+        }
+    }
 }

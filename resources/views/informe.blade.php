@@ -136,6 +136,57 @@
                 <br>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <div class="card" style="max-width: 18rem;">
+                    <div class="card-header text-danger"><center><b>Proveedores</b></center></div>
+                        <div class="card-body">
+                            <a class="acards text-black" href="/proveedor-informe">
+                                <div class="container">
+                                    <center>
+                                        <div class="row">
+                                            <div class="col my-auto">
+                                                Informe de proveedores
+                                            </div>
+                                            <div class="col-md-auto my-auto">
+                                                <i class="fa-solid fa-heart-pulse fa-4x" style="color:#DC3545"></i>
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>   
+                            </a>
+                        </div>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <div class="card" style="max-width: 18rem;">
+                    <div class="card-header text-danger"><center><b>Recetas</b></center></div>
+                        <div class="card-body">
+                            <a class="acards text-black" href="/recetas-informe">
+                                <div class="container">
+                                    <center>
+                                        <div class="row">
+                                            <div class="col my-auto">
+                                                Informe de recetas
+                                            </div>
+                                            <div class="col-md-auto my-auto">
+                                                <i class="fa-solid fa-heart-pulse fa-4x" style="color:#DC3545"></i>
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>   
+                            </a>
+                        </div>
+                </div>
+                <br>
+            </div>
+        </div>
 </div>
 @endsection
 @section('scripts')

@@ -60,6 +60,8 @@ Route::match(['get'],'/signos-informe',[SignosController::class,'index'])->name(
 
 Route::get('/citaconsulta',[ReservaDeCitaController::class,'reservas_data'])->middleware('auth')->name('citaconsulta');
 Route::match(['get'],'/citas-informe',[ReservaDeCitaController::class,'graficos'])->name('citas-informe');
+Route::match(['get'],'/proveedor-informe',[ProveedoresController::class,'index2'])->name('proveedor-informe');
+Route::match(['get'],'/recetas-informe',[RecetaController::class,'index'])->name('recetas-informe');
 
 // Route::match(['get', 'post'], '/db', function () {
 //     //consulta
@@ -122,4 +124,5 @@ Route::get('personal_informe',[UsuariosController::class,'personalDataInforme'])
 
 Route::get('/insumoconsulta',[InsumoController::class,'insumos_ajax'])->middleware('auth')->name('insumoconsulta');
 Route::match(['get'],'/insumos-informes',[InsumoController::class,'index_informes'])->name('insumos-informes');
-
+Route::get('/proveedorconsulta',[ProveedoresController::class,'proveedorajax'])->middleware('auth')->name('proveedorconsulta');
+Route::get('/recetaconsulta',[RecetaController::class,'recetaajax'])->middleware('auth')->name('recetaconsulta');
