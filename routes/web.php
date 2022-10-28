@@ -114,7 +114,7 @@ Route::get('insumos_data',[InsumoController::class,'insumos_data'])->middleware(
 Route::get('/consultarinsumo',[InsumoController::class,'consultarInsumo'])->middleware('auth')->name('consultarinsumo');
 Route::post('/editar_insumo',[InsumoController::class,'update'])->middleware('auth')->name('editar_insumo');
 Route::post('/crear_insumo',[InsumoController::class,'create'])->middleware('auth')->name('crear_insumo');
-//Route::post('/eliminar_insumo',[InsumoController::class,'destroy'])->middleware('auth')->name('eliminar_insumo');
+Route::post('/eliminar_insumo',[InsumoController::class,'destroy'])->middleware('auth')->name('eliminar_insumo');
 Route::get('/proveedores',[ProveedoresController::class,'index'])->middleware('auth')->name('proveedores');
 Route::get('/proveedores_data',[ProveedoresController::class,'proveedores_data'])->middleware('auth')->name('proveedores_data');
 Route::get('/pacienteconsulta',[ExpedienteController::class,'pacienteajax'])->middleware('auth')->name('pacienteconsulta');
