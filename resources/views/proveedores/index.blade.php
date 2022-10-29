@@ -114,7 +114,8 @@
                     {
                         "data": null,
                         render: function (data) {
-                            return "<button class='btn btn-warning' onclick='consultarProveedor(" + data.id + ")'><i class='fa-solid fa-pen-to-square'></i> Editar</button>";
+                            //return "<button class='btn btn-warning' onclick='consultarProveedor(" + data.id + ")'><i class='fa-solid fa-pen-to-square'></i> Editar</button>";
+                            return "<button class='btn btn-warning' onclick='consultarProveedor(" + data.id + ")'><i class='fa-solid fa-pen-to-square'></i> Editar</button> <button class='btn btn-danger' onclick='eliminarProveedor(" + data.id + ")'><i class='fa-solid fa-trash-can'></i> Eliminar</button>";
                         }
                         //defaultContent: "<button class='btn btn-warning' onclick='prueba({data:'id'})'>Editar</button> / <button class='btn btn-danger'>Eliminar</button>"
                     }
@@ -224,6 +225,7 @@
                 });
             });
     }  
+    
         // js para envio por ajax para la ventana de crear usuario
         $(document).ready(function () {
             $("#modalCrearProveedor").submit(function (e) {
@@ -279,5 +281,49 @@
                 }
             });
         });
+
+//js de función eliminar proveedor
+function eliminarProveedor(id){
+    Swal.fire({
+        icon: 'warning',
+        title: '¿Está seguro de realizar esta acción?',
+        text: '¡No podrá revertir esto!',
+        showCancelButton: true,
+        confirmButtonText: 'Ok',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url:"{{route('eliminar_proveedor')}}",
+                type:"POST",
+                data:{
+                    'IdProveedor': id,
+                    "_token": $("meta[name='csrf-token']").attr("content")
+                },
+                //dataType:"json",
+                success: function(test){
+                    $('#datatable').DataTable().ajax.reload();
+                    if(test.estado === 'eliminado'){
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Hecho!.',
+                                text: 'Se eliminó correctamente el proveedor',
+                                confirmButtonText: 'Ok',
+                            })
+                        }
+                    if(test.estado === 'error'){
+                            Swal.fire({
+                                icon: 'error',
+                                title: '¡Ocurrió un error!.',
+                                text: 'No se pudo eliminar el proveedor correctamente',
+                                confirmButtonText: 'Ok',
+                            })
+                        }
+                    }
+                });
+        } else if (result.isDismissed) {
+            Swal.fire('Se canceló la eliminación del proveedor', '', 'info')
+        }
+    })
+}        
     </script>
     @endsection

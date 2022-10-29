@@ -125,4 +125,5 @@ Route::get('personal_informe',[UsuariosController::class,'personalDataInforme'])
 Route::get('/insumoconsulta',[InsumoController::class,'insumos_ajax'])->middleware('auth')->name('insumoconsulta');
 Route::match(['get'],'/insumos-informes',[InsumoController::class,'index_informes'])->name('insumos-informes');
 Route::get('/proveedorconsulta',[ProveedoresController::class,'proveedorajax'])->middleware('auth')->name('proveedorconsulta');
+Route::post('/eliminar_proveedor',[ProveedoresController::class,'destroy'])->middleware('auth')->name('eliminar_proveedor');
 Route::get('/recetaconsulta',[RecetaController::class,'recetaajax'])->middleware('auth')->name('recetaconsulta');
