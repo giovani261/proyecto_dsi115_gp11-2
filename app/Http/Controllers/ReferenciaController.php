@@ -47,4 +47,21 @@ class ReferenciaController extends Controller
     public function editar_referencia(Request $request) {
         return view('editar-referencia');
     }
+
+    public function consultareferenciasmedicasajax(Request $request) {
+        $referencias = Referencia::select('nombre','razon', 'se le envia a')->get();
+        return  datatables($referencias)->toJson();
+    }
+    
+    public function index(Request $request) {
+        if(Auth::user()->hasRole(['administrador'])){
+            $referencias = Referencia::select('se le envia a')->get();
+            return view('referencias_medicas_informe',['referencias' => $referencias]);
+        }
+        else{
+            Auth::logout();
+            //$request->session()->invalidate();
+            return redirect('/login')->withErrors('Usted a intentado acceder a una página para la que no tiene permiso, se ha cerrado su sesión');
+        }
+    }
 }

@@ -233,5 +233,20 @@ class ReservaDeCitaController extends Controller
         //
     }
 
-
+    public function consultasconsultaajax() {
+        $consultas = ReservaDeCita::select('hora', 'nombre', 'especialidad', 'telefono')->get();
+        return  datatables($consultas)->toJson();
+    }
+    
+    public function ver(Request $request) {
+        if(Auth::user()->hasRole(['administrador'])){
+            $consultas = ReservaDeCita::select('especialidad')->get();
+            return view('consultas_informe', ['consultas' => $consultas]);
+        }
+        else{
+            Auth::logout();
+            //$request->session()->invalidate();
+            return redirect('/login')->withErrors('Usted a intentado acceder a una página para la que no tiene permiso, se ha cerrado su sesión');
+        }
+    }
 }
