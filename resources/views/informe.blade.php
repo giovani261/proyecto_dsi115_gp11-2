@@ -187,6 +187,54 @@
                 <br>
             </div>
         </div>
+        
+        <!-- Card Referencias informes-->
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <div class="card" style="max-width: 18rem;">
+                    <div class="card-header text-danger"><center><b>Referencias m&eacute;dicas</b></center></div>
+                        <div class="card-body">
+                            <a class="acards text-black" href="/referencias_medicas_informe">
+                                <div class="container">
+                                    <center>
+                                        <div class="row">
+                                            <div class="col my-auto">
+                                                Informe de referencias m&eacute;dicas
+                                            </div>
+                                            <div class="col-md-auto my-auto">
+                                                <i class="fa-solid fa-heart-pulse fa-4x" style="color:#DC3545"></i>
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>   
+                            </a>
+                        </div>
+                </div>
+                
+                <!-- Card Consultas informes-->
+                <div class="card" style="max-width: 18rem;">
+                    <div class="card-header text-danger"><center><b>Consultas</b></center></div>
+                        <div class="card-body">
+                            <a class="acards text-black" href="/consultas_informe">
+                                <div class="container">
+                                    <center>
+                                        <div class="row">
+                                            <div class="col my-auto">
+                                                Informe de consultas
+                                            </div>
+                                            <div class="col-md-auto my-auto">
+                                                <i class="fa-solid fa-heart-pulse fa-4x" style="color:#DC3545"></i>
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>   
+                            </a>
+                        </div>
+                </div>
+                <br>
+            </div>
+        </div>
 </div>
 @endsection
 @section('scripts')
